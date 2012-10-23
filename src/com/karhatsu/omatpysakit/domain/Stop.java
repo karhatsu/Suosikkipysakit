@@ -2,13 +2,13 @@ package com.karhatsu.omatpysakit.domain;
 
 public class Stop {
 
-	private final String code;
+	private final int code;
 
-	public Stop(String code) {
+	public Stop(int code) {
 		this.code = code;
 	}
 
-	public String getCode() {
+	public int getCode() {
 		return code;
 	}
 

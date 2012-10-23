@@ -26,11 +26,16 @@ public class AddStopActivity extends Activity {
 	}
 
 	public void saveStop(View button) {
-		String code = ((EditText) findViewById(R.id.add_stop_code)).getText()
-				.toString();
-		new StopDao().save(this, new Stop(code));
+		new StopDao().save(this, new Stop(getCode()));
 		Intent intent = new Intent(this, MainActivity.class);
 		startActivity(intent);
+	}
+
+	private int getCode() {
+		// TODO: validation
+		String code = ((EditText) findViewById(R.id.add_stop_code)).getText()
+				.toString();
+		return Integer.valueOf(code);
 	}
 
 }
