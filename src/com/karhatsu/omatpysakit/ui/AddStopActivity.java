@@ -1,4 +1,4 @@
-package com.karhatsu.omatpysakit;
+package com.karhatsu.omatpysakit.ui;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,6 +6,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
+
+import com.karhatsu.omatpysakit.R;
+import com.karhatsu.omatpysakit.datasource.Stops;
+import com.karhatsu.omatpysakit.domain.Stop;
 
 public class AddStopActivity extends Activity {
 

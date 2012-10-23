@@ -1,4 +1,4 @@
-package com.karhatsu.omatpysakit;
+package com.karhatsu.omatpysakit.ui;
 
 import java.util.List;
 
@@ -8,6 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+
+import com.karhatsu.omatpysakit.R;
+import com.karhatsu.omatpysakit.datasource.Stops;
+import com.karhatsu.omatpysakit.domain.Stop;
 
 public class StopListAdapter extends ArrayAdapter<Stop> {
 

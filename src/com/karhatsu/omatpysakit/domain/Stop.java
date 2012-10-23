@@ -1,4 +1,4 @@
-package com.karhatsu.omatpysakit;
+package com.karhatsu.omatpysakit.domain;
 
 public class Stop {
 

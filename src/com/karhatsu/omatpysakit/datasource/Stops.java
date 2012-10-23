@@ -1,7 +1,9 @@
-package com.karhatsu.omatpysakit;
+package com.karhatsu.omatpysakit.datasource;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.karhatsu.omatpysakit.domain.Stop;
 
 public class Stops {
 
