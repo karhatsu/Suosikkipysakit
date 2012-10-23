@@ -3,5 +3,6 @@
     <string name="app_name">Omat Pysäkit</string>
     <string name="title_activity_main">Omat pysäkit</string>
     <string name="menu_settings">Asetukset</string>
+    <string name="add_stop_button">Uusi pysäkki</string>
 
 </resources>

@@ -2,6 +2,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
+    
+    <Button
+        android:id="@+id/add_stop_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/add_stop_button"
+        android:padding="10dp"
+        android:textSize="20sp" />
 
     <ListView
         android:id="@+id/stop_list"
@@ -9,6 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="false"
+        android:layout_below="@id/add_stop_button"
         tools:context=".MainActivity" />
 
 </RelativeLayout>
