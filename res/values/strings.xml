@@ -1,0 +1,7 @@
+<resources>
+
+    <string name="app_name">Omat Pysäkit</string>
+    <string name="title_activity_main">Omat pysäkit</string>
+    <string name="menu_settings">Asetukset</string>
+
+</resources>
