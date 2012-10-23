@@ -1,9 +1,11 @@
 package com.karhatsu.omatpysakit;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.widget.EditText;
 
 public class AddStopActivity extends Activity {
 
@@ -20,7 +22,11 @@ public class AddStopActivity extends Activity {
 	}
 
 	public void saveStop(View button) {
-		//
+		String code = ((EditText) findViewById(R.id.add_stop_code)).getText()
+				.toString();
+		Stops.get().save(new Stop(code));
+		Intent intent = new Intent(this, MainActivity.class);
+		startActivity(intent);
 	}
 
 }

@@ -11,8 +11,6 @@ import android.widget.ListView;
 
 public class MainActivity extends Activity {
 
-	private Stops stops = new Stops();
-
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -22,8 +20,8 @@ public class MainActivity extends Activity {
 	}
 
 	private ListAdapter getStopListAdapter() {
-		return new ArrayAdapter<String>(this, R.layout.stop_list_item,
-				stops.getTitles());
+		return new ArrayAdapter<String>(this, R.layout.stop_list_item, Stops
+				.get().getTitles());
 	}
 
 	public void addStop(View button) {

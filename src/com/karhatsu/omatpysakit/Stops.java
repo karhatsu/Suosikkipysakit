@@ -5,9 +5,17 @@ import java.util.List;
 
 public class Stops {
 
+	private static Stops instance;
 	private List<Stop> stops;
 
-	public Stops() {
+	public static Stops get() {
+		if (instance == null) {
+			instance = new Stops();
+		}
+		return instance;
+	}
+
+	private Stops() {
 		stops = new ArrayList<Stop>();
 		stops.add(new Stop("123"));
 		stops.add(new Stop("145"));
@@ -22,6 +30,10 @@ public class Stops {
 			titles.add(stop.getCode());
 		}
 		return titles;
+	}
+
+	public void save(Stop stop) {
+		stops.add(stop);
 	}
 
 }
