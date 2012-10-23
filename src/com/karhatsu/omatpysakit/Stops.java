@@ -24,12 +24,8 @@ public class Stops {
 		stops.add(new Stop("411"));
 	}
 
-	public List<String> getTitles() {
-		List<String> titles = new ArrayList<String>(stops.size());
-		for (Stop stop : stops) {
-			titles.add(stop.getCode());
-		}
-		return titles;
+	public List<Stop> getAll() {
+		return stops;
 	}
 
 	public void save(Stop stop) {
