@@ -1,39 +1,20 @@
 package com.karhatsu.omatpysakit.ui;
 
-import java.util.List;
-
 import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.TextView;
+import android.support.v4.widget.SimpleCursorAdapter;
 
 import com.karhatsu.omatpysakit.R;
-import com.karhatsu.omatpysakit.datasource.Stops;
-import com.karhatsu.omatpysakit.domain.Stop;
+import com.karhatsu.omatpysakit.db.OwnStopsContract;
+import com.karhatsu.omatpysakit.db.StopDao;
 
-public class StopListAdapter extends ArrayAdapter<Stop> {
+public class StopListAdapter extends SimpleCursorAdapter {
 
-	private List<Stop> stops;
+	private static final String[] FROM_COLUMNS = new String[] { OwnStopsContract.StopEntry.COLUMN_NAME_CODE };
+	private static final int[] TO_COLUMNS = new int[] { R.id.stop_list_item_text };
 
 	public StopListAdapter(Context context) {
-		super(context, R.layout.stop_list_item, Stops.get().getAll());
-		this.stops = Stops.get().getAll();
-	}
-
-	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
-		View view = convertView;
-		if (view == null) {
-			LayoutInflater layoutInflater = (LayoutInflater) getContext()
-					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			view = layoutInflater.inflate(R.layout.stop_list_item, null);
-		}
-		Stop stop = stops.get(position);
-		TextView text = (TextView) view.findViewById(R.id.stop_list_item_text);
-		text.setText(stop.getCode());
-		return view;
+		super(context, R.layout.stop_list_item, new StopDao().findAll(context),
+				FROM_COLUMNS, TO_COLUMNS, 0);
 	}
 
 }

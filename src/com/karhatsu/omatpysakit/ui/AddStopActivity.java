@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.karhatsu.omatpysakit.R;
-import com.karhatsu.omatpysakit.datasource.Stops;
+import com.karhatsu.omatpysakit.db.StopDao;
 import com.karhatsu.omatpysakit.domain.Stop;
 
 public class AddStopActivity extends Activity {
@@ -28,7 +28,7 @@ public class AddStopActivity extends Activity {
 	public void saveStop(View button) {
 		String code = ((EditText) findViewById(R.id.add_stop_code)).getText()
 				.toString();
-		Stops.get().save(new Stop(code));
+		new StopDao().save(this, new Stop(code));
 		Intent intent = new Intent(this, MainActivity.class);
 		startActivity(intent);
 	}
