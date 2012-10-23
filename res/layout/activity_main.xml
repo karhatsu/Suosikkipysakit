@@ -9,7 +9,8 @@
         android:layout_height="wrap_content"
         android:text="@string/add_stop_button"
         android:padding="10dp"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:onClick="addStop" />
 
     <ListView
         android:id="@+id/stop_list"

@@ -4,5 +4,8 @@
     <string name="title_activity_main">Omat pysäkit</string>
     <string name="menu_settings">Asetukset</string>
     <string name="add_stop_button">Uusi pysäkki</string>
+    <string name="title_activity_add_stop">Lisää pysäkki</string>
+    <string name="add_stop_code_hint">Pysäkin tunnus</string>
+    <string name="add_stop_save">Tallenna</string>
 
 </resources>
