@@ -7,5 +7,6 @@
     <string name="title_activity_add_stop">Lisää pysäkki</string>
     <string name="add_stop_code_hint">Pysäkin tunnus</string>
     <string name="add_stop_save">Tallenna</string>
+    <string name="title_activity_departures">Seuraavat lähdöt</string>
 
 </resources>

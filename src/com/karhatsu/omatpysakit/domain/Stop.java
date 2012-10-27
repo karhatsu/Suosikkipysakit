@@ -4,6 +4,8 @@ import java.util.List;
 
 public class Stop {
 
+	public static final String CODE_KEY = "com.karhatsu.omatpysakit.domain.CODE";
+
 	private final int code;
 	private List<Departure> departures;
 

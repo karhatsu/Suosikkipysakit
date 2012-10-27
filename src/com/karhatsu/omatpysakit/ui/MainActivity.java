@@ -2,13 +2,17 @@ package com.karhatsu.omatpysakit.ui;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.karhatsu.omatpysakit.R;
+import com.karhatsu.omatpysakit.domain.Stop;
 
 public class MainActivity extends Activity {
 
@@ -16,8 +20,31 @@ public class MainActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		ListView stopListView = (ListView) findViewById(R.id.stop_list);
-		stopListView.setAdapter(getStopListAdapter());
+		setupStopListView();
+	}
+
+	private void setupStopListView() {
+		final ListView stopListView = (ListView) findViewById(R.id.stop_list);
+		final ListAdapter stopListAdapter = getStopListAdapter();
+		stopListView.setAdapter(stopListAdapter);
+		stopListView.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				Intent intent = new Intent(MainActivity.this,
+						DeparturesActivity.class);
+				intent.putExtra(Stop.CODE_KEY,
+						getSelectedStopCode(stopListAdapter, position));
+				startActivity(intent);
+			}
+
+			private int getSelectedStopCode(final ListAdapter stopListAdapter,
+					int position) {
+				Cursor cursor = (Cursor) stopListAdapter.getItem(position);
+				cursor.moveToPosition(position);
+				return cursor.getInt(1);
+			}
+		});
 	}
 
 	private ListAdapter getStopListAdapter() {

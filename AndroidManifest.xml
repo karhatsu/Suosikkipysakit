@@ -27,6 +27,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.karhatsu.omatpysakit.MainActivity" />
         </activity>
+        <activity
+            android:name=".ui.DeparturesActivity"
+            android:label="@string/title_activity_departures" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.karhatsu.omatpysakit.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
