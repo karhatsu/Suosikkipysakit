@@ -13,11 +13,13 @@ import android.widget.ListView;
 
 import com.karhatsu.omatpysakit.R;
 import com.karhatsu.omatpysakit.domain.Stop;
+import com.karhatsu.omatpysakit.util.AccountInformation;
 
 public class MainActivity extends Activity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		AccountInformation.initialize(this);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		setupStopListView();
