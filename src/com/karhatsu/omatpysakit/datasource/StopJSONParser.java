@@ -25,8 +25,8 @@ public class StopJSONParser {
 	}
 
 	private Stop parseStop(JSONObject jsonStop) throws JSONException {
-		return new Stop(jsonStop.getInt("code"), jsonStop.getString("name_fi"),
-				jsonStop.getString("name_sv"));
+		return new Stop(jsonStop.getInt("code_short"),
+				jsonStop.getString("name_fi"), jsonStop.getString("name_sv"));
 	}
 
 	private List<Departure> parseDepartures(JSONObject jsonStop)
