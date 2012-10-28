@@ -17,7 +17,7 @@ public class DepartureListAdapter extends ArrayAdapter<Departure> {
 	private List<Departure> departures;
 
 	public DepartureListAdapter(Context context, List<Departure> departures) {
-		super(context, R.layout.departure_list_item, departures);
+		super(context, R.layout.list_item_departure, departures);
 		this.departures = departures;
 	}
 
@@ -27,7 +27,7 @@ public class DepartureListAdapter extends ArrayAdapter<Departure> {
 		if (view == null) {
 			LayoutInflater layoutInflater = (LayoutInflater) getContext()
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			view = layoutInflater.inflate(R.layout.departure_list_item, null);
+			view = layoutInflater.inflate(R.layout.list_item_departure, null);
 		}
 		Departure departure = departures.get(position);
 		TextView text = (TextView) view

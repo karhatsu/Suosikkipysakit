@@ -13,7 +13,7 @@ public class StopListAdapter extends SimpleCursorAdapter {
 	private static final int[] TO_COLUMNS = new int[] { R.id.stop_list_item_text };
 
 	public StopListAdapter(Context context) {
-		super(context, R.layout.stop_list_item, new StopDao().findAll(context),
+		super(context, R.layout.list_item_stop, new StopDao().findAll(context),
 				FROM_COLUMNS, TO_COLUMNS, 0);
 	}
 
