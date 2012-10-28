@@ -4,13 +4,19 @@ import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.ContextMenu.ContextMenuInfo;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.karhatsu.omatpysakit.R;
+import com.karhatsu.omatpysakit.db.StopDao;
 import com.karhatsu.omatpysakit.domain.Stop;
 import com.karhatsu.omatpysakit.util.AccountInformation;
 
@@ -25,8 +31,8 @@ public class MainActivity extends Activity {
 	}
 
 	private void setupStopListView() {
-		final ListView stopListView = (ListView) findViewById(R.id.stop_list);
-		final ListAdapter stopListAdapter = getStopListAdapter();
+		final ListView stopListView = getStopListView();
+		final ListAdapter stopListAdapter = createStopListAdapter();
 		stopListView.setAdapter(stopListAdapter);
 		stopListView.setOnItemClickListener(new OnItemClickListener() {
 			@Override
@@ -38,22 +44,55 @@ public class MainActivity extends Activity {
 						getSelectedStopCode(stopListAdapter, position));
 				startActivity(intent);
 			}
-
-			private int getSelectedStopCode(final ListAdapter stopListAdapter,
-					int position) {
-				Cursor cursor = (Cursor) stopListAdapter.getItem(position);
-				cursor.moveToPosition(position);
-				return cursor.getInt(1);
-			}
 		});
+		registerForContextMenu(stopListView);
 	}
 
-	private ListAdapter getStopListAdapter() {
-		return new StopListAdapter(this);
+	private ListAdapter createStopListAdapter() {
+		Cursor cursor = new StopDao().findAll(this);
+		return new StopListAdapter(this, cursor);
+	}
+
+	private int getSelectedStopCode(final ListAdapter stopListAdapter,
+			int position) {
+		Cursor cursor = (Cursor) stopListAdapter.getItem(position);
+		cursor.moveToPosition(position);
+		return cursor.getInt(1);
 	}
 
 	public void addStop(View button) {
 		Intent intent = new Intent(this, AddStopActivity.class);
 		startActivity(intent);
+	}
+
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, View view,
+			ContextMenuInfo menuInfo) {
+		super.onCreateContextMenu(menu, view, menuInfo);
+		MenuInflater menuInflater = getMenuInflater();
+		menuInflater.inflate(R.menu.menu_stop_item, menu);
+	}
+
+	@Override
+	public boolean onContextItemSelected(MenuItem item) {
+		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item
+				.getMenuInfo();
+		switch (item.getItemId()) {
+		case R.id.menu_stop_item_delete:
+			new StopDao().delete(this, info.id);
+			refreshStopList();
+			return true;
+		default:
+			return super.onContextItemSelected(item);
+		}
+	}
+
+	private void refreshStopList() {
+		ListView stopListView = getStopListView();
+		stopListView.setAdapter(createStopListAdapter());
+	}
+
+	private ListView getStopListView() {
+		return (ListView) findViewById(R.id.stop_list);
 	}
 }
