@@ -29,9 +29,10 @@ public class StopJSONParser {
 			throws JSONException {
 		JSONArray jsonDepartures = jsonStop.getJSONArray("departures");
 		List<Departure> departures = new ArrayList<Departure>(10);
+		LineParser lineParser = new LineParser();
 		for (int i = 0; i < jsonDepartures.length(); i++) {
 			JSONObject jsonDeparture = jsonDepartures.getJSONObject(i);
-			String line = jsonDeparture.getString("code");
+			String line = lineParser.format(jsonDeparture.getString("code"));
 			String time = jsonDeparture.getString("time");
 			Departure departure = new Departure(line, time);
 			departures.add(departure);
