@@ -17,14 +17,16 @@ import com.karhatsu.omatpysakit.domain.Stop;
 
 public class StopJSONParserTest extends TestCase {
 
-	private static final String TEST_JSON_FILE = "src/com/karhatsu/omatpysakit/datasource/test/test-stop-response.json";
+	private static final String TEST_FILES_DIRECTORY = "src/com/karhatsu/omatpysakit/datasource/test/";
+	private static final String TEST_JSON_FILE = "test-stop-response.json";
+	private static final String TEST_JSON_FILE_NO_DEPARTURES = "test-stop-response-no-departures.json";
 	private static String jsonString;
 	private StopJSONParser parser = new StopJSONParser();
 
 	@Override
 	protected void setUp() throws Exception {
 		if (jsonString == null) {
-			jsonString = readTestJson();
+			jsonString = readTestJson(TEST_JSON_FILE);
 		}
 	}
 
@@ -53,7 +55,7 @@ public class StopJSONParserTest extends TestCase {
 		assertEquals("09:07", getParsedDepartures().get(0).getTime());
 	}
 
-	public void testDepartureTarget() throws JSONException,
+	public void testDepartureEndStop() throws JSONException,
 			StopRequestException {
 		assertEquals("Rautatientori", getParsedDepartures().get(0).getEndStop());
 	}
@@ -68,6 +70,13 @@ public class StopJSONParserTest extends TestCase {
 		}
 	}
 
+	public void testNoDepartures() throws IOException, StopRequestException,
+			JSONException {
+		String json = readTestJson(TEST_JSON_FILE_NO_DEPARTURES);
+		Stop stop = parser.parse(json);
+		assertEquals(0, stop.getDepartures().size());
+	}
+
 	private Stop getParsedStop() throws JSONException, StopRequestException {
 		return parser.parse(jsonString);
 	}
@@ -77,10 +86,10 @@ public class StopJSONParserTest extends TestCase {
 		return getParsedStop().getDepartures();
 	}
 
-	private String readTestJson() throws IOException {
+	private String readTestJson(String fileName) throws IOException {
 		FileInputStream fis = null;
 		try {
-			fis = new FileInputStream(new File(TEST_JSON_FILE));
+			fis = new FileInputStream(new File(TEST_FILES_DIRECTORY + fileName));
 			Scanner scanner = new Scanner(fis).useDelimiter("\\A");
 			return scanner.hasNext() ? scanner.next() : "";
 		} finally {

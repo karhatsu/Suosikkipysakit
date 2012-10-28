@@ -49,6 +49,9 @@ public class StopJSONParser {
 
 	private List<Departure> parseDepartures(JSONObject jsonStop)
 			throws JSONException {
+		if (jsonStop.isNull("departures")) {
+			return new ArrayList<Departure>();
+		}
 		Map<String, String> endStops = getEndStops(jsonStop);
 		JSONArray jsonDepartures = jsonStop.getJSONArray("departures");
 		List<Departure> departures = new ArrayList<Departure>(10);
