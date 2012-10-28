@@ -13,16 +13,20 @@ import com.karhatsu.omatpysakit.domain.Stop;
 public class StopJSONParser {
 
 	public Stop parse(String json) throws JSONException {
-		JSONObject jsonStop = parseFirstStop(json);
-		Stop stop = new Stop(jsonStop.getInt("code"));
+		JSONObject jsonStop = parseFirstJSONStop(json);
+		Stop stop = parseStop(jsonStop);
 		stop.setDepartures(parseDepartures(jsonStop));
 		return stop;
 	}
 
-	private JSONObject parseFirstStop(String json) throws JSONException {
+	private JSONObject parseFirstJSONStop(String json) throws JSONException {
 		JSONArray jsonStops = new JSONArray(json);
-		JSONObject jsonStop = jsonStops.getJSONObject(0);
-		return jsonStop;
+		return jsonStops.getJSONObject(0);
+	}
+
+	private Stop parseStop(JSONObject jsonStop) throws JSONException {
+		return new Stop(jsonStop.getInt("code"), jsonStop.getString("name_fi"),
+				jsonStop.getString("name_sv"));
 	}
 
 	private List<Departure> parseDepartures(JSONObject jsonStop)

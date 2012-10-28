@@ -13,7 +13,9 @@ public class StopDao {
 		OwnStopsDbHelper dbHelper = new OwnStopsDbHelper(context);
 		SQLiteDatabase db = dbHelper.getWritableDatabase();
 		ContentValues values = new ContentValues();
-		values.put(OwnStopsContract.StopEntry.COLUMN_NAME_CODE, stop.getCode());
+		values.put(OwnStopsContract.StopEntry.COLUMN_CODE, stop.getCode());
+		values.put(OwnStopsContract.StopEntry.COLUMN_NAME_FI, stop.getNameFi());
+		values.put(OwnStopsContract.StopEntry.COLUMN_NAME_SV, stop.getNameSv());
 		db.insert(OwnStopsContract.StopEntry.TABLE_NAME, null, values);
 	}
 
@@ -21,8 +23,9 @@ public class StopDao {
 		OwnStopsDbHelper dbHelper = new OwnStopsDbHelper(context);
 		SQLiteDatabase db = dbHelper.getReadableDatabase();
 		String[] projection = { OwnStopsContract.StopEntry._ID,
-				OwnStopsContract.StopEntry.COLUMN_NAME_CODE };
-		String sortBy = OwnStopsContract.StopEntry.COLUMN_NAME_CODE;
+				OwnStopsContract.StopEntry.COLUMN_CODE,
+				OwnStopsContract.StopEntry.COLUMN_NAME_FI };
+		String sortBy = OwnStopsContract.StopEntry.COLUMN_CODE;
 		return db.query(OwnStopsContract.StopEntry.TABLE_NAME, projection,
 				null, null, null, null, sortBy);
 	}

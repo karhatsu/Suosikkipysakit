@@ -30,6 +30,14 @@ public class StopJSONParserTest extends TestCase {
 		assertEquals(1230101, getParsedStop().getCode());
 	}
 
+	public void testStopNameFi() throws JSONException {
+		assertEquals("Kaironkatu", getParsedStop().getNameFi());
+	}
+
+	public void testStopNameSv() throws JSONException {
+		assertEquals("Kairogatan", getParsedStop().getNameSv());
+	}
+
 	public void testDeparturesCount() throws JSONException {
 		assertEquals(10, getParsedDepartures().size());
 	}
