@@ -6,7 +6,7 @@
     <string name="add_stop_button">Uusi pysäkki</string>
     <string name="title_activity_add_stop">Lisää pysäkki</string>
     <string name="add_stop_code_hint">Pysäkin tunnus</string>
-    <string name="add_stop_save">Tallenna</string>
+    <string name="add_stop_search">Hae</string>
     <string name="title_activity_departures">Seuraavat lähdöt</string>
     <string name="add_stop_not_found">Pysäkkiä ei löytynyt</string>
     <string name="add_stop_invalid_code">Virheellinen pysäkkikoodi. Koodin pitää olla nelinumeroinen luku.</string>

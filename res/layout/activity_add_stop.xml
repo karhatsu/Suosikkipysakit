@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/add_stop_code"
-        android:text="@string/add_stop_save"
-        android:onClick="saveStop" />
+        android:text="@string/add_stop_search"
+        android:onClick="searchStop" />
 
 </RelativeLayout>

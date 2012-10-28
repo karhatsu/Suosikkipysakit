@@ -28,7 +28,7 @@ public class AddStopActivity extends Activity {
 		return true;
 	}
 
-	public void saveStop(View button) {
+	public void searchStop(View button) {
 		Stop stop = queryStopData();
 		if (stop != null) {
 			saveStopAndShowAll(stop);
