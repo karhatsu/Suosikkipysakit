@@ -30,9 +30,12 @@ public class DepartureListAdapter extends ArrayAdapter<Departure> {
 			view = layoutInflater.inflate(R.layout.list_item_departure, null);
 		}
 		Departure departure = departures.get(position);
-		TextView text = (TextView) view
-				.findViewById(R.id.departure_list_item_text);
-		text.setText(departure.getLine() + " / " + departure.getTime());
+		TextView timeView = (TextView) view
+				.findViewById(R.id.departure_list_item_time);
+		timeView.setText(departure.getTime());
+		TextView lineView = (TextView) view
+				.findViewById(R.id.departure_list_item_line);
+		lineView.setText(departure.getLine());
 		return view;
 	}
 }
