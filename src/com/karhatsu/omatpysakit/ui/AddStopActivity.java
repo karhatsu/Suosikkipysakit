@@ -31,28 +31,37 @@ public class AddStopActivity extends Activity {
 	public void saveStop(View button) {
 		Stop stop = queryStopData();
 		if (stop != null) {
-			new StopDao().save(this, stop);
-			Intent intent = new Intent(this, MainActivity.class);
-			startActivity(intent);
-		} else {
-			Toast.makeText(this, R.string.add_stop_not_found,
-					Toast.LENGTH_SHORT).show();
+			saveStopAndShowAll(stop);
 		}
 	}
 
 	private Stop queryStopData() {
+		String code = getCode();
+		if (!Stop.isValidCode(code)) {
+			showToast(R.string.add_stop_invalid_code);
+			return null;
+		}
 		try {
-			return new StopRequest().getData(getCode());
+			return new StopRequest().getData(Integer.valueOf(getCode()));
 		} catch (StopRequestException e) {
+			showToast(R.string.add_stop_not_found);
 			return null;
 		}
 	}
 
-	private int getCode() {
-		// TODO: validation
-		String code = ((EditText) findViewById(R.id.add_stop_code)).getText()
+	private void showToast(int resourceId) {
+		Toast.makeText(this, resourceId, Toast.LENGTH_SHORT).show();
+	}
+
+	private String getCode() {
+		return ((EditText) findViewById(R.id.add_stop_code)).getText()
 				.toString();
-		return Integer.valueOf(code);
+	}
+
+	private void saveStopAndShowAll(Stop stop) {
+		new StopDao().save(this, stop);
+		Intent intent = new Intent(this, MainActivity.class);
+		startActivity(intent);
 	}
 
 }

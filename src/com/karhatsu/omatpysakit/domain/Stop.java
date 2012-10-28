@@ -37,4 +37,13 @@ public class Stop {
 	public void setDepartures(List<Departure> departures) {
 		this.departures = departures;
 	}
+
+	public static boolean isValidCode(String code) {
+		try {
+			Integer.valueOf(code);
+		} catch (NumberFormatException e) {
+			return false;
+		}
+		return code.length() == 4;
+	}
 }
