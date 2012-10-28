@@ -30,10 +30,11 @@ public class StopJSONParser {
 		JSONArray jsonDepartures = jsonStop.getJSONArray("departures");
 		List<Departure> departures = new ArrayList<Departure>(10);
 		LineParser lineParser = new LineParser();
+		TimeParser timeParser = new TimeParser();
 		for (int i = 0; i < jsonDepartures.length(); i++) {
 			JSONObject jsonDeparture = jsonDepartures.getJSONObject(i);
 			String line = lineParser.format(jsonDeparture.getString("code"));
-			String time = jsonDeparture.getString("time");
+			String time = timeParser.format(jsonDeparture.getString("time"));
 			Departure departure = new Departure(line, time);
 			departures.add(departure);
 		}
