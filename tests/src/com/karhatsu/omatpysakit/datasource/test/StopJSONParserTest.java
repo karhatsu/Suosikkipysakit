@@ -50,6 +50,10 @@ public class StopJSONParserTest extends TestCase {
 		assertEquals("09:07", getParsedDepartures().get(0).getTime());
 	}
 
+	public void testDepartureTarget() throws JSONException {
+		assertEquals("Rautatientori", getParsedDepartures().get(0).getEndStop());
+	}
+
 	private Stop getParsedStop() throws JSONException {
 		return parser.parse(jsonString);
 	}
