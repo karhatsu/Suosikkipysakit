@@ -27,7 +27,7 @@ public class AddStopActivity extends Activity implements OnStopRequestReady {
 	public void searchStop(View button) {
 		String code = getCode();
 		if (!Stop.isValidCode(code)) {
-			showToast(R.string.add_stop_invalid_code);
+			showToast(R.string.activity_add_stop_invalid_code);
 			return;
 		}
 		new StopRequest(this).execute(Integer.valueOf(getCode()));
@@ -50,8 +50,8 @@ public class AddStopActivity extends Activity implements OnStopRequestReady {
 		final EditText stopName = (EditText) view
 				.findViewById(R.id.dialog_save_stop_name);
 		stopName.setText(stop.getNameFi());
-		builder.setTitle(R.string.save_stop_title);
-		builder.setPositiveButton(R.string.save_stop_save,
+		builder.setTitle(R.string.dialog_save_stop_title);
+		builder.setPositiveButton(R.string.dialog_save_stop_save,
 				new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
@@ -82,7 +82,7 @@ public class AddStopActivity extends Activity implements OnStopRequestReady {
 		if (stop != null) {
 			showSaveDialog(stop);
 		} else {
-			showToast(R.string.add_stop_not_found);
+			showToast(R.string.activity_add_stop_not_found);
 		}
 	}
 
