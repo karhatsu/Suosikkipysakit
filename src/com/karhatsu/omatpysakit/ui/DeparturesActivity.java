@@ -1,36 +1,32 @@
 package com.karhatsu.omatpysakit.ui;
 
-import java.util.List;
-
 import android.app.ListActivity;
 import android.os.Bundle;
 import android.widget.ListView;
 
+import com.karhatsu.omatpysakit.datasource.OnStopRequestReady;
 import com.karhatsu.omatpysakit.datasource.StopRequest;
-import com.karhatsu.omatpysakit.datasource.StopRequestException;
-import com.karhatsu.omatpysakit.domain.Departure;
 import com.karhatsu.omatpysakit.domain.Stop;
 
-public class DeparturesActivity extends ListActivity {
+public class DeparturesActivity extends ListActivity implements
+		OnStopRequestReady {
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		ListView departuresListView = getListView();
-		departuresListView.setAdapter(getDepartureListAdapter());
+		queryDepartures();
 	}
 
-	private DepartureListAdapter getDepartureListAdapter() {
-		return new DepartureListAdapter(this, getDepartures());
-	}
-
-	private List<Departure> getDepartures() {
+	private void queryDepartures() {
 		int stopCode = getIntent().getIntExtra(Stop.CODE_KEY, -1);
-		Stop stop;
-		try {
-			stop = new StopRequest().getData(stopCode);
-		} catch (StopRequestException e) {
-			throw new RuntimeException(e);
-		}
-		return stop.getDepartures();
+		new StopRequest(this).execute(stopCode);
+	}
+
+	@Override
+	public void notifyStopRequested(Stop stop) {
+		ListView departuresListView = getListView();
+		DepartureListAdapter adapter = new DepartureListAdapter(this,
+				stop.getDepartures());
+		departuresListView.setAdapter(adapter);
 	}
 }

@@ -12,12 +12,12 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.karhatsu.omatpysakit.R;
+import com.karhatsu.omatpysakit.datasource.OnStopRequestReady;
 import com.karhatsu.omatpysakit.datasource.StopRequest;
-import com.karhatsu.omatpysakit.datasource.StopRequestException;
 import com.karhatsu.omatpysakit.db.StopDao;
 import com.karhatsu.omatpysakit.domain.Stop;
 
-public class AddStopActivity extends Activity {
+public class AddStopActivity extends Activity implements OnStopRequestReady {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -32,24 +32,12 @@ public class AddStopActivity extends Activity {
 	}
 
 	public void searchStop(View button) {
-		Stop stop = queryStopData();
-		if (stop != null) {
-			showSaveDialog(stop);
-		}
-	}
-
-	private Stop queryStopData() {
 		String code = getCode();
 		if (!Stop.isValidCode(code)) {
 			showToast(R.string.add_stop_invalid_code);
-			return null;
+			return;
 		}
-		try {
-			return new StopRequest().getData(Integer.valueOf(getCode()));
-		} catch (StopRequestException e) {
-			showToast(R.string.add_stop_not_found);
-			return null;
-		}
+		new StopRequest(this).execute(Integer.valueOf(getCode()));
 	}
 
 	private void showToast(int resourceId) {
@@ -94,6 +82,15 @@ public class AddStopActivity extends Activity {
 		new StopDao().save(this, stop);
 		Intent intent = new Intent(this, MainActivity.class);
 		startActivity(intent);
+	}
+
+	@Override
+	public void notifyStopRequested(Stop stop) {
+		if (stop != null) {
+			showSaveDialog(stop);
+		} else {
+			showToast(R.string.add_stop_not_found);
+		}
 	}
 
 }

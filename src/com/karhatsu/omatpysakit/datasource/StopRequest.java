@@ -11,14 +11,36 @@ import java.util.Scanner;
 
 import org.json.JSONException;
 
+import android.os.AsyncTask;
+
 import com.karhatsu.omatpysakit.domain.Stop;
 import com.karhatsu.omatpysakit.util.AccountInformation;
 
-public class StopRequest {
+public class StopRequest extends AsyncTask<Integer, Void, Stop> {
 
 	private static final String BASE_URL = "http://api.reittiopas.fi/hsl/prod/";
 
-	public Stop getData(int stopCode) throws StopRequestException {
+	private final OnStopRequestReady notifier;
+
+	public StopRequest(OnStopRequestReady notifier) {
+		this.notifier = notifier;
+	}
+
+	@Override
+	protected Stop doInBackground(Integer... stopCode) {
+		try {
+			return getData(stopCode[0]);
+		} catch (StopRequestException e) {
+			return null;
+		}
+	}
+
+	@Override
+	protected void onPostExecute(Stop result) {
+		notifier.notifyStopRequested(result);
+	}
+
+	private Stop getData(int stopCode) throws StopRequestException {
 		try {
 			String json = readStopDataAsJson(stopCode);
 			return new StopJSONParser().parse(json);
