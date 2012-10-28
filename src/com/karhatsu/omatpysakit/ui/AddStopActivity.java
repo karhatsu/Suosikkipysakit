@@ -2,6 +2,7 @@ package com.karhatsu.omatpysakit.ui;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,6 +19,8 @@ import com.karhatsu.omatpysakit.domain.Stop;
 
 public class AddStopActivity extends Activity implements OnStopRequestReady {
 
+	private ProgressDialog progressDialog;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -30,7 +33,13 @@ public class AddStopActivity extends Activity implements OnStopRequestReady {
 			showToast(R.string.activity_add_stop_invalid_code);
 			return;
 		}
+		showPleaseWait();
 		new StopRequest(this).execute(Integer.valueOf(getCode()));
+	}
+
+	private void showPleaseWait() {
+		progressDialog = new PleaseWaitDialog(this);
+		progressDialog.show();
 	}
 
 	private void showToast(int resourceId) {
@@ -79,6 +88,9 @@ public class AddStopActivity extends Activity implements OnStopRequestReady {
 
 	@Override
 	public void notifyStopRequested(Stop stop) {
+		if (progressDialog != null) {
+			progressDialog.dismiss();
+		}
 		if (stop != null) {
 			showSaveDialog(stop);
 		} else {

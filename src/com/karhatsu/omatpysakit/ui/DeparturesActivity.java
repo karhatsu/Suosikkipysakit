@@ -5,7 +5,6 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.widget.ListView;
 
-import com.karhatsu.omatpysakit.R;
 import com.karhatsu.omatpysakit.datasource.OnStopRequestReady;
 import com.karhatsu.omatpysakit.datasource.StopRequest;
 import com.karhatsu.omatpysakit.domain.Stop;
@@ -28,9 +27,7 @@ public class DeparturesActivity extends ListActivity implements
 	}
 
 	private void showProgressDialog() {
-		progressDialog = new ProgressDialog(this);
-		progressDialog.setCancelable(false);
-		progressDialog.setTitle(R.string.please_wait);
+		progressDialog = new PleaseWaitDialog(this);
 		progressDialog.show();
 	}
 
