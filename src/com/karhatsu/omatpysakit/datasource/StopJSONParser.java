@@ -34,7 +34,8 @@ public class StopJSONParser {
 		for (int i = 0; i < jsonDepartures.length(); i++) {
 			JSONObject jsonDeparture = jsonDepartures.getJSONObject(i);
 			String line = lineParser.format(jsonDeparture.getString("code"));
-			String time = timeParser.format(jsonDeparture.getString("time"));
+			String time = timeParser.format(String.valueOf(jsonDeparture
+					.getInt("time")));
 			Departure departure = new Departure(line, time);
 			departures.add(departure);
 		}
