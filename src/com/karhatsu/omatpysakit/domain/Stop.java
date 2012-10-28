@@ -9,6 +9,7 @@ public class Stop {
 	private final int code;
 	private final String nameFi;
 	private final String nameSv;
+	private String nameByUser;
 
 	private List<Departure> departures;
 
@@ -36,6 +37,14 @@ public class Stop {
 
 	public void setDepartures(List<Departure> departures) {
 		this.departures = departures;
+	}
+
+	public String getNameByUser() {
+		return nameByUser;
+	}
+
+	public void setNameByUser(String nameByUser) {
+		this.nameByUser = nameByUser;
 	}
 
 	public static boolean isValidCode(String code) {

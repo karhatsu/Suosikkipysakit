@@ -10,5 +10,8 @@
     <string name="title_activity_departures">Seuraavat lähdöt</string>
     <string name="add_stop_not_found">Pysäkkiä ei löytynyt</string>
     <string name="add_stop_invalid_code">Virheellinen pysäkkikoodi. Koodin pitää olla nelinumeroinen luku.</string>
+    <string name="save_stop_title">Syötä pysäkin nimi</string>
+    <string name="save_stop_save">Tallenna</string>
+    <string name="cancel">Peruuta</string>
 
 </resources>

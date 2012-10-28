@@ -11,7 +11,7 @@ public class StopListAdapter extends SimpleCursorAdapter {
 
 	private static final String[] FROM_COLUMNS = new String[] {
 			OwnStopsContract.StopEntry.COLUMN_CODE,
-			OwnStopsContract.StopEntry.COLUMN_NAME_FI };
+			OwnStopsContract.StopEntry.COLUMN_NAME_BY_USER };
 	private static final int[] TO_COLUMNS = new int[] {
 			R.id.stop_list_item_code, R.id.stop_list_item_name };
 

@@ -1,8 +1,11 @@
 package com.karhatsu.omatpysakit.ui;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
@@ -31,7 +34,7 @@ public class AddStopActivity extends Activity {
 	public void searchStop(View button) {
 		Stop stop = queryStopData();
 		if (stop != null) {
-			saveStopAndShowAll(stop);
+			showSaveDialog(stop);
 		}
 	}
 
@@ -56,6 +59,35 @@ public class AddStopActivity extends Activity {
 	private String getCode() {
 		return ((EditText) findViewById(R.id.add_stop_code)).getText()
 				.toString();
+	}
+
+	private void showSaveDialog(final Stop stop) {
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		LayoutInflater inflater = getLayoutInflater();
+		View view = inflater.inflate(R.layout.dialog_save_stop, null);
+		builder.setView(view);
+		final EditText stopName = (EditText) view
+				.findViewById(R.id.dialog_save_stop_name);
+		stopName.setText(stop.getNameFi());
+		builder.setTitle(R.string.save_stop_title);
+		builder.setPositiveButton(R.string.save_stop_save,
+				new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						stop.setNameByUser(stopName.getText().toString());
+						dialog.dismiss();
+						saveStopAndShowAll(stop);
+					}
+				});
+		builder.setNegativeButton(R.string.cancel,
+				new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.dismiss();
+					}
+				});
+		AlertDialog dialog = builder.create();
+		dialog.show();
 	}
 
 	private void saveStopAndShowAll(Stop stop) {

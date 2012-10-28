@@ -16,6 +16,8 @@ public class StopDao {
 		values.put(OwnStopsContract.StopEntry.COLUMN_CODE, stop.getCode());
 		values.put(OwnStopsContract.StopEntry.COLUMN_NAME_FI, stop.getNameFi());
 		values.put(OwnStopsContract.StopEntry.COLUMN_NAME_SV, stop.getNameSv());
+		values.put(OwnStopsContract.StopEntry.COLUMN_NAME_BY_USER,
+				stop.getNameByUser());
 		db.insert(OwnStopsContract.StopEntry.TABLE_NAME, null, values);
 	}
 
@@ -24,7 +26,7 @@ public class StopDao {
 		SQLiteDatabase db = dbHelper.getReadableDatabase();
 		String[] projection = { OwnStopsContract.StopEntry._ID,
 				OwnStopsContract.StopEntry.COLUMN_CODE,
-				OwnStopsContract.StopEntry.COLUMN_NAME_FI };
+				OwnStopsContract.StopEntry.COLUMN_NAME_BY_USER };
 		String sortBy = OwnStopsContract.StopEntry.COLUMN_CODE;
 		return db.query(OwnStopsContract.StopEntry.TABLE_NAME, projection,
 				null, null, null, null, sortBy);
