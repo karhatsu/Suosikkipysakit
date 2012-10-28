@@ -13,7 +13,7 @@
 	<TextView xmlns:android="http://schemas.android.com/apk/res/android"
 	    android:id="@+id/departure_list_item_line"
 	    android:paddingLeft="20dp"
-	    android:layout_width="50dp"
+	    android:layout_width="55dp"
 	    android:layout_height="wrap_content" />
 	
 	<TextView xmlns:android="http://schemas.android.com/apk/res/android"
