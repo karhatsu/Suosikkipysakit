@@ -8,5 +8,6 @@
     <string name="add_stop_code_hint">Pysäkin tunnus</string>
     <string name="add_stop_save">Tallenna</string>
     <string name="title_activity_departures">Seuraavat lähdöt</string>
+    <string name="add_stop_not_found">Pysäkkiä ei löytynyt</string>
 
 </resources>

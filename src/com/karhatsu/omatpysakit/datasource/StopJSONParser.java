@@ -16,7 +16,10 @@ public class StopJSONParser {
 	private LineParser lineParser = new LineParser();
 	private TimeParser timeParser = new TimeParser();
 
-	public Stop parse(String json) throws JSONException {
+	public Stop parse(String json) throws StopRequestException, JSONException {
+		if (json.equals("")) {
+			throw new StopRequestException();
+		}
 		JSONObject jsonStop = parseFirstJSONStop(json);
 		Stop stop = parseStop(jsonStop);
 		stop.setDepartures(parseDepartures(jsonStop));
