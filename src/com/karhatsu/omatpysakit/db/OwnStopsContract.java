@@ -3,6 +3,12 @@ package com.karhatsu.omatpysakit.db;
 import android.provider.BaseColumns;
 
 public class OwnStopsContract {
+	static final int DATABASE_VERSION = 1;
+	static String[] MIGRATIONS = new String[DATABASE_VERSION];
+	static {
+		MIGRATIONS[0] = StopEntry.CREATE_TABLE;
+	}
+
 	public static abstract class StopEntry implements BaseColumns {
 		public static final String TABLE_NAME = "stops";
 		public static final String COLUMN_CODE = "code";
