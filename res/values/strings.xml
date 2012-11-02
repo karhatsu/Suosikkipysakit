@@ -8,7 +8,7 @@
     <string name="activity_add_stop_search">Hae</string>
     <string name="activity_departures_title">Seuraavat lähdöt</string>
     <string name="activity_add_stop_not_found">Pysäkkiä ei löytynyt</string>
-    <string name="activity_add_stop_invalid_code">Virheellinen pysäkkikoodi. Koodin pitää olla nelinumeroinen luku.</string>
+    <string name="activity_add_stop_invalid_code">Virheellinen pysäkkikoodi. Koodin pitää olla nelinumeroinen luku, jonka edessä voi olla E (Espoo) tai V (Vantaa).</string>
     <string name="dialog_save_stop_title">Syötä pysäkin nimi</string>
     <string name="dialog_save_stop_save">Tallenna</string>
     <string name="cancel">Peruuta</string>

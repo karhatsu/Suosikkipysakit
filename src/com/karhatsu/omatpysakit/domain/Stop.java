@@ -6,6 +6,9 @@ public class Stop {
 
 	public static final String CODE_KEY = "com.karhatsu.omatpysakit.domain.CODE";
 
+	private static final String VANTAA_PREFIX = "V";
+	private static final String ESPOO_PREFIX = "E";
+
 	private final String code;
 	private final String nameFi;
 	private final String nameSv;
@@ -48,6 +51,9 @@ public class Stop {
 	}
 
 	public static boolean isValidCode(String code) {
+		if (code.startsWith(VANTAA_PREFIX) || code.startsWith(ESPOO_PREFIX)) {
+			code = code.substring(1, code.length());
+		}
 		try {
 			Integer.valueOf(code);
 		} catch (NumberFormatException e) {

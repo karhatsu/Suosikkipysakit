@@ -7,7 +7,7 @@
         android:id="@+id/add_stop_code"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="number"
+        android:inputType="textCapCharacters"
         android:hint="@string/activity_add_stop_code_hint"
         tools:context=".AddStopActivity" />
     
