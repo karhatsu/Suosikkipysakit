@@ -20,7 +20,9 @@ public class StopRequest extends AsyncTask<String, Void, Stop> {
 
 	private static final String BASE_URL = "http://api.reittiopas.fi/hsl/prod/";
 
-	private final OnStopRequestReady notifier;
+	private OnStopRequestReady notifier;
+	private boolean ready;
+	private Stop result;
 
 	public StopRequest(OnStopRequestReady notifier) {
 		this.notifier = notifier;
@@ -37,7 +39,22 @@ public class StopRequest extends AsyncTask<String, Void, Stop> {
 
 	@Override
 	protected void onPostExecute(Stop result) {
-		notifier.notifyStopRequested(result);
+		this.result = result;
+		ready = true;
+		notifyAboutResult();
+	}
+
+	public void setOnStopRequestReady(OnStopRequestReady notifier) {
+		this.notifier = notifier;
+		if (ready) {
+			notifyAboutResult();
+		}
+	}
+
+	private void notifyAboutResult() {
+		if (notifier != null) {
+			notifier.notifyStopRequested(result);
+		}
 	}
 
 	private Stop getData(String stopCode) throws StopRequestException {

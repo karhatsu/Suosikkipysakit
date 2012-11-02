@@ -13,22 +13,36 @@ public class DeparturesActivity extends ListActivity implements
 		OnStopRequestReady {
 
 	private ProgressDialog progressDialog;
+	private StopRequest stopRequest;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		queryDepartures();
+		Object retained = getLastNonConfigurationInstance();
+		if (retained instanceof StopRequest) {
+			stopRequest = (StopRequest) retained;
+			stopRequest.setOnStopRequestReady(this);
+		} else {
+			stopRequest = new StopRequest(this);
+			queryDepartures();
+		}
 	}
 
 	private void queryDepartures() {
 		String stopCode = getIntent().getStringExtra(Stop.CODE_KEY);
 		showProgressDialog();
-		new StopRequest(this).execute(stopCode);
+		stopRequest.execute(stopCode);
 	}
 
 	private void showProgressDialog() {
 		progressDialog = new PleaseWaitDialog(this);
 		progressDialog.show();
+	}
+
+	@Override
+	public Object onRetainNonConfigurationInstance() {
+		stopRequest.setOnStopRequestReady(null);
+		return stopRequest;
 	}
 
 	@Override
