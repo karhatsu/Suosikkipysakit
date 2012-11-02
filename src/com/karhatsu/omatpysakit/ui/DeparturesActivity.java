@@ -21,7 +21,7 @@ public class DeparturesActivity extends ListActivity implements
 	}
 
 	private void queryDepartures() {
-		int stopCode = getIntent().getIntExtra(Stop.CODE_KEY, -1);
+		String stopCode = getIntent().getStringExtra(Stop.CODE_KEY);
 		showProgressDialog();
 		new StopRequest(this).execute(stopCode);
 	}

@@ -6,20 +6,20 @@ public class Stop {
 
 	public static final String CODE_KEY = "com.karhatsu.omatpysakit.domain.CODE";
 
-	private final int code;
+	private final String code;
 	private final String nameFi;
 	private final String nameSv;
 	private String nameByUser;
 
 	private List<Departure> departures;
 
-	public Stop(int code, String nameFi, String nameSv) {
+	public Stop(String code, String nameFi, String nameSv) {
 		this.code = code;
 		this.nameFi = nameFi;
 		this.nameSv = nameSv;
 	}
 
-	public int getCode() {
+	public String getCode() {
 		return code;
 	}
 

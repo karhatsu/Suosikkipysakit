@@ -31,7 +31,7 @@ public class StopJSONParserTest extends TestCase {
 	}
 
 	public void testStopCode() throws JSONException, StopRequestException {
-		assertEquals(3044, getParsedStop().getCode());
+		assertEquals("3044", getParsedStop().getCode());
 	}
 
 	public void testStopNameFi() throws JSONException, StopRequestException {

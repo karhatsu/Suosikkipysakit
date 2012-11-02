@@ -16,7 +16,7 @@ import android.os.AsyncTask;
 import com.karhatsu.omatpysakit.domain.Stop;
 import com.karhatsu.omatpysakit.util.AccountInformation;
 
-public class StopRequest extends AsyncTask<Integer, Void, Stop> {
+public class StopRequest extends AsyncTask<String, Void, Stop> {
 
 	private static final String BASE_URL = "http://api.reittiopas.fi/hsl/prod/";
 
@@ -27,7 +27,7 @@ public class StopRequest extends AsyncTask<Integer, Void, Stop> {
 	}
 
 	@Override
-	protected Stop doInBackground(Integer... stopCode) {
+	protected Stop doInBackground(String... stopCode) {
 		try {
 			return getData(stopCode[0]);
 		} catch (StopRequestException e) {
@@ -40,7 +40,7 @@ public class StopRequest extends AsyncTask<Integer, Void, Stop> {
 		notifier.notifyStopRequested(result);
 	}
 
-	private Stop getData(int stopCode) throws StopRequestException {
+	private Stop getData(String stopCode) throws StopRequestException {
 		try {
 			String json = readStopDataAsJson(stopCode);
 			return new StopJSONParser().parse(json);
@@ -51,7 +51,7 @@ public class StopRequest extends AsyncTask<Integer, Void, Stop> {
 		}
 	}
 
-	private String readStopDataAsJson(int stopCode)
+	private String readStopDataAsJson(String stopCode)
 			throws MalformedURLException, IOException, ProtocolException,
 			JSONException {
 		InputStream is = null;
@@ -67,7 +67,7 @@ public class StopRequest extends AsyncTask<Integer, Void, Stop> {
 		}
 	}
 
-	private HttpURLConnection createConnection(int stopCode)
+	private HttpURLConnection createConnection(String stopCode)
 			throws MalformedURLException, IOException, ProtocolException {
 		URL url = new URL(getStopRequestUrl(stopCode));
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -76,7 +76,7 @@ public class StopRequest extends AsyncTask<Integer, Void, Stop> {
 		return conn;
 	}
 
-	private String getStopRequestUrl(int stopCode) {
+	private String getStopRequestUrl(String stopCode) {
 		return BASE_URL + "?request=stop&user="
 				+ AccountInformation.getUserName() + "&pass="
 				+ AccountInformation.getPassword() + "&format=json&code="

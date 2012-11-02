@@ -53,11 +53,11 @@ public class MainActivity extends Activity {
 		return new StopListAdapter(this, cursor);
 	}
 
-	private int getSelectedStopCode(final ListAdapter stopListAdapter,
+	private String getSelectedStopCode(final ListAdapter stopListAdapter,
 			int position) {
 		Cursor cursor = (Cursor) stopListAdapter.getItem(position);
 		cursor.moveToPosition(position);
-		return cursor.getInt(1);
+		return cursor.getString(1);
 	}
 
 	public void addStop(View button) {

@@ -34,7 +34,7 @@ public class AddStopActivity extends Activity implements OnStopRequestReady {
 			return;
 		}
 		showPleaseWait();
-		new StopRequest(this).execute(Integer.valueOf(getCode()));
+		new StopRequest(this).execute(getCode());
 	}
 
 	private void showPleaseWait() {

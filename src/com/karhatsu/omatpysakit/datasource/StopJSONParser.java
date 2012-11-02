@@ -43,7 +43,7 @@ public class StopJSONParser {
 	}
 
 	private Stop parseStop(JSONObject jsonStop) throws JSONException {
-		return new Stop(jsonStop.getInt("code_short"),
+		return new Stop(jsonStop.getString("code_short"),
 				jsonStop.getString("name_fi"), jsonStop.getString("name_sv"));
 	}
 
