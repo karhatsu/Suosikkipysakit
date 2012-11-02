@@ -27,6 +27,11 @@ public class MainActivity extends Activity {
 		AccountInformation.initialize(this);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
 		setupStopListView();
 	}
 
