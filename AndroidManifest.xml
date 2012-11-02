@@ -24,7 +24,8 @@
         </activity>
         <activity
             android:name=".ui.AddStopActivity"
-            android:label="@string/activity_add_stop_title" >
+            android:label="@string/activity_add_stop_title"
+            android:noHistory="true" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.karhatsu.omatpysakit.MainActivity" />
