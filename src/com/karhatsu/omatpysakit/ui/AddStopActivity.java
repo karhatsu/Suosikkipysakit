@@ -21,11 +21,25 @@ import com.karhatsu.omatpysakit.domain.Stop;
 public class AddStopActivity extends Activity implements OnStopRequestReady {
 
 	private ProgressDialog progressDialog;
+	private StopRequest stopRequest;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_stop);
+		Object retained = getLastNonConfigurationInstance();
+		if (retained instanceof StopRequest) {
+			stopRequest = (StopRequest) retained;
+			stopRequest.setOnStopRequestReady(this);
+		} else {
+			stopRequest = new StopRequest(this);
+		}
+	}
+
+	@Override
+	public Object onRetainNonConfigurationInstance() {
+		stopRequest.setOnStopRequestReady(null);
+		return stopRequest;
 	}
 
 	public void searchStop(View button) {
@@ -35,7 +49,7 @@ public class AddStopActivity extends Activity implements OnStopRequestReady {
 			return;
 		}
 		showPleaseWait();
-		new StopRequest(this).execute(getCode());
+		stopRequest.execute(getCode());
 	}
 
 	private void showPleaseWait() {
