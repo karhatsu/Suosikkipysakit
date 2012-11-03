@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.widget.ListView;
 
+import com.karhatsu.suosikkipysakit.R;
 import com.karhatsu.suosikkipysakit.datasource.OnStopRequestReady;
 import com.karhatsu.suosikkipysakit.datasource.StopRequest;
 import com.karhatsu.suosikkipysakit.domain.Stop;
@@ -49,6 +50,11 @@ public class DeparturesActivity extends ListActivity implements
 	public void notifyStopRequested(Stop stop) {
 		if (progressDialog != null) {
 			progressDialog.dismiss();
+		}
+		if (stop.getDepartures().isEmpty()) {
+			ToastHelper.showToast(this,
+					R.string.activity_departures_nothing_found);
+			return;
 		}
 		ListView departuresListView = getListView();
 		DepartureListAdapter adapter = new DepartureListAdapter(this,

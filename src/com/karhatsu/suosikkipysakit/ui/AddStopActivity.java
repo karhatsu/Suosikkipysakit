@@ -6,11 +6,9 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.karhatsu.suosikkipysakit.R;
 import com.karhatsu.suosikkipysakit.datasource.OnStopRequestReady;
@@ -45,7 +43,8 @@ public class AddStopActivity extends Activity implements OnStopRequestReady {
 	public void searchStop(View button) {
 		String code = getCode();
 		if (!Stop.isValidCode(code)) {
-			showToast(R.string.activity_add_stop_invalid_code);
+			ToastHelper
+					.showToast(this, R.string.activity_add_stop_invalid_code);
 			return;
 		}
 		showPleaseWait();
@@ -55,12 +54,6 @@ public class AddStopActivity extends Activity implements OnStopRequestReady {
 	private void showPleaseWait() {
 		progressDialog = new PleaseWaitDialog(this);
 		progressDialog.show();
-	}
-
-	private void showToast(int resourceId) {
-		Toast toast = Toast.makeText(this, resourceId, Toast.LENGTH_LONG);
-		toast.setGravity(Gravity.TOP, 0, 200);
-		toast.show();
 	}
 
 	private String getCode() {
@@ -111,7 +104,7 @@ public class AddStopActivity extends Activity implements OnStopRequestReady {
 		if (stop != null) {
 			showSaveDialog(stop);
 		} else {
-			showToast(R.string.activity_add_stop_not_found);
+			ToastHelper.showToast(this, R.string.activity_add_stop_not_found);
 		}
 	}
 
