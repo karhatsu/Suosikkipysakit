@@ -31,8 +31,12 @@ public class AddStopActivity extends Activity implements OnStopRequestReady {
 			stopRequest = (StopRequest) retained;
 			stopRequest.setOnStopRequestReady(this);
 		} else {
-			stopRequest = new StopRequest(this);
+			initializeStopRequest();
 		}
+	}
+
+	private void initializeStopRequest() {
+		stopRequest = new StopRequest(this);
 	}
 
 	@Override
@@ -104,6 +108,7 @@ public class AddStopActivity extends Activity implements OnStopRequestReady {
 			showSaveDialog(stop);
 		} else {
 			ToastHelper.showToast(this, R.string.activity_add_stop_not_found);
+			initializeStopRequest();
 		}
 	}
 
@@ -111,6 +116,7 @@ public class AddStopActivity extends Activity implements OnStopRequestReady {
 	public void notifyConnectionProblem() {
 		hideProgressDialog();
 		ToastHelper.showToast(this, R.string.connection_problem);
+		initializeStopRequest();
 	}
 
 	@Override
