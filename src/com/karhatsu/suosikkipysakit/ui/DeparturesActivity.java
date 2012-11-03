@@ -2,6 +2,7 @@ package com.karhatsu.suosikkipysakit.ui;
 
 import android.app.ListActivity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.widget.ListView;
 
@@ -48,9 +49,7 @@ public class DeparturesActivity extends ListActivity implements
 
 	@Override
 	public void notifyStopRequested(Stop stop) {
-		if (progressDialog != null) {
-			progressDialog.dismiss();
-		}
+		hideProgressDialog();
 		if (stop.getDepartures().isEmpty()) {
 			ToastHelper.showToast(this,
 					R.string.activity_departures_nothing_found);
@@ -60,5 +59,22 @@ public class DeparturesActivity extends ListActivity implements
 		DepartureListAdapter adapter = new DepartureListAdapter(this,
 				stop.getDepartures());
 		departuresListView.setAdapter(adapter);
+	}
+
+	@Override
+	public void notifyConnectionProblem() {
+		hideProgressDialog();
+		ToastHelper.showToast(this, R.string.connection_problem);
+	}
+
+	@Override
+	public Context getContext() {
+		return this;
+	}
+
+	private void hideProgressDialog() {
+		if (progressDialog != null) {
+			progressDialog.dismiss();
+		}
 	}
 }

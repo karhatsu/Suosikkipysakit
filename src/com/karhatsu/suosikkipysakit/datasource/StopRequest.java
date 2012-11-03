@@ -11,6 +11,9 @@ import java.util.Scanner;
 
 import org.json.JSONException;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 
 import com.karhatsu.suosikkipysakit.domain.Stop;
@@ -21,6 +24,7 @@ public class StopRequest extends AsyncTask<String, Void, Stop> {
 	private static final String BASE_URL = "http://api.reittiopas.fi/hsl/prod/";
 
 	private OnStopRequestReady notifier;
+	private boolean connectionFailed;
 	private boolean ready;
 	private Stop result;
 
@@ -30,11 +34,22 @@ public class StopRequest extends AsyncTask<String, Void, Stop> {
 
 	@Override
 	protected Stop doInBackground(String... stopCode) {
+		if (!connectionAvailable()) {
+			connectionFailed = true;
+			return null;
+		}
 		try {
 			return getData(stopCode[0]);
 		} catch (StopNotFoundException e) {
 			return null;
 		}
+	}
+
+	private boolean connectionAvailable() {
+		ConnectivityManager connectivityManager = (ConnectivityManager) notifier
+				.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+		return networkInfo != null && networkInfo.isConnected();
 	}
 
 	@Override
@@ -53,7 +68,11 @@ public class StopRequest extends AsyncTask<String, Void, Stop> {
 
 	private void notifyAboutResult() {
 		if (notifier != null) {
-			notifier.notifyStopRequested(result);
+			if (connectionFailed) {
+				notifier.notifyConnectionProblem();
+			} else {
+				notifier.notifyStopRequested(result);
+			}
 		}
 	}
 

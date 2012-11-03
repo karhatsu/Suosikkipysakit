@@ -3,6 +3,7 @@ package com.karhatsu.suosikkipysakit.ui;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -98,9 +99,7 @@ public class AddStopActivity extends Activity implements OnStopRequestReady {
 
 	@Override
 	public void notifyStopRequested(Stop stop) {
-		if (progressDialog != null) {
-			progressDialog.dismiss();
-		}
+		hideProgressDialog();
 		if (stop != null) {
 			showSaveDialog(stop);
 		} else {
@@ -108,4 +107,20 @@ public class AddStopActivity extends Activity implements OnStopRequestReady {
 		}
 	}
 
+	@Override
+	public void notifyConnectionProblem() {
+		hideProgressDialog();
+		ToastHelper.showToast(this, R.string.connection_problem);
+	}
+
+	@Override
+	public Context getContext() {
+		return this;
+	}
+
+	private void hideProgressDialog() {
+		if (progressDialog != null) {
+			progressDialog.dismiss();
+		}
+	}
 }
