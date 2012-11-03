@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>OmatPysakitTest</name>
+	<name>SuosikkipysakitTest</name>
 	<comment></comment>
 	<projects>
-		<project>OmatPysakit</project>
+		<project>Suosikkipysakit</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
