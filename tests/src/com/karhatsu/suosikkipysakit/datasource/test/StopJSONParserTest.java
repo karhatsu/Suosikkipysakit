@@ -11,7 +11,7 @@ import junit.framework.TestCase;
 import org.json.JSONException;
 
 import com.karhatsu.suosikkipysakit.datasource.StopJSONParser;
-import com.karhatsu.suosikkipysakit.datasource.StopRequestException;
+import com.karhatsu.suosikkipysakit.datasource.StopNotFoundException;
 import com.karhatsu.suosikkipysakit.domain.Departure;
 import com.karhatsu.suosikkipysakit.domain.Stop;
 
@@ -30,33 +30,33 @@ public class StopJSONParserTest extends TestCase {
 		}
 	}
 
-	public void testStopCode() throws JSONException, StopRequestException {
+	public void testStopCode() throws JSONException, StopNotFoundException {
 		assertEquals("3044", getParsedStop().getCode());
 	}
 
-	public void testStopNameFi() throws JSONException, StopRequestException {
+	public void testStopNameFi() throws JSONException, StopNotFoundException {
 		assertEquals("Kaironkatu", getParsedStop().getNameFi());
 	}
 
-	public void testStopNameSv() throws JSONException, StopRequestException {
+	public void testStopNameSv() throws JSONException, StopNotFoundException {
 		assertEquals("Kairogatan", getParsedStop().getNameSv());
 	}
 
 	public void testDeparturesCount() throws JSONException,
-			StopRequestException {
+			StopNotFoundException {
 		assertEquals(10, getParsedDepartures().size());
 	}
 
-	public void testDepartureLine() throws JSONException, StopRequestException {
+	public void testDepartureLine() throws JSONException, StopNotFoundException {
 		assertEquals("68", getParsedDepartures().get(0).getLine());
 	}
 
-	public void testDepartureTime() throws JSONException, StopRequestException {
+	public void testDepartureTime() throws JSONException, StopNotFoundException {
 		assertEquals("09:07", getParsedDepartures().get(0).getTime());
 	}
 
 	public void testDepartureEndStop() throws JSONException,
-			StopRequestException {
+			StopNotFoundException {
 		assertEquals("Rautatientori", getParsedDepartures().get(0).getEndStop());
 	}
 
@@ -64,25 +64,25 @@ public class StopJSONParserTest extends TestCase {
 		try {
 			parser.parse("");
 			fail("Did not throw StopRequestException");
-		} catch (StopRequestException e) {
+		} catch (StopNotFoundException e) {
 		} catch (JSONException e) {
 			fail("Threw JSONException");
 		}
 	}
 
-	public void testNoDepartures() throws IOException, StopRequestException,
+	public void testNoDepartures() throws IOException, StopNotFoundException,
 			JSONException {
 		String json = readTestJson(TEST_JSON_FILE_NO_DEPARTURES);
 		Stop stop = parser.parse(json);
 		assertEquals(0, stop.getDepartures().size());
 	}
 
-	private Stop getParsedStop() throws JSONException, StopRequestException {
+	private Stop getParsedStop() throws JSONException, StopNotFoundException {
 		return parser.parse(jsonString);
 	}
 
 	private List<Departure> getParsedDepartures() throws JSONException,
-			StopRequestException {
+			StopNotFoundException {
 		return getParsedStop().getDepartures();
 	}
 

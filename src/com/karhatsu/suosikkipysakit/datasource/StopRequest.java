@@ -32,7 +32,7 @@ public class StopRequest extends AsyncTask<String, Void, Stop> {
 	protected Stop doInBackground(String... stopCode) {
 		try {
 			return getData(stopCode[0]);
-		} catch (StopRequestException e) {
+		} catch (StopNotFoundException e) {
 			return null;
 		}
 	}
@@ -57,11 +57,11 @@ public class StopRequest extends AsyncTask<String, Void, Stop> {
 		}
 	}
 
-	private Stop getData(String stopCode) throws StopRequestException {
+	private Stop getData(String stopCode) throws StopNotFoundException {
 		try {
 			String json = readStopDataAsJson(stopCode);
 			return new StopJSONParser().parse(json);
-		} catch (StopRequestException e) {
+		} catch (StopNotFoundException e) {
 			throw e;
 		} catch (Exception e) {
 			throw new RuntimeException(e);
