@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.karhatsu.omatpysakit"
+    package="com.karhatsu.suosikkipysakit"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -29,14 +29,14 @@
             android:windowSoftInputMode="stateVisible" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.karhatsu.omatpysakit.MainActivity" />
+                android:value="com.karhatsu.suosikkipysakit.MainActivity" />
         </activity>
         <activity
             android:name=".ui.DeparturesActivity"
             android:label="@string/activity_departures_title" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.karhatsu.omatpysakit.MainActivity" />
+                android:value="com.karhatsu.suosikkipysakit.MainActivity" />
         </activity>
     </application>
 
