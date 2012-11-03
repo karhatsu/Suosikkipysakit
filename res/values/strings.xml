@@ -12,7 +12,7 @@
     <string name="dialog_save_stop_title">Syötä pysäkin nimi</string>
     <string name="dialog_save_stop_save">Tallenna</string>
     <string name="cancel">Peruuta</string>
-    <string name="please_wait">Odota hetki...</string>
+    <string name="please_wait">Odota hetki…</string>
     <string name="menu_stop_item_delete">Poista</string>
 
 </resources>
