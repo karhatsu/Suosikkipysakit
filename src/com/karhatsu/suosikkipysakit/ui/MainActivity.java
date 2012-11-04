@@ -22,16 +22,13 @@ import com.karhatsu.suosikkipysakit.util.AccountInformation;
 
 public class MainActivity extends Activity {
 
+	private StopDao stopDao;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		AccountInformation.initialize(this);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-	}
-
-	@Override
-	protected void onResume() {
-		super.onResume();
 		setupStopListView();
 	}
 
@@ -54,7 +51,8 @@ public class MainActivity extends Activity {
 	}
 
 	private ListAdapter createStopListAdapter() {
-		Cursor cursor = new StopDao().findAll(this);
+		stopDao = new StopDao(this);
+		Cursor cursor = stopDao.findAll();
 		return new StopListAdapter(this, cursor);
 	}
 
@@ -84,7 +82,7 @@ public class MainActivity extends Activity {
 				.getMenuInfo();
 		switch (item.getItemId()) {
 		case R.id.menu_stop_item_delete:
-			new StopDao().delete(this, info.id);
+			new StopDao(this).delete(info.id);
 			refreshStopList();
 			return true;
 		default:
@@ -92,12 +90,35 @@ public class MainActivity extends Activity {
 		}
 	}
 
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+		closeDbConnections();
+	}
+
 	private void refreshStopList() {
-		ListView stopListView = getStopListView();
-		stopListView.setAdapter(createStopListAdapter());
+		closeDbConnections();
+		stopDao = new StopDao(this);
+		Cursor cursor = stopDao.findAll();
+		getStopListAdapter().changeCursor(cursor);
+	}
+
+	private void closeDbConnections() {
+		StopListAdapter adapter = getStopListAdapter();
+		if (adapter != null && adapter.getCursor() != null) {
+			adapter.getCursor().close();
+		}
+		if (stopDao != null) {
+			stopDao.close();
+		}
 	}
 
 	private ListView getStopListView() {
 		return (ListView) findViewById(R.id.stop_list);
+	}
+
+	private StopListAdapter getStopListAdapter() {
+		ListView stopListView = getStopListView();
+		return (StopListAdapter) stopListView.getAdapter();
 	}
 }

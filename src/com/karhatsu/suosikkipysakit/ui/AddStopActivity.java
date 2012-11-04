@@ -96,7 +96,7 @@ public class AddStopActivity extends Activity implements OnStopRequestReady {
 	}
 
 	private void saveStopAndShowAll(Stop stop) {
-		new StopDao().save(this, stop);
+		new StopDao(this).save(stop);
 		Intent intent = new Intent(this, MainActivity.class);
 		startActivity(intent);
 	}

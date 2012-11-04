@@ -9,7 +9,15 @@ import com.karhatsu.suosikkipysakit.domain.Stop;
 
 public class StopDao {
 
-	public void save(Context context, Stop stop) {
+	private OwnStopsDbHelper dbHelper;
+	private Context context;
+
+	public StopDao(Context context) {
+		this.context = context;
+		dbHelper = new OwnStopsDbHelper(context);
+	}
+
+	public void save(Stop stop) {
 		SQLiteDatabase db = getWritableDatabase(context);
 		ContentValues values = new ContentValues();
 		values.put(OwnStopsContract.StopEntry.COLUMN_CODE, stop.getCode());
@@ -21,7 +29,7 @@ public class StopDao {
 		db.close();
 	}
 
-	public void delete(Context context, long id) {
+	public void delete(long id) {
 		SQLiteDatabase db = getWritableDatabase(context);
 		db.delete(OwnStopsContract.StopEntry.TABLE_NAME,
 				OwnStopsContract.StopEntry._ID + "=?",
@@ -29,8 +37,7 @@ public class StopDao {
 		db.close();
 	}
 
-	public Cursor findAll(Context context) {
-		OwnStopsDbHelper dbHelper = new OwnStopsDbHelper(context);
+	public Cursor findAll() {
 		SQLiteDatabase db = dbHelper.getReadableDatabase();
 		String[] projection = { OwnStopsContract.StopEntry._ID,
 				OwnStopsContract.StopEntry.COLUMN_CODE,
@@ -40,10 +47,14 @@ public class StopDao {
 				null, null, null, null, sortBy);
 	}
 
+	public void close() {
+		if (dbHelper != null) {
+			dbHelper.close();
+		}
+	}
+
 	private SQLiteDatabase getWritableDatabase(Context context) {
-		OwnStopsDbHelper dbHelper = new OwnStopsDbHelper(context);
-		SQLiteDatabase db = dbHelper.getWritableDatabase();
-		return db;
+		return dbHelper.getWritableDatabase();
 	}
 
 }
