@@ -26,6 +26,7 @@ public class StopRequest extends AsyncTask<String, Void, Stop> {
 	private OnStopRequestReady notifier;
 	private boolean connectionFailed;
 	private boolean ready;
+	private boolean running;
 	private Stop result;
 
 	public StopRequest(OnStopRequestReady notifier) {
@@ -34,6 +35,7 @@ public class StopRequest extends AsyncTask<String, Void, Stop> {
 
 	@Override
 	protected Stop doInBackground(String... stopCode) {
+		running = true;
 		if (!connectionAvailable()) {
 			connectionFailed = true;
 			return null;
@@ -57,6 +59,7 @@ public class StopRequest extends AsyncTask<String, Void, Stop> {
 		this.result = result;
 		ready = true;
 		notifyAboutResult();
+		running = false;
 	}
 
 	public void setOnStopRequestReady(OnStopRequestReady notifier) {
@@ -123,6 +126,10 @@ public class StopRequest extends AsyncTask<String, Void, Stop> {
 			UnsupportedEncodingException {
 		Scanner scanner = new Scanner(stream).useDelimiter("\\A");
 		return scanner.hasNext() ? scanner.next() : "";
+	}
+
+	public boolean isRunning() {
+		return running;
 	}
 
 }

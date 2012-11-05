@@ -46,6 +46,9 @@ public class AddStopActivity extends Activity implements OnStopRequestReady {
 	}
 
 	public void searchStop(View button) {
+		if (stopRequest.isRunning()) {
+			return; // prevent double-clicks
+		}
 		String code = getCode();
 		if (!Stop.isValidCode(code)) {
 			ToastHelper
