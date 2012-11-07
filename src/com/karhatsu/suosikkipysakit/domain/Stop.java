@@ -10,28 +10,22 @@ public class Stop {
 	private static final String ESPOO_PREFIX = "E";
 
 	private final String code;
-	private final String nameFi;
-	private final String nameSv;
+	private final String name;
 	private String nameByUser;
 
 	private List<Departure> departures;
 
-	public Stop(String code, String nameFi, String nameSv) {
+	public Stop(String code, String name) {
 		this.code = code;
-		this.nameFi = nameFi;
-		this.nameSv = nameSv;
+		this.name = name;
 	}
 
 	public String getCode() {
 		return code;
 	}
 
-	public String getNameFi() {
-		return nameFi;
-	}
-
-	public String getNameSv() {
-		return nameSv;
+	public String getName() {
+		return name;
 	}
 
 	public List<Departure> getDepartures() {

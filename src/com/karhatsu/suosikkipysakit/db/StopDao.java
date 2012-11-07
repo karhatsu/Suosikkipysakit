@@ -21,8 +21,7 @@ public class StopDao {
 		SQLiteDatabase db = getWritableDatabase(context);
 		ContentValues values = new ContentValues();
 		values.put(OwnStopsContract.StopEntry.COLUMN_CODE, stop.getCode());
-		values.put(OwnStopsContract.StopEntry.COLUMN_NAME_FI, stop.getNameFi());
-		values.put(OwnStopsContract.StopEntry.COLUMN_NAME_SV, stop.getNameSv());
+		values.put(OwnStopsContract.StopEntry.COLUMN_NAME, stop.getName());
 		values.put(OwnStopsContract.StopEntry.COLUMN_NAME_BY_USER,
 				stop.getNameByUser());
 		db.insert(OwnStopsContract.StopEntry.TABLE_NAME, null, values);

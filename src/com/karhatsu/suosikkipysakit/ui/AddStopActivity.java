@@ -76,7 +76,7 @@ public class AddStopActivity extends Activity implements OnStopRequestReady {
 		builder.setView(view);
 		final EditText stopName = (EditText) view
 				.findViewById(R.id.dialog_save_stop_name);
-		stopName.setText(stop.getNameFi());
+		stopName.setText(stop.getName());
 		builder.setTitle(R.string.dialog_save_stop_title);
 		builder.setPositiveButton(R.string.dialog_save_stop_save,
 				new DialogInterface.OnClickListener() {
