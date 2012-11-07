@@ -1,12 +1,7 @@
 package com.karhatsu.suosikkipysakit.datasource.test;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
-import java.util.Scanner;
-
-import junit.framework.TestCase;
 
 import org.json.JSONException;
 
@@ -15,9 +10,8 @@ import com.karhatsu.suosikkipysakit.datasource.StopNotFoundException;
 import com.karhatsu.suosikkipysakit.domain.Departure;
 import com.karhatsu.suosikkipysakit.domain.Stop;
 
-public class StopJSONParserTest extends TestCase {
+public class StopJSONParserTest extends AbstractJSONParserTest {
 
-	private static final String TEST_FILES_DIRECTORY = "src/com/karhatsu/suosikkipysakit/datasource/test/";
 	private static final String TEST_JSON_FILE = "test-stop-response.json";
 	private static final String TEST_JSON_FILE_NO_DEPARTURES = "test-stop-response-no-departures.json";
 	private static String jsonString;
@@ -84,19 +78,6 @@ public class StopJSONParserTest extends TestCase {
 	private List<Departure> getParsedDepartures() throws JSONException,
 			StopNotFoundException {
 		return getParsedStop().getDepartures();
-	}
-
-	private String readTestJson(String fileName) throws IOException {
-		FileInputStream fis = null;
-		try {
-			fis = new FileInputStream(new File(TEST_FILES_DIRECTORY + fileName));
-			Scanner scanner = new Scanner(fis).useDelimiter("\\A");
-			return scanner.hasNext() ? scanner.next() : "";
-		} finally {
-			if (fis != null) {
-				fis.close();
-			}
-		}
 	}
 
 }
