@@ -11,13 +11,15 @@ public class Stop {
 
 	private final String code;
 	private final String name;
+	private final String coordinates;
 	private String nameByUser;
 
 	private List<Departure> departures;
 
-	public Stop(String code, String name) {
+	public Stop(String code, String name, String coordinates) {
 		this.code = code;
 		this.name = name;
+		this.coordinates = coordinates;
 	}
 
 	public String getCode() {
@@ -26,6 +28,10 @@ public class Stop {
 
 	public String getName() {
 		return name;
+	}
+
+	public String getCoordinates() {
+		return coordinates;
 	}
 
 	public List<Departure> getDepartures() {

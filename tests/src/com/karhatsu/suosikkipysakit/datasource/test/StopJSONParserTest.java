@@ -33,6 +33,11 @@ public class StopJSONParserTest extends AbstractJSONParserTest {
 		assertEquals("Kaironkatu", getParsedStop().getName());
 	}
 
+	public void testStopCoordinates() throws JSONException,
+			StopNotFoundException {
+		assertEquals("2554317,6678028", getParsedStop().getCoordinates());
+	}
+
 	public void testDeparturesCount() throws JSONException,
 			StopNotFoundException {
 		assertEquals(10, getParsedDepartures().size());

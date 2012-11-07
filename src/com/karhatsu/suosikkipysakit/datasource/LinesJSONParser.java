@@ -39,7 +39,8 @@ public class LinesJSONParser {
 			JSONObject jsonStop = jsonStops.getJSONObject(i);
 			String code = jsonStop.getString("codeShort");
 			String name = jsonStop.getString("name");
-			stops.add(new Stop(code, name));
+			String coordinates = jsonStop.getString("coords");
+			stops.add(new Stop(code, name, coordinates));
 		}
 		return stops;
 	}

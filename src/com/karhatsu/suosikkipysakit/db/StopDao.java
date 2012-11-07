@@ -24,6 +24,8 @@ public class StopDao {
 		values.put(OwnStopsContract.StopEntry.COLUMN_NAME, stop.getName());
 		values.put(OwnStopsContract.StopEntry.COLUMN_NAME_BY_USER,
 				stop.getNameByUser());
+		values.put(OwnStopsContract.StopEntry.COLUMN_COORDINATES,
+				stop.getCoordinates());
 		db.insert(OwnStopsContract.StopEntry.TABLE_NAME, null, values);
 		db.close();
 	}

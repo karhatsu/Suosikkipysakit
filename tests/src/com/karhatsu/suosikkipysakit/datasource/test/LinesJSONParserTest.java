@@ -52,6 +52,11 @@ public class LinesJSONParserTest extends AbstractJSONParserTest {
 		assertEquals("Hernesaaren laituri", getFirstLineFirstStop().getName());
 	}
 
+	public void testStopCoordinates() throws JSONException {
+		assertEquals("2551480,6671094", getFirstLineFirstStop()
+				.getCoordinates());
+	}
+
 	private Line getFirstLine() throws JSONException {
 		return parser.parse(jsonString).get(0);
 	}

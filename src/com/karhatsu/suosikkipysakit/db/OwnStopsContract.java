@@ -14,12 +14,14 @@ public class OwnStopsContract {
 		public static final String COLUMN_CODE = "code";
 		public static final String COLUMN_NAME = "name";
 		public static final String COLUMN_NAME_BY_USER = "name_by_user";
+		public static final String COLUMN_COORDINATES = "coords";
 		public static final String CREATE_TABLE = //
 		"create table " + TABLE_NAME + " (" //
 				+ _ID + " integer primary key, " //
 				+ COLUMN_CODE + " varchar(7) not null," //
 				+ COLUMN_NAME + " varchar(100) not null," //
-				+ COLUMN_NAME_BY_USER + " varchar(100) not null" //
+				+ COLUMN_NAME_BY_USER + " varchar(100) not null," //
+				+ COLUMN_COORDINATES + " varchar(15) not null" //
 				+ ")";
 	}
 
