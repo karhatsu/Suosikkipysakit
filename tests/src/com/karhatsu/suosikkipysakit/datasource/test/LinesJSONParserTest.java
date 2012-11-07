@@ -4,6 +4,7 @@ import org.json.JSONException;
 
 import com.karhatsu.suosikkipysakit.datasource.LinesJSONParser;
 import com.karhatsu.suosikkipysakit.domain.Line;
+import com.karhatsu.suosikkipysakit.domain.Stop;
 
 public class LinesJSONParserTest extends AbstractJSONParserTest {
 
@@ -39,7 +40,23 @@ public class LinesJSONParserTest extends AbstractJSONParserTest {
 		assertEquals("Pajamäki", getFirstLine().getLineEnd());
 	}
 
+	public void testStopCount() throws JSONException {
+		assertEquals(35, getFirstLine().getStops().size());
+	}
+
+	public void testStopCode() throws JSONException {
+		assertEquals("1195", getFirstLineFirstStop().getCode());
+	}
+
+	public void testStopName() throws JSONException {
+		assertEquals("Hernesaaren laituri", getFirstLineFirstStop().getName());
+	}
+
 	private Line getFirstLine() throws JSONException {
 		return parser.parse(jsonString).get(0);
+	}
+
+	private Stop getFirstLineFirstStop() throws JSONException {
+		return getFirstLine().getStops().get(0);
 	}
 }

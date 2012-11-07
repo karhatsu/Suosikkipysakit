@@ -8,6 +8,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.karhatsu.suosikkipysakit.domain.Line;
+import com.karhatsu.suosikkipysakit.domain.Stop;
 
 public class LinesJSONParser {
 
@@ -16,8 +17,7 @@ public class LinesJSONParser {
 		JSONArray jsonLines = new JSONArray(json);
 		for (int i = 0; i < jsonLines.length(); i++) {
 			JSONObject jsonLine = jsonLines.getJSONObject(i);
-			Line line = parseLine(jsonLine);
-			lines.add(line);
+			lines.add(parseLine(jsonLine));
 		}
 		return lines;
 	}
@@ -27,7 +27,21 @@ public class LinesJSONParser {
 		String name = jsonLine.getString("name");
 		String lineStart = jsonLine.getString("line_start");
 		String lineEnd = jsonLine.getString("line_end");
-		return new Line(lineCode, name, lineStart, lineEnd);
+		Line line = new Line(lineCode, name, lineStart, lineEnd);
+		line.setStops(parseStops(jsonLine));
+		return line;
+	}
+
+	private List<Stop> parseStops(JSONObject jsonLine) throws JSONException {
+		List<Stop> stops = new ArrayList<Stop>();
+		JSONArray jsonStops = jsonLine.getJSONArray("line_stops");
+		for (int i = 0; i < jsonStops.length(); i++) {
+			JSONObject jsonStop = jsonStops.getJSONObject(i);
+			String code = jsonStop.getString("codeShort");
+			String name = jsonStop.getString("name");
+			stops.add(new Stop(code, name));
+		}
+		return stops;
 	}
 
 }
