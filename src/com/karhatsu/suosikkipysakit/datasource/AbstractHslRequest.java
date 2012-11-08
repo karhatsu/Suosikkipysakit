@@ -11,6 +11,8 @@ import java.util.Scanner;
 
 import org.json.JSONException;
 
+import com.karhatsu.suosikkipysakit.datasource.parsers.JSONParser;
+
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;

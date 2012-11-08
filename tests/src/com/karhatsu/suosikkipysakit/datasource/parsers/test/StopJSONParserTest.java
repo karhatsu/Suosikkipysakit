@@ -1,12 +1,12 @@
-package com.karhatsu.suosikkipysakit.datasource.test;
+package com.karhatsu.suosikkipysakit.datasource.parsers.test;
 
 import java.io.IOException;
 import java.util.List;
 
 import org.json.JSONException;
 
-import com.karhatsu.suosikkipysakit.datasource.StopJSONParser;
 import com.karhatsu.suosikkipysakit.datasource.DataNotFoundException;
+import com.karhatsu.suosikkipysakit.datasource.parsers.StopJSONParser;
 import com.karhatsu.suosikkipysakit.domain.Departure;
 import com.karhatsu.suosikkipysakit.domain.Stop;
 

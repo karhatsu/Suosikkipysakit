@@ -1,8 +1,8 @@
-package com.karhatsu.suosikkipysakit.datasource.test;
+package com.karhatsu.suosikkipysakit.datasource.parsers.test;
 
 import org.json.JSONException;
 
-import com.karhatsu.suosikkipysakit.datasource.LinesJSONParser;
+import com.karhatsu.suosikkipysakit.datasource.parsers.LinesJSONParser;
 import com.karhatsu.suosikkipysakit.domain.Line;
 import com.karhatsu.suosikkipysakit.domain.Stop;
 

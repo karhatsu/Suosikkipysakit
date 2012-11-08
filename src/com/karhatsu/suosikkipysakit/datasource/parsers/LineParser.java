@@ -1,4 +1,4 @@
-package com.karhatsu.suosikkipysakit.datasource;
+package com.karhatsu.suosikkipysakit.datasource.parsers;
 
 public class LineParser {
 

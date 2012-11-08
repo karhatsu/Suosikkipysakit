@@ -1,4 +1,4 @@
-package com.karhatsu.suosikkipysakit.datasource;
+package com.karhatsu.suosikkipysakit.datasource.parsers;
 
 import java.util.ArrayList;
 import java.util.List;

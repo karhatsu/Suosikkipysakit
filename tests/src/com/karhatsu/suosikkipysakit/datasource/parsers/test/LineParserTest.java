@@ -1,8 +1,8 @@
-package com.karhatsu.suosikkipysakit.datasource.test;
+package com.karhatsu.suosikkipysakit.datasource.parsers.test;
 
 import junit.framework.TestCase;
 
-import com.karhatsu.suosikkipysakit.datasource.LineParser;
+import com.karhatsu.suosikkipysakit.datasource.parsers.LineParser;
 
 public class LineParserTest extends TestCase {
 
