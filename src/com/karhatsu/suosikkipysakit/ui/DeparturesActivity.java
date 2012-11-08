@@ -7,12 +7,12 @@ import android.os.Bundle;
 import android.widget.ListView;
 
 import com.karhatsu.suosikkipysakit.R;
-import com.karhatsu.suosikkipysakit.datasource.OnStopRequestReady;
+import com.karhatsu.suosikkipysakit.datasource.OnHslRequestReady;
 import com.karhatsu.suosikkipysakit.datasource.StopRequest;
 import com.karhatsu.suosikkipysakit.domain.Stop;
 
 public class DeparturesActivity extends ListActivity implements
-		OnStopRequestReady {
+		OnHslRequestReady<Stop> {
 
 	private ProgressDialog progressDialog;
 	private StopRequest stopRequest;
@@ -48,7 +48,7 @@ public class DeparturesActivity extends ListActivity implements
 	}
 
 	@Override
-	public void notifyStopRequested(Stop stop) {
+	public void notifyAboutResult(Stop stop) {
 		hideProgressDialog();
 		if (stop.getDepartures().isEmpty()) {
 			ToastHelper.showToast(this,

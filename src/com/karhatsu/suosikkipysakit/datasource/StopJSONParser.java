@@ -12,7 +12,7 @@ import org.json.JSONObject;
 import com.karhatsu.suosikkipysakit.domain.Departure;
 import com.karhatsu.suosikkipysakit.domain.Stop;
 
-public class StopJSONParser {
+public class StopJSONParser implements JSONParser<Stop> {
 	private LineParser lineParser = new LineParser();
 	private TimeParser timeParser = new TimeParser();
 

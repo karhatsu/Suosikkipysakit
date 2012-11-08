@@ -12,12 +12,13 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.karhatsu.suosikkipysakit.R;
-import com.karhatsu.suosikkipysakit.datasource.OnStopRequestReady;
+import com.karhatsu.suosikkipysakit.datasource.OnHslRequestReady;
 import com.karhatsu.suosikkipysakit.datasource.StopRequest;
 import com.karhatsu.suosikkipysakit.db.StopDao;
 import com.karhatsu.suosikkipysakit.domain.Stop;
 
-public class AddStopActivity extends Activity implements OnStopRequestReady {
+public class AddStopActivity extends Activity implements
+		OnHslRequestReady<Stop> {
 
 	private ProgressDialog progressDialog;
 	private StopRequest stopRequest;
@@ -105,7 +106,7 @@ public class AddStopActivity extends Activity implements OnStopRequestReady {
 	}
 
 	@Override
-	public void notifyStopRequested(Stop stop) {
+	public void notifyAboutResult(Stop stop) {
 		hideProgressDialog();
 		if (stop != null) {
 			showSaveDialog(stop);
