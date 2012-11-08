@@ -10,7 +10,7 @@ import org.json.JSONObject;
 import com.karhatsu.suosikkipysakit.domain.Line;
 import com.karhatsu.suosikkipysakit.domain.Stop;
 
-public class LinesJSONParser {
+public class LinesJSONParser implements JSONParser<List<Line>> {
 
 	public List<Line> parse(String json) throws JSONException {
 		List<Line> lines = new ArrayList<Line>();
