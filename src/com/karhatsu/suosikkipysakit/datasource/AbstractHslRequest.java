@@ -74,7 +74,7 @@ public abstract class AbstractHslRequest<R> extends AsyncTask<String, Void, R> {
 		running = false;
 	}
 
-	public void setOnStopRequestReady(OnHslRequestReady<R> notifier) {
+	public void setOnHslRequestReady(OnHslRequestReady<R> notifier) {
 		this.notifier = notifier;
 		if (ready) {
 			notifyAboutResult();

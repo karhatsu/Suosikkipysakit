@@ -23,7 +23,7 @@ public class DeparturesActivity extends ListActivity implements
 		Object retained = getLastNonConfigurationInstance();
 		if (retained instanceof StopRequest) {
 			stopRequest = (StopRequest) retained;
-			stopRequest.setOnStopRequestReady(this);
+			stopRequest.setOnHslRequestReady(this);
 		} else {
 			stopRequest = new StopRequest(this);
 			queryDepartures();
@@ -43,7 +43,7 @@ public class DeparturesActivity extends ListActivity implements
 
 	@Override
 	public Object onRetainNonConfigurationInstance() {
-		stopRequest.setOnStopRequestReady(null);
+		stopRequest.setOnHslRequestReady(null);
 		return stopRequest;
 	}
 

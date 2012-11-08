@@ -30,7 +30,7 @@ public class AddStopActivity extends Activity implements
 		Object retained = getLastNonConfigurationInstance();
 		if (retained instanceof StopRequest) {
 			stopRequest = (StopRequest) retained;
-			stopRequest.setOnStopRequestReady(this);
+			stopRequest.setOnHslRequestReady(this);
 		} else {
 			initializeStopRequest();
 		}
@@ -42,7 +42,7 @@ public class AddStopActivity extends Activity implements
 
 	@Override
 	public Object onRetainNonConfigurationInstance() {
-		stopRequest.setOnStopRequestReady(null);
+		stopRequest.setOnHslRequestReady(null);
 		return stopRequest;
 	}
 
