@@ -39,16 +39,16 @@ public abstract class AbstractHslRequest<R> extends AsyncTask<String, Void, R> {
 		}
 		try {
 			return getData(stopCode[0]);
-		} catch (StopNotFoundException e) {
+		} catch (DataNotFoundException e) {
 			return null;
 		}
 	}
 
-	private R getData(String stopCode) throws StopNotFoundException {
+	private R getData(String stopCode) throws DataNotFoundException {
 		try {
 			String json = readStopDataAsJson(stopCode);
 			return getJSONParser().parse(json);
-		} catch (StopNotFoundException e) {
+		} catch (DataNotFoundException e) {
 			throw e;
 		} catch (Exception e) {
 			throw new RuntimeException(e);
