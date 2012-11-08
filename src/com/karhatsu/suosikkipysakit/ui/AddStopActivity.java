@@ -1,5 +1,7 @@
 package com.karhatsu.suosikkipysakit.ui;
 
+import java.util.List;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -7,21 +9,28 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 
 import com.karhatsu.suosikkipysakit.R;
+import com.karhatsu.suosikkipysakit.datasource.LinesRequest;
 import com.karhatsu.suosikkipysakit.datasource.OnHslRequestReady;
 import com.karhatsu.suosikkipysakit.datasource.StopRequest;
 import com.karhatsu.suosikkipysakit.db.StopDao;
+import com.karhatsu.suosikkipysakit.domain.Line;
 import com.karhatsu.suosikkipysakit.domain.Stop;
 
-public class AddStopActivity extends Activity implements
-		OnHslRequestReady<Stop> {
+public class AddStopActivity extends Activity {
 
 	private ProgressDialog progressDialog;
+
 	private StopRequest stopRequest;
+	private StopRequestNotifier stopRequestNotifier = new StopRequestNotifier();
+
+	private LinesRequest linesRequest;
+	private LinesRequestNotifier linesRequestNotifier = new LinesRequestNotifier();
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -30,34 +39,52 @@ public class AddStopActivity extends Activity implements
 		Object retained = getLastNonConfigurationInstance();
 		if (retained instanceof StopRequest) {
 			stopRequest = (StopRequest) retained;
-			stopRequest.setOnHslRequestReady(this);
+			stopRequest.setOnHslRequestReady(stopRequestNotifier);
+		} else if (retained instanceof LinesRequest) {
+			linesRequest = (LinesRequest) retained;
+			linesRequest.setOnHslRequestReady(linesRequestNotifier);
 		} else {
-			initializeStopRequest();
+			initializeRequests();
 		}
 	}
 
-	private void initializeStopRequest() {
-		stopRequest = new StopRequest(this);
+	private void initializeRequests() {
+		stopRequest = new StopRequest(stopRequestNotifier);
+		linesRequest = new LinesRequest(linesRequestNotifier);
 	}
 
 	@Override
 	public Object onRetainNonConfigurationInstance() {
-		stopRequest.setOnHslRequestReady(null);
-		return stopRequest;
+		if (stopRequest.isRunning()) {
+			stopRequest.setOnHslRequestReady(null);
+			return stopRequest;
+		} else {
+			linesRequest.setOnHslRequestReady(null);
+			return linesRequest;
+		}
 	}
 
 	public void searchStop(View button) {
 		if (stopRequest.isRunning()) {
 			return; // prevent double-clicks
 		}
-		String code = getCode();
+		String code = getTextFromField(R.id.add_stop_code);
 		if (!Stop.isValidCode(code)) {
 			ToastHelper
 					.showToast(this, R.string.activity_add_stop_invalid_code);
 			return;
 		}
 		showPleaseWait();
-		stopRequest.execute(getCode());
+		stopRequest.execute(code);
+	}
+
+	public void searchLine(View button) {
+		if (linesRequest.isRunning()) {
+			return;
+		}
+		String line = getTextFromField(R.id.add_stop_line);
+		showPleaseWait();
+		linesRequest.execute(line);
 	}
 
 	private void showPleaseWait() {
@@ -65,9 +92,8 @@ public class AddStopActivity extends Activity implements
 		progressDialog.show();
 	}
 
-	private String getCode() {
-		return ((EditText) findViewById(R.id.add_stop_code)).getText()
-				.toString();
+	private String getTextFromField(int textFieldId) {
+		return ((EditText) findViewById(textFieldId)).getText().toString();
 	}
 
 	private void showSaveDialog(final Stop stop) {
@@ -105,32 +131,64 @@ public class AddStopActivity extends Activity implements
 		startActivity(intent);
 	}
 
-	@Override
-	public void notifyAboutResult(Stop stop) {
-		hideProgressDialog();
-		if (stop != null) {
-			showSaveDialog(stop);
-		} else {
-			ToastHelper.showToast(this, R.string.activity_add_stop_not_found);
-			initializeStopRequest();
-		}
-	}
-
-	@Override
-	public void notifyConnectionProblem() {
-		hideProgressDialog();
-		ToastHelper.showToast(this, R.string.connection_problem);
-		initializeStopRequest();
-	}
-
-	@Override
-	public Context getContext() {
-		return this;
-	}
-
 	private void hideProgressDialog() {
 		if (progressDialog != null) {
 			progressDialog.dismiss();
+		}
+	}
+
+	private void afterConnectionProblem() {
+		hideProgressDialog();
+		ToastHelper
+				.showToast(AddStopActivity.this, R.string.connection_problem);
+		initializeRequests();
+	}
+
+	private class StopRequestNotifier implements OnHslRequestReady<Stop> {
+		@Override
+		public void notifyAboutResult(Stop stop) {
+			hideProgressDialog();
+			if (stop != null) {
+				showSaveDialog(stop);
+			} else {
+				ToastHelper.showToast(AddStopActivity.this,
+						R.string.activity_add_stop_stop_not_found);
+				initializeRequests();
+			}
+		}
+
+		@Override
+		public void notifyConnectionProblem() {
+			afterConnectionProblem();
+		}
+
+		@Override
+		public Context getContext() {
+			return AddStopActivity.this;
+		}
+	}
+
+	private class LinesRequestNotifier implements OnHslRequestReady<List<Line>> {
+		@Override
+		public void notifyAboutResult(List<Line> lines) {
+			hideProgressDialog();
+			if (lines != null) {
+				Log.d("result", lines.toString());
+			} else {
+				ToastHelper.showToast(AddStopActivity.this,
+						R.string.activity_add_stop_line_not_found);
+				initializeRequests();
+			}
+		}
+
+		@Override
+		public void notifyConnectionProblem() {
+			afterConnectionProblem();
+		}
+
+		@Override
+		public Context getContext() {
+			return AddStopActivity.this;
 		}
 	}
 }

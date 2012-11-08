@@ -9,7 +9,7 @@ import com.karhatsu.suosikkipysakit.util.AccountInformation;
 
 public class LinesRequest extends AbstractHslRequest<List<Line>> {
 
-	protected LinesRequest(OnHslRequestReady<List<Line>> notifier) {
+	public LinesRequest(OnHslRequestReady<List<Line>> notifier) {
 		super(notifier);
 	}
 
