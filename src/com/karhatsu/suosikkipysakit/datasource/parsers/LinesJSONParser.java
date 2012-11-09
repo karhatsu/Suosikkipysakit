@@ -6,13 +6,18 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.karhatsu.suosikkipysakit.datasource.DataNotFoundException;
 import com.karhatsu.suosikkipysakit.domain.Line;
 import com.karhatsu.suosikkipysakit.domain.Stop;
 
 public class LinesJSONParser implements JSONParser<ArrayList<Line>> {
 
 	@Override
-	public ArrayList<Line> parse(String json) throws JSONException {
+	public ArrayList<Line> parse(String json) throws DataNotFoundException,
+			JSONException {
+		if (json.equals("")) {
+			throw new DataNotFoundException();
+		}
 		ArrayList<Line> lines = new ArrayList<Line>();
 		JSONArray jsonLines = new JSONArray(json);
 		for (int i = 0; i < jsonLines.length(); i++) {

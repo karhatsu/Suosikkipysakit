@@ -2,6 +2,7 @@ package com.karhatsu.suosikkipysakit.datasource.parsers.test;
 
 import org.json.JSONException;
 
+import com.karhatsu.suosikkipysakit.datasource.DataNotFoundException;
 import com.karhatsu.suosikkipysakit.datasource.parsers.LinesJSONParser;
 import com.karhatsu.suosikkipysakit.domain.Line;
 import com.karhatsu.suosikkipysakit.domain.Stop;
@@ -20,48 +21,60 @@ public class LinesJSONParserTest extends AbstractJSONParserTest {
 		}
 	}
 
-	public void testLinesCount() throws JSONException {
+	public void testLinesCount() throws JSONException, DataNotFoundException {
 		assertEquals(6, parser.parse(jsonString).size());
 	}
 
-	public void testLineCode() throws JSONException {
+	public void testLineCode() throws JSONException, DataNotFoundException {
 		assertEquals("14", getFirstLine().getCode());
 	}
 
-	public void testLineName() throws JSONException {
+	public void testLineName() throws JSONException, DataNotFoundException {
 		assertEquals("Hernesaari - Kamppi - Pajamäki", getFirstLine().getName());
 	}
 
-	public void testLineStart() throws JSONException {
+	public void testLineStart() throws JSONException, DataNotFoundException {
 		assertEquals("Hernesaari", getFirstLine().getLineStart());
 	}
 
-	public void testLineEnd() throws JSONException {
+	public void testLineEnd() throws JSONException, DataNotFoundException {
 		assertEquals("Pajamäki", getFirstLine().getLineEnd());
 	}
 
-	public void testStopCount() throws JSONException {
+	public void testStopCount() throws JSONException, DataNotFoundException {
 		assertEquals(35, getFirstLine().getStops().size());
 	}
 
-	public void testStopCode() throws JSONException {
+	public void testStopCode() throws JSONException, DataNotFoundException {
 		assertEquals("1195", getFirstLineFirstStop().getCode());
 	}
 
-	public void testStopName() throws JSONException {
+	public void testStopName() throws JSONException, DataNotFoundException {
 		assertEquals("Hernesaaren laituri", getFirstLineFirstStop().getName());
 	}
 
-	public void testStopCoordinates() throws JSONException {
+	public void testStopCoordinates() throws JSONException,
+			DataNotFoundException {
 		assertEquals("2551480,6671094", getFirstLineFirstStop()
 				.getCoordinates());
 	}
 
-	private Line getFirstLine() throws JSONException {
+	private Line getFirstLine() throws JSONException, DataNotFoundException {
 		return parser.parse(jsonString).get(0);
 	}
 
-	private Stop getFirstLineFirstStop() throws JSONException {
+	private Stop getFirstLineFirstStop() throws JSONException,
+			DataNotFoundException {
 		return getFirstLine().getStops().get(0);
+	}
+
+	public void testEmptyJSON() {
+		try {
+			parser.parse("");
+			fail("Did not throw StopRequestException");
+		} catch (DataNotFoundException e) {
+		} catch (JSONException e) {
+			fail("Threw JSONException");
+		}
 	}
 }
