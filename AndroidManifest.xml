@@ -39,6 +39,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.karhatsu.suosikkipysakit.MainActivity" />
         </activity>
+        <activity
+            android:name=".ui.LinesActivity"
+            android:label="@string/activity_lines_title" >
+            <meta-data 
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.karhatsu.suosikkipysakit.AddStopActivity "/>
+        </activity>
     </application>
 
 </manifest>

@@ -9,7 +9,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -174,7 +173,11 @@ public class AddStopActivity extends Activity {
 		public void notifyAboutResult(ArrayList<Line> lines) {
 			hideProgressDialog();
 			if (lines != null) {
-				Log.d("result", lines.toString());
+				Intent intent = new Intent(AddStopActivity.this,
+						LinesActivity.class);
+				intent.putParcelableArrayListExtra(LinesActivity.LINES_LIST,
+						lines);
+				startActivity(intent);
 			} else {
 				ToastHelper.showToast(AddStopActivity.this,
 						R.string.activity_add_stop_line_not_found);
