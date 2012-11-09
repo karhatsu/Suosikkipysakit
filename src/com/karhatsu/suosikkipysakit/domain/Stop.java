@@ -2,7 +2,10 @@ package com.karhatsu.suosikkipysakit.domain;
 
 import java.util.List;
 
-public class Stop {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Stop implements Parcelable {
 
 	public static final String CODE_KEY = "com.karhatsu.suosikkipysakit.domain.CODE";
 
@@ -12,7 +15,7 @@ public class Stop {
 	private final String code;
 	private final String name;
 	private final String coordinates;
-	private String nameByUser;
+	private String nameByUser = null;
 
 	private List<Departure> departures;
 
@@ -20,6 +23,15 @@ public class Stop {
 		this.code = code;
 		this.name = name;
 		this.coordinates = coordinates;
+	}
+
+	@SuppressWarnings("unchecked")
+	private Stop(Parcel in) {
+		this.code = in.readString();
+		this.name = in.readString();
+		this.coordinates = in.readString();
+		this.nameByUser = in.readString();
+		this.departures = in.readArrayList(Departure.class.getClassLoader());
 	}
 
 	public String getCode() {
@@ -61,4 +73,30 @@ public class Stop {
 		}
 		return code.length() == 4;
 	}
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel out, int flags) {
+		out.writeString(code);
+		out.writeString(name);
+		out.writeString(coordinates);
+		out.writeString(nameByUser);
+		out.writeList(departures);
+	}
+
+	public static final Parcelable.Creator<Stop> CREATOR = new Creator<Stop>() {
+		@Override
+		public Stop[] newArray(int size) {
+			return new Stop[size];
+		}
+
+		@Override
+		public Stop createFromParcel(Parcel in) {
+			return new Stop(in);
+		}
+	};
 }

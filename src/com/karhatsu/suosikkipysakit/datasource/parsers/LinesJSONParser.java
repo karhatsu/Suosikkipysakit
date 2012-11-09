@@ -1,7 +1,6 @@
 package com.karhatsu.suosikkipysakit.datasource.parsers;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,8 +32,9 @@ public class LinesJSONParser implements JSONParser<ArrayList<Line>> {
 		return line;
 	}
 
-	private List<Stop> parseStops(JSONObject jsonLine) throws JSONException {
-		List<Stop> stops = new ArrayList<Stop>();
+	private ArrayList<Stop> parseStops(JSONObject jsonLine)
+			throws JSONException {
+		ArrayList<Stop> stops = new ArrayList<Stop>();
 		JSONArray jsonStops = jsonLine.getJSONArray("line_stops");
 		for (int i = 0; i < jsonStops.length(); i++) {
 			JSONObject jsonStop = jsonStops.getJSONObject(i);

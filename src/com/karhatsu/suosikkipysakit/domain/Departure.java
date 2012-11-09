@@ -1,6 +1,9 @@
 package com.karhatsu.suosikkipysakit.domain;
 
-public class Departure {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Departure implements Parcelable {
 	private final String line;
 	private final String time;
 	private final String endStop;
@@ -9,6 +12,12 @@ public class Departure {
 		this.line = line;
 		this.time = time;
 		this.endStop = endStop;
+	}
+
+	private Departure(Parcel in) {
+		this.line = in.readString();
+		this.time = in.readString();
+		this.endStop = in.readString();
 	}
 
 	public String getLine() {
@@ -22,4 +31,28 @@ public class Departure {
 	public String getEndStop() {
 		return endStop;
 	}
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel out, int flags) {
+		out.writeString(line);
+		out.writeString(time);
+		out.writeString(endStop);
+	}
+
+	public static final Parcelable.Creator<Departure> CREATOR = new Creator<Departure>() {
+		@Override
+		public Departure[] newArray(int size) {
+			return new Departure[size];
+		}
+
+		@Override
+		public Departure createFromParcel(Parcel in) {
+			return new Departure(in);
+		}
+	};
 }

@@ -1,6 +1,6 @@
 package com.karhatsu.suosikkipysakit.domain;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -12,7 +12,7 @@ public class Line implements Parcelable {
 	private final String lineStart;
 	private final String lineEnd;
 
-	private List<Stop> stops;
+	private ArrayList<Stop> stops;
 
 	public Line(String code, String name, String lineStart, String lineEnd) {
 		this.code = code;
@@ -21,11 +21,13 @@ public class Line implements Parcelable {
 		this.lineEnd = lineEnd;
 	}
 
+	@SuppressWarnings("unchecked")
 	private Line(Parcel in) {
 		this.code = in.readString();
 		this.name = in.readString();
 		this.lineStart = in.readString();
 		this.lineEnd = in.readString();
+		this.stops = in.readArrayList(Stop.class.getClassLoader());
 	}
 
 	public String getCode() {
@@ -44,11 +46,11 @@ public class Line implements Parcelable {
 		return lineEnd;
 	}
 
-	public List<Stop> getStops() {
+	public ArrayList<Stop> getStops() {
 		return stops;
 	}
 
-	public void setStops(List<Stop> stops) {
+	public void setStops(ArrayList<Stop> stops) {
 		this.stops = stops;
 	}
 
@@ -63,6 +65,7 @@ public class Line implements Parcelable {
 		out.writeString(name);
 		out.writeString(lineStart);
 		out.writeString(lineEnd);
+		out.writeList(stops);
 	}
 
 	public static final Parcelable.Creator<Line> CREATOR = new Parcelable.Creator<Line>() {
