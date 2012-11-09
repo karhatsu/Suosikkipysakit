@@ -1,6 +1,6 @@
 package com.karhatsu.suosikkipysakit.ui;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -168,9 +168,10 @@ public class AddStopActivity extends Activity {
 		}
 	}
 
-	private class LinesRequestNotifier implements OnHslRequestReady<List<Line>> {
+	private class LinesRequestNotifier implements
+			OnHslRequestReady<ArrayList<Line>> {
 		@Override
-		public void notifyAboutResult(List<Line> lines) {
+		public void notifyAboutResult(ArrayList<Line> lines) {
 			hideProgressDialog();
 			if (lines != null) {
 				Log.d("result", lines.toString());

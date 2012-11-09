@@ -10,10 +10,11 @@ import org.json.JSONObject;
 import com.karhatsu.suosikkipysakit.domain.Line;
 import com.karhatsu.suosikkipysakit.domain.Stop;
 
-public class LinesJSONParser implements JSONParser<List<Line>> {
+public class LinesJSONParser implements JSONParser<ArrayList<Line>> {
 
-	public List<Line> parse(String json) throws JSONException {
-		List<Line> lines = new ArrayList<Line>();
+	@Override
+	public ArrayList<Line> parse(String json) throws JSONException {
+		ArrayList<Line> lines = new ArrayList<Line>();
 		JSONArray jsonLines = new JSONArray(json);
 		for (int i = 0; i < jsonLines.length(); i++) {
 			JSONObject jsonLine = jsonLines.getJSONObject(i);
