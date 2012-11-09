@@ -30,12 +30,18 @@ public class LineListAdapter extends ArrayAdapter<Line> {
 			view = layoutInflater.inflate(R.layout.list_item_line, null);
 		}
 		Line line = lines.get(position);
-		setText(view, R.id.list_item_line_text, line.getName());
+		setText(view, R.id.list_item_line_code, line.getCode());
+		setText(view, R.id.list_item_line_name, line.getName());
+		setText(view, R.id.list_item_line_direction, getDirectionText(line));
 		return view;
 	}
 
 	private void setText(View view, int resourceId, String text) {
 		TextView textView = (TextView) view.findViewById(resourceId);
 		textView.setText(text);
+	}
+
+	private String getDirectionText(Line line) {
+		return line.getLineStart() + " -> " + line.getLineEnd();
 	}
 }

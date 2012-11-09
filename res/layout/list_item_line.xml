@@ -1,13 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="wrap_content" 
     android:layout_width="match_parent"
     android:padding="10dp"
     android:textSize="20sp">
     
 	<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-	    android:id="@+id/list_item_line_text"
+	    android:id="@+id/list_item_line_code"
 	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content" />
+	    android:layout_height="wrap_content"
+	    android:textSize="30sp"
+	    android:layout_alignParentLeft="true"
+	    android:paddingRight="5dp" />
     
-</LinearLayout>
+	<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+	    android:id="@+id/list_item_line_name"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentRight="true"
+	    android:layout_toRightOf="@id/list_item_line_code" />
+    
+	<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+	    android:id="@+id/list_item_line_direction"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentRight="true"
+	    android:layout_toRightOf="@id/list_item_line_code"
+	    android:layout_below="@id/list_item_line_name"
+	    android:textStyle="bold" />
+    
+</RelativeLayout>
