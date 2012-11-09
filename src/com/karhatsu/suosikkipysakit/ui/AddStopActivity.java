@@ -3,13 +3,10 @@ package com.karhatsu.suosikkipysakit.ui;
 import java.util.ArrayList;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 
@@ -17,7 +14,6 @@ import com.karhatsu.suosikkipysakit.R;
 import com.karhatsu.suosikkipysakit.datasource.LinesRequest;
 import com.karhatsu.suosikkipysakit.datasource.OnHslRequestReady;
 import com.karhatsu.suosikkipysakit.datasource.StopRequest;
-import com.karhatsu.suosikkipysakit.db.StopDao;
 import com.karhatsu.suosikkipysakit.domain.Line;
 import com.karhatsu.suosikkipysakit.domain.Stop;
 
@@ -95,41 +91,6 @@ public class AddStopActivity extends Activity {
 		return ((EditText) findViewById(textFieldId)).getText().toString();
 	}
 
-	private void showSaveDialog(final Stop stop) {
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		LayoutInflater inflater = getLayoutInflater();
-		View view = inflater.inflate(R.layout.dialog_save_stop, null);
-		builder.setView(view);
-		final EditText stopName = (EditText) view
-				.findViewById(R.id.dialog_save_stop_name);
-		stopName.setText(stop.getName());
-		builder.setTitle(R.string.dialog_save_stop_title);
-		builder.setPositiveButton(R.string.dialog_save_stop_save,
-				new DialogInterface.OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						stop.setNameByUser(stopName.getText().toString());
-						dialog.dismiss();
-						saveStopAndShowAll(stop);
-					}
-				});
-		builder.setNegativeButton(R.string.cancel,
-				new DialogInterface.OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						dialog.dismiss();
-					}
-				});
-		AlertDialog dialog = builder.create();
-		dialog.show();
-	}
-
-	private void saveStopAndShowAll(Stop stop) {
-		new StopDao(this).save(stop);
-		Intent intent = new Intent(this, MainActivity.class);
-		startActivity(intent);
-	}
-
 	private void hideProgressDialog() {
 		if (progressDialog != null) {
 			progressDialog.dismiss();
@@ -148,7 +109,7 @@ public class AddStopActivity extends Activity {
 		public void notifyAboutResult(Stop stop) {
 			hideProgressDialog();
 			if (stop != null) {
-				showSaveDialog(stop);
+				new SaveStopDialog(AddStopActivity.this, stop);
 			} else {
 				ToastHelper.showToast(AddStopActivity.this,
 						R.string.activity_add_stop_stop_not_found);

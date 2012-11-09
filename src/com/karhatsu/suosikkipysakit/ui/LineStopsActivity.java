@@ -3,6 +3,9 @@ package com.karhatsu.suosikkipysakit.ui;
 import java.util.List;
 
 import android.app.ListActivity;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 
 import com.karhatsu.suosikkipysakit.domain.Stop;
 
@@ -19,7 +22,17 @@ public class LineStopsActivity extends ListActivity {
 	private void setupLineStopsView() {
 		List<Stop> lineStops = getIntent().getParcelableArrayListExtra(
 				LINE_STOPS);
-		getListView().setAdapter(new LineStopListAdapter(this, lineStops));
+		final LineStopListAdapter lineStopListAdapter = new LineStopListAdapter(
+				this, lineStops);
+		getListView().setAdapter(lineStopListAdapter);
+		getListView().setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				Stop stop = lineStopListAdapter.getItem(position);
+				new SaveStopDialog(LineStopsActivity.this, stop);
+			}
+		});
 	}
 
 }
