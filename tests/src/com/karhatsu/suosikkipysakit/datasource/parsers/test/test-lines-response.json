@@ -14,7 +14,7 @@
         { "address" : "Hernesaarenranta",
           "city_name" : "Helsinki",
           "code" : "1204115",
-          "codeShort" : "1193",
+          "codeShort" : "",
           "coords" : "2551727,6671329",
           "name" : "Pihlajasaarenkatu",
           "time" : 1

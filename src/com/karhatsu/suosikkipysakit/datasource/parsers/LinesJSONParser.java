@@ -44,6 +44,9 @@ public class LinesJSONParser implements JSONParser<ArrayList<Line>> {
 		for (int i = 0; i < jsonStops.length(); i++) {
 			JSONObject jsonStop = jsonStops.getJSONObject(i);
 			String code = jsonStop.getString("codeShort");
+			if (code.equals("")) {
+				code = jsonStop.getString("code");
+			}
 			String name = jsonStop.getString("name");
 			String coordinates = jsonStop.getString("coords");
 			stops.add(new Stop(code, name, coordinates));

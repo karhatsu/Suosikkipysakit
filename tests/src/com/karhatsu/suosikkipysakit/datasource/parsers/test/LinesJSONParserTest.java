@@ -49,6 +49,11 @@ public class LinesJSONParserTest extends AbstractJSONParserTest {
 		assertEquals("1195", getFirstLineFirstStop().getCode());
 	}
 
+	public void testLongStopCodeIsUsedIfShortStopCodeIsEmpty()
+			throws JSONException, DataNotFoundException {
+		assertEquals("1204115", getFirstLine().getStops().get(1).getCode());
+	}
+
 	public void testStopName() throws JSONException, DataNotFoundException {
 		assertEquals("Hernesaaren laituri", getFirstLineFirstStop().getName());
 	}
