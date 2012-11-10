@@ -18,4 +18,14 @@ public class TimeParserTest extends TestCase {
 		assertEquals("02:33", timeParser.format("233"));
 	}
 
+	public void testTwoDigits() {
+		assertEquals("00:48", timeParser.format("48"));
+		assertEquals("00:33", timeParser.format("33"));
+	}
+
+	public void testOneDigit() {
+		assertEquals("00:08", timeParser.format("8"));
+		assertEquals("00:00", timeParser.format("0"));
+	}
+
 }
