@@ -1,6 +1,7 @@
 package com.karhatsu.suosikkipysakit.domain;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -9,8 +10,8 @@ public class Stop implements Parcelable {
 
 	public static final String CODE_KEY = "com.karhatsu.suosikkipysakit.domain.CODE";
 
-	private static final String VANTAA_PREFIX = "V";
-	private static final String ESPOO_PREFIX = "E";
+	private static final Pattern PATTERN = Pattern
+			.compile("(V|E|Ke|Jä|Tu)?\\d{4}");
 
 	private final String code;
 	private final String name;
@@ -63,15 +64,7 @@ public class Stop implements Parcelable {
 	}
 
 	public static boolean isValidCode(String code) {
-		if (code.startsWith(VANTAA_PREFIX) || code.startsWith(ESPOO_PREFIX)) {
-			code = code.substring(1, code.length());
-		}
-		try {
-			Integer.valueOf(code);
-		} catch (NumberFormatException e) {
-			return false;
-		}
-		return code.length() == 4;
+		return PATTERN.matcher(code).matches();
 	}
 
 	@Override

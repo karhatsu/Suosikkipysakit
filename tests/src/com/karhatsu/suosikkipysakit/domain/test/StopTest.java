@@ -46,10 +46,25 @@ public class StopTest extends TestCase {
 		assertFalse(Stop.isValidCode("E123"));
 	}
 
+	public void testKerava() {
+		assertTrue(Stop.isValidCode("Ke0401"));
+	}
+
+	public void testJarvenpaa() {
+		assertTrue(Stop.isValidCode("Jä0201"));
+	}
+
+	public void testTuusula() {
+		assertTrue(Stop.isValidCode("Tu0104"));
+	}
+
 	public void testSomeOtherLetterPrefix() {
 		assertFalse(Stop.isValidCode("F1234"));
 		assertFalse(Stop.isValidCode("H1234"));
 		assertFalse(Stop.isValidCode("A1234"));
+		assertFalse(Stop.isValidCode("Ti1234"));
+		assertFalse(Stop.isValidCode("Ko1234"));
+		assertFalse(Stop.isValidCode("Ja1234"));
 	}
 
 }
