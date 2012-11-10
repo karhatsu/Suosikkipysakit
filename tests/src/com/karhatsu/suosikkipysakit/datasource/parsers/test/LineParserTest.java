@@ -41,4 +41,9 @@ public class LineParserTest extends TestCase {
 		assertEquals("633N", lineParser.format("9633N 2"));
 	}
 
+	public void testLocalTrain() {
+		assertEquals("K", lineParser.format("3001K 1"));
+		assertEquals("T", lineParser.format("3001T 1"));
+	}
+
 }

@@ -5,6 +5,8 @@ public class LineParser {
 	public String format(String lineCode) {
 		if (isJoukoLine(lineCode)) {
 			return formatJoukoLine(lineCode);
+		} else if (isLocalTrain(lineCode)) {
+			return formatLocalTrain(lineCode);
 		}
 		return formatLine(lineCode);
 	}
@@ -15,6 +17,14 @@ public class LineParser {
 
 	private String formatJoukoLine(String lineCode) {
 		return lineCode.substring(2, 5);
+	}
+
+	private boolean isLocalTrain(String lineCode) {
+		return lineCode.startsWith("3");
+	}
+
+	private String formatLocalTrain(String lineCode) {
+		return lineCode.substring(4, 5);
 	}
 
 	private String formatLine(String lineCode) {
