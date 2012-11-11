@@ -32,22 +32,22 @@ public abstract class AbstractHslRequest<R> extends AsyncTask<String, Void, R> {
 	}
 
 	@Override
-	protected R doInBackground(String... stopCode) {
+	protected R doInBackground(String... searchParam) {
 		running = true;
 		if (!connectionAvailable()) {
 			connectionFailed = true;
 			return null;
 		}
 		try {
-			return getData(stopCode[0]);
+			return getData(searchParam[0]);
 		} catch (DataNotFoundException e) {
 			return null;
 		}
 	}
 
-	private R getData(String stopCode) throws DataNotFoundException {
+	private R getData(String searchParam) throws DataNotFoundException {
 		try {
-			String json = readStopDataAsJson(stopCode);
+			String json = queryDataAsJson(searchParam);
 			return getJSONParser().parse(json);
 		} catch (DataNotFoundException e) {
 			throw e;
@@ -90,11 +90,11 @@ public abstract class AbstractHslRequest<R> extends AsyncTask<String, Void, R> {
 		}
 	}
 
-	private String readStopDataAsJson(String stopCode)
+	private String queryDataAsJson(String searchParam)
 			throws ClientProtocolException, IOException {
 		AndroidHttpClient client = AndroidHttpClient.newInstance("Android");
 		HttpResponse response = client.execute(new HttpGet(
-				getRequestUrl(stopCode)));
+				getRequestUrl(searchParam)));
 		InputStream is = null;
 		try {
 			return readStream(response.getEntity().getContent());
