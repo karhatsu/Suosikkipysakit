@@ -43,7 +43,7 @@ public class StopDao {
 		String[] projection = { OwnStopsContract.StopEntry._ID,
 				OwnStopsContract.StopEntry.COLUMN_CODE,
 				OwnStopsContract.StopEntry.COLUMN_NAME_BY_USER };
-		String sortBy = OwnStopsContract.StopEntry.COLUMN_CODE;
+		String sortBy = OwnStopsContract.StopEntry.COLUMN_NAME_BY_USER;
 		return db.query(OwnStopsContract.StopEntry.TABLE_NAME, projection,
 				null, null, null, null, sortBy);
 	}
