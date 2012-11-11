@@ -50,6 +50,12 @@ public class MainActivity extends Activity {
 		registerForContextMenu(stopListView);
 	}
 
+	@Override
+	protected void onResume() {
+		super.onResume();
+		refreshStopList();
+	}
+
 	private ListAdapter createStopListAdapter() {
 		stopDao = new StopDao(this);
 		Cursor cursor = stopDao.findAll();
