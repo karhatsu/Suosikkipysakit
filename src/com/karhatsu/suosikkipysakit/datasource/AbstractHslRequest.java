@@ -7,7 +7,6 @@ import java.util.Scanner;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 
 import android.content.Context;
@@ -93,7 +92,7 @@ public abstract class AbstractHslRequest<R> extends AsyncTask<String, Void, R> {
 
 	private String readStopDataAsJson(String stopCode)
 			throws ClientProtocolException, IOException {
-		HttpClient client = AndroidHttpClient.newInstance("Android");
+		AndroidHttpClient client = AndroidHttpClient.newInstance("Android");
 		HttpResponse response = client.execute(new HttpGet(
 				getRequestUrl(stopCode)));
 		InputStream is = null;
@@ -103,6 +102,7 @@ public abstract class AbstractHslRequest<R> extends AsyncTask<String, Void, R> {
 			if (is != null) {
 				is.close();
 			}
+			client.close();
 		}
 	}
 
