@@ -44,7 +44,7 @@ public class StopJSONParser implements JSONParser<Stop> {
 	}
 
 	private Stop parseStop(JSONObject jsonStop) throws JSONException {
-		String code = jsonStop.getString("code_short");
+		String code = jsonStop.getString("code");
 		String name = jsonStop.getString("name_fi");
 		String coordinates = jsonStop.getString("coords");
 		return new Stop(code, name, coordinates);

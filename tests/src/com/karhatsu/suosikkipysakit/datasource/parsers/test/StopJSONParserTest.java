@@ -25,7 +25,7 @@ public class StopJSONParserTest extends AbstractJSONParserTest {
 	}
 
 	public void testStopCode() throws JSONException, DataNotFoundException {
-		assertEquals("3044", getParsedStop().getCode());
+		assertEquals("1230101", getParsedStop().getCode());
 	}
 
 	public void testStopNameIsFinnishName() throws JSONException,
