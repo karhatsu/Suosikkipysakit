@@ -3,20 +3,20 @@ package com.karhatsu.suosikkipysakit.datasource;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
-import java.net.URL;
 import java.util.Scanner;
 
-import org.json.JSONException;
-
-import com.karhatsu.suosikkipysakit.datasource.parsers.JSONParser;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.http.AndroidHttpClient;
 import android.os.AsyncTask;
+
+import com.karhatsu.suosikkipysakit.datasource.parsers.JSONParser;
 
 public abstract class AbstractHslRequest<R> extends AsyncTask<String, Void, R> {
 
@@ -92,28 +92,18 @@ public abstract class AbstractHslRequest<R> extends AsyncTask<String, Void, R> {
 	}
 
 	private String readStopDataAsJson(String stopCode)
-			throws MalformedURLException, IOException, ProtocolException,
-			JSONException {
+			throws ClientProtocolException, IOException {
+		HttpClient client = AndroidHttpClient.newInstance("Android");
+		HttpResponse response = client.execute(new HttpGet(
+				getRequestUrl(stopCode)));
 		InputStream is = null;
 		try {
-			HttpURLConnection conn = createConnection(stopCode);
-			conn.connect();
-			is = conn.getInputStream();
-			return readStream(is);
+			return readStream(response.getEntity().getContent());
 		} finally {
 			if (is != null) {
 				is.close();
 			}
 		}
-	}
-
-	private HttpURLConnection createConnection(String stopCode)
-			throws MalformedURLException, IOException, ProtocolException {
-		URL url = new URL(getRequestUrl(stopCode));
-		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-		conn.setRequestMethod("GET");
-		conn.setDoInput(true);
-		return conn;
 	}
 
 	protected abstract String getRequestUrl(String searchParam);
