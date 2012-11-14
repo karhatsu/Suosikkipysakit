@@ -39,7 +39,7 @@ public abstract class AbstractHslRequest<R> extends AsyncTask<String, Void, R> {
 			return null;
 		}
 		try {
-			return getData(searchParam[0]);
+			return getData(searchParam[0].trim());
 		} catch (DataNotFoundException e) {
 			return null;
 		}
