@@ -108,12 +108,12 @@ public class AddStopActivity extends Activity {
 		@Override
 		public void notifyAboutResult(Stop stop) {
 			hideProgressDialog();
+			initializeRequests();
 			if (stop != null) {
 				new SaveStopDialog(AddStopActivity.this, stop);
 			} else {
 				ToastHelper.showToast(AddStopActivity.this,
 						R.string.activity_add_stop_stop_not_found);
-				initializeRequests();
 			}
 		}
 
@@ -133,6 +133,7 @@ public class AddStopActivity extends Activity {
 		@Override
 		public void notifyAboutResult(ArrayList<Line> lines) {
 			hideProgressDialog();
+			initializeRequests();
 			if (lines != null) {
 				Intent intent = new Intent(AddStopActivity.this,
 						LinesActivity.class);
@@ -142,7 +143,6 @@ public class AddStopActivity extends Activity {
 			} else {
 				ToastHelper.showToast(AddStopActivity.this,
 						R.string.activity_add_stop_line_not_found);
-				initializeRequests();
 			}
 		}
 
