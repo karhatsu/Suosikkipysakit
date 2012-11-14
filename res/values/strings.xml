@@ -8,7 +8,7 @@
     <string name="activity_add_stop_title">Lisää pysäkki</string>
     <string name="activity_add_stop_code_hint">Pysäkin tunnus</string>
     <string name="activity_add_stop_search_by_code">Hae pysäkkiä</string>
-    <string name="activity_add_stop_line_hint">Linjan numero</string>
+    <string name="activity_add_stop_line_hint">Linjan tunnus tai hakusana</string>
     <string name="activity_add_stop_search_by_line">Hae linjaa</string>
     <string name="activity_add_stop_stop_not_found">Pysäkkiä ei löytynyt</string>
     <string name="activity_add_stop_line_not_found" >Yhtään linjaa ei löytynyt</string>
