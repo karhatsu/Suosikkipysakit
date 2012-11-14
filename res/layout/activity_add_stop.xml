@@ -27,7 +27,6 @@
         android:layout_below="@id/add_stop_code_button"
         android:inputType="textCapCharacters"
         android:hint="@string/activity_add_stop_line_hint"
-        android:maxLength="4"
         tools:context=".AddStopActivity" />
     
     <Button 
