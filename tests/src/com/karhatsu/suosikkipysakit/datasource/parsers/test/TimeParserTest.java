@@ -28,4 +28,11 @@ public class TimeParserTest extends TestCase {
 		assertEquals("00:00", timeParser.format("0"));
 	}
 
+	public void testOvernight() {
+		assertEquals("00:00", timeParser.format("2400"));
+		assertEquals("00:01", timeParser.format("2401"));
+		assertEquals("00:59", timeParser.format("2459"));
+		assertEquals("01:00", timeParser.format("2500"));
+	}
+
 }

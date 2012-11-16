@@ -10,7 +10,19 @@ public class TimeParser {
 		} else if (time.length() == 1) {
 			return "00:0" + time;
 		}
-		return time.substring(0, 2) + ":" + time.substring(2, 4);
+		String hour = time.substring(0, 2);
+		return stripOvernight(hour) + ":" + time.substring(2, 4);
+	}
+
+	private String stripOvernight(String hour) {
+		int h = Integer.parseInt(hour);
+		if (h >= 24) {
+			h -= 24;
+		}
+		if (h < 10) {
+			return "0" + h;
+		}
+		return String.valueOf(h);
 	}
 
 }
