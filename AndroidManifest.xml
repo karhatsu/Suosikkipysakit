@@ -25,8 +25,7 @@
         </activity>
         <activity
             android:name=".ui.AddStopActivity"
-            android:label="@string/activity_add_stop_title"
-            android:windowSoftInputMode="stateVisible" >
+            android:label="@string/activity_add_stop_title" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.karhatsu.suosikkipysakit.MainActivity" />
