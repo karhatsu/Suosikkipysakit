@@ -38,21 +38,18 @@ public abstract class AbstractHslRequest<R> extends AsyncTask<String, Void, R> {
 			connectionFailed = true;
 			return null;
 		}
-		try {
-			return getData(searchParam[0].trim());
-		} catch (DataNotFoundException e) {
-			return null;
-		}
+		return getData(searchParam[0].trim());
 	}
 
-	private R getData(String searchParam) throws DataNotFoundException {
+	private R getData(String searchParam) {
 		try {
 			String json = queryDataAsJson(searchParam);
 			return getJSONParser().parse(json);
 		} catch (DataNotFoundException e) {
-			throw e;
+			return null;
 		} catch (Exception e) {
-			throw new RuntimeException(e);
+			connectionFailed = true;
+			return null;
 		}
 	}
 
