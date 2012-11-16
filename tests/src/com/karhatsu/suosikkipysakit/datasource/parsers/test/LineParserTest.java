@@ -46,4 +46,12 @@ public class LineParserTest extends TestCase {
 		assertEquals("T", lineParser.format("3001T 1"));
 	}
 
+	public void testMetro() {
+		assertEquals("M", lineParser.format("1300M 1"));
+		assertEquals("M", lineParser.format("1300M 2"));
+		assertEquals("M", lineParser.format("1300M42"));
+		assertEquals("M", lineParser.format("1300V 1"));
+		assertEquals("M", lineParser.format("1300V 2"));
+	}
+
 }

@@ -2,11 +2,15 @@ package com.karhatsu.suosikkipysakit.datasource.parsers;
 
 public class LineParser {
 
+	private static final String METRO = "M";
+
 	public String format(String lineCode) {
 		if (isJoukoLine(lineCode)) {
 			return formatJoukoLine(lineCode);
 		} else if (isLocalTrain(lineCode)) {
 			return formatLocalTrain(lineCode);
+		} else if (isMetro(lineCode)) {
+			return METRO;
 		}
 		return formatLine(lineCode);
 	}
@@ -25,6 +29,10 @@ public class LineParser {
 
 	private String formatLocalTrain(String lineCode) {
 		return lineCode.substring(4, 5);
+	}
+
+	private boolean isMetro(String lineCode) {
+		return lineCode.startsWith("1300");
 	}
 
 	private String formatLine(String lineCode) {
