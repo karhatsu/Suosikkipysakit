@@ -54,4 +54,11 @@ public class LineParserTest extends TestCase {
 		assertEquals("M", lineParser.format("1300V 2"));
 	}
 
+	public void testFerry() {
+		assertEquals("L", lineParser.format("1019  1"));
+		assertEquals("L", lineParser.format("1019  2"));
+		assertEquals("L", lineParser.format("1019E 1"));
+		assertEquals("L", lineParser.format("1019E 2"));
+	}
+
 }

@@ -3,6 +3,7 @@ package com.karhatsu.suosikkipysakit.datasource.parsers;
 public class LineParser {
 
 	private static final String METRO = "M";
+	private static final String FERRY = "L";
 
 	public String format(String lineCode) {
 		if (isJoukoLine(lineCode)) {
@@ -11,6 +12,8 @@ public class LineParser {
 			return formatLocalTrain(lineCode);
 		} else if (isMetro(lineCode)) {
 			return METRO;
+		} else if (isFerry(lineCode)) {
+			return FERRY;
 		}
 		return formatLine(lineCode);
 	}
@@ -33,6 +36,10 @@ public class LineParser {
 
 	private boolean isMetro(String lineCode) {
 		return lineCode.startsWith("1300");
+	}
+
+	private boolean isFerry(String lineCode) {
+		return lineCode.startsWith("1019");
 	}
 
 	private String formatLine(String lineCode) {
