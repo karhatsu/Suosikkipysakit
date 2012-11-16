@@ -6,8 +6,10 @@
     <string name="activity_departures_nothing_found">Tältä pysäkiltä ei ole lähiaikoina yhtään lähtöä</string>
     <string name="activity_departures_title">Seuraavat lähdöt</string>
     <string name="activity_add_stop_title">Lisää pysäkki</string>
+    <string name="activity_add_stop_code_instructions">Jos olet juuri nyt bussipysäkillä, katso pysäkin tunnus ja syötä se alla olevaan tekstikenttään.</string>
     <string name="activity_add_stop_code_hint">Pysäkin tunnus</string>
     <string name="activity_add_stop_search_by_code">Hae pysäkkiä</string>
+    <string name="activity_add_stop_line_instructions">Jos et tiedä pysäkin tunnusta, hae pysäkkejä linjan avulla, esim. 3T, 9, 78, 550, K, Z.</string>
     <string name="activity_add_stop_line_hint">Linjan tunnus tai hakusana</string>
     <string name="activity_add_stop_search_by_line">Hae linjaa</string>
     <string name="activity_add_stop_stop_not_found">Pysäkkiä ei löytynyt</string>

@@ -2,11 +2,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
+    
+    <TextView 
+        android:id="@+id/add_stop_code_instructions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/activity_add_stop_code_instructions"
+        android:padding="5dp" />
 
     <EditText
         android:id="@+id/add_stop_code"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/add_stop_code_instructions"
         android:inputType="text"
         android:hint="@string/activity_add_stop_code_hint"
         android:maxLength="6"
@@ -20,11 +28,20 @@
         android:text="@string/activity_add_stop_search_by_code"
         android:onClick="searchStop" />
 
+    <TextView 
+        android:id="@+id/add_stop_line_instructions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/add_stop_code_button"
+        android:text="@string/activity_add_stop_line_instructions"
+        android:padding="5dp"
+        android:layout_marginTop="10dp" />
+
     <EditText
         android:id="@+id/add_stop_line"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/add_stop_code_button"
+        android:layout_below="@id/add_stop_line_instructions"
         android:inputType="textCapCharacters"
         android:hint="@string/activity_add_stop_line_hint"
         tools:context=".AddStopActivity" />
