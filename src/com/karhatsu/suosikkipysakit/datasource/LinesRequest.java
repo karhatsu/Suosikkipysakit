@@ -20,10 +20,17 @@ public class LinesRequest extends AbstractHslRequest<ArrayList<Line>> {
 
 	@Override
 	protected String getRequestUrl(String line) {
-		return BASE_URL + "?request=lines&user="
+		String url = BASE_URL + "?request=lines&user="
 				+ AccountInformation.getUserName() + "&pass="
-				+ AccountInformation.getPassword() + "&format=json&query="
-				+ line;
+				+ AccountInformation.getPassword() + "&format=json";
+		if (line.equalsIgnoreCase("metro")) {
+			url += "&query=ruoholahti&transport_type=6";
+		} else if (line.equalsIgnoreCase("lautta")) {
+			url += "&query=suomenlinna&transport_type=7";
+		} else {
+			url += "&query=" + line;
+		}
+		return url;
 	}
 
 }
