@@ -14,10 +14,25 @@ import com.karhatsu.suosikkipysakit.domain.Stop;
 
 public class SaveStopDialog {
 
-	private Activity activity;
+	private final Activity activity;
+	private final boolean isNew;
+	private long id;
+
+	public SaveStopDialog(Activity activity, final long stopId) {
+		this.activity = activity;
+		this.id = stopId;
+		this.isNew = false;
+		Stop stop = new StopDao(activity).findById(stopId);
+		buildAndShowDialog(stop);
+	}
 
 	public SaveStopDialog(Activity activity, final Stop stop) {
 		this.activity = activity;
+		this.isNew = true;
+		buildAndShowDialog(stop);
+	}
+
+	private void buildAndShowDialog(final Stop stop) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 		LayoutInflater inflater = activity.getLayoutInflater();
 		View view = inflater.inflate(R.layout.dialog_save_stop, null);
@@ -46,7 +61,11 @@ public class SaveStopDialog {
 	}
 
 	private void saveStopAndShowAll(Stop stop) {
-		new StopDao(activity).save(stop);
+		if (isNew) {
+			new StopDao(activity).save(stop);
+		} else {
+			new StopDao(activity).updateName(id, stop.getNameByUser());
+		}
 		Intent intent = new Intent(activity, MainActivity.class);
 		activity.startActivity(intent);
 	}

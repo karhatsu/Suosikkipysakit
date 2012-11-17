@@ -87,6 +87,10 @@ public class MainActivity extends Activity {
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item
 				.getMenuInfo();
 		switch (item.getItemId()) {
+		case R.id.menu_stop_item_rename:
+			new SaveStopDialog(this, info.id);
+			refreshStopList();
+			return true;
 		case R.id.menu_stop_item_delete:
 			new StopDao(this).delete(info.id);
 			refreshStopList();
