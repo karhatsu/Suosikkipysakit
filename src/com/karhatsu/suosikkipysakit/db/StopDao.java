@@ -10,7 +10,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import com.karhatsu.suosikkipysakit.domain.Stop;
 
@@ -63,7 +62,6 @@ public class StopDao {
 				COLUMN_NAME_BY_USER };
 		String selection = _ID + "=?";
 		String[] selectionArgs = new String[] { String.valueOf(id) };
-		Log.e("dao", selectionArgs[0]);
 		Cursor cursor = db.query(TABLE_NAME, projection, selection,
 				selectionArgs, null, null, null);
 		cursor.moveToFirst();
