@@ -23,6 +23,7 @@ import com.karhatsu.suosikkipysakit.util.AccountInformation;
 public class MainActivity extends Activity {
 
 	private StopDao stopDao;
+	private SaveStopDialog renameStopDialog;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -88,7 +89,8 @@ public class MainActivity extends Activity {
 				.getMenuInfo();
 		switch (item.getItemId()) {
 		case R.id.menu_stop_item_rename:
-			new SaveStopDialog(this, info.id);
+			renameStopDialog = new SaveStopDialog(this, info.id);
+			renameStopDialog.show();
 			refreshStopList();
 			return true;
 		case R.id.menu_stop_item_delete:
@@ -97,6 +99,14 @@ public class MainActivity extends Activity {
 			return true;
 		default:
 			return super.onContextItemSelected(item);
+		}
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		if (renameStopDialog != null) {
+			renameStopDialog.dismiss();
 		}
 	}
 

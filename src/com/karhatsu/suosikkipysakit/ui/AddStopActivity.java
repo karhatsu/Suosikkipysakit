@@ -27,6 +27,8 @@ public class AddStopActivity extends Activity {
 	private LinesRequest linesRequest;
 	private LinesRequestNotifier linesRequestNotifier = new LinesRequestNotifier();
 
+	private SaveStopDialog saveStopDialog;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -56,6 +58,14 @@ public class AddStopActivity extends Activity {
 		} else {
 			linesRequest.setOnHslRequestReady(null);
 			return linesRequest;
+		}
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		if (saveStopDialog != null) {
+			saveStopDialog.dismiss();
 		}
 	}
 
@@ -110,7 +120,8 @@ public class AddStopActivity extends Activity {
 			hideProgressDialog();
 			initializeRequests();
 			if (stop != null) {
-				new SaveStopDialog(AddStopActivity.this, stop);
+				saveStopDialog = new SaveStopDialog(AddStopActivity.this, stop);
+				saveStopDialog.show();
 			} else {
 				ToastHelper.showToast(AddStopActivity.this,
 						R.string.activity_add_stop_stop_not_found);

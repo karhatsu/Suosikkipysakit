@@ -24,19 +24,14 @@ public class SaveStopDialog extends AlertDialog {
 		this.id = stopId;
 		this.isNew = false;
 		Stop stop = new StopDao(activity).findById(stopId);
-		buildAndShowDialog(stop);
+		buildDialog(stop);
 	}
 
 	public SaveStopDialog(Activity activity, final Stop stop) {
 		super(activity);
 		this.activity = activity;
 		this.isNew = true;
-		buildAndShowDialog(stop);
-	}
-
-	private void buildAndShowDialog(final Stop stop) {
 		buildDialog(stop);
-		show();
 	}
 
 	private void buildDialog(final Stop stop) {

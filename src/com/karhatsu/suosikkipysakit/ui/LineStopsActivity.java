@@ -13,10 +13,20 @@ public class LineStopsActivity extends ListActivity {
 
 	protected static final String LINE_STOPS = "com.karhatsu.suosikkipysakit.ui.LINE_STOPS";
 
+	private SaveStopDialog saveStopDialog;
+
 	@Override
 	protected void onStart() {
 		super.onStart();
 		setupLineStopsView();
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		if (saveStopDialog != null) {
+			saveStopDialog.dismiss();
+		}
 	}
 
 	private void setupLineStopsView() {
@@ -30,7 +40,9 @@ public class LineStopsActivity extends ListActivity {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				Stop stop = lineStopListAdapter.getItem(position);
-				new SaveStopDialog(LineStopsActivity.this, stop);
+				saveStopDialog = new SaveStopDialog(LineStopsActivity.this,
+						stop);
+				saveStopDialog.show();
 			}
 		});
 	}
