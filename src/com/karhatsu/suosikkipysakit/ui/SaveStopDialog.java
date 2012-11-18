@@ -37,14 +37,20 @@ public class SaveStopDialog {
 		LayoutInflater inflater = activity.getLayoutInflater();
 		View view = inflater.inflate(R.layout.dialog_save_stop, null);
 		builder.setView(view);
+		builder.setTitle(R.string.dialog_save_stop_title);
 		EditText stopName = (EditText) view
 				.findViewById(R.id.dialog_save_stop_name);
-		stopName.setText(stop.getName());
-		builder.setTitle(R.string.dialog_save_stop_title);
+		setInitialValue(stop, stopName);
 		setPositiveButton(stop, builder, stopName);
 		setNegativeButton(builder);
 		AlertDialog dialog = builder.create();
 		dialog.show();
+	}
+
+	private void setInitialValue(final Stop stop, EditText stopName) {
+		String name = stop.getNameByUser() != null ? stop.getNameByUser()
+				: stop.getName();
+		stopName.setText(name);
 	}
 
 	private void setPositiveButton(final Stop stop,
