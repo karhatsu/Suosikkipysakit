@@ -52,13 +52,14 @@ public class AddStopActivity extends Activity {
 
 	@Override
 	public Object onRetainNonConfigurationInstance() {
-		if (stopRequest.isRunning()) {
+		if (stopRequest != null && stopRequest.isRunning()) {
 			stopRequest.setOnHslRequestReady(null);
 			return stopRequest;
-		} else {
+		} else if (linesRequest != null && linesRequest.isRunning()) {
 			linesRequest.setOnHslRequestReady(null);
 			return linesRequest;
 		}
+		return null;
 	}
 
 	@Override
