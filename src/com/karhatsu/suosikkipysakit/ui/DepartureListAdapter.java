@@ -31,9 +31,20 @@ public class DepartureListAdapter extends ArrayAdapter<Departure> {
 		}
 		Departure departure = departures.get(position);
 		setText(view, R.id.departure_list_item_time, departure.getTime());
+		setText(view, R.id.departure_list_item_min, getMinutesToGo(departure));
 		setText(view, R.id.departure_list_item_line, departure.getLine());
 		setText(view, R.id.departure_list_item_end_stop, departure.getEndStop());
 		return view;
+	}
+
+	private String getMinutesToGo(Departure departure) {
+		int min = departure.getMinutesToGo();
+		if (min < 10) {
+			return " " + min;
+		} else if (min > 99) {
+			return "**";
+		}
+		return String.valueOf(min);
 	}
 
 	private void setText(View view, int resourceId, String text) {

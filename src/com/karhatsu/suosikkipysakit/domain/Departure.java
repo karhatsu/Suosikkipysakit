@@ -1,5 +1,7 @@
 package com.karhatsu.suosikkipysakit.domain;
 
+import java.util.Calendar;
+
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -30,6 +32,18 @@ public class Departure implements Parcelable {
 
 	public String getEndStop() {
 		return endStop;
+	}
+
+	public int getMinutesToGo() {
+		Calendar now = Calendar.getInstance();
+		Calendar departure = Calendar.getInstance();
+		departure.set(Calendar.HOUR_OF_DAY,
+				Integer.parseInt(time.substring(0, 2)));
+		departure.set(Calendar.MINUTE, Integer.parseInt(time.substring(3, 5)));
+		if (now.get(Calendar.HOUR_OF_DAY) > departure.get(Calendar.HOUR_OF_DAY)) {
+			departure.add(Calendar.DAY_OF_MONTH, 1);
+		}
+		return (int) ((departure.getTimeInMillis() - now.getTimeInMillis()) / 1000 / 60);
 	}
 
 	@Override
