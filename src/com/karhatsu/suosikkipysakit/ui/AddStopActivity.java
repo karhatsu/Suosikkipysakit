@@ -89,6 +89,10 @@ public class AddStopActivity extends Activity {
 			return;
 		}
 		String line = getTextFromField(R.id.add_stop_line);
+		if (line.trim().equals("")) {
+			ToastHelper.showToast(this, R.string.activity_add_stop_empty_line);
+			return;
+		}
 		showPleaseWait();
 		linesRequest.execute(line);
 	}
