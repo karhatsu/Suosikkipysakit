@@ -24,6 +24,7 @@ public class MainActivity extends Activity implements OnStopSaveCancel {
 
 	private StopDao stopDao;
 	private SaveStopDialog renameStopDialog;
+	private long stopToBeRenamedId;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,11 @@ public class MainActivity extends Activity implements OnStopSaveCancel {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		setupStopListView();
+		Object retained = getLastNonConfigurationInstance();
+		if (retained instanceof Long) {
+			stopToBeRenamedId = (Long) retained;
+			showStopRenameDialog();
+		}
 	}
 
 	private void setupStopListView() {
@@ -55,6 +61,14 @@ public class MainActivity extends Activity implements OnStopSaveCancel {
 	protected void onResume() {
 		super.onResume();
 		refreshStopList();
+	}
+
+	@Override
+	public Object onRetainNonConfigurationInstance() {
+		if (stopToBeRenamedId > 0) {
+			return stopToBeRenamedId;
+		}
+		return null;
 	}
 
 	private ListAdapter createStopListAdapter() {
@@ -89,8 +103,8 @@ public class MainActivity extends Activity implements OnStopSaveCancel {
 				.getMenuInfo();
 		switch (item.getItemId()) {
 		case R.id.menu_stop_item_rename:
-			renameStopDialog = new SaveStopDialog(this, this, info.id);
-			renameStopDialog.show();
+			stopToBeRenamedId = info.id;
+			showStopRenameDialog();
 			refreshStopList();
 			return true;
 		case R.id.menu_stop_item_delete:
@@ -100,6 +114,11 @@ public class MainActivity extends Activity implements OnStopSaveCancel {
 		default:
 			return super.onContextItemSelected(item);
 		}
+	}
+
+	private void showStopRenameDialog() {
+		renameStopDialog = new SaveStopDialog(this, this, stopToBeRenamedId);
+		renameStopDialog.show();
 	}
 
 	@Override
@@ -144,6 +163,6 @@ public class MainActivity extends Activity implements OnStopSaveCancel {
 
 	@Override
 	public void stopSaveCancelled() {
-		// TODO
+		stopToBeRenamedId = 0;
 	}
 }
