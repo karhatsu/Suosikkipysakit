@@ -9,7 +9,7 @@ import android.widget.AdapterView.OnItemClickListener;
 
 import com.karhatsu.suosikkipysakit.domain.Stop;
 
-public class LineStopsActivity extends ListActivity {
+public class LineStopsActivity extends ListActivity implements OnStopSaveCancel {
 
 	protected static final String LINE_STOPS = "com.karhatsu.suosikkipysakit.ui.LINE_STOPS";
 
@@ -57,9 +57,13 @@ public class LineStopsActivity extends ListActivity {
 	}
 
 	private void showSaveStopDialog() {
-		saveStopDialog = new SaveStopDialog(LineStopsActivity.this,
-				stopToBeSaved);
+		saveStopDialog = new SaveStopDialog(this, this, stopToBeSaved);
 		saveStopDialog.show();
+	}
+
+	@Override
+	public void stopSaveCancelled() {
+		stopToBeSaved = null;
 	}
 
 }

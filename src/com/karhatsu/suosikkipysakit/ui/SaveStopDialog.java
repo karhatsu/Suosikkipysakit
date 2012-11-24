@@ -14,12 +14,15 @@ import com.karhatsu.suosikkipysakit.domain.Stop;
 
 public class SaveStopDialog extends AlertDialog {
 
+	private final OnStopSaveCancel onStopSaveCancel;
 	private final Activity activity;
 	private final boolean isNew;
 	private long id;
 
-	public SaveStopDialog(Activity activity, final long stopId) {
+	public SaveStopDialog(OnStopSaveCancel onStopSaveCancel, Activity activity,
+			final long stopId) {
 		super(activity);
+		this.onStopSaveCancel = onStopSaveCancel;
 		this.activity = activity;
 		this.id = stopId;
 		this.isNew = false;
@@ -27,8 +30,10 @@ public class SaveStopDialog extends AlertDialog {
 		buildDialog(stop);
 	}
 
-	public SaveStopDialog(Activity activity, final Stop stop) {
+	public SaveStopDialog(OnStopSaveCancel onStopSaveCancel, Activity activity,
+			final Stop stop) {
 		super(activity);
+		this.onStopSaveCancel = onStopSaveCancel;
 		this.activity = activity;
 		this.isNew = true;
 		buildDialog(stop);
@@ -90,6 +95,7 @@ public class SaveStopDialog extends AlertDialog {
 			DialogInterface.OnClickListener {
 		@Override
 		public void onClick(DialogInterface dialog, int which) {
+			onStopSaveCancel.stopSaveCancelled();
 			dialog.dismiss();
 		}
 	}

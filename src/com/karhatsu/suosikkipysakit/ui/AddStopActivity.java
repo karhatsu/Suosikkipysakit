@@ -17,7 +17,7 @@ import com.karhatsu.suosikkipysakit.datasource.StopRequest;
 import com.karhatsu.suosikkipysakit.domain.Line;
 import com.karhatsu.suosikkipysakit.domain.Stop;
 
-public class AddStopActivity extends Activity {
+public class AddStopActivity extends Activity implements OnStopSaveCancel {
 
 	private ProgressDialog progressDialog;
 
@@ -155,7 +155,7 @@ public class AddStopActivity extends Activity {
 	}
 
 	private void showSaveStopDialog() {
-		saveStopDialog = new SaveStopDialog(AddStopActivity.this, stopToBeSaved);
+		saveStopDialog = new SaveStopDialog(this, this, stopToBeSaved);
 		saveStopDialog.show();
 	}
 
@@ -186,5 +186,10 @@ public class AddStopActivity extends Activity {
 		public Context getContext() {
 			return AddStopActivity.this;
 		}
+	}
+
+	@Override
+	public void stopSaveCancelled() {
+		stopToBeSaved = null;
 	}
 }

@@ -20,7 +20,7 @@ import com.karhatsu.suosikkipysakit.db.StopDao;
 import com.karhatsu.suosikkipysakit.domain.Stop;
 import com.karhatsu.suosikkipysakit.util.AccountInformation;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements OnStopSaveCancel {
 
 	private StopDao stopDao;
 	private SaveStopDialog renameStopDialog;
@@ -89,7 +89,7 @@ public class MainActivity extends Activity {
 				.getMenuInfo();
 		switch (item.getItemId()) {
 		case R.id.menu_stop_item_rename:
-			renameStopDialog = new SaveStopDialog(this, info.id);
+			renameStopDialog = new SaveStopDialog(this, this, info.id);
 			renameStopDialog.show();
 			refreshStopList();
 			return true;
@@ -140,5 +140,10 @@ public class MainActivity extends Activity {
 	private StopListAdapter getStopListAdapter() {
 		ListView stopListView = getStopListView();
 		return (StopListAdapter) stopListView.getAdapter();
+	}
+
+	@Override
+	public void stopSaveCancelled() {
+		// TODO
 	}
 }
