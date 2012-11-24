@@ -22,12 +22,19 @@ public class DeparturesActivity extends ListActivity implements
 		super.onCreate(savedInstanceState);
 		Object retained = getLastNonConfigurationInstance();
 		if (retained instanceof StopRequest) {
+			showProgressDialog();
 			stopRequest = (StopRequest) retained;
 			stopRequest.setOnHslRequestReady(this);
 		} else {
 			stopRequest = new StopRequest(this);
 			queryDepartures();
 		}
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		hideProgressDialog();
 	}
 
 	private void queryDepartures() {
@@ -37,7 +44,9 @@ public class DeparturesActivity extends ListActivity implements
 	}
 
 	private void showProgressDialog() {
-		progressDialog = new PleaseWaitDialog(this);
+		if (progressDialog == null) {
+			progressDialog = new PleaseWaitDialog(this);
+		}
 		progressDialog.show();
 	}
 
