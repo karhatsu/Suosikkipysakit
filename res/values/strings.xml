@@ -16,6 +16,7 @@
     <string name="activity_add_stop_line_not_found" >Yhtään linjaa ei löytynyt</string>
     <string name="activity_add_stop_invalid_code">Virheellinen pysäkkitunnus. Esimerkkejä kelvollisesta tunnuksesta: 1234, E1234, V1234, Tu1234, Ke1234, Jä1234.</string>
     <string name="activity_add_stop_empty_line">Syötä linjan tunnus</string>
+    <string name="activity_add_stop_spaces_in_line">Hakusana ei saa sisältää välilyöntejä</string>
     <string name="activity_lines_title">Valitse linja</string>
     <string name="activity_line_stops_title">Valitse pysäkki</string>
     <string name="dialog_save_stop_title">Syötä pysäkin nimi</string>

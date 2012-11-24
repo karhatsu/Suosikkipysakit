@@ -100,6 +100,10 @@ public class AddStopActivity extends Activity implements OnStopSaveCancel {
 		if (line.trim().equals("")) {
 			ToastHelper.showToast(this, R.string.activity_add_stop_empty_line);
 			return;
+		} else if (line.trim().contains(" ")) {
+			ToastHelper.showToast(this,
+					R.string.activity_add_stop_spaces_in_line);
+			return;
 		}
 		showPleaseWait();
 		linesRequest.execute(line);
