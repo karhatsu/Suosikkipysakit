@@ -14,10 +14,16 @@ public class LineStopsActivity extends ListActivity {
 	protected static final String LINE_STOPS = "com.karhatsu.suosikkipysakit.ui.LINE_STOPS";
 
 	private SaveStopDialog saveStopDialog;
+	private Stop stopToBeSaved;
 
 	@Override
 	protected void onStart() {
 		super.onStart();
+		Object retained = getLastNonConfigurationInstance();
+		if (retained instanceof Stop) {
+			stopToBeSaved = (Stop) retained;
+			showSaveStopDialog();
+		}
 		setupLineStopsView();
 	}
 
@@ -27,6 +33,11 @@ public class LineStopsActivity extends ListActivity {
 		if (saveStopDialog != null) {
 			saveStopDialog.dismiss();
 		}
+	}
+
+	@Override
+	public Object onRetainNonConfigurationInstance() {
+		return stopToBeSaved;
 	}
 
 	private void setupLineStopsView() {
@@ -39,12 +50,16 @@ public class LineStopsActivity extends ListActivity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				Stop stop = lineStopListAdapter.getItem(position);
-				saveStopDialog = new SaveStopDialog(LineStopsActivity.this,
-						stop);
-				saveStopDialog.show();
+				stopToBeSaved = lineStopListAdapter.getItem(position);
+				showSaveStopDialog();
 			}
 		});
+	}
+
+	private void showSaveStopDialog() {
+		saveStopDialog = new SaveStopDialog(LineStopsActivity.this,
+				stopToBeSaved);
+		saveStopDialog.show();
 	}
 
 }
