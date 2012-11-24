@@ -35,9 +35,11 @@ public class AddStopActivity extends Activity {
 		setContentView(R.layout.activity_add_stop);
 		Object retained = getLastNonConfigurationInstance();
 		if (retained instanceof StopRequest) {
+			showPleaseWait();
 			stopRequest = (StopRequest) retained;
 			stopRequest.setOnHslRequestReady(stopRequestNotifier);
 		} else if (retained instanceof LinesRequest) {
+			showPleaseWait();
 			linesRequest = (LinesRequest) retained;
 			linesRequest.setOnHslRequestReady(linesRequestNotifier);
 		} else {
@@ -68,6 +70,7 @@ public class AddStopActivity extends Activity {
 		if (saveStopDialog != null) {
 			saveStopDialog.dismiss();
 		}
+		hideProgressDialog();
 	}
 
 	public void searchStop(View button) {
@@ -98,7 +101,9 @@ public class AddStopActivity extends Activity {
 	}
 
 	private void showPleaseWait() {
-		progressDialog = new PleaseWaitDialog(this);
+		if (progressDialog == null) {
+			progressDialog = new PleaseWaitDialog(this);
+		}
 		progressDialog.show();
 	}
 
