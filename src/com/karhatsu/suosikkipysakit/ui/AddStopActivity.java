@@ -28,13 +28,18 @@ public class AddStopActivity extends Activity {
 	private LinesRequestNotifier linesRequestNotifier = new LinesRequestNotifier();
 
 	private SaveStopDialog saveStopDialog;
+	private Stop stopToBeSaved;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_stop);
+		initializeRequests();
 		Object retained = getLastNonConfigurationInstance();
-		if (retained instanceof StopRequest) {
+		if (retained instanceof Stop) {
+			stopToBeSaved = (Stop) retained;
+			showSaveStopDialog();
+		} else if (retained instanceof StopRequest) {
 			showPleaseWait();
 			stopRequest = (StopRequest) retained;
 			stopRequest.setOnHslRequestReady(stopRequestNotifier);
@@ -42,8 +47,6 @@ public class AddStopActivity extends Activity {
 			showPleaseWait();
 			linesRequest = (LinesRequest) retained;
 			linesRequest.setOnHslRequestReady(linesRequestNotifier);
-		} else {
-			initializeRequests();
 		}
 	}
 
@@ -54,7 +57,9 @@ public class AddStopActivity extends Activity {
 
 	@Override
 	public Object onRetainNonConfigurationInstance() {
-		if (stopRequest != null && stopRequest.isRunning()) {
+		if (stopToBeSaved != null) {
+			return stopToBeSaved;
+		} else if (stopRequest != null && stopRequest.isRunning()) {
 			stopRequest.setOnHslRequestReady(null);
 			return stopRequest;
 		} else if (linesRequest != null && linesRequest.isRunning()) {
@@ -127,11 +132,11 @@ public class AddStopActivity extends Activity {
 	private class StopRequestNotifier implements OnHslRequestReady<Stop> {
 		@Override
 		public void notifyAboutResult(Stop stop) {
+			stopToBeSaved = stop;
 			hideProgressDialog();
 			initializeRequests();
-			if (stop != null) {
-				saveStopDialog = new SaveStopDialog(AddStopActivity.this, stop);
-				saveStopDialog.show();
+			if (stopToBeSaved != null) {
+				showSaveStopDialog();
 			} else {
 				ToastHelper.showToast(AddStopActivity.this,
 						R.string.activity_add_stop_stop_not_found);
@@ -147,6 +152,11 @@ public class AddStopActivity extends Activity {
 		public Context getContext() {
 			return AddStopActivity.this;
 		}
+	}
+
+	private void showSaveStopDialog() {
+		saveStopDialog = new SaveStopDialog(AddStopActivity.this, stopToBeSaved);
+		saveStopDialog.show();
 	}
 
 	private class LinesRequestNotifier implements
