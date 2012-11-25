@@ -1,5 +1,8 @@
 package com.karhatsu.suosikkipysakit.ui;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -16,6 +19,9 @@ public class DeparturesActivity extends ListActivity implements
 
 	private ProgressDialog progressDialog;
 	private StopRequest stopRequest;
+
+	private Timer timer = new Timer();
+	private TimerTask timerTask;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +41,7 @@ public class DeparturesActivity extends ListActivity implements
 	protected void onPause() {
 		super.onPause();
 		hideProgressDialog();
+		timer.cancel();
 	}
 
 	private void queryDepartures() {
@@ -68,6 +75,7 @@ public class DeparturesActivity extends ListActivity implements
 		DepartureListAdapter adapter = new DepartureListAdapter(this,
 				stop.getDepartures());
 		departuresListView.setAdapter(adapter);
+		startTimer();
 	}
 
 	@Override
@@ -85,5 +93,21 @@ public class DeparturesActivity extends ListActivity implements
 		if (progressDialog != null) {
 			progressDialog.dismiss();
 		}
+	}
+
+	private void startTimer() {
+		timerTask = new TimerTask() {
+			@Override
+			public void run() {
+				runOnUiThread(new Runnable() {
+					@Override
+					public void run() {
+						((DepartureListAdapter) getListView().getAdapter())
+								.notifyDataSetChanged();
+					}
+				});
+			}
+		};
+		timer.schedule(timerTask, 10000, 5000);
 	}
 }
