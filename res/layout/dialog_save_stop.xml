@@ -4,7 +4,7 @@
     android:layout_height="wrap_content">
     <EditText
         android:id="@+id/dialog_save_stop_name"
-        android:inputType="text"
+        android:inputType="textCapSentences"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 </LinearLayout>
