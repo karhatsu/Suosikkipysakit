@@ -23,7 +23,7 @@ public class LineParser {
 	}
 
 	private String formatJoukoLine(String lineCode) {
-		return lineCode.substring(2, 5);
+		return "J" + lineCode.substring(2, 4);
 	}
 
 	private boolean isLocalTrain(String lineCode) {

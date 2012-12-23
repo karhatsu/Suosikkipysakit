@@ -25,8 +25,8 @@ public class LineParserTest extends TestCase {
 	}
 
 	public void testJoukoLine() {
-		assertEquals("93J", lineParser.format("1293J 2"));
-		assertEquals("94J", lineParser.format("1294J 1"));
+		assertEquals("J93", lineParser.format("1293J 2"));
+		assertEquals("J94", lineParser.format("1294J 1"));
 	}
 
 	public void testRegional() {
