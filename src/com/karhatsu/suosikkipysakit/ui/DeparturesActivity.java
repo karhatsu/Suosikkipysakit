@@ -46,9 +46,14 @@ public class DeparturesActivity extends ListActivity implements
 	}
 
 	private void queryDepartures() {
-		String stopCode = getIntent().getStringExtra(Stop.CODE_KEY);
-		showProgressDialog();
-		stopRequest.execute(stopCode);
+		Stop stop = getIntent().getParcelableExtra(Stop.STOP_KEY);
+		if (stop != null) {
+			showResults(stop);
+		} else {
+			String stopCode = getIntent().getStringExtra(Stop.CODE_KEY);
+			showProgressDialog();
+			stopRequest.execute(stopCode);
+		}
 	}
 
 	private void showProgressDialog() {
@@ -68,6 +73,10 @@ public class DeparturesActivity extends ListActivity implements
 	public void notifyAboutResult(List<Stop> stops) {
 		hideProgressDialog();
 		Stop stop = stops.get(0);
+		showResults(stop);
+	}
+
+	private void showResults(Stop stop) {
 		if (stop.getDepartures().isEmpty()) {
 			ToastHelper.showToast(this,
 					R.string.activity_departures_nothing_found);

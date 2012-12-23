@@ -8,6 +8,7 @@ import android.os.Parcelable;
 
 public class Stop implements Parcelable {
 
+	public static final String STOP_KEY = "com.karhatsu.suosikkipysakit.domain.STOP";
 	public static final String CODE_KEY = "com.karhatsu.suosikkipysakit.domain.CODE";
 
 	private static final Pattern PATTERN = Pattern

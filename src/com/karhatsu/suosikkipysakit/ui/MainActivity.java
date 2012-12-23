@@ -36,6 +36,18 @@ public class MainActivity extends Activity implements OnStopSaveCancel {
 		if (retained instanceof Long) {
 			stopToBeRenamedId = (Long) retained;
 			showStopRenameDialog();
+		} else {
+			redirectToDeparturesIfRequested();
+		}
+	}
+
+	private void redirectToDeparturesIfRequested() {
+		Stop stop = getIntent().getParcelableExtra(Stop.STOP_KEY);
+		String stopCode = getIntent().getStringExtra(Stop.CODE_KEY);
+		if (stop != null) {
+			showDepartures(stop, null);
+		} else if (stopCode != null) {
+			showDepartures(null, stopCode);
 		}
 	}
 
@@ -47,14 +59,22 @@ public class MainActivity extends Activity implements OnStopSaveCancel {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				Intent intent = new Intent(MainActivity.this,
-						DeparturesActivity.class);
-				intent.putExtra(Stop.CODE_KEY,
-						getSelectedStopCode(stopListAdapter, position));
-				startActivity(intent);
+				String selectedStopCode = getSelectedStopCode(stopListAdapter,
+						position);
+				showDepartures(null, selectedStopCode);
 			}
 		});
 		registerForContextMenu(stopListView);
+	}
+
+	private void showDepartures(Stop stop, String stopCode) {
+		Intent intent = new Intent(MainActivity.this, DeparturesActivity.class);
+		if (stop != null) {
+			intent.putExtra(Stop.STOP_KEY, stop);
+		} else {
+			intent.putExtra(Stop.CODE_KEY, stopCode);
+		}
+		startActivity(intent);
 	}
 
 	@Override
