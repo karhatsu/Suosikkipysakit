@@ -29,9 +29,9 @@ public class StopJSONParserTest extends AbstractJSONParserTest {
 		assertEquals("1230101", getParsedStop().getCode());
 	}
 
-	public void testStopNameIsFinnishName() throws JSONException,
-			DataNotFoundException {
-		assertEquals("Kaironkatu", getParsedStop().getName());
+	public void testStopNameIsFinnishNameWithFinnishAddress()
+			throws JSONException, DataNotFoundException {
+		assertEquals("Kaironkatu (Hämeentie)", getParsedStop().getName());
 	}
 
 	public void testStopCoordinates() throws JSONException,

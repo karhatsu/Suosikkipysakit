@@ -47,8 +47,10 @@ public class StopJSONParser implements JSONParser<List<Stop>> {
 	private Stop parseStop(JSONObject jsonStop) throws JSONException {
 		String code = jsonStop.getString("code");
 		String name = jsonStop.getString("name_fi");
+		String address = jsonStop.getString("address_fi");
+		String nameWithAddress = name + " (" + address + ")";
 		String coordinates = jsonStop.getString("coords");
-		return new Stop(code, name, coordinates);
+		return new Stop(code, nameWithAddress, coordinates);
 	}
 
 	private List<Departure> parseDepartures(JSONObject jsonStop)
