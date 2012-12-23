@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/add_stop_code_instructions"
-        android:inputType="text"
+        android:inputType="textCapWords"
         android:hint="@string/activity_add_stop_code_hint"
         android:maxLength="6"
         tools:context=".AddStopActivity" />
@@ -42,7 +42,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/add_stop_line_instructions"
-        android:inputType="textCapCharacters"
+        android:inputType="textCapWords"
         android:hint="@string/activity_add_stop_line_hint"
         tools:context=".AddStopActivity" />
     
