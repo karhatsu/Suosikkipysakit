@@ -191,15 +191,21 @@ public class AddStopActivity extends Activity implements OnStopSaveCancel {
 	private class StopRequestNotifier implements OnHslRequestReady<List<Stop>> {
 		@Override
 		public void notifyAboutResult(List<Stop> stops) {
-			stopToBeSaved = stops.get(0); // TODO: handle multiple stops in
-											// response
 			hideProgressDialog();
 			initializeRequests();
-			if (stopToBeSaved != null) {
-				showSaveStopDialog();
-			} else {
+			if (stops == null || stops.size() == 0) {
 				ToastHelper.showToast(AddStopActivity.this,
 						R.string.activity_add_stop_stop_not_found);
+			} else if (stops.size() == 1) {
+				stopToBeSaved = stops.get(0);
+				showSaveStopDialog();
+			} else {
+				ArrayList<Stop> stopsAL = (ArrayList<Stop>) stops;
+				Intent intent = new Intent(AddStopActivity.this,
+						LineStopsActivity.class);
+				intent.putParcelableArrayListExtra(
+						LineStopsActivity.LINE_STOPS, stopsAL);
+				startActivity(intent);
 			}
 		}
 
