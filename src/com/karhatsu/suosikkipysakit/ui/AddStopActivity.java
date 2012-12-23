@@ -7,8 +7,12 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.TextView.OnEditorActionListener;
 
 import com.karhatsu.suosikkipysakit.R;
 import com.karhatsu.suosikkipysakit.datasource.LinesRequest;
@@ -34,7 +38,12 @@ public class AddStopActivity extends Activity implements OnStopSaveCancel {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_stop);
+		addEnterListeners();
 		initializeRequests();
+		restoreState();
+	}
+
+	private void restoreState() {
 		Object retained = getLastNonConfigurationInstance();
 		if (retained instanceof Stop) {
 			stopToBeSaved = (Stop) retained;
@@ -48,6 +57,51 @@ public class AddStopActivity extends Activity implements OnStopSaveCancel {
 			linesRequest = (LinesRequest) retained;
 			linesRequest.setOnHslRequestReady(linesRequestNotifier);
 		}
+	}
+
+	private void addEnterListeners() {
+		getStopCodeField().setOnEditorActionListener(
+				createStopCodeEnterListener());
+		getLineCodeField().setOnEditorActionListener(
+				createLineCodeEnterListener());
+	}
+
+	private TextView getStopCodeField() {
+		return (TextView) findViewById(R.id.add_stop_code);
+	}
+
+	private TextView getLineCodeField() {
+		return (TextView) findViewById(R.id.add_stop_line);
+	}
+
+	private OnEditorActionListener createStopCodeEnterListener() {
+		return new OnEditorActionListener() {
+			@Override
+			public boolean onEditorAction(TextView textView, int actionId,
+					KeyEvent event) {
+				if (actionId == EditorInfo.IME_NULL
+						&& event.getAction() == KeyEvent.ACTION_DOWN) {
+					View searchButton = findViewById(R.id.add_stop_code_button);
+					searchStop(searchButton);
+				}
+				return true;
+			}
+		};
+	}
+
+	private OnEditorActionListener createLineCodeEnterListener() {
+		return new OnEditorActionListener() {
+			@Override
+			public boolean onEditorAction(TextView textView, int actionId,
+					KeyEvent event) {
+				if (actionId == EditorInfo.IME_NULL
+						&& event.getAction() == KeyEvent.ACTION_DOWN) {
+					View searchButton = findViewById(R.id.add_stop_line_button);
+					searchLine(searchButton);
+				}
+				return true;
+			}
+		};
 	}
 
 	private void initializeRequests() {

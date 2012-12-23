@@ -47,6 +47,7 @@
         tools:context=".AddStopActivity" />
     
     <Button 
+        android:id="@+id/add_stop_line_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/add_stop_line"
