@@ -1,17 +1,19 @@
 package com.karhatsu.suosikkipysakit.datasource;
 
+import java.util.List;
+
 import com.karhatsu.suosikkipysakit.datasource.parsers.JSONParser;
 import com.karhatsu.suosikkipysakit.datasource.parsers.StopJSONParser;
 import com.karhatsu.suosikkipysakit.domain.Stop;
 import com.karhatsu.suosikkipysakit.util.AccountInformation;
 
-public class StopRequest extends AbstractHslRequest<Stop> {
+public class StopRequest extends AbstractHslRequest<List<Stop>> {
 
-	public StopRequest(OnHslRequestReady<Stop> notifier) {
+	public StopRequest(OnHslRequestReady<List<Stop>> notifier) {
 		super(notifier);
 	}
 
-	protected JSONParser<Stop> getJSONParser() {
+	protected JSONParser<List<Stop>> getJSONParser() {
 		return new StopJSONParser();
 	}
 

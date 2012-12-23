@@ -1,6 +1,7 @@
 package com.karhatsu.suosikkipysakit.ui;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -187,10 +188,11 @@ public class AddStopActivity extends Activity implements OnStopSaveCancel {
 		initializeRequests();
 	}
 
-	private class StopRequestNotifier implements OnHslRequestReady<Stop> {
+	private class StopRequestNotifier implements OnHslRequestReady<List<Stop>> {
 		@Override
-		public void notifyAboutResult(Stop stop) {
-			stopToBeSaved = stop;
+		public void notifyAboutResult(List<Stop> stops) {
+			stopToBeSaved = stops.get(0); // TODO: handle multiple stops in
+											// response
 			hideProgressDialog();
 			initializeRequests();
 			if (stopToBeSaved != null) {

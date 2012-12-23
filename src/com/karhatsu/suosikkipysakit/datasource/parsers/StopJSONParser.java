@@ -1,6 +1,7 @@
 package com.karhatsu.suosikkipysakit.datasource.parsers;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,18 +14,19 @@ import com.karhatsu.suosikkipysakit.datasource.DataNotFoundException;
 import com.karhatsu.suosikkipysakit.domain.Departure;
 import com.karhatsu.suosikkipysakit.domain.Stop;
 
-public class StopJSONParser implements JSONParser<Stop> {
+public class StopJSONParser implements JSONParser<List<Stop>> {
 	private LineParser lineParser = new LineParser();
 	private TimeParser timeParser = new TimeParser();
 
-	public Stop parse(String json) throws DataNotFoundException, JSONException {
+	public List<Stop> parse(String json) throws DataNotFoundException,
+			JSONException {
 		if (json.equals("")) {
 			throw new DataNotFoundException();
 		}
 		JSONObject jsonStop = parseFirstJSONStop(json);
 		Stop stop = parseStop(jsonStop);
 		stop.setDepartures(parseDepartures(jsonStop));
-		return stop;
+		return Arrays.asList(stop);
 	}
 
 	private Map<String, String> getEndStops(JSONObject jsonStop)

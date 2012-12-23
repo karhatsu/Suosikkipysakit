@@ -1,5 +1,6 @@
 package com.karhatsu.suosikkipysakit.ui;
 
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -15,7 +16,7 @@ import com.karhatsu.suosikkipysakit.datasource.StopRequest;
 import com.karhatsu.suosikkipysakit.domain.Stop;
 
 public class DeparturesActivity extends ListActivity implements
-		OnHslRequestReady<Stop> {
+		OnHslRequestReady<List<Stop>> {
 
 	private ProgressDialog progressDialog;
 	private StopRequest stopRequest;
@@ -64,8 +65,9 @@ public class DeparturesActivity extends ListActivity implements
 	}
 
 	@Override
-	public void notifyAboutResult(Stop stop) {
+	public void notifyAboutResult(List<Stop> stops) {
 		hideProgressDialog();
+		Stop stop = stops.get(0);
 		if (stop.getDepartures().isEmpty()) {
 			ToastHelper.showToast(this,
 					R.string.activity_departures_nothing_found);

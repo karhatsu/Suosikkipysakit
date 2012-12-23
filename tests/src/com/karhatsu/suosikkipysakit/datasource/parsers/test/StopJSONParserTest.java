@@ -69,12 +69,13 @@ public class StopJSONParserTest extends AbstractJSONParserTest {
 	public void testNoDepartures() throws IOException, DataNotFoundException,
 			JSONException {
 		String json = readTestJson(TEST_JSON_FILE_NO_DEPARTURES);
-		Stop stop = parser.parse(json);
+		List<Stop> stops = parser.parse(json);
+		Stop stop = stops.get(0);
 		assertEquals(0, stop.getDepartures().size());
 	}
 
 	private Stop getParsedStop() throws JSONException, DataNotFoundException {
-		return parser.parse(jsonString);
+		return parser.parse(jsonString).get(0);
 	}
 
 	private List<Departure> getParsedDepartures() throws JSONException,
