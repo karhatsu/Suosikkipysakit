@@ -4,9 +4,13 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.TextView.OnEditorActionListener;
 
 import com.karhatsu.suosikkipysakit.R;
 import com.karhatsu.suosikkipysakit.db.StopDao;
@@ -46,8 +50,24 @@ public class SaveStopDialog extends AlertDialog {
 		setTitle(R.string.dialog_save_stop_title);
 		EditText stopNameField = (EditText) view
 				.findViewById(R.id.dialog_save_stop_name);
+		addEnterListener(stopNameField, stop);
 		setInitialName(stop, stopNameField);
 		setButtons(stop, stopNameField);
+	}
+
+	private void addEnterListener(EditText stopNameField, final Stop stop) {
+		stopNameField.setOnEditorActionListener(new OnEditorActionListener() {
+			@Override
+			public boolean onEditorAction(TextView textView, int actionId,
+					KeyEvent event) {
+				if (actionId == EditorInfo.IME_NULL
+						&& event.getAction() == KeyEvent.ACTION_DOWN) {
+					dismiss();
+					saveStopAndShowAll(stop);
+				}
+				return true;
+			}
+		});
 	}
 
 	private void setInitialName(final Stop stop, EditText stopName) {
