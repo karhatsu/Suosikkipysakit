@@ -90,10 +90,10 @@ public abstract class AbstractHslRequest<R> extends AsyncTask<String, Void, R> {
 	private String queryDataAsJson(String searchParam)
 			throws ClientProtocolException, IOException {
 		AndroidHttpClient client = AndroidHttpClient.newInstance("Android");
-		HttpResponse response = client.execute(new HttpGet(
-				getRequestUrl(searchParam)));
 		InputStream is = null;
 		try {
+			HttpResponse response = client.execute(new HttpGet(
+					getRequestUrl(searchParam)));
 			return readStream(response.getEntity().getContent());
 		} finally {
 			if (is != null) {
