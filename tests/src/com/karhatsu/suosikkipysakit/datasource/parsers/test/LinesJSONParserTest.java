@@ -49,8 +49,15 @@ public class LinesJSONParserTest extends AbstractJSONParserTest {
 		assertEquals("1204101", getFirstLineFirstStop().getCode());
 	}
 
-	public void testStopName() throws JSONException, DataNotFoundException {
-		assertEquals("Hernesaaren laituri", getFirstLineFirstStop().getName());
+	public void testStopNameWithAddress() throws JSONException,
+			DataNotFoundException {
+		assertEquals("Hernesaaren laituri (Hernesaarenranta)",
+				getFirstLineFirstStop().getName());
+	}
+
+	public void testStopNameWithoutAddress() throws JSONException,
+			DataNotFoundException {
+		assertEquals("Pihlajasaarenkatu", getFirstLineStop(1).getName());
 	}
 
 	public void testStopCoordinates() throws JSONException,
@@ -65,7 +72,12 @@ public class LinesJSONParserTest extends AbstractJSONParserTest {
 
 	private Stop getFirstLineFirstStop() throws JSONException,
 			DataNotFoundException {
-		return getFirstLine().getStops().get(0);
+		return getFirstLineStop(0);
+	}
+
+	private Stop getFirstLineStop(int index) throws JSONException,
+			DataNotFoundException {
+		return getFirstLine().getStops().get(index);
 	}
 
 	public void testEmptyJSON() {

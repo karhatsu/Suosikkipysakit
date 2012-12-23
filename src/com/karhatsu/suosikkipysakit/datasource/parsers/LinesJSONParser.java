@@ -44,11 +44,19 @@ public class LinesJSONParser implements JSONParser<ArrayList<Line>> {
 		for (int i = 0; i < jsonStops.length(); i++) {
 			JSONObject jsonStop = jsonStops.getJSONObject(i);
 			String code = jsonStop.getString("code");
-			String name = jsonStop.getString("name");
+			String name = parseStopName(jsonStop);
 			String coordinates = jsonStop.getString("coords");
 			stops.add(new Stop(code, name, coordinates));
 		}
 		return stops;
+	}
+
+	private String parseStopName(JSONObject jsonStop) throws JSONException {
+		String name = jsonStop.getString("name");
+		if (!jsonStop.isNull("address")) {
+			name += " (" + jsonStop.getString("address") + ")";
+		}
+		return name;
 	}
 
 }

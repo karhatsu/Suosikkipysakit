@@ -11,8 +11,7 @@
           "name" : "Hernesaaren laituri",
           "time" : 0
         },
-        { "address" : "Hernesaarenranta",
-          "city_name" : "Helsinki",
+        { "city_name" : "Helsinki",
           "code" : "1204115",
           "codeShort" : "",
           "coords" : "2551727,6671329",
