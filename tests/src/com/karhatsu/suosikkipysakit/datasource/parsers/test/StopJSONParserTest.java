@@ -15,6 +15,7 @@ public class StopJSONParserTest extends AbstractJSONParserTest {
 	private static final String TEST_JSON_FILE = "test-stop-response.json";
 	private static final String TEST_JSON_FILE_NO_DEPARTURES = "test-stop-response-no-departures.json";
 	private static final String TEST_JSON_FILE_MULTIPLE_STOPS = "test-stop-response-multiple-stops.json";
+	private static final String TEST_JSON_FILE_NO_ADDRESS = "test-stop-response-no-address.json";
 	private static String jsonString;
 	private StopJSONParser parser = new StopJSONParser();
 
@@ -32,6 +33,13 @@ public class StopJSONParserTest extends AbstractJSONParserTest {
 	public void testStopNameIsFinnishNameWithFinnishAddress()
 			throws JSONException, DataNotFoundException {
 		assertEquals("Kaironkatu (Hämeentie)", getParsedStop().getName());
+	}
+
+	public void testStopNameWhenNoAddressAvailable()
+			throws DataNotFoundException, JSONException, IOException {
+		List<Stop> stops = parser
+				.parse(readTestJson(TEST_JSON_FILE_NO_ADDRESS));
+		assertEquals("Kaironkatu", stops.get(0).getName());
 	}
 
 	public void testStopCoordinates() throws JSONException,
