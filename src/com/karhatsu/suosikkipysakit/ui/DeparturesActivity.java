@@ -58,7 +58,8 @@ public class DeparturesActivity extends ListActivity implements
 
 	private void showProgressDialog() {
 		if (progressDialog == null) {
-			progressDialog = new PleaseWaitDialog(this);
+			progressDialog = new PleaseWaitDialog(this,
+					R.string.activity_departures_dialog_title);
 		}
 		progressDialog.show();
 	}

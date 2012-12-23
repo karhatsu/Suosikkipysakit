@@ -50,11 +50,11 @@ public class AddStopActivity extends Activity implements OnStopSaveCancel {
 			stopToBeSaved = (Stop) retained;
 			showSaveStopDialog();
 		} else if (retained instanceof StopRequest) {
-			showPleaseWait();
+			showPleaseWaitForStop();
 			stopRequest = (StopRequest) retained;
 			stopRequest.setOnHslRequestReady(stopRequestNotifier);
 		} else if (retained instanceof LinesRequest) {
-			showPleaseWait();
+			showPleaseWaitForLine();
 			linesRequest = (LinesRequest) retained;
 			linesRequest.setOnHslRequestReady(linesRequestNotifier);
 		}
@@ -143,7 +143,7 @@ public class AddStopActivity extends Activity implements OnStopSaveCancel {
 					.showToast(this, R.string.activity_add_stop_invalid_code);
 			return;
 		}
-		showPleaseWait();
+		showPleaseWaitForStop();
 		stopRequest.execute(code);
 	}
 
@@ -160,13 +160,23 @@ public class AddStopActivity extends Activity implements OnStopSaveCancel {
 					R.string.activity_add_stop_spaces_in_line);
 			return;
 		}
-		showPleaseWait();
+		showPleaseWaitForLine();
 		linesRequest.execute(line);
 	}
 
-	private void showPleaseWait() {
+	private void showPleaseWaitForStop() {
+		showPleaseWait(R.string.activity_add_stop_code_wait_dialog_title);
+	}
+
+	private void showPleaseWaitForLine() {
+		showPleaseWait(R.string.activity_add_stop_line_wait_dialog_title);
+	}
+
+	private void showPleaseWait(int dialogTitleId) {
 		if (progressDialog == null) {
-			progressDialog = new PleaseWaitDialog(this);
+			progressDialog = new PleaseWaitDialog(this, dialogTitleId);
+		} else {
+			progressDialog.setTitle(dialogTitleId);
 		}
 		progressDialog.show();
 	}

@@ -7,10 +7,11 @@ import com.karhatsu.suosikkipysakit.R;
 
 public class PleaseWaitDialog extends ProgressDialog {
 
-	public PleaseWaitDialog(Context context) {
+	public PleaseWaitDialog(Context context, int titleTextId) {
 		super(context);
 		setCancelable(false);
-		setTitle(R.string.please_wait);
+		setTitle(titleTextId);
+		setMessage(context.getText(R.string.please_wait));
 	}
 
 }
