@@ -60,10 +60,10 @@ public class DepartureListAdapter extends ArrayAdapter<Departure> {
 
 	private String getMinutesToGo(Departure departure) {
 		int min = departure.getMinutesToGo();
-		if (min < 10) {
-			return " " + min;
-		} else if (min > 99) {
+		if (min < -9 || min > 99) {
 			return "**";
+		} else if (min >= 0 && min < 10) {
+			return " " + min;
 		}
 		return String.valueOf(min);
 	}
