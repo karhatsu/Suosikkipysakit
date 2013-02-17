@@ -57,7 +57,7 @@ public class LineStopsActivity extends ListActivity implements OnStopSaveCancel 
 	}
 
 	private void showSaveStopDialog() {
-		saveStopDialog = new SaveStopDialog(this, this, stopToBeSaved);
+		saveStopDialog = new NewStopDialog(this, this, stopToBeSaved);
 		saveStopDialog.show();
 	}
 

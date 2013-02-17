@@ -137,7 +137,7 @@ public class MainActivity extends Activity implements OnStopSaveCancel {
 	}
 
 	private void showStopRenameDialog() {
-		renameStopDialog = new SaveStopDialog(this, this, stopToBeRenamedId);
+		renameStopDialog = new RenameStopDialog(this, this, stopToBeRenamedId);
 		renameStopDialog.show();
 	}
 

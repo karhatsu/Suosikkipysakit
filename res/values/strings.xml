@@ -22,8 +22,10 @@
     <string name="activity_add_stop_line_wait_dialog_title">Haetaan linjoja</string>
     <string name="activity_lines_title">Valitse linja</string>
     <string name="activity_line_stops_title">Valitse pysäkki</string>
-    <string name="dialog_save_stop_title">Syötä pysäkin nimi</string>
-    <string name="dialog_save_stop_save">Tallenna</string>
+    <string name="dialog_new_stop_title">Syötä pysäkin nimi</string>
+    <string name="dialog_new_stop_save">Tallenna</string>
+    <string name="dialog_rename_stop_title">Syötä pysäkin nimi</string>
+    <string name="dialog_rename_stop_save">Tallenna</string>
     <string name="cancel">Peruuta</string>
     <string name="connection_problem">Palvelimeen ei saatu yhteyttä. Varmista, että jokin verkkoyhteys on käytettävissä, ja yritä hetken kuluttua uudestaan.</string>
     <string name="please_wait">Odota hetki…</string>
