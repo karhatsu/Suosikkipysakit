@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 
 import com.karhatsu.suosikkipysakit.R;
@@ -24,16 +26,47 @@ public class NewStopDialog extends SaveStopDialog {
 		addEnterListener(stopNameField, stop);
 		setInitialName(stop, stopNameField);
 		setButtons(stop, stopNameField, R.string.dialog_new_stop_save);
+		setCheckBoxListener(view);
+	}
+
+	private void setCheckBoxListener(View view) {
+		final CheckBox noSaveCheckBox = (CheckBox) view
+				.findViewById(R.id.dialog_new_stop_no_save);
+		noSaveCheckBox.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				View stopNameField = findViewById(R.id.dialog_new_stop_name);
+				stopNameField.setVisibility(noSaveCheckBox.isChecked() ? View.INVISIBLE
+						: View.VISIBLE);
+				Button submitButton = getButton(BUTTON_POSITIVE);
+				submitButton.setText(noSaveCheckBox.isChecked() ? R.string.dialog_new_stop_continue
+						: R.string.dialog_new_stop_save);
+			}
+		});
 	}
 
 	@Override
 	protected void submit(Stop stop) {
-		new StopDao(activity).save(stop);
-		showMainActivity(stop);
+		CheckBox noSaveCheckBox = (CheckBox) findViewById(R.id.dialog_new_stop_no_save);
+		if (noSaveCheckBox.isChecked()) {
+			showDepartures(stop);
+		} else {
+			new StopDao(activity).save(stop);
+			showMainActivity(stop);
+		}
+	}
+
+	private void showDepartures(Stop stop) {
+		showStopActivity(stop, DeparturesActivity.class);
 	}
 
 	private void showMainActivity(Stop stop) {
-		Intent intent = new Intent(activity, MainActivity.class);
+		showStopActivity(stop, MainActivity.class);
+	}
+
+	private void showStopActivity(Stop stop,
+			Class<? extends Activity> activityClass) {
+		Intent intent = new Intent(activity, activityClass);
 		if (stop.getDepartures() != null) {
 			intent.putExtra(Stop.STOP_KEY, stop);
 		} else {
