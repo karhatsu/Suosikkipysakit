@@ -36,7 +36,7 @@ public class Departure implements Parcelable {
 
 	public int getMinutesToGo() {
 		Calendar now = Calendar.getInstance();
-		Calendar departure = Calendar.getInstance();
+		Calendar departure = (Calendar) now.clone();
 		departure.set(Calendar.HOUR_OF_DAY,
 				Integer.parseInt(time.substring(0, 2)));
 		departure.set(Calendar.MINUTE, Integer.parseInt(time.substring(3, 5)));
