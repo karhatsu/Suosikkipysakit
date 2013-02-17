@@ -51,9 +51,13 @@ public class DeparturesActivity extends ListActivity implements
 	protected void onPause() {
 		super.onPause();
 		hideProgressDialog();
-		timerTask.cancel();
-		timer.cancel();
-		timer = null;
+		if (timerTask != null) {
+			timerTask.cancel();
+		}
+		if (timer != null) {
+			timer.cancel();
+			timer = null;
+		}
 	}
 
 	private void queryDepartures() {
