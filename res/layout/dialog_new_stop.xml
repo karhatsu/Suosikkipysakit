@@ -5,6 +5,7 @@
     <CheckBox
         android:id="@+id/dialog_new_stop_no_save"
         android:text="@string/dialog_new_stop_no_save"
+        android:textColor="#FFF"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <EditText
