@@ -39,10 +39,21 @@ public class DeparturesActivity extends ListActivity implements
 	}
 
 	@Override
+	protected void onResume() {
+		super.onResume();
+		if (timer == null) {
+			timer = new Timer();
+			timer.schedule(createTimerTask(), 100, 5000);
+		}
+	}
+
+	@Override
 	protected void onPause() {
 		super.onPause();
 		hideProgressDialog();
+		timerTask.cancel();
 		timer.cancel();
+		timer = null;
 	}
 
 	private void queryDepartures() {
@@ -87,7 +98,7 @@ public class DeparturesActivity extends ListActivity implements
 		DepartureListAdapter adapter = new DepartureListAdapter(this,
 				stop.getDepartures());
 		departuresListView.setAdapter(adapter);
-		startTimer();
+		timer.schedule(createTimerTask(), 5000, 5000);
 	}
 
 	@Override
@@ -107,7 +118,7 @@ public class DeparturesActivity extends ListActivity implements
 		}
 	}
 
-	private void startTimer() {
+	private TimerTask createTimerTask() {
 		timerTask = new TimerTask() {
 			@Override
 			public void run() {
@@ -120,6 +131,6 @@ public class DeparturesActivity extends ListActivity implements
 				});
 			}
 		};
-		timer.schedule(timerTask, 10000, 5000);
+		return timerTask;
 	}
 }
