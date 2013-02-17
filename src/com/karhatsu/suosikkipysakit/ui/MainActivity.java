@@ -155,7 +155,7 @@ public class MainActivity extends Activity implements OnStopSaveCancel {
 		closeDbConnections();
 	}
 
-	private void refreshStopList() {
+	public void refreshStopList() {
 		closeDbConnections();
 		stopDao = new StopDao(this);
 		Cursor cursor = stopDao.findAll();

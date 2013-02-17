@@ -104,9 +104,16 @@ public class SaveStopDialog extends AlertDialog {
 	private void saveStopAndShowAll(Stop stop) {
 		if (isNew) {
 			new StopDao(activity).save(stop);
+			showMainActivity(stop);
 		} else {
 			new StopDao(activity).updateName(id, stop.getNameByUser());
+			if (activity instanceof MainActivity) {
+				((MainActivity) activity).refreshStopList();
+			}
 		}
+	}
+
+	private void showMainActivity(Stop stop) {
 		Intent intent = new Intent(activity, MainActivity.class);
 		if (stop.getDepartures() != null) {
 			intent.putExtra(Stop.STOP_KEY, stop);
