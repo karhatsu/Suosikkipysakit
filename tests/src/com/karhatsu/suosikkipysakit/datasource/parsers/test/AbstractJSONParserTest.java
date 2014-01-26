@@ -9,7 +9,7 @@ import junit.framework.TestCase;
 
 public abstract class AbstractJSONParserTest extends TestCase {
 
-	protected static final String TEST_FILES_DIRECTORY = "src/com/karhatsu/suosikkipysakit/datasource/parsers/test/";
+	protected static final String TEST_FILES_DIRECTORY = "tests/src/com/karhatsu/suosikkipysakit/datasource/parsers/test/";
 
 	protected String readTestJson(String fileName) throws IOException {
 		FileInputStream fis = null;
