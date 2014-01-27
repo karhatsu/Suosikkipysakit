@@ -151,7 +151,7 @@ public class AddStopActivity extends Activity implements OnStopSaveCancel, Adapt
 			return; // prevent double-clicks
 		}
 		String code = getTextFromField(R.id.add_stop_code);
-		code = City.getPrefixByName(selectedCity.toString()) + code;
+		code = getCityPrefix() + code;
 		if (!Stop.isValidCode(code)) {
 			ToastHelper
 					.showToast(this, R.string.activity_add_stop_invalid_code);
@@ -220,7 +220,17 @@ public class AddStopActivity extends Activity implements OnStopSaveCancel, Adapt
 
 	private void setCityPrefix() {
 		TextView cityPrefixView = (TextView) findViewById(R.id.add_stop_city_prefix);
-		cityPrefixView.setText(City.getPrefixByName(selectedCity.toString()));
+		String cityPrefix = getCityPrefix();
+		cityPrefixView.setText(cityPrefix);
+		if (cityPrefix.equals("")) {
+			cityPrefixView.setPadding(0, 0, 0, 0);
+		} else {
+			cityPrefixView.setPadding(5, 0, 5, 0);
+		}
+	}
+
+	private String getCityPrefix() {
+		return City.getPrefixByName(selectedCity.toString());
 	}
 
 	@Override
