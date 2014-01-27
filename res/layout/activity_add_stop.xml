@@ -17,11 +17,22 @@
         android:layout_below="@+id/add_stop_code_instructions"
         android:layout_centerHorizontal="true"/>
 
+    <TextView
+        android:id="@+id/add_stop_city_prefix"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/city_spinner"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:textSize="40dp"
+        android:text="V" />
+
     <EditText
         android:id="@+id/add_stop_code"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/city_spinner"
+        android:layout_toRightOf="@id/add_stop_city_prefix"
         android:inputType="numberSigned"
         android:hint="@string/activity_add_stop_code_hint"
         android:maxLength="6"

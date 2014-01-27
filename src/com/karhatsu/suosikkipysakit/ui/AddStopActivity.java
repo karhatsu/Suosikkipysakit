@@ -215,6 +215,12 @@ public class AddStopActivity extends Activity implements OnStopSaveCancel, Adapt
 	@Override
 	public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
 		selectedCity = (CharSequence) adapterView.getItemAtPosition(position);
+		setCityPrefix();
+	}
+
+	private void setCityPrefix() {
+		TextView cityPrefixView = (TextView) findViewById(R.id.add_stop_city_prefix);
+		cityPrefixView.setText(City.getPrefixByName(selectedCity.toString()));
 	}
 
 	@Override
