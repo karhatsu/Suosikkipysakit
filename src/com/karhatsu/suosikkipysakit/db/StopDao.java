@@ -13,14 +13,10 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.karhatsu.suosikkipysakit.domain.Stop;
 
-public class StopDao {
-
-	private OwnStopsDbHelper dbHelper;
-	private Context context;
+public class StopDao extends AbstractDao {
 
 	public StopDao(Context context) {
-		this.context = context;
-		dbHelper = new OwnStopsDbHelper(context);
+		super(context);
 	}
 
 	public void save(Stop stop) {
@@ -76,16 +72,6 @@ public class StopDao {
 				cursor.getString(2));
 		stop.setNameByUser(cursor.getString(3));
 		return stop;
-	}
-
-	public void close() {
-		if (dbHelper != null) {
-			dbHelper.close();
-		}
-	}
-
-	private SQLiteDatabase getWritableDatabase(Context context) {
-		return dbHelper.getWritableDatabase();
 	}
 
 }

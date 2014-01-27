@@ -9,14 +9,10 @@ import com.karhatsu.suosikkipysakit.domain.City;
 import static com.karhatsu.suosikkipysakit.db.OwnStopsContract.PreviousCityEntry.COLUMN_PREFIX;
 import static com.karhatsu.suosikkipysakit.db.OwnStopsContract.PreviousCityEntry.TABLE_NAME;
 
-public class PreviousCityDao {
-
-	private OwnStopsDbHelper dbHelper;
-	private final Context context;
+public class PreviousCityDao extends AbstractDao {
 
 	public PreviousCityDao(Context context) {
-		this.context = context;
-		this.dbHelper = new OwnStopsDbHelper(context);
+		super(context);
 	}
 
 	public City findCity() {
@@ -37,9 +33,5 @@ public class PreviousCityDao {
 		values.put(COLUMN_PREFIX, city.getPrefix());
 		db.update(TABLE_NAME, values, "", new String[] {});
 		db.close();
-	}
-
-	private SQLiteDatabase getWritableDatabase(Context context) {
-		return dbHelper.getWritableDatabase();
 	}
 }
