@@ -20,13 +20,22 @@ public enum City {
 		return getByName(name).getPrefix();
 	}
 
-	private static City getByName(String name) {
+	public static City getByName(String name) {
 		for (City city : values()) {
 			if (name.equals(city.getName())) {
 				return city;
 			}
 		}
 		throw new IllegalArgumentException(name);
+	}
+
+	public static City getByPrefix(String prefix) {
+		for (City city : values()) {
+			if (prefix.equals(city.getPrefix())) {
+				return city;
+			}
+		}
+		throw new IllegalArgumentException(prefix);
 	}
 
 	public String getPrefix() {

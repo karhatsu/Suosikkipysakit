@@ -18,6 +18,7 @@ import com.karhatsu.suosikkipysakit.R;
 import com.karhatsu.suosikkipysakit.datasource.LinesRequest;
 import com.karhatsu.suosikkipysakit.datasource.OnHslRequestReady;
 import com.karhatsu.suosikkipysakit.datasource.StopRequest;
+import com.karhatsu.suosikkipysakit.db.PreviousCityDao;
 import com.karhatsu.suosikkipysakit.domain.City;
 import com.karhatsu.suosikkipysakit.domain.Line;
 import com.karhatsu.suosikkipysakit.domain.Stop;
@@ -47,6 +48,12 @@ public class AddStopActivity extends Activity implements OnStopSaveCancel, Adapt
 		restoreState();
 	}
 
+	@Override
+	protected void onResume() {
+		super.onResume();
+		setSelectedCity();
+	}
+
 	private void restoreState() {
 		Object retained = getLastNonConfigurationInstance();
 		if (retained instanceof Stop) {
@@ -64,13 +71,24 @@ public class AddStopActivity extends Activity implements OnStopSaveCancel, Adapt
 	}
 
 	private void createCitySpinner() {
-		selectedCity = City.HELSINKI.getName();
-		Spinner citySpinner = (Spinner) findViewById(R.id.city_spinner);
+		Spinner citySpinner = getCitySpinner();
 		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.cities,
 			android.R.layout.simple_spinner_item);
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		citySpinner.setAdapter(adapter);
 		citySpinner.setOnItemSelectedListener(this);
+	}
+
+	private void setSelectedCity() {
+		selectedCity = new PreviousCityDao(this).findCity().getName();
+		Spinner citySpinner = getCitySpinner();
+		ArrayAdapter<CharSequence> adapter = (ArrayAdapter<CharSequence>) citySpinner.getAdapter();
+		int position = adapter.getPosition(selectedCity);
+		citySpinner.setSelection(position);
+	}
+
+	private Spinner getCitySpinner() {
+		return (Spinner) findViewById(R.id.city_spinner);
 	}
 
 	private void addEnterListeners() {
@@ -216,6 +234,7 @@ public class AddStopActivity extends Activity implements OnStopSaveCancel, Adapt
 	public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
 		selectedCity = (CharSequence) adapterView.getItemAtPosition(position);
 		setCityPrefix();
+		storePreviousCitySelection();
 	}
 
 	private void setCityPrefix() {
@@ -227,6 +246,10 @@ public class AddStopActivity extends Activity implements OnStopSaveCancel, Adapt
 		} else {
 			cityPrefixView.setPadding(5, 0, 5, 0);
 		}
+	}
+
+	private void storePreviousCitySelection() {
+		new PreviousCityDao(this).save(City.getByName(selectedCity.toString()));
 	}
 
 	private String getCityPrefix() {
