@@ -33,5 +33,14 @@
     <string name="please_wait">Odota hetki…</string>
     <string name="menu_stop_item_rename">Vaihda nimeä</string>
     <string name="menu_stop_item_delete">Poista</string>
+    
+    <string-array name="cities">
+        <item>Helsinki</item>
+        <item>Espoo</item>
+        <item>Vantaa</item>
+        <item>Kerava</item>
+        <item>Järvenpää</item>
+        <item>Tuusula</item>
+    </string-array>
 
 </resources>

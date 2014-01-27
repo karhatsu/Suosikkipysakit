@@ -10,12 +10,19 @@
         android:text="@string/activity_add_stop_code_instructions"
         android:padding="5dp" />
 
+    <Spinner
+        android:id="@+id/city_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/add_stop_code_instructions"
+        android:layout_centerHorizontal="true"/>
+
     <EditText
         android:id="@+id/add_stop_code"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/add_stop_code_instructions"
-        android:inputType="textCapWords"
+        android:layout_below="@id/city_spinner"
+        android:inputType="numberSigned"
         android:hint="@string/activity_add_stop_code_hint"
         android:maxLength="6"
         tools:context=".AddStopActivity" />

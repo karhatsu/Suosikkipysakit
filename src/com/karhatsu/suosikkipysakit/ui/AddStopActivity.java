@@ -11,18 +11,18 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
-import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.*;
 import android.widget.TextView.OnEditorActionListener;
 
 import com.karhatsu.suosikkipysakit.R;
 import com.karhatsu.suosikkipysakit.datasource.LinesRequest;
 import com.karhatsu.suosikkipysakit.datasource.OnHslRequestReady;
 import com.karhatsu.suosikkipysakit.datasource.StopRequest;
+import com.karhatsu.suosikkipysakit.domain.City;
 import com.karhatsu.suosikkipysakit.domain.Line;
 import com.karhatsu.suosikkipysakit.domain.Stop;
 
-public class AddStopActivity extends Activity implements OnStopSaveCancel {
+public class AddStopActivity extends Activity implements OnStopSaveCancel, AdapterView.OnItemSelectedListener {
 
 	private ProgressDialog progressDialog;
 
@@ -35,10 +35,13 @@ public class AddStopActivity extends Activity implements OnStopSaveCancel {
 	private SaveStopDialog saveStopDialog;
 	private Stop stopToBeSaved;
 
+	private CharSequence selectedCity;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_stop);
+		createCitySpinner();
 		addEnterListeners();
 		initializeRequests();
 		restoreState();
@@ -58,6 +61,16 @@ public class AddStopActivity extends Activity implements OnStopSaveCancel {
 			linesRequest = (LinesRequest) retained;
 			linesRequest.setOnHslRequestReady(linesRequestNotifier);
 		}
+	}
+
+	private void createCitySpinner() {
+		selectedCity = City.HELSINKI.getName();
+		Spinner citySpinner = (Spinner) findViewById(R.id.city_spinner);
+		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.cities,
+			android.R.layout.simple_spinner_item);
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		citySpinner.setAdapter(adapter);
+		citySpinner.setOnItemSelectedListener(this);
 	}
 
 	private void addEnterListeners() {
@@ -138,6 +151,7 @@ public class AddStopActivity extends Activity implements OnStopSaveCancel {
 			return; // prevent double-clicks
 		}
 		String code = getTextFromField(R.id.add_stop_code);
+		code = City.getPrefixByName(selectedCity.toString()) + code;
 		if (!Stop.isValidCode(code)) {
 			ToastHelper
 					.showToast(this, R.string.activity_add_stop_invalid_code);
@@ -196,6 +210,15 @@ public class AddStopActivity extends Activity implements OnStopSaveCancel {
 		ToastHelper
 				.showToast(AddStopActivity.this, R.string.connection_problem);
 		initializeRequests();
+	}
+
+	@Override
+	public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+		selectedCity = (CharSequence) adapterView.getItemAtPosition(position);
+	}
+
+	@Override
+	public void onNothingSelected(AdapterView<?> adapterView) {
 	}
 
 	private class StopRequestNotifier implements OnHslRequestReady<List<Stop>> {
