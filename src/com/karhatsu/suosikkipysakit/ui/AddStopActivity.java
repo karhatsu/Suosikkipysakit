@@ -36,8 +36,6 @@ public class AddStopActivity extends Activity implements OnStopSaveCancel, Adapt
 	private SaveStopDialog saveStopDialog;
 	private Stop stopToBeSaved;
 
-	private CharSequence selectedCity;
-
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -80,11 +78,19 @@ public class AddStopActivity extends Activity implements OnStopSaveCancel, Adapt
 	}
 
 	private void setSelectedCity() {
-		selectedCity = new PreviousCityDao(this).findCity().getName();
+		String selectedCity = new PreviousCityDao(this).findCity().getName();
 		Spinner citySpinner = getCitySpinner();
-		ArrayAdapter<CharSequence> adapter = (ArrayAdapter<CharSequence>) citySpinner.getAdapter();
+		ArrayAdapter<CharSequence> adapter = getCitySpinnerAdapter(citySpinner);
 		int position = adapter.getPosition(selectedCity);
 		citySpinner.setSelection(position);
+	}
+
+	private ArrayAdapter<CharSequence> getCitySpinnerAdapter() {
+		return (ArrayAdapter<CharSequence>) getCitySpinner().getAdapter();
+	}
+
+	private ArrayAdapter<CharSequence> getCitySpinnerAdapter(Spinner citySpinner) {
+		return (ArrayAdapter<CharSequence>) citySpinner.getAdapter();
 	}
 
 	private Spinner getCitySpinner() {
@@ -169,7 +175,8 @@ public class AddStopActivity extends Activity implements OnStopSaveCancel, Adapt
 			return; // prevent double-clicks
 		}
 		String code = getTextFromField(R.id.add_stop_code);
-		code = getCityPrefix() + code;
+		CharSequence selectedCity = getCitySpinnerAdapter().getItem(getCitySpinner().getSelectedItemPosition());
+		code = getCityPrefix(selectedCity) + code;
 		if (!Stop.isValidCode(code)) {
 			ToastHelper
 					.showToast(this, R.string.activity_add_stop_invalid_code);
@@ -232,14 +239,14 @@ public class AddStopActivity extends Activity implements OnStopSaveCancel, Adapt
 
 	@Override
 	public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-		selectedCity = (CharSequence) adapterView.getItemAtPosition(position);
-		setCityPrefix();
-		storePreviousCitySelection();
+		CharSequence selectedCity = (CharSequence) adapterView.getItemAtPosition(position);
+		setCityPrefix(selectedCity);
+		storePreviousCitySelection(selectedCity);
 	}
 
-	private void setCityPrefix() {
+	private void setCityPrefix(CharSequence selectedCity) {
 		TextView cityPrefixView = (TextView) findViewById(R.id.add_stop_city_prefix);
-		String cityPrefix = getCityPrefix();
+		String cityPrefix = getCityPrefix(selectedCity);
 		cityPrefixView.setText(cityPrefix);
 		if (cityPrefix.equals("")) {
 			cityPrefixView.setPadding(0, 0, 0, 0);
@@ -248,11 +255,11 @@ public class AddStopActivity extends Activity implements OnStopSaveCancel, Adapt
 		}
 	}
 
-	private void storePreviousCitySelection() {
+	private void storePreviousCitySelection(CharSequence selectedCity) {
 		new PreviousCityDao(this).save(City.getByName(selectedCity.toString()));
 	}
 
-	private String getCityPrefix() {
+	private String getCityPrefix(CharSequence selectedCity) {
 		return City.getPrefixByName(selectedCity.toString());
 	}
 
