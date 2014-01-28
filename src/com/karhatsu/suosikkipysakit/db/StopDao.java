@@ -14,6 +14,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import com.karhatsu.suosikkipysakit.domain.Stop;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class StopDao extends AbstractDao {
 
 	public static final String PROJECTION_NAME = "name";
@@ -73,6 +76,25 @@ public class StopDao extends AbstractDao {
 		cursor.close();
 		db.close();
 		return stop;
+	}
+
+	public List<Stop> findByCollectionid(long collectionId) {
+		SQLiteDatabase db = dbHelper.getReadableDatabase();
+		String sql = buildCollectionIdSql();
+		Cursor cursor = db.rawQuery(sql, new String[]{String.valueOf(collectionId)});
+		List<Stop> stops = new ArrayList<Stop>();
+		while (cursor.moveToNext()) {
+			stops.add(createStop(cursor));
+		}
+		db.close();
+		return stops;
+	}
+
+	private String buildCollectionIdSql() {
+		return "select " + COLUMN_CODE + ", " + COLUMN_NAME + ", " + COLUMN_COORDINATES + ", " + COLUMN_NAME_BY_USER //
+				+ " from " + TABLE_NAME + " s inner join " + OwnStopsContract.CollectionStopEntry.TABLE_NAME + " cs " //
+				+ "on s." + _ID + "=cs." + OwnStopsContract.CollectionStopEntry.COLUMN_STOP_ID //
+				+ " where cs." + OwnStopsContract.CollectionStopEntry.COLUMN_COLLECTION_ID + "=?";
 	}
 
 	private Stop createStop(Cursor cursor) {

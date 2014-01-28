@@ -51,8 +51,8 @@ public class OwnStopsContract {
 
 	public static abstract class CollectionStopEntry implements BaseColumns {
 		public static final String TABLE_NAME = "collection_stops";
-		private static final String COLUMN_COLLECTION_ID = "collection_id";
-		private static final String COLUMN_STOP_ID = "stop_id";
+		public static final String COLUMN_COLLECTION_ID = "collection_id";
+		public static final String COLUMN_STOP_ID = "stop_id";
 		private static final String CREATE_TABLE = //
 		"create table " + TABLE_NAME + " (" //
 				+ _ID + " integer primary key, " //

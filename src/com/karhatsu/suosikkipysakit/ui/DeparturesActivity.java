@@ -1,9 +1,6 @@
 package com.karhatsu.suosikkipysakit.ui;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 import android.app.ListActivity;
 import android.app.ProgressDialog;
@@ -14,7 +11,10 @@ import android.widget.ListView;
 import com.karhatsu.suosikkipysakit.R;
 import com.karhatsu.suosikkipysakit.datasource.OnHslRequestReady;
 import com.karhatsu.suosikkipysakit.datasource.StopRequest;
+import com.karhatsu.suosikkipysakit.db.StopDao;
+import com.karhatsu.suosikkipysakit.domain.Departure;
 import com.karhatsu.suosikkipysakit.domain.Stop;
+import com.karhatsu.suosikkipysakit.domain.StopCollection;
 
 public class DeparturesActivity extends ListActivity implements OnHslRequestReady<Stop> {
 
@@ -62,13 +62,29 @@ public class DeparturesActivity extends ListActivity implements OnHslRequestRead
 
 	private void queryDepartures() {
 		Stop stop = getIntent().getParcelableExtra(Stop.STOP_KEY);
+		String stopCode = getIntent().getStringExtra(Stop.CODE_KEY);
+		long collectionId = getIntent().getLongExtra(StopCollection.COLLECTION_ID_KEY, 0);
 		if (stop != null) {
-			showResults(stop);
-		} else {
-			String stopCode = getIntent().getStringExtra(Stop.CODE_KEY);
+			showDepartures(stop.getDepartures());
+		} else if (stopCode != null) {
 			showProgressDialog();
 			stopRequest.execute(stopCode);
+		} else {
+			showProgressDialog();
+			List<Stop> stops = new StopDao(this).findByCollectionid(collectionId);
+			String[] stopCodes = getStopCodesFrom(stops);
+			stopRequest.execute(stopCodes);
 		}
+	}
+
+	private String[] getStopCodesFrom(List<Stop> stops) {
+		String[] stopCodes = new String[stops.size()];
+		int i = 0;
+		for (Stop stop : stops) {
+			stopCodes[i] = stop.getCode();
+			i++;
+		}
+		return stopCodes;
 	}
 
 	private void showProgressDialog() {
@@ -88,19 +104,26 @@ public class DeparturesActivity extends ListActivity implements OnHslRequestRead
 	@Override
 	public void notifyAboutResult(ArrayList<Stop> stops) {
 		hideProgressDialog();
-		Stop stop = stops.get(0);
-		showResults(stop);
+		List<Departure> departures = getDeparturesFrom(stops);
+		showDepartures(departures);
 	}
 
-	private void showResults(Stop stop) {
-		if (stop.getDepartures().isEmpty()) {
+	private List<Departure> getDeparturesFrom(ArrayList<Stop> stops) {
+		List<Departure> departures = new LinkedList<Departure>();
+		for (Stop stop : stops) {
+			departures.addAll(stop.getDepartures());
+		}
+		return departures;
+	}
+
+	private void showDepartures(List<Departure> departures) {
+		if (departures.isEmpty()) {
 			ToastHelper.showToast(this,
 					R.string.activity_departures_nothing_found);
 			return;
 		}
 		ListView departuresListView = getListView();
-		DepartureListAdapter adapter = new DepartureListAdapter(this,
-				stop.getDepartures());
+		DepartureListAdapter adapter = new DepartureListAdapter(this, departures);
 		departuresListView.setAdapter(adapter);
 		timer.schedule(createTimerTask(), 5000, 5000);
 	}

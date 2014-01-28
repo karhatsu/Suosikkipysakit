@@ -309,15 +309,15 @@ public class AddStopActivity extends Activity implements OnStopSaveCancel, Adapt
 		public void notifyAboutResult(ArrayList<Line> lines) {
 			hideProgressDialog();
 			initializeRequests();
-			if (lines != null) {
+			if (lines == null || lines.isEmpty()) {
+				ToastHelper.showToast(AddStopActivity.this,
+						R.string.activity_add_stop_line_not_found);
+			} else {
 				Intent intent = new Intent(AddStopActivity.this,
 						LinesActivity.class);
 				intent.putParcelableArrayListExtra(LinesActivity.LINES_LIST,
 						lines);
 				startActivity(intent);
-			} else {
-				ToastHelper.showToast(AddStopActivity.this,
-						R.string.activity_add_stop_line_not_found);
 			}
 		}
 

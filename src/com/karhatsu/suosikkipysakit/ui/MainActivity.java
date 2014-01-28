@@ -18,6 +18,7 @@ import android.widget.ListView;
 import com.karhatsu.suosikkipysakit.R;
 import com.karhatsu.suosikkipysakit.db.StopDao;
 import com.karhatsu.suosikkipysakit.domain.Stop;
+import com.karhatsu.suosikkipysakit.domain.StopCollection;
 import com.karhatsu.suosikkipysakit.util.AccountInformation;
 
 public class MainActivity extends Activity implements OnStopSaveCancel {
@@ -61,7 +62,12 @@ public class MainActivity extends Activity implements OnStopSaveCancel {
 					int position, long id) {
 				String selectedStopCode = getSelectedStopCode(stopListAdapter,
 						position);
-				showDepartures(null, selectedStopCode);
+				if (selectedStopCode != null) {
+					showDepartures(null, selectedStopCode);
+				} else {
+					long selectedCollectionId = getSelectedCollectionId(stopListAdapter, position);
+					showCollectionDepartures(selectedCollectionId);
+				}
 			}
 		});
 		registerForContextMenu(stopListView);
@@ -74,6 +80,12 @@ public class MainActivity extends Activity implements OnStopSaveCancel {
 		} else {
 			intent.putExtra(Stop.CODE_KEY, stopCode);
 		}
+		startActivity(intent);
+	}
+
+	private void showCollectionDepartures(long id) {
+		Intent intent = new Intent(MainActivity.this, DeparturesActivity.class);
+		intent.putExtra(StopCollection.COLLECTION_ID_KEY, id);
 		startActivity(intent);
 	}
 
@@ -102,6 +114,13 @@ public class MainActivity extends Activity implements OnStopSaveCancel {
 		Cursor cursor = (Cursor) stopListAdapter.getItem(position);
 		cursor.moveToPosition(position);
 		return cursor.getString(1);
+	}
+
+	private long getSelectedCollectionId(final ListAdapter stopListAdapter,
+									   int position) {
+		Cursor cursor = (Cursor) stopListAdapter.getItem(position);
+		cursor.moveToPosition(position);
+		return cursor.getLong(0);
 	}
 
 	public void addStop(View button) {
