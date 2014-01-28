@@ -11,9 +11,12 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import android.util.Log;
 import com.karhatsu.suosikkipysakit.domain.Stop;
 
 public class StopDao extends AbstractDao {
+
+	public static final String PROJECTION_NAME = "name";
 
 	public StopDao(Context context) {
 		super(context);
@@ -47,9 +50,14 @@ public class StopDao extends AbstractDao {
 
 	public Cursor findAll() {
 		SQLiteDatabase db = dbHelper.getReadableDatabase();
-		String[] projection = { _ID, COLUMN_CODE, COLUMN_NAME_BY_USER };
-		String sortBy = COLUMN_NAME_BY_USER;
-		return db.query(TABLE_NAME, projection, null, null, null, null, sortBy);
+		return db.rawQuery(buildFindAllQuery(), new String[]{});
+	}
+
+	private String buildFindAllQuery() {
+		return "select " + _ID + ", " + COLUMN_CODE + ", " + COLUMN_NAME_BY_USER + " as " + PROJECTION_NAME + " from " + TABLE_NAME + //
+				" union " + //
+				"select " + _ID + ", null, " + OwnStopsContract.CollectionEntry.COLUMN_NAME + " as " + PROJECTION_NAME + " from " + OwnStopsContract.CollectionEntry.TABLE_NAME + //
+				" order by " + PROJECTION_NAME;
 	}
 
 	public Stop findById(long id) {

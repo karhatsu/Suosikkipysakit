@@ -6,10 +6,11 @@ import android.support.v4.widget.SimpleCursorAdapter;
 
 import com.karhatsu.suosikkipysakit.R;
 import com.karhatsu.suosikkipysakit.db.OwnStopsContract;
+import com.karhatsu.suosikkipysakit.db.StopDao;
 
 public class StopListAdapter extends SimpleCursorAdapter {
 
-	private static final String[] FROM_COLUMNS = new String[] { OwnStopsContract.StopEntry.COLUMN_NAME_BY_USER };
+	private static final String[] FROM_COLUMNS = new String[] { StopDao.PROJECTION_NAME };
 	private static final int[] TO_COLUMNS = new int[] { R.id.stop_list_item_name };
 
 	public StopListAdapter(Context context, Cursor cursor) {
