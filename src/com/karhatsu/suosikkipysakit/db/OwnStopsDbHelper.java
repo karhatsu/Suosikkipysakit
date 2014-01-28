@@ -26,4 +26,15 @@ public class OwnStopsDbHelper extends SQLiteOpenHelper {
 		}
 	}
 
+	@Override
+	public void onOpen(SQLiteDatabase db) {
+		super.onOpen(db);
+		if (!db.isReadOnly()) {
+			enableForeignKeyConstraints(db);
+		}
+	}
+
+	private void enableForeignKeyConstraints(SQLiteDatabase db) {
+		db.execSQL("PRAGMA foreign_keys=ON;");
+	}
 }
