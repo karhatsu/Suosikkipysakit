@@ -13,16 +13,16 @@ import com.karhatsu.suosikkipysakit.datasource.DataNotFoundException;
 import com.karhatsu.suosikkipysakit.domain.Departure;
 import com.karhatsu.suosikkipysakit.domain.Stop;
 
-public class StopJSONParser implements JSONParser<List<Stop>> {
+public class StopJSONParser implements JSONParser<Stop> {
 	private LineParser lineParser = new LineParser();
 	private TimeParser timeParser = new TimeParser();
 
-	public List<Stop> parse(String json) throws DataNotFoundException,
+	public ArrayList<Stop> parse(String json) throws DataNotFoundException,
 			JSONException {
 		if (json.equals("")) {
 			throw new DataNotFoundException();
 		}
-		List<Stop> stops = new ArrayList<Stop>();
+		ArrayList<Stop> stops = new ArrayList<Stop>();
 		JSONArray jsonStops = new JSONArray(json);
 		for (int i = 0; i < jsonStops.length(); i++) {
 			JSONObject jsonStop = jsonStops.getJSONObject(i);

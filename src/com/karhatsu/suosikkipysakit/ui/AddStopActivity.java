@@ -267,9 +267,9 @@ public class AddStopActivity extends Activity implements OnStopSaveCancel, Adapt
 	public void onNothingSelected(AdapterView<?> adapterView) {
 	}
 
-	private class StopRequestNotifier implements OnHslRequestReady<List<Stop>> {
+	private class StopRequestNotifier implements OnHslRequestReady<Stop> {
 		@Override
-		public void notifyAboutResult(List<Stop> stops) {
+		public void notifyAboutResult(ArrayList<Stop> stops) {
 			hideProgressDialog();
 			initializeRequests();
 			if (stops == null || stops.size() == 0) {
@@ -304,8 +304,7 @@ public class AddStopActivity extends Activity implements OnStopSaveCancel, Adapt
 		saveStopDialog.show();
 	}
 
-	private class LinesRequestNotifier implements
-			OnHslRequestReady<ArrayList<Line>> {
+	private class LinesRequestNotifier implements OnHslRequestReady<Line> {
 		@Override
 		public void notifyAboutResult(ArrayList<Line> lines) {
 			hideProgressDialog();

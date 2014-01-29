@@ -7,13 +7,13 @@ import com.karhatsu.suosikkipysakit.datasource.parsers.StopJSONParser;
 import com.karhatsu.suosikkipysakit.domain.Stop;
 import com.karhatsu.suosikkipysakit.util.AccountInformation;
 
-public class StopRequest extends AbstractHslRequest<List<Stop>> {
+public class StopRequest extends AbstractHslRequest<Stop> {
 
-	public StopRequest(OnHslRequestReady<List<Stop>> notifier) {
+	public StopRequest(OnHslRequestReady<Stop> notifier) {
 		super(notifier);
 	}
 
-	protected JSONParser<List<Stop>> getJSONParser() {
+	protected JSONParser<Stop> getJSONParser() {
 		return new StopJSONParser();
 	}
 

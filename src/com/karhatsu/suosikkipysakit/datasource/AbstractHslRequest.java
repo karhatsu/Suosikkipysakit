@@ -2,11 +2,10 @@ package com.karhatsu.suosikkipysakit.datasource;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpGet;
 
 import android.content.Context;
@@ -17,7 +16,7 @@ import android.os.AsyncTask;
 
 import com.karhatsu.suosikkipysakit.datasource.parsers.JSONParser;
 
-public abstract class AbstractHslRequest<R> extends AsyncTask<String, Void, R> {
+public abstract class AbstractHslRequest<R> extends AsyncTask<String, Void, ArrayList<R>> {
 
 	protected static final String BASE_URL = "http://api.reittiopas.fi/hsl/prod/";
 
@@ -25,26 +24,28 @@ public abstract class AbstractHslRequest<R> extends AsyncTask<String, Void, R> {
 	private boolean connectionFailed;
 	private boolean ready;
 	private boolean running;
-	private R result;
+	private ArrayList<R> result;
 
 	protected AbstractHslRequest(OnHslRequestReady<R> notifier) {
 		this.notifier = notifier;
 	}
 
 	@Override
-	protected R doInBackground(String... searchParam) {
+	protected ArrayList<R> doInBackground(String... searchParams) {
 		running = true;
 		if (!connectionAvailable()) {
 			connectionFailed = true;
 			return null;
 		}
-		return getData(searchParam[0].trim());
+		return getData(searchParams);
 	}
 
-	private R getData(String searchParam) {
+	private ArrayList<R> getData(String... searchParams) {
 		try {
-			String json = queryDataAsJson(searchParam);
-			return getJSONParser().parse(json);
+			ArrayList<R> list = new ArrayList<R>();
+			String json = queryDataAsJson(searchParams[0].trim());
+			list.addAll(getJSONParser().parse(json));
+			return list;
 		} catch (DataNotFoundException e) {
 			return null;
 		} catch (Exception e) {
@@ -63,7 +64,7 @@ public abstract class AbstractHslRequest<R> extends AsyncTask<String, Void, R> {
 	protected abstract JSONParser<R> getJSONParser();
 
 	@Override
-	protected void onPostExecute(R result) {
+	protected void onPostExecute(ArrayList<R> result) {
 		this.result = result;
 		ready = true;
 		notifyAboutResult();
@@ -87,26 +88,20 @@ public abstract class AbstractHslRequest<R> extends AsyncTask<String, Void, R> {
 		}
 	}
 
-	private String queryDataAsJson(String searchParam)
-			throws ClientProtocolException, IOException {
+	private String queryDataAsJson(String searchParam) throws IOException {
 		AndroidHttpClient client = AndroidHttpClient.newInstance("Android");
-		InputStream is = null;
 		try {
 			HttpResponse response = client.execute(new HttpGet(
 					getRequestUrl(searchParam)));
 			return readStream(response.getEntity().getContent());
 		} finally {
-			if (is != null) {
-				is.close();
-			}
 			client.close();
 		}
 	}
 
 	protected abstract String getRequestUrl(String searchParam);
 
-	public String readStream(InputStream stream) throws IOException,
-			UnsupportedEncodingException {
+	public String readStream(InputStream stream) throws IOException {
 		Scanner scanner = new Scanner(stream).useDelimiter("\\A");
 		return scanner.hasNext() ? scanner.next() : "";
 	}

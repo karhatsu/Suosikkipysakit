@@ -7,14 +7,14 @@ import com.karhatsu.suosikkipysakit.datasource.parsers.LinesJSONParser;
 import com.karhatsu.suosikkipysakit.domain.Line;
 import com.karhatsu.suosikkipysakit.util.AccountInformation;
 
-public class LinesRequest extends AbstractHslRequest<ArrayList<Line>> {
+public class LinesRequest extends AbstractHslRequest<Line> {
 
-	public LinesRequest(OnHslRequestReady<ArrayList<Line>> notifier) {
+	public LinesRequest(OnHslRequestReady<Line> notifier) {
 		super(notifier);
 	}
 
 	@Override
-	protected JSONParser<ArrayList<Line>> getJSONParser() {
+	protected JSONParser<Line> getJSONParser() {
 		return new LinesJSONParser();
 	}
 

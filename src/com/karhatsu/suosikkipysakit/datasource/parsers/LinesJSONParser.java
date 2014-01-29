@@ -10,7 +10,7 @@ import com.karhatsu.suosikkipysakit.datasource.DataNotFoundException;
 import com.karhatsu.suosikkipysakit.domain.Line;
 import com.karhatsu.suosikkipysakit.domain.Stop;
 
-public class LinesJSONParser implements JSONParser<ArrayList<Line>> {
+public class LinesJSONParser implements JSONParser<Line> {
 
 	@Override
 	public ArrayList<Line> parse(String json) throws DataNotFoundException,
