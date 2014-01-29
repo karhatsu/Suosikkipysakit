@@ -13,6 +13,7 @@ import com.karhatsu.suosikkipysakit.datasource.OnHslRequestReady;
 import com.karhatsu.suosikkipysakit.datasource.StopRequest;
 import com.karhatsu.suosikkipysakit.db.StopDao;
 import com.karhatsu.suosikkipysakit.domain.Departure;
+import com.karhatsu.suosikkipysakit.domain.DeparturesComparator;
 import com.karhatsu.suosikkipysakit.domain.Stop;
 import com.karhatsu.suosikkipysakit.domain.StopCollection;
 
@@ -113,6 +114,7 @@ public class DeparturesActivity extends ListActivity implements OnHslRequestRead
 		for (Stop stop : stops) {
 			departures.addAll(stop.getDepartures());
 		}
+		Collections.sort(departures, new DeparturesComparator());
 		return departures;
 	}
 
