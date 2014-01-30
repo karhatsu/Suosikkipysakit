@@ -21,7 +21,7 @@ import com.karhatsu.suosikkipysakit.domain.Stop;
 import com.karhatsu.suosikkipysakit.domain.StopCollection;
 import com.karhatsu.suosikkipysakit.util.AccountInformation;
 
-public class MainActivity extends Activity implements OnStopSaveCancel {
+public class MainActivity extends Activity implements OnStopEditCancel {
 
 	private StopDao stopDao;
 	private SaveStopDialog renameStopDialog;
@@ -201,7 +201,7 @@ public class MainActivity extends Activity implements OnStopSaveCancel {
 	}
 
 	@Override
-	public void stopSaveCancelled() {
+	public void stopEditCancelled() {
 		stopToBeRenamedId = 0;
 	}
 }

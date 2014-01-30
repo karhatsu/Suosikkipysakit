@@ -13,9 +13,9 @@ public class RenameStopDialog extends SaveStopDialog {
 
 	private final long id;
 
-	public RenameStopDialog(OnStopSaveCancel onStopSaveCancel,
+	public RenameStopDialog(OnStopEditCancel onStopEditCancel,
 			Activity activity, final long stopId) {
-		super(activity, onStopSaveCancel);
+		super(activity, onStopEditCancel);
 		this.id = stopId;
 		Stop stop = new StopDao(activity).findById(stopId);
 		setTitle(R.string.dialog_rename_stop_title);

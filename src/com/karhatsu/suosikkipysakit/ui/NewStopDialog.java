@@ -14,9 +14,9 @@ import com.karhatsu.suosikkipysakit.domain.Stop;
 
 public class NewStopDialog extends SaveStopDialog {
 
-	public NewStopDialog(OnStopSaveCancel onStopSaveCancel, Activity activity,
+	public NewStopDialog(OnStopEditCancel onStopEditCancel, Activity activity,
 			final Stop stop) {
-		super(activity, onStopSaveCancel);
+		super(activity, onStopEditCancel);
 		setTitle(R.string.dialog_new_stop_title);
 		LayoutInflater inflater = activity.getLayoutInflater();
 		View view = inflater.inflate(R.layout.dialog_new_stop, null);

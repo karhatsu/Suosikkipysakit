@@ -14,13 +14,13 @@ import com.karhatsu.suosikkipysakit.domain.Stop;
 
 abstract class SaveStopDialog extends AlertDialog {
 
-	protected final OnStopSaveCancel onStopSaveCancel;
+	protected final OnStopEditCancel onStopEditCancel;
 	protected final Activity activity;
 
 	protected SaveStopDialog(Activity activity,
-			OnStopSaveCancel onStopSaveCancel) {
+			OnStopEditCancel onStopEditCancel) {
 		super(activity);
-		this.onStopSaveCancel = onStopSaveCancel;
+		this.onStopEditCancel = onStopEditCancel;
 		this.activity = activity;
 	}
 
@@ -76,7 +76,7 @@ abstract class SaveStopDialog extends AlertDialog {
 			DialogInterface.OnClickListener {
 		@Override
 		public void onClick(DialogInterface dialog, int which) {
-			onStopSaveCancel.stopSaveCancelled();
+			onStopEditCancel.stopEditCancelled();
 			dialog.dismiss();
 		}
 	}

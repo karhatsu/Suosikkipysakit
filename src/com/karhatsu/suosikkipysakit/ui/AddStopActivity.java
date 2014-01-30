@@ -1,7 +1,6 @@
 package com.karhatsu.suosikkipysakit.ui;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -23,7 +22,7 @@ import com.karhatsu.suosikkipysakit.domain.City;
 import com.karhatsu.suosikkipysakit.domain.Line;
 import com.karhatsu.suosikkipysakit.domain.Stop;
 
-public class AddStopActivity extends Activity implements OnStopSaveCancel, AdapterView.OnItemSelectedListener {
+public class AddStopActivity extends Activity implements OnStopEditCancel, AdapterView.OnItemSelectedListener {
 
 	private ProgressDialog progressDialog;
 
@@ -333,7 +332,7 @@ public class AddStopActivity extends Activity implements OnStopSaveCancel, Adapt
 	}
 
 	@Override
-	public void stopSaveCancelled() {
+	public void stopEditCancelled() {
 		stopToBeSaved = null;
 	}
 }
