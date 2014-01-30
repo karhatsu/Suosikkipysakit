@@ -25,7 +25,9 @@ public class MainActivity extends Activity implements OnStopEditCancel {
 
 	private StopDao stopDao;
 	private SaveStopDialog renameStopDialog;
+	private AddToCollectionDialog addToCollectionDialog;
 	private long stopToBeRenamedId;
+	private long stopToBeAddedToCollection;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,7 @@ public class MainActivity extends Activity implements OnStopEditCancel {
 		setContentView(R.layout.activity_main);
 		setupStopListView();
 		Object retained = getLastNonConfigurationInstance();
+		//TODO: stopToBeAdded...
 		if (retained instanceof Long) {
 			stopToBeRenamedId = (Long) retained;
 			showStopRenameDialog();
@@ -146,6 +149,11 @@ public class MainActivity extends Activity implements OnStopEditCancel {
 			showStopRenameDialog();
 			refreshStopList();
 			return true;
+		case R.id.menu_stop_item_add_to_collection:
+			stopToBeAddedToCollection = info.id;
+			showAddToCollectionDialog();
+			refreshStopList();
+			return true;
 		case R.id.menu_stop_item_delete:
 			new StopDao(this).delete(info.id);
 			refreshStopList();
@@ -158,6 +166,11 @@ public class MainActivity extends Activity implements OnStopEditCancel {
 	private void showStopRenameDialog() {
 		renameStopDialog = new RenameStopDialog(this, this, stopToBeRenamedId);
 		renameStopDialog.show();
+	}
+
+	private void showAddToCollectionDialog() {
+		addToCollectionDialog = new AddToCollectionDialog(this, this, stopToBeAddedToCollection);
+		addToCollectionDialog.show();
 	}
 
 	@Override
@@ -203,5 +216,6 @@ public class MainActivity extends Activity implements OnStopEditCancel {
 	@Override
 	public void stopEditCancelled() {
 		stopToBeRenamedId = 0;
+		stopToBeAddedToCollection = 0;
 	}
 }

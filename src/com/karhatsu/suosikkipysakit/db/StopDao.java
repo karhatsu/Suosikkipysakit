@@ -103,5 +103,4 @@ public class StopDao extends AbstractDao {
 		stop.setNameByUser(cursor.getString(3));
 		return stop;
 	}
-
 }

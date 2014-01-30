@@ -3,7 +3,10 @@
     <item
         android:id="@+id/menu_stop_item_rename"
         android:title="@string/menu_stop_item_rename" />
-    <item 
+    <item
+        android:id="@+id/menu_stop_item_add_to_collection"
+        android:title="@string/menu_stop_item_add_to_collection" />
+    <item
         android:id="@+id/menu_stop_item_delete"
         android:title="@string/menu_stop_item_delete" />
 </menu>
