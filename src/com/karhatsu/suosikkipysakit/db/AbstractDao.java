@@ -12,6 +12,10 @@ public abstract class AbstractDao {
 		this.dbHelper = new OwnStopsDbHelper(context);
 	}
 
+	protected SQLiteDatabase getReadableDatabase() {
+		return dbHelper.getReadableDatabase();
+	}
+
 	protected SQLiteDatabase getWritableDatabase(Context context) {
 		return dbHelper.getWritableDatabase();
 	}

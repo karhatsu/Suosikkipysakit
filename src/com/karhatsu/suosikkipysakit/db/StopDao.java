@@ -41,7 +41,7 @@ public class StopDao extends AbstractDao {
 		ContentValues values = new ContentValues();
 		values.put(COLUMN_NAME_BY_USER, name);
 		db.update(TABLE_NAME, values, _ID + "=?",
-				new String[] { String.valueOf(id) });
+				new String[]{String.valueOf(id)});
 		db.close();
 	}
 
@@ -52,7 +52,7 @@ public class StopDao extends AbstractDao {
 	}
 
 	public Cursor findAll() {
-		SQLiteDatabase db = dbHelper.getReadableDatabase();
+		SQLiteDatabase db = getReadableDatabase();
 		return db.rawQuery(buildFindAllQuery(), new String[]{});
 	}
 
@@ -64,7 +64,7 @@ public class StopDao extends AbstractDao {
 	}
 
 	public Stop findById(long id) {
-		SQLiteDatabase db = dbHelper.getReadableDatabase();
+		SQLiteDatabase db = getReadableDatabase();
 		String[] projection = { COLUMN_CODE, COLUMN_NAME, COLUMN_COORDINATES,
 				COLUMN_NAME_BY_USER };
 		String selection = _ID + "=?";
@@ -79,7 +79,7 @@ public class StopDao extends AbstractDao {
 	}
 
 	public List<Stop> findByCollectionid(long collectionId) {
-		SQLiteDatabase db = dbHelper.getReadableDatabase();
+		SQLiteDatabase db = getReadableDatabase();
 		String sql = buildCollectionIdSql();
 		Cursor cursor = db.rawQuery(sql, new String[]{String.valueOf(collectionId)});
 		List<Stop> stops = new ArrayList<Stop>();
