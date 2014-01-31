@@ -17,6 +17,8 @@ import com.karhatsu.suosikkipysakit.domain.StopCollection;
 import java.util.List;
 
 public class AddToCollectionDialog extends AlertDialog implements AdapterView.OnItemSelectedListener {
+	public static final int NO_COLLECTION_ID = 0;
+
 	private OnStopEditCancel onCancel;
 	private StopCollection stopCollection;
 
@@ -39,7 +41,9 @@ public class AddToCollectionDialog extends AlertDialog implements AdapterView.On
 		if (names.isEmpty()) {
 			collectionsSpinner.setVisibility(View.INVISIBLE);
 		} else {
-			names.add(0, StopCollection.NO_COLLECTION);
+			StopCollection noStopCollection = new StopCollection(NO_COLLECTION_ID,
+					getContext().getString(R.string.dialog_add_to_collection_spinner_default));
+			names.add(0, noStopCollection);
 		}
 		collectionsSpinner.setAdapter(createStopCollectionArrayAdapter(names));
 	}
@@ -51,14 +55,24 @@ public class AddToCollectionDialog extends AlertDialog implements AdapterView.On
 		return adapter;
 	}
 
-	protected void setButtons(EditText collectionNameField, long stopId) {
+	private void setButtons(EditText collectionNameField, long stopId) {
 		setButton(BUTTON_POSITIVE, getContext().getString(R.string.save), new SaveButtonListener(collectionNameField, stopId));
 		setButton(BUTTON_NEGATIVE, getContext().getString(R.string.cancel), new CancelButtonListener());
+	}
+
+	private boolean isExistingStopSelected() {
+		return stopCollection != null && stopCollection.getId() != NO_COLLECTION_ID;
 	}
 
 	@Override
 	public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
 		stopCollection = (StopCollection) adapterView.getItemAtPosition(position);
+		EditText newCollectionNameEditText = (EditText) findViewById(R.id.dialog_new_collection_name);
+		if (isExistingStopSelected()) {
+			newCollectionNameEditText.setVisibility(View.INVISIBLE);
+		} else {
+			newCollectionNameEditText.setVisibility(View.VISIBLE);
+		}
 	}
 
 	@Override
@@ -77,10 +91,10 @@ public class AddToCollectionDialog extends AlertDialog implements AdapterView.On
 		@Override
 		public void onClick(DialogInterface dialog, int which) {
 			dialog.dismiss();
-			if (stopCollection == null || stopCollection.getId() == StopCollection.NO_COLLECTION_ID) {
-				createCollection(collectionName.getText(), stopId);
-			} else {
+			if (isExistingStopSelected()) {
 				addToSelectedCollection(stopId);
+			} else {
+				createCollection(collectionName.getText(), stopId);
 			}
 		}
 
