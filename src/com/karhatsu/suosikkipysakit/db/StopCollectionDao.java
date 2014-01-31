@@ -22,11 +22,17 @@ public class StopCollectionDao extends AbstractDao {
 		ContentValues values = new ContentValues();
 		values.put(COLUMN_NAME, collectionName);
 		long collectionId = db.insert(OwnStopsContract.CollectionEntry.TABLE_NAME, null, values);
-		insertCollectionStop(db, collectionId, stopId);
+		insertStopToCollection(db, collectionId, stopId);
 		db.close();
 	}
 
-	private void insertCollectionStop(SQLiteDatabase db, long collectionId, long stopId) {
+	public void insertStopToCollection(long collectionId, long stopId) {
+		SQLiteDatabase db = getWritableDatabase(context);
+		insertStopToCollection(db, collectionId, stopId);
+		db.close();
+	}
+
+	private void insertStopToCollection(SQLiteDatabase db, long collectionId, long stopId) {
 		ContentValues values = new ContentValues();
 		values.put(COLUMN_COLLECTION_ID, collectionId);
 		values.put(COLUMN_STOP_ID, stopId);
