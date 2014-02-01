@@ -16,6 +16,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.karhatsu.suosikkipysakit.R;
+import com.karhatsu.suosikkipysakit.db.StopCollectionDao;
 import com.karhatsu.suosikkipysakit.db.StopDao;
 import com.karhatsu.suosikkipysakit.domain.Stop;
 import com.karhatsu.suosikkipysakit.domain.StopCollection;
@@ -135,8 +136,15 @@ public class MainActivity extends Activity implements OnStopEditCancel {
 	public void onCreateContextMenu(ContextMenu menu, View view,
 			ContextMenuInfo menuInfo) {
 		super.onCreateContextMenu(menu, view, menuInfo);
+		AdapterView.AdapterContextMenuInfo info = (AdapterContextMenuInfo) menuInfo;
+		Cursor cursor = (Cursor) getStopListAdapter().getItem(info.position);
+		String columnCode = cursor.getString(1);
 		MenuInflater menuInflater = getMenuInflater();
-		menuInflater.inflate(R.menu.menu_stop_item, menu);
+		if (columnCode != null) {
+			menuInflater.inflate(R.menu.menu_stop_item, menu);
+		} else {
+			menuInflater.inflate(R.menu.menu_collection_item, menu);
+		}
 	}
 
 	@Override
@@ -156,6 +164,10 @@ public class MainActivity extends Activity implements OnStopEditCancel {
 			return true;
 		case R.id.menu_stop_item_delete:
 			new StopDao(this).delete(info.id);
+			refreshStopList();
+			return true;
+		case R.id.menu_collection_item_delete:
+			new StopCollectionDao(this).delete(info.id);
 			refreshStopList();
 			return true;
 		default:

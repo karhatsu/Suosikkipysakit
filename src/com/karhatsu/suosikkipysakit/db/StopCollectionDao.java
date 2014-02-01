@@ -50,4 +50,10 @@ public class StopCollectionDao extends AbstractDao {
 		db.close();
 		return stopCollections;
 	}
+
+	public void delete(long id) {
+		SQLiteDatabase db = getWritableDatabase(context);
+		db.delete(OwnStopsContract.CollectionEntry.TABLE_NAME, _ID + "=?", new String[] { String.valueOf(id) });
+		db.close();
+	}
 }

@@ -38,7 +38,8 @@
     <string name="menu_stop_item_rename">Vaihda nimeä</string>
     <string name="menu_stop_item_add_to_collection">Lisää pysäkkikokoelmaan</string>
     <string name="menu_stop_item_delete">Poista</string>
-    
+    <string name="menu_collection_item_delete">Poista kokoelma</string>
+
     <string-array name="cities">
         <item>Helsinki</item>
         <item>Espoo</item>
