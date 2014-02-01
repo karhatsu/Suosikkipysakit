@@ -28,8 +28,18 @@ public class StopCollectionDao extends AbstractDao {
 
 	public void insertStopToCollection(long collectionId, long stopId) {
 		SQLiteDatabase db = getWritableDatabase();
-		insertStopToCollection(db, collectionId, stopId);
+		if (!collectionContainsStop(db, collectionId, stopId)) {
+			insertStopToCollection(db, collectionId, stopId);
+		}
 		db.close();
+	}
+
+	private boolean collectionContainsStop(SQLiteDatabase db, long collectionId, long stopId) {
+		String sql = "select count(*) from " + OwnStopsContract.CollectionStopEntry.TABLE_NAME +
+				" where " + COLUMN_COLLECTION_ID + "=? and " + COLUMN_STOP_ID + "=?";
+		Cursor cursor = db.rawQuery(sql, new String[] {String.valueOf(collectionId), String.valueOf(stopId)});
+		cursor.moveToNext();
+		return cursor.getInt(0) > 0;
 	}
 
 	private void insertStopToCollection(SQLiteDatabase db, long collectionId, long stopId) {
