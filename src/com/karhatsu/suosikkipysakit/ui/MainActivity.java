@@ -25,10 +25,12 @@ import com.karhatsu.suosikkipysakit.util.AccountInformation;
 public class MainActivity extends Activity implements OnStopEditCancel {
 
 	private StopDao stopDao;
+
 	private SaveStopDialog renameStopDialog;
 	private AddToCollectionDialog addToCollectionDialog;
-	private long stopToBeRenamedId;
-	private long stopToBeAddedToCollection;
+
+	private RenameStopId stopToBeRenamedId;
+	private AddToCollectionId stopToBeAddedToCollection;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -36,11 +38,17 @@ public class MainActivity extends Activity implements OnStopEditCancel {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		setupStopListView();
+		resumeToPreviousState();
+	}
+
+	protected void resumeToPreviousState() {
 		Object retained = getLastNonConfigurationInstance();
-		//TODO: stopToBeAdded...
-		if (retained instanceof Long) {
-			stopToBeRenamedId = (Long) retained;
+		if (retained instanceof RenameStopId) {
+			stopToBeRenamedId = (RenameStopId) retained;
 			showStopRenameDialog();
+		} else if (retained instanceof AddToCollectionId) {
+			stopToBeAddedToCollection = (AddToCollectionId) retained;
+			showAddToCollectionDialog();
 		} else {
 			redirectToDeparturesIfRequested();
 		}
@@ -105,7 +113,7 @@ public class MainActivity extends Activity implements OnStopEditCancel {
 
 	@Override
 	public Object onRetainNonConfigurationInstance() {
-		if (stopToBeRenamedId > 0) {
+		if (stopToBeRenamedId != null) {
 			return stopToBeRenamedId;
 		}
 		return null;
@@ -157,12 +165,12 @@ public class MainActivity extends Activity implements OnStopEditCancel {
 				.getMenuInfo();
 		switch (item.getItemId()) {
 		case R.id.menu_stop_item_rename:
-			stopToBeRenamedId = info.id;
+			stopToBeRenamedId = new RenameStopId(info.id);
 			showStopRenameDialog();
 			refreshStopList();
 			return true;
 		case R.id.menu_stop_item_add_to_collection:
-			stopToBeAddedToCollection = info.id;
+			stopToBeAddedToCollection = new AddToCollectionId(info.id);
 			showAddToCollectionDialog();
 			refreshStopList();
 			return true;
@@ -180,12 +188,12 @@ public class MainActivity extends Activity implements OnStopEditCancel {
 	}
 
 	private void showStopRenameDialog() {
-		renameStopDialog = new RenameStopDialog(this, this, stopToBeRenamedId);
+		renameStopDialog = new RenameStopDialog(this, this, stopToBeRenamedId.id);
 		renameStopDialog.show();
 	}
 
 	private void showAddToCollectionDialog() {
-		addToCollectionDialog = new AddToCollectionDialog(this, this, stopToBeAddedToCollection);
+		addToCollectionDialog = new AddToCollectionDialog(this, this, stopToBeAddedToCollection.id);
 		addToCollectionDialog.show();
 	}
 
@@ -194,6 +202,9 @@ public class MainActivity extends Activity implements OnStopEditCancel {
 		super.onPause();
 		if (renameStopDialog != null) {
 			renameStopDialog.dismiss();
+		}
+		if (addToCollectionDialog != null) {
+			addToCollectionDialog.dismiss();
 		}
 	}
 
@@ -231,7 +242,21 @@ public class MainActivity extends Activity implements OnStopEditCancel {
 
 	@Override
 	public void stopEditCancelled() {
-		stopToBeRenamedId = 0;
-		stopToBeAddedToCollection = 0;
+		stopToBeRenamedId = null;
+		stopToBeAddedToCollection = null;
+	}
+
+	private class RenameStopId {
+		private final long id;
+		private RenameStopId(long id) {
+			this.id = id;
+		}
+	}
+
+	private class AddToCollectionId {
+		private final long id;
+		private AddToCollectionId(long id) {
+			this.id = id;
+		}
 	}
 }
