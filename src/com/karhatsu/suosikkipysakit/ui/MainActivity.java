@@ -115,6 +115,8 @@ public class MainActivity extends Activity implements OnStopEditCancel {
 	public Object onRetainNonConfigurationInstance() {
 		if (stopToBeRenamedId != null) {
 			return stopToBeRenamedId;
+		} else if (stopToBeAddedToCollection != null) {
+			return stopToBeAddedToCollection;
 		}
 		return null;
 	}
