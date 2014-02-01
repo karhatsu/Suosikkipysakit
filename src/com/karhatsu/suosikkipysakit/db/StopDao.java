@@ -26,7 +26,7 @@ public class StopDao extends AbstractDao {
 	}
 
 	public void save(Stop stop) {
-		SQLiteDatabase db = getWritableDatabase(context);
+		SQLiteDatabase db = getWritableDatabase();
 		ContentValues values = new ContentValues();
 		values.put(COLUMN_CODE, stop.getCode());
 		values.put(COLUMN_NAME, stop.getName());
@@ -37,7 +37,7 @@ public class StopDao extends AbstractDao {
 	}
 
 	public void updateName(long id, String name) {
-		SQLiteDatabase db = getWritableDatabase(context);
+		SQLiteDatabase db = getWritableDatabase();
 		ContentValues values = new ContentValues();
 		values.put(COLUMN_NAME_BY_USER, name);
 		db.update(TABLE_NAME, values, _ID + "=?",
@@ -46,7 +46,7 @@ public class StopDao extends AbstractDao {
 	}
 
 	public void delete(long id) {
-		SQLiteDatabase db = getWritableDatabase(context);
+		SQLiteDatabase db = getWritableDatabase();
 		db.delete(TABLE_NAME, _ID + "=?", new String[] { String.valueOf(id) });
 		db.close();
 	}

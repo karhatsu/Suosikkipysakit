@@ -18,7 +18,7 @@ public class StopCollectionDao extends AbstractDao {
 	}
 
 	public void saveCollectionAndAddStop(String collectionName, long stopId) {
-		SQLiteDatabase db = getWritableDatabase(context);
+		SQLiteDatabase db = getWritableDatabase();
 		ContentValues values = new ContentValues();
 		values.put(COLUMN_NAME, collectionName);
 		long collectionId = db.insert(OwnStopsContract.CollectionEntry.TABLE_NAME, null, values);
@@ -27,7 +27,7 @@ public class StopCollectionDao extends AbstractDao {
 	}
 
 	public void insertStopToCollection(long collectionId, long stopId) {
-		SQLiteDatabase db = getWritableDatabase(context);
+		SQLiteDatabase db = getWritableDatabase();
 		insertStopToCollection(db, collectionId, stopId);
 		db.close();
 	}
@@ -52,7 +52,7 @@ public class StopCollectionDao extends AbstractDao {
 	}
 
 	public void delete(long id) {
-		SQLiteDatabase db = getWritableDatabase(context);
+		SQLiteDatabase db = getWritableDatabase();
 		db.delete(OwnStopsContract.CollectionEntry.TABLE_NAME, _ID + "=?", new String[] { String.valueOf(id) });
 		db.close();
 	}

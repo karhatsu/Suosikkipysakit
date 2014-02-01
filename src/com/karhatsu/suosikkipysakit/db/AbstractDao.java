@@ -4,11 +4,9 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
 public abstract class AbstractDao {
-	protected OwnStopsDbHelper dbHelper;
-	protected final Context context;
+	private OwnStopsDbHelper dbHelper;
 
 	protected AbstractDao(Context context) {
-		this.context = context;
 		this.dbHelper = new OwnStopsDbHelper(context);
 	}
 
@@ -16,7 +14,7 @@ public abstract class AbstractDao {
 		return dbHelper.getReadableDatabase();
 	}
 
-	protected SQLiteDatabase getWritableDatabase(Context context) {
+	protected SQLiteDatabase getWritableDatabase() {
 		return dbHelper.getWritableDatabase();
 	}
 

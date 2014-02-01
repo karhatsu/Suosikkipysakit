@@ -16,7 +16,7 @@ public class PreviousCityDao extends AbstractDao {
 	}
 
 	public City findCity() {
-		SQLiteDatabase db = dbHelper.getReadableDatabase();
+		SQLiteDatabase db = getReadableDatabase();
 		String[] projection = { COLUMN_PREFIX };
 		Cursor cursor = db.query(TABLE_NAME, projection, "",
 				new String[] {}, null, null, null);
@@ -28,7 +28,7 @@ public class PreviousCityDao extends AbstractDao {
 	}
 
 	public void save(City city) {
-		SQLiteDatabase db = getWritableDatabase(context);
+		SQLiteDatabase db = getWritableDatabase();
 		ContentValues values = new ContentValues();
 		values.put(COLUMN_PREFIX, city.getPrefix());
 		db.update(TABLE_NAME, values, "", new String[] {});
