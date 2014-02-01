@@ -51,7 +51,7 @@ public class StopDao extends AbstractDao {
 		db.close();
 	}
 
-	public Cursor findAll() {
+	public Cursor findAllStopsAndCollections() {
 		SQLiteDatabase db = getReadableDatabase();
 		return db.rawQuery(buildFindAllQuery(), new String[]{});
 	}

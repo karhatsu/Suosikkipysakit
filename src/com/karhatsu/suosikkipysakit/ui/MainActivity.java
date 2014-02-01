@@ -109,7 +109,7 @@ public class MainActivity extends Activity implements OnStopEditCancel {
 
 	private ListAdapter createStopListAdapter() {
 		stopDao = new StopDao(this);
-		Cursor cursor = stopDao.findAll();
+		Cursor cursor = stopDao.findAllStopsAndCollections();
 		return new StopListAdapter(this, cursor);
 	}
 
@@ -202,7 +202,7 @@ public class MainActivity extends Activity implements OnStopEditCancel {
 	public void refreshStopList() {
 		closeDbConnections();
 		stopDao = new StopDao(this);
-		Cursor cursor = stopDao.findAll();
+		Cursor cursor = stopDao.findAllStopsAndCollections();
 		getStopListAdapter().changeCursor(cursor);
 	}
 
