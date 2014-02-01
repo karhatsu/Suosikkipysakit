@@ -70,7 +70,11 @@ public class MainActivity extends Activity implements OnStopEditCancel {
 					showDepartures(null, selectedStopCode);
 				} else {
 					long selectedCollectionId = getSelectedCollectionId(stopListAdapter, position);
-					showCollectionDepartures(selectedCollectionId);
+					if (new StopCollectionDao(MainActivity.this).containsStops(selectedCollectionId)) {
+						showCollectionDepartures(selectedCollectionId);
+					} else {
+						ToastHelper.showToast(MainActivity.this, R.string.activity_main_no_stops_in_collection);
+					}
 				}
 			}
 		});
