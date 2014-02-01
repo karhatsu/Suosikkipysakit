@@ -18,12 +18,14 @@ import java.util.List;
 
 public class AddToCollectionDialog extends AlertDialog implements AdapterView.OnItemSelectedListener {
 	public static final int NO_COLLECTION_ID = 0;
+	private final Activity activity;
 
 	private OnStopEditCancel onCancel;
 	private StopCollection stopCollection;
 
 	public AddToCollectionDialog(Activity activity, OnStopEditCancel onCancel, long stopId) {
 		super(activity);
+		this.activity = activity;
 		this.onCancel = onCancel;
 		setTitle(R.string.dialog_add_to_collection_title);
 		LayoutInflater inflater = activity.getLayoutInflater();
@@ -96,6 +98,7 @@ public class AddToCollectionDialog extends AlertDialog implements AdapterView.On
 			} else {
 				createCollection(collectionName.getText(), stopId);
 			}
+			refreshMainActivity();
 		}
 
 		private void createCollection(Editable text, long stopId) {
@@ -104,6 +107,12 @@ public class AddToCollectionDialog extends AlertDialog implements AdapterView.On
 
 		private void addToSelectedCollection(long stopId) {
 			new StopCollectionDao(getContext()).insertStopToCollection(stopCollection.getId(), stopId);
+		}
+
+		private void refreshMainActivity() {
+			if (activity instanceof MainActivity) {
+				((MainActivity) activity).refreshStopList();
+			}
 		}
 	}
 
