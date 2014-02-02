@@ -27,10 +27,12 @@ public class MainActivity extends Activity implements OnStopEditCancel {
 	private StopDao stopDao;
 
 	private SaveStopDialog renameStopDialog;
+	private RenameCollectionDialog renameCollectionDialog;
 	private AddToCollectionDialog addToCollectionDialog;
 
 	private RenameStopId stopToBeRenamedId;
 	private AddToCollectionId stopToBeAddedToCollection;
+	private RenameCollectionId collectionToBeRenamedId;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -49,6 +51,9 @@ public class MainActivity extends Activity implements OnStopEditCancel {
 		} else if (retained instanceof AddToCollectionId) {
 			stopToBeAddedToCollection = (AddToCollectionId) retained;
 			showAddToCollectionDialog();
+		} else if (retained instanceof RenameCollectionId) {
+			collectionToBeRenamedId = (RenameCollectionId) retained;
+			showCollectionRenameDialog();
 		} else {
 			redirectToDeparturesIfRequested();
 		}
@@ -180,6 +185,11 @@ public class MainActivity extends Activity implements OnStopEditCancel {
 			new StopDao(this).delete(info.id);
 			refreshStopList();
 			return true;
+		case R.id.menu_collection_item_rename:
+			collectionToBeRenamedId = new RenameCollectionId(info.id);
+			showCollectionRenameDialog();
+			refreshStopList();
+			return true;
 		case R.id.menu_collection_item_delete:
 			new StopCollectionDao(this).delete(info.id);
 			refreshStopList();
@@ -192,6 +202,11 @@ public class MainActivity extends Activity implements OnStopEditCancel {
 	private void showStopRenameDialog() {
 		renameStopDialog = new RenameStopDialog(this, this, stopToBeRenamedId.id);
 		renameStopDialog.show();
+	}
+
+	private void showCollectionRenameDialog() {
+		renameCollectionDialog = new RenameCollectionDialog(this, this, collectionToBeRenamedId.id);
+		renameCollectionDialog.show();
 	}
 
 	private void showAddToCollectionDialog() {
@@ -207,6 +222,9 @@ public class MainActivity extends Activity implements OnStopEditCancel {
 		}
 		if (addToCollectionDialog != null) {
 			addToCollectionDialog.dismiss();
+		}
+		if (renameCollectionDialog != null) {
+			renameCollectionDialog.dismiss();
 		}
 	}
 
@@ -246,18 +264,30 @@ public class MainActivity extends Activity implements OnStopEditCancel {
 	public void stopEditCancelled() {
 		stopToBeRenamedId = null;
 		stopToBeAddedToCollection = null;
+		collectionToBeRenamedId = null;
 	}
 
-	private class RenameStopId {
-		private final long id;
+	private class RenameStopId extends ActionId {
 		private RenameStopId(long id) {
-			this.id = id;
+			super(id);
 		}
 	}
 
-	private class AddToCollectionId {
-		private final long id;
+	private class AddToCollectionId extends ActionId {
 		private AddToCollectionId(long id) {
+			super(id);
+		}
+	}
+
+	private class RenameCollectionId extends ActionId {
+		private RenameCollectionId(long id) {
+			super(id);
+		}
+	}
+
+	private abstract class ActionId {
+		protected final long id;
+		private ActionId(long id) {
 			this.id = id;
 		}
 	}

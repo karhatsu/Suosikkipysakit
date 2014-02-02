@@ -13,6 +13,8 @@ import static com.karhatsu.suosikkipysakit.db.OwnStopsContract.CollectionEntry.*
 import static com.karhatsu.suosikkipysakit.db.OwnStopsContract.CollectionStopEntry.*;
 
 public class StopCollectionDao extends AbstractDao {
+	private static final String[] STOP_COLLECTION_PROJECTION = { _ID, COLUMN_NAME };
+
 	public StopCollectionDao(Context context) {
 		super(context);
 	}
@@ -49,16 +51,31 @@ public class StopCollectionDao extends AbstractDao {
 		db.insert(OwnStopsContract.CollectionStopEntry.TABLE_NAME, null, values);
 	}
 
+	public StopCollection findById(long collectionId) {
+		SQLiteDatabase db = getReadableDatabase();
+		String selection = _ID + "=?";
+		String[] selectionArgs = new String[] { String.valueOf(collectionId) };
+		Cursor cursor = db.query(OwnStopsContract.CollectionEntry.TABLE_NAME, STOP_COLLECTION_PROJECTION, selection,
+				selectionArgs, null, null, null);
+		cursor.moveToNext();
+		StopCollection stopCollection = buildStopCollection(cursor);
+		db.close();
+		return stopCollection;
+	}
+
 	public List<StopCollection> findAll() {
 		SQLiteDatabase db = getReadableDatabase();
-		String[] projection = { _ID, COLUMN_NAME };
-		Cursor cursor = db.query(OwnStopsContract.CollectionEntry.TABLE_NAME, projection, null, null, null, null, COLUMN_NAME);
+		Cursor cursor = db.query(OwnStopsContract.CollectionEntry.TABLE_NAME, STOP_COLLECTION_PROJECTION, null, null, null, null, COLUMN_NAME);
 		List<StopCollection> stopCollections = new ArrayList<StopCollection>();
 		while (cursor.moveToNext()) {
-			stopCollections.add(new StopCollection(cursor.getLong(0), cursor.getString(1)));
+			stopCollections.add(buildStopCollection(cursor));
 		}
 		db.close();
 		return stopCollections;
+	}
+
+	private StopCollection buildStopCollection(Cursor cursor) {
+		return new StopCollection(cursor.getLong(0), cursor.getString(1));
 	}
 
 	public void delete(long id) {
@@ -75,5 +92,14 @@ public class StopCollectionDao extends AbstractDao {
 		int stopCount = cursor.getInt(0);
 		db.close();
 		return stopCount > 0;
+	}
+
+	public void updateName(long collectionId, String name) {
+		SQLiteDatabase db = getWritableDatabase();
+		ContentValues values = new ContentValues();
+		values.put(COLUMN_NAME, name);
+		db.update(OwnStopsContract.CollectionEntry.TABLE_NAME, values, _ID + "=?",
+				new String[]{String.valueOf(collectionId)});
+		db.close();
 	}
 }

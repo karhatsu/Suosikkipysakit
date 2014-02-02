@@ -4,7 +4,7 @@ public class StopCollection {
 	public static final String COLLECTION_ID_KEY = "com.karhatsu.suosikkipysakit.domain.STOP_COLLECTION_ID";
 
 	private final long id;
-	private final String name;
+	private String name;
 
 	public StopCollection(long id, String name) {
 		this.id = id;
@@ -22,5 +22,9 @@ public class StopCollection {
 	@Override
 	public String toString() {
 		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 }
