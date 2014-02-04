@@ -1,7 +1,5 @@
 package com.karhatsu.suosikkipysakit.datasource;
 
-import java.util.List;
-
 import com.karhatsu.suosikkipysakit.datasource.parsers.JSONParser;
 import com.karhatsu.suosikkipysakit.datasource.parsers.StopJSONParser;
 import com.karhatsu.suosikkipysakit.domain.Stop;

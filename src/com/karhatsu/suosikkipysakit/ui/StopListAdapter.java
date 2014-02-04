@@ -5,7 +5,6 @@ import android.database.Cursor;
 import android.support.v4.widget.SimpleCursorAdapter;
 
 import com.karhatsu.suosikkipysakit.R;
-import com.karhatsu.suosikkipysakit.db.OwnStopsContract;
 import com.karhatsu.suosikkipysakit.db.StopDao;
 
 public class StopListAdapter extends SimpleCursorAdapter {

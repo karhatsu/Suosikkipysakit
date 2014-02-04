@@ -6,16 +6,16 @@ import static com.karhatsu.suosikkipysakit.db.OwnStopsContract.StopEntry.COLUMN_
 import static com.karhatsu.suosikkipysakit.db.OwnStopsContract.StopEntry.COLUMN_NAME;
 import static com.karhatsu.suosikkipysakit.db.OwnStopsContract.StopEntry.COLUMN_NAME_BY_USER;
 import static com.karhatsu.suosikkipysakit.db.OwnStopsContract.StopEntry.TABLE_NAME;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import android.util.Log;
 import com.karhatsu.suosikkipysakit.domain.Stop;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class StopDao extends AbstractDao {
 
@@ -41,7 +41,7 @@ public class StopDao extends AbstractDao {
 		ContentValues values = new ContentValues();
 		values.put(COLUMN_NAME_BY_USER, name);
 		db.update(TABLE_NAME, values, _ID + "=?",
-				new String[]{String.valueOf(id)});
+				new String[] { String.valueOf(id) });
 		db.close();
 	}
 

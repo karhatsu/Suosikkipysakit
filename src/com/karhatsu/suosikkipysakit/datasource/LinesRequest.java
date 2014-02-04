@@ -1,7 +1,5 @@
 package com.karhatsu.suosikkipysakit.datasource;
 
-import java.util.ArrayList;
-
 import com.karhatsu.suosikkipysakit.datasource.parsers.JSONParser;
 import com.karhatsu.suosikkipysakit.datasource.parsers.LinesJSONParser;
 import com.karhatsu.suosikkipysakit.domain.Line;

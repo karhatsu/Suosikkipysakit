@@ -9,9 +9,9 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
+
 import com.karhatsu.suosikkipysakit.R;
 import com.karhatsu.suosikkipysakit.db.StopCollectionDao;
-import com.karhatsu.suosikkipysakit.domain.Stop;
 import com.karhatsu.suosikkipysakit.domain.StopCollection;
 
 public class RenameCollectionDialog extends AlertDialog {
