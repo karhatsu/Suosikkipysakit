@@ -85,9 +85,10 @@ public class AddStopActivity extends Activity implements OnStopEditCancel, Adapt
 	}
 
 	private ArrayAdapter<CharSequence> getCitySpinnerAdapter() {
-		return (ArrayAdapter<CharSequence>) getCitySpinner().getAdapter();
+		return getCitySpinnerAdapter(getCitySpinner());
 	}
 
+	@SuppressWarnings("unchecked")
 	private ArrayAdapter<CharSequence> getCitySpinnerAdapter(Spinner citySpinner) {
 		return (ArrayAdapter<CharSequence>) citySpinner.getAdapter();
 	}
