@@ -3,6 +3,7 @@ package com.karhatsu.suosikkipysakit.db;
 import static android.provider.BaseColumns._ID;
 import static com.karhatsu.suosikkipysakit.db.OwnStopsContract.StopEntry.COLUMN_CODE;
 import static com.karhatsu.suosikkipysakit.db.OwnStopsContract.StopEntry.COLUMN_COORDINATES;
+import static com.karhatsu.suosikkipysakit.db.OwnStopsContract.StopEntry.COLUMN_HIDDEN;
 import static com.karhatsu.suosikkipysakit.db.OwnStopsContract.StopEntry.COLUMN_NAME;
 import static com.karhatsu.suosikkipysakit.db.OwnStopsContract.StopEntry.COLUMN_NAME_BY_USER;
 import static com.karhatsu.suosikkipysakit.db.OwnStopsContract.StopEntry.TABLE_NAME;
@@ -57,7 +58,7 @@ public class StopDao extends AbstractDao {
 	}
 
 	private String buildFindAllQuery() {
-		return "select " + _ID + ", " + COLUMN_CODE + ", " + COLUMN_NAME_BY_USER + " as " + PROJECTION_NAME + " from " + TABLE_NAME + //
+		return "select " + _ID + ", " + COLUMN_CODE + ", " + COLUMN_NAME_BY_USER + " as " + PROJECTION_NAME + " from " + TABLE_NAME + " where " + COLUMN_HIDDEN + "=0 " + //
 				" union " + //
 				"select " + _ID + ", null, " + OwnStopsContract.CollectionEntry.COLUMN_NAME + " as " + PROJECTION_NAME + " from " + OwnStopsContract.CollectionEntry.TABLE_NAME + //
 				" order by " + PROJECTION_NAME;
