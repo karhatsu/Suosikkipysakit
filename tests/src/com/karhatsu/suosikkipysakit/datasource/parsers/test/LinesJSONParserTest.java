@@ -21,8 +21,8 @@ public class LinesJSONParserTest extends AbstractJSONParserTest {
 		}
 	}
 
-	public void testLinesCount() throws JSONException, DataNotFoundException {
-		assertEquals(6, parser.parse(jsonString).size());
+	public void testDuplicateLinesAreExcluded() throws JSONException, DataNotFoundException {
+		assertEquals(4, parser.parse(jsonString).size());
 	}
 
 	public void testLineCode() throws JSONException, DataNotFoundException {

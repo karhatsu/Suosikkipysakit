@@ -1,6 +1,8 @@
 package com.karhatsu.suosikkipysakit.datasource.parsers;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,19 +22,25 @@ public class LinesJSONParser implements JSONParser<Line> {
 		}
 		ArrayList<Line> lines = new ArrayList<Line>();
 		JSONArray jsonLines = new JSONArray(json);
+		Set<String> lineCodes = new HashSet<String>();
 		for (int i = 0; i < jsonLines.length(); i++) {
 			JSONObject jsonLine = jsonLines.getJSONObject(i);
-			lines.add(parseLine(jsonLine));
+			Line line = parseLine(jsonLine);
+			if (!lineCodes.contains(line.getLongCode())) {
+				lines.add(line);
+				lineCodes.add(line.getLongCode());
+			}
 		}
 		return lines;
 	}
 
 	private Line parseLine(JSONObject jsonLine) throws JSONException {
+		String longCode = jsonLine.getString("code");
 		String lineCode = jsonLine.getString("code_short");
 		String name = jsonLine.getString("name");
 		String lineStart = jsonLine.getString("line_start");
 		String lineEnd = jsonLine.getString("line_end");
-		Line line = new Line(lineCode, name, lineStart, lineEnd);
+		Line line = new Line(longCode, lineCode, name, lineStart, lineEnd);
 		line.setStops(parseStops(jsonLine));
 		return line;
 	}

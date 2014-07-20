@@ -7,6 +7,7 @@ import android.os.Parcelable;
 
 public class Line implements Parcelable {
 
+	private final String longCode;
 	private final String code;
 	private final String name;
 	private final String lineStart;
@@ -14,7 +15,8 @@ public class Line implements Parcelable {
 
 	private ArrayList<Stop> stops;
 
-	public Line(String code, String name, String lineStart, String lineEnd) {
+	public Line(String longCode, String code, String name, String lineStart, String lineEnd) {
+		this.longCode = longCode;
 		this.code = code;
 		this.name = name;
 		this.lineStart = lineStart;
@@ -23,11 +25,16 @@ public class Line implements Parcelable {
 
 	@SuppressWarnings("unchecked")
 	private Line(Parcel in) {
+		this.longCode = in.readString();
 		this.code = in.readString();
 		this.name = in.readString();
 		this.lineStart = in.readString();
 		this.lineEnd = in.readString();
 		this.stops = in.readArrayList(Stop.class.getClassLoader());
+	}
+
+	public String getLongCode() {
+		return longCode;
 	}
 
 	public String getCode() {
@@ -61,6 +68,7 @@ public class Line implements Parcelable {
 
 	@Override
 	public void writeToParcel(Parcel out, int flags) {
+		out.writeString(longCode);
 		out.writeString(code);
 		out.writeString(name);
 		out.writeString(lineStart);
