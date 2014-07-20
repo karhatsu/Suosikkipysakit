@@ -46,6 +46,14 @@ public class StopDao extends AbstractDao {
 		db.close();
 	}
 
+	public void hideStop(long id) {
+		SQLiteDatabase db = getWritableDatabase();
+		ContentValues values = new ContentValues();
+		values.put(COLUMN_HIDDEN, 1);
+		db.update(TABLE_NAME, values, _ID + "=?", new String[] { String.valueOf(id)});
+		db.close();
+	}
+
 	public void delete(long id) {
 		SQLiteDatabase db = getWritableDatabase();
 		db.delete(TABLE_NAME, _ID + "=?", new String[] { String.valueOf(id) });

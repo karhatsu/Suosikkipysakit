@@ -181,6 +181,10 @@ public class MainActivity extends Activity implements OnStopEditCancel {
 			showAddToCollectionDialog();
 			refreshStopList();
 			return true;
+		case R.id.menu_stop_item_hide:
+			new StopDao(this).hideStop(info.id);
+			refreshStopList();
+			return true;
 		case R.id.menu_stop_item_delete:
 			new StopDao(this).delete(info.id);
 			refreshStopList();
