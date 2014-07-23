@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.TextView;
 import com.karhatsu.suosikkipysakit.R;
+import com.karhatsu.suosikkipysakit.db.StopDao;
 import com.karhatsu.suosikkipysakit.domain.Stop;
 
 import java.util.List;
@@ -43,5 +44,14 @@ public class StopsVisibilityListAdapter extends ArrayAdapter<Stop> {
 	protected void setStopVisibility(View view, Stop stop) {
 		CheckBox checkbox = (CheckBox) view.findViewById(R.id.list_item_stop_visibility_checkbox);
 		checkbox.setChecked(stop.isVisible());
+		checkbox.setTag(stop);
+		checkbox.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				CheckBox checkBox = (CheckBox) view;
+				Stop stop = (Stop) checkBox.getTag();
+				new StopDao(getContext()).changeVisibility(stop);
+			}
+		});
 	}
 }

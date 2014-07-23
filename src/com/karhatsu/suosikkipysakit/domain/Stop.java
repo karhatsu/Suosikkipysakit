@@ -19,6 +19,7 @@ public class Stop implements Parcelable {
 	private final String coordinates;
 	private String nameByUser = null;
 	private boolean hidden;
+	private long id;
 
 	private List<Departure> departures;
 
@@ -30,12 +31,21 @@ public class Stop implements Parcelable {
 
 	@SuppressWarnings("unchecked")
 	private Stop(Parcel in) {
+		this.id = in.readLong();
 		this.code = in.readString();
 		this.name = in.readString();
 		this.coordinates = in.readString();
 		this.nameByUser = in.readString();
 		this.hidden = (in.readInt() == 1);
 		this.departures = in.readArrayList(Departure.class.getClassLoader());
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public String getCode() {
@@ -89,6 +99,7 @@ public class Stop implements Parcelable {
 
 	@Override
 	public void writeToParcel(Parcel out, int flags) {
+		out.writeLong(id);
 		out.writeString(code);
 		out.writeString(name);
 		out.writeString(coordinates);
