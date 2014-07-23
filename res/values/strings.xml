@@ -23,6 +23,8 @@
     <string name="activity_add_stop_line_wait_dialog_title">Haetaan linjoja</string>
     <string name="activity_lines_title">Valitse linja</string>
     <string name="activity_line_stops_title">Valitse pysäkki</string>
+    <string name="activity_stops_visibility_title">Pysäkkien näkyvyys</string>
+    <string name="activity_stops_visibility_info_text">Valitse pysäkit, jotka näkyvät suosikkilistauksessasi.</string>
     <string name="dialog_new_stop_no_save">Näytä lähdöt tallentamatta pysäkkiä</string>
     <string name="dialog_new_stop_title">Syötä pysäkin nimi</string>
     <string name="dialog_new_stop_save">Tallenna</string>
@@ -43,6 +45,7 @@
     <string name="menu_stop_item_delete">Poista</string>
     <string name="menu_collection_item_rename">Vaihda nimeä</string>
     <string name="menu_collection_item_delete">Poista kokoelma</string>
+    <string name="menu_main_stops_visibility">Näytä/piilota pysäkkejä</string>
 
     <string-array name="cities">
         <item>Helsinki</item>

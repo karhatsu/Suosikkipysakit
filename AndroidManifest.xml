@@ -51,6 +51,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.karhatsu.suosikkipysakit.LinesActivity "/>
         </activity>
+        <activity
+                android:name=".ui.StopsVisibilityActivity"
+                android:label="@string/activity_stops_visibility_title" >
+            <meta-data
+                    android:name="android.support.PARENT_ACTIVITY"
+                    android:value="com.karhatsu.suosikkipysakit.MainActivity "/>
+        </activity>
     </application>
 
 </manifest>

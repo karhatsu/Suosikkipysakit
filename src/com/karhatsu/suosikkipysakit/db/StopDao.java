@@ -22,6 +22,8 @@ public class StopDao extends AbstractDao {
 
 	public static final String PROJECTION_NAME = "name";
 
+	private static final int HIDDEN_VALUE = 1;
+
 	public StopDao(Context context) {
 		super(context);
 	}
@@ -49,7 +51,7 @@ public class StopDao extends AbstractDao {
 	public void hideStop(long id) {
 		SQLiteDatabase db = getWritableDatabase();
 		ContentValues values = new ContentValues();
-		values.put(COLUMN_HIDDEN, 1);
+		values.put(COLUMN_HIDDEN, HIDDEN_VALUE);
 		db.update(TABLE_NAME, values, _ID + "=?", new String[] { String.valueOf(id)});
 		db.close();
 	}
@@ -58,6 +60,20 @@ public class StopDao extends AbstractDao {
 		SQLiteDatabase db = getWritableDatabase();
 		db.delete(TABLE_NAME, _ID + "=?", new String[] { String.valueOf(id) });
 		db.close();
+	}
+
+	public List<Stop> findAllStops() {
+		SQLiteDatabase db = getReadableDatabase();
+		List<Stop> stops = new ArrayList<Stop>();
+		String[] projection = new String[] { COLUMN_CODE, COLUMN_NAME, COLUMN_COORDINATES,
+				COLUMN_NAME_BY_USER, COLUMN_HIDDEN };
+		String orderBy = COLUMN_NAME_BY_USER;
+		Cursor cursor = db.query(TABLE_NAME, projection, null, null, null, null, orderBy);
+		while (cursor.moveToNext()) {
+			stops.add(createStop(cursor));
+		}
+		db.close();
+		return stops;
 	}
 
 	public Cursor findAllStopsAndCollections() {
@@ -75,7 +91,7 @@ public class StopDao extends AbstractDao {
 	public Stop findById(long id) {
 		SQLiteDatabase db = getReadableDatabase();
 		String[] projection = { COLUMN_CODE, COLUMN_NAME, COLUMN_COORDINATES,
-				COLUMN_NAME_BY_USER };
+				COLUMN_NAME_BY_USER, COLUMN_HIDDEN };
 		String selection = _ID + "=?";
 		String[] selectionArgs = new String[] { String.valueOf(id) };
 		Cursor cursor = db.query(TABLE_NAME, projection, selection,
@@ -110,6 +126,7 @@ public class StopDao extends AbstractDao {
 		Stop stop = new Stop(cursor.getString(0), cursor.getString(1),
 				cursor.getString(2));
 		stop.setNameByUser(cursor.getString(3));
+		stop.setHidden(cursor.getInt(4) == HIDDEN_VALUE);
 		return stop;
 	}
 }

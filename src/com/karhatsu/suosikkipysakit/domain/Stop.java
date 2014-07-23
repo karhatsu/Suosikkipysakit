@@ -18,6 +18,7 @@ public class Stop implements Parcelable {
 	private final String name;
 	private final String coordinates;
 	private String nameByUser = null;
+	private boolean hidden;
 
 	private List<Departure> departures;
 
@@ -33,6 +34,7 @@ public class Stop implements Parcelable {
 		this.name = in.readString();
 		this.coordinates = in.readString();
 		this.nameByUser = in.readString();
+		this.hidden = (in.readInt() == 1);
 		this.departures = in.readArrayList(Departure.class.getClassLoader());
 	}
 
@@ -64,6 +66,18 @@ public class Stop implements Parcelable {
 		this.nameByUser = nameByUser;
 	}
 
+	public boolean isHidden() {
+		return hidden;
+	}
+
+	public boolean isVisible() {
+		return !isHidden();
+	}
+
+	public void setHidden(boolean hidden) {
+		this.hidden = hidden;
+	}
+
 	public static boolean isValidCode(String code) {
 		return PATTERN.matcher(code).matches();
 	}
@@ -79,6 +93,7 @@ public class Stop implements Parcelable {
 		out.writeString(name);
 		out.writeString(coordinates);
 		out.writeString(nameByUser);
+		out.writeInt(hidden ? 1 : 0);
 		out.writeList(departures);
 	}
 
