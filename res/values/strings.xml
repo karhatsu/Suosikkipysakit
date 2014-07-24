@@ -39,7 +39,7 @@
     <string name="dialog_rename_collection_title">Syötä kokoelman nimi</string>
     <string name="save">Tallenna</string>
     <string name="cancel">Peruuta</string>
-    <string name="connection_problem">Palvelimeen ei saatu yhteyttä. Varmista, että jokin verkkoyhteys on käytettävissä, ja yritä hetken kuluttua uudestaan.</string>
+    <string name="connection_problem">HSL:n palvelimeen ei saatu yhteyttä. Varmista, että jokin verkkoyhteys on käytettävissä, ja yritä hetken kuluttua uudestaan.</string>
     <string name="please_wait">Odota hetki…</string>
     <string name="menu_stop_item_rename">Vaihda nimeä</string>
     <string name="menu_stop_item_add_to_collection">Lisää pysäkkikokoelmaan</string>
