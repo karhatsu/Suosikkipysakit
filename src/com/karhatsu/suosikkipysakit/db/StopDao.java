@@ -115,7 +115,7 @@ public class StopDao extends AbstractDao {
 	}
 
 	private String buildCollectionIdSql() {
-		return "select " + COLUMN_CODE + ", " + COLUMN_NAME + ", " + COLUMN_COORDINATES + ", " + COLUMN_NAME_BY_USER //
+		return "select " + COLUMN_CODE + ", " + COLUMN_NAME + ", " + COLUMN_COORDINATES + ", " + COLUMN_NAME_BY_USER + ", " + COLUMN_HIDDEN + ", s." + _ID //
 				+ " from " + TABLE_NAME + " s inner join " + OwnStopsContract.CollectionStopEntry.TABLE_NAME + " cs " //
 				+ "on s." + _ID + "=cs." + OwnStopsContract.CollectionStopEntry.COLUMN_STOP_ID //
 				+ " where cs." + OwnStopsContract.CollectionStopEntry.COLUMN_COLLECTION_ID + "=?";
