@@ -102,7 +102,7 @@ public class StopDao extends AbstractDao {
 		return stop;
 	}
 
-	public List<Stop> findByCollectionid(long collectionId) {
+	public List<Stop> findByCollectionId(long collectionId) {
 		SQLiteDatabase db = getReadableDatabase();
 		String sql = buildCollectionIdSql();
 		Cursor cursor = db.rawQuery(sql, new String[]{String.valueOf(collectionId)});

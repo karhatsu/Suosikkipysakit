@@ -72,7 +72,7 @@ public class DeparturesActivity extends ListActivity implements OnHslRequestRead
 			stopRequest.execute(stopCode);
 		} else {
 			showProgressDialog();
-			List<Stop> stops = new StopDao(this).findByCollectionid(collectionId);
+			List<Stop> stops = new StopDao(this).findByCollectionId(collectionId);
 			String[] stopCodes = getStopCodesFrom(stops);
 			stopRequest.execute(stopCodes);
 		}
