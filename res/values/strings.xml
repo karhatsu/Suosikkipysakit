@@ -25,6 +25,8 @@
     <string name="activity_line_stops_title">Valitse pysäkki</string>
     <string name="activity_stops_visibility_title">Pysäkkien näkyvyys</string>
     <string name="activity_stops_visibility_info_text">Valitse pysäkit, jotka näkyvät suosikkilistauksessasi.</string>
+    <string name="activity_stops_visibility_changed_to_hidden">Pysäkki piilotettu</string>
+    <string name="activity_stops_visibility_changed_to_visible">Pysäkki laitettu näkyviin</string>
     <string name="dialog_new_stop_no_save">Näytä lähdöt tallentamatta pysäkkiä</string>
     <string name="dialog_new_stop_title">Syötä pysäkin nimi</string>
     <string name="dialog_new_stop_save">Tallenna</string>

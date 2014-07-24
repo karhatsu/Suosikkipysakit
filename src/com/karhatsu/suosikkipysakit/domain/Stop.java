@@ -88,6 +88,10 @@ public class Stop implements Parcelable {
 		this.hidden = hidden;
 	}
 
+	public void changeVisibility() {
+		this.hidden = !this.hidden;
+	}
+
 	public static boolean isValidCode(String code) {
 		return PATTERN.matcher(code).matches();
 	}

@@ -131,9 +131,10 @@ public class StopDao extends AbstractDao {
 	}
 
 	public void changeVisibility(Stop stop) {
+		stop.changeVisibility();
 		SQLiteDatabase db = getReadableDatabase();
 		ContentValues values = new ContentValues();
-		values.put(COLUMN_HIDDEN, stop.isVisible() ? HIDDEN_VALUE : VISIBLE_VALUE);
+		values.put(COLUMN_HIDDEN, stop.isVisible() ? VISIBLE_VALUE : HIDDEN_VALUE);
 		db.update(TABLE_NAME, values, _ID + "=?", new String[] { String.valueOf(stop.getId())});
 		db.close();
 	}

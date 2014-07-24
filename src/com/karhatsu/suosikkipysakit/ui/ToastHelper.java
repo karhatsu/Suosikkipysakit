@@ -7,7 +7,11 @@ import android.widget.Toast;
 public class ToastHelper {
 
 	public static void showToast(Context context, int resourceId) {
-		Toast toast = Toast.makeText(context, resourceId, Toast.LENGTH_LONG);
+		showToast(context, resourceId, Toast.LENGTH_LONG);
+	}
+
+	public static void showToast(Context context, int resourceId, int duration) {
+		Toast toast = Toast.makeText(context, resourceId, duration);
 		toast.setGravity(Gravity.TOP, 0, 200);
 		toast.show();
 	}

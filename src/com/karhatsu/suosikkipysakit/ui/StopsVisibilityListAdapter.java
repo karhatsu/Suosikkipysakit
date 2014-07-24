@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.TextView;
+import android.widget.Toast;
 import com.karhatsu.suosikkipysakit.R;
 import com.karhatsu.suosikkipysakit.db.StopDao;
 import com.karhatsu.suosikkipysakit.domain.Stop;
@@ -51,6 +52,9 @@ public class StopsVisibilityListAdapter extends ArrayAdapter<Stop> {
 				CheckBox checkBox = (CheckBox) view;
 				Stop stop = (Stop) checkBox.getTag();
 				new StopDao(getContext()).changeVisibility(stop);
+				int text = stop.isHidden() ? R.string.activity_stops_visibility_changed_to_hidden :
+						R.string.activity_stops_visibility_changed_to_visible;
+				ToastHelper.showToast(getContext(), text, Toast.LENGTH_SHORT);
 			}
 		});
 	}
