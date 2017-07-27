@@ -12,7 +12,7 @@ public class Stop implements Parcelable {
 	public static final String CODE_KEY = "com.karhatsu.suosikkipysakit.domain.CODE";
 
 	private static final Pattern PATTERN = Pattern
-			.compile("(V|E|Ke|Jä|Tu)?\\d{4}");
+			.compile("(V|E|Ki|Ke|Jä|Tu)?\\d{4}");
 
 	private final String code;
 	private final String name;

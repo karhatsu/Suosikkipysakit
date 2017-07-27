@@ -4,6 +4,7 @@ public enum City {
 	HELSINKI("Helsinki", ""),
 	ESPOO("Espoo", "E"),
 	VANTAA("Vantaa", "V"),
+	KIRKKONUMMI("Kirkkonummi", "Ki"),
 	KERAVA("Kerava", "Ke"),
 	JARVENPAA("Järvenpää", "Jä"),
 	TUUSULA("Tuusula", "Tu");
