@@ -8,31 +8,19 @@ public class TimeParserTest extends TestCase {
 
 	private TimeParser timeParser = new TimeParser();
 
-	public void testFourDigits() {
-		assertEquals("10:12", timeParser.format("1012"));
-		assertEquals("21:34", timeParser.format("2134"));
-	}
-
-	public void testThreeDigits() {
-		assertEquals("09:48", timeParser.format("948"));
-		assertEquals("02:33", timeParser.format("233"));
-	}
-
 	public void testTwoDigits() {
-		assertEquals("00:48", timeParser.format("48"));
-		assertEquals("00:33", timeParser.format("33"));
+		assertEquals("13:54", timeParser.format(50040));
 	}
 
-	public void testOneDigit() {
-		assertEquals("00:08", timeParser.format("8"));
-		assertEquals("00:00", timeParser.format("0"));
+	public void testPadding() {
+		assertEquals("07:23", timeParser.format(26580));
+		assertEquals("09:04", timeParser.format(32640));
+		assertEquals("19:01", timeParser.format(68460));
 	}
 
-	public void testOvernight() {
-		assertEquals("00:00", timeParser.format("2400"));
-		assertEquals("00:01", timeParser.format("2401"));
-		assertEquals("00:59", timeParser.format("2459"));
-		assertEquals("01:00", timeParser.format("2500"));
+	public void testNextDay() {
+		assertEquals("00:26", timeParser.format(87960));
+		assertEquals("01:11", timeParser.format(90660));
 	}
 
 }

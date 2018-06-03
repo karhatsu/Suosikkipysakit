@@ -1,9 +1,7 @@
 package com.karhatsu.suosikkipysakit.datasource.parsers;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -14,7 +12,6 @@ import com.karhatsu.suosikkipysakit.domain.Departure;
 import com.karhatsu.suosikkipysakit.domain.Stop;
 
 public class StopJSONParser implements JSONParser<Stop> {
-	private LineParser lineParser = new LineParser();
 	private TimeParser timeParser = new TimeParser();
 
 	public ArrayList<Stop> parse(String json) throws DataNotFoundException,
@@ -23,7 +20,7 @@ public class StopJSONParser implements JSONParser<Stop> {
 			throw new DataNotFoundException();
 		}
 		ArrayList<Stop> stops = new ArrayList<Stop>();
-		JSONArray jsonStops = new JSONArray(json);
+		JSONArray jsonStops = new JSONObject(json).getJSONObject("data").getJSONArray("stops");
 		for (int i = 0; i < jsonStops.length(); i++) {
 			JSONObject jsonStop = jsonStops.getJSONObject(i);
 			Stop stop = parseStop(jsonStop);
@@ -33,57 +30,29 @@ public class StopJSONParser implements JSONParser<Stop> {
 		return stops;
 	}
 
-	private Map<String, String> getEndStops(JSONObject jsonStop)
-			throws JSONException {
-		Map<String, String> endStops = new HashMap<String, String>();
-		JSONArray jsonLines = jsonStop.getJSONArray("lines");
-		for (int i = 0; i < jsonLines.length(); i++) {
-			String[] lineAndTarget = jsonLines.getString(i).split(":");
-			endStops.put(lineAndTarget[0], lineAndTarget[1]);
-		}
-		return endStops;
-	}
-
 	private Stop parseStop(JSONObject jsonStop) throws JSONException {
 		String code = jsonStop.getString("code");
-		String name = parseStopName(jsonStop);
-		String coordinates = jsonStop.getString("coords");
-		return new Stop(code, name, coordinates);
-	}
-
-	private String parseStopName(JSONObject jsonStop) throws JSONException {
-		String name = jsonStop.getString("name_fi");
-		String address = jsonStop.getString("address_fi");
-		if (address.length() > 0) {
-			name += " (" + jsonStop.getString("address_fi") + ")";
-		}
-		return name;
+		String name = jsonStop.getString("name");
+		return new Stop(code, name);
 	}
 
 	private List<Departure> parseDepartures(JSONObject jsonStop)
 			throws JSONException {
-		if (jsonStop.isNull("departures")) {
-			return new ArrayList<Departure>();
-		}
-		Map<String, String> endStops = getEndStops(jsonStop);
-		JSONArray jsonDepartures = jsonStop.getJSONArray("departures");
+		JSONArray jsonDepartures = jsonStop.getJSONArray("stoptimesWithoutPatterns");
 		List<Departure> departures = new ArrayList<Departure>(10);
 		for (int i = 0; i < jsonDepartures.length(); i++) {
 			JSONObject jsonDeparture = jsonDepartures.getJSONObject(i);
-			departures.add(parseDeparture(endStops, jsonDeparture));
+			departures.add(parseDeparture(jsonDeparture));
 		}
 		return departures;
 	}
 
-	private Departure parseDeparture(Map<String, String> endStops,
-			JSONObject jsonDeparture) throws JSONException {
-		String lineCode = jsonDeparture.getString("code");
-		String line = lineParser.format(lineCode);
-		String time = timeParser.format(String.valueOf(jsonDeparture
-				.getInt("time")));
-		String endStop = endStops.get(lineCode);
-		Departure departure = new Departure(line, time, endStop);
-		return departure;
+	private Departure parseDeparture(JSONObject jsonDeparture) throws JSONException {
+		JSONObject pattern = jsonDeparture.getJSONObject("trip").getJSONObject("pattern");
+		String line = pattern.getJSONObject("route").getString("shortName");
+		String time = timeParser.format(jsonDeparture.getInt("realtimeDeparture"));
+		String endStop = pattern.getString("headsign");
+		return new Departure(line, time, endStop);
 	}
 
 }

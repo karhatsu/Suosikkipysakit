@@ -21,49 +21,33 @@ public class LinesJSONParserTest extends AbstractJSONParserTest {
 		}
 	}
 
-	public void testDuplicateLinesAreExcluded() throws JSONException, DataNotFoundException {
-		assertEquals(4, parser.parse(jsonString).size());
-	}
-
 	public void testLineCode() throws JSONException, DataNotFoundException {
-		assertEquals("14", getFirstLine().getCode());
+		assertEquals("94B", getFirstLine().getCode());
 	}
 
 	public void testLineName() throws JSONException, DataNotFoundException {
-		assertEquals("Hernesaari - Kamppi - Pajamäki", getFirstLine().getName());
+		assertEquals("Kivikonlaita-Kontula(M)", getFirstLine().getName());
 	}
 
 	public void testLineStart() throws JSONException, DataNotFoundException {
-		assertEquals("Hernesaari", getFirstLine().getLineStart());
+		assertEquals("Kontula (M)", getFirstLine().getLineStart());
 	}
 
 	public void testLineEnd() throws JSONException, DataNotFoundException {
-		assertEquals("Pajamäki", getFirstLine().getLineEnd());
+		assertEquals("Keinulaudantie", getFirstLine().getLineEnd());
 	}
 
 	public void testStopCount() throws JSONException, DataNotFoundException {
-		assertEquals(35, getFirstLine().getStops().size());
+		assertEquals(24, getFirstLine().getStops().size());
 	}
 
 	public void testStopCode() throws JSONException, DataNotFoundException {
-		assertEquals("1204101", getFirstLineFirstStop().getCode());
+		assertEquals("4421", getFirstLineFirstStop().getCode());
 	}
 
-	public void testStopNameWithAddress() throws JSONException,
+	public void testStopName() throws JSONException,
 			DataNotFoundException {
-		assertEquals("Hernesaaren laituri (Hernesaarenranta)",
-				getFirstLineFirstStop().getName());
-	}
-
-	public void testStopNameWithoutAddress() throws JSONException,
-			DataNotFoundException {
-		assertEquals("Pihlajasaarenkatu", getFirstLineStop(1).getName());
-	}
-
-	public void testStopCoordinates() throws JSONException,
-			DataNotFoundException {
-		assertEquals("2551480,6671094", getFirstLineFirstStop()
-				.getCoordinates());
+		assertEquals("Kontula (M)", getFirstLineFirstStop().getName());
 	}
 
 	private Line getFirstLine() throws JSONException, DataNotFoundException {
@@ -72,12 +56,7 @@ public class LinesJSONParserTest extends AbstractJSONParserTest {
 
 	private Stop getFirstLineFirstStop() throws JSONException,
 			DataNotFoundException {
-		return getFirstLineStop(0);
-	}
-
-	private Stop getFirstLineStop(int index) throws JSONException,
-			DataNotFoundException {
-		return getFirstLine().getStops().get(index);
+		return getFirstLine().getStops().get(0);
 	}
 
 	public void testEmptyJSON() {

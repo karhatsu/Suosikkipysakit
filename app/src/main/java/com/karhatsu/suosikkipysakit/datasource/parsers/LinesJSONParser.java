@@ -1,8 +1,6 @@
 package com.karhatsu.suosikkipysakit.datasource.parsers;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -21,25 +19,22 @@ public class LinesJSONParser implements JSONParser<Line> {
 			throw new DataNotFoundException();
 		}
 		ArrayList<Line> lines = new ArrayList<Line>();
-		JSONArray jsonLines = new JSONArray(json);
-		Set<String> lineCodes = new HashSet<String>();
+		JSONArray jsonLines = new JSONObject(json).getJSONObject("data").getJSONArray("routes");
 		for (int i = 0; i < jsonLines.length(); i++) {
 			JSONObject jsonLine = jsonLines.getJSONObject(i);
 			Line line = parseLine(jsonLine);
-			if (!lineCodes.contains(line.getLongCode())) {
-				lines.add(line);
-				lineCodes.add(line.getLongCode());
-			}
+			lines.add(line);
 		}
 		return lines;
 	}
 
 	private Line parseLine(JSONObject jsonLine) throws JSONException {
-		String longCode = jsonLine.getString("code");
-		String lineCode = jsonLine.getString("code_short");
-		String name = jsonLine.getString("name");
-		String lineStart = jsonLine.getString("line_start");
-		String lineEnd = jsonLine.getString("line_end");
+		String longCode = jsonLine.getString("gtfsId");
+		String lineCode = jsonLine.getString("shortName");
+		String name = jsonLine.getString("longName");
+		JSONArray stops = jsonLine.getJSONArray("stops");
+		String lineStart = ((JSONObject) stops.get(0)).getString("name");
+		String lineEnd = ((JSONObject) stops.get(stops.length() - 1)).getString("name");
 		Line line = new Line(longCode, lineCode, name, lineStart, lineEnd);
 		line.setStops(parseStops(jsonLine));
 		return line;
@@ -48,23 +43,14 @@ public class LinesJSONParser implements JSONParser<Line> {
 	private ArrayList<Stop> parseStops(JSONObject jsonLine)
 			throws JSONException {
 		ArrayList<Stop> stops = new ArrayList<Stop>();
-		JSONArray jsonStops = jsonLine.getJSONArray("line_stops");
+		JSONArray jsonStops = jsonLine.getJSONArray("stops");
 		for (int i = 0; i < jsonStops.length(); i++) {
 			JSONObject jsonStop = jsonStops.getJSONObject(i);
 			String code = jsonStop.getString("code");
-			String name = parseStopName(jsonStop);
-			String coordinates = jsonStop.getString("coords");
-			stops.add(new Stop(code, name, coordinates));
+			String name = jsonStop.getString("name");
+			stops.add(new Stop(code, name));
 		}
 		return stops;
-	}
-
-	private String parseStopName(JSONObject jsonStop) throws JSONException {
-		String name = jsonStop.getString("name");
-		if (!jsonStop.isNull("address")) {
-			name += " (" + jsonStop.getString("address") + ")";
-		}
-		return name;
 	}
 
 }

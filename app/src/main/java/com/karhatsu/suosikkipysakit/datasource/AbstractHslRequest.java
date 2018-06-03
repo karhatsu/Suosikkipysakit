@@ -1,24 +1,29 @@
 package com.karhatsu.suosikkipysakit.datasource;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Scanner;
-
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpGet;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.http.AndroidHttpClient;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.karhatsu.suosikkipysakit.datasource.parsers.JSONParser;
 
+import javax.net.ssl.HttpsURLConnection;
+
 public abstract class AbstractHslRequest<R> extends AsyncTask<String, Void, ArrayList<R>> {
 
-	protected static final String BASE_URL = "http://api.reittiopas.fi/hsl/prod/";
+	protected static final String API_URL = "https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql";
 
 	private OnHslRequestReady<R> notifier;
 	private boolean connectionFailed;
@@ -89,21 +94,29 @@ public abstract class AbstractHslRequest<R> extends AsyncTask<String, Void, Arra
 		}
 	}
 
-	private String queryDataAsJson(String searchParam) throws IOException {
-
-		AndroidHttpClient client = AndroidHttpClient.newInstance("Android");
+	private String queryDataAsJson(String searchParam) {
 		try {
-			HttpResponse response = client.execute(new HttpGet(
-					getRequestUrl(searchParam)));
-			return readStream(response.getEntity().getContent());
-		} finally {
-			client.close();
+			HttpsURLConnection urlConnection = (HttpsURLConnection) new URL(API_URL).openConnection();
+			urlConnection.setRequestMethod("POST");
+			urlConnection.setDoOutput(true);
+			urlConnection.setChunkedStreamingMode(0);
+			urlConnection.setRequestProperty("Content-Type", "application/graphql");
+			OutputStream out = new BufferedOutputStream(urlConnection.getOutputStream());
+			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(out, "UTF-8"));
+			writer.write(getRequestBody(searchParam));
+			writer.flush();
+			writer.close();
+			InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+			return readStream(in);
+		} catch (Exception e) {
+			Log.e("API", e.toString(), e);
+			throw new RuntimeException(e);
 		}
 	}
 
-	protected abstract String getRequestUrl(String searchParam);
+	protected abstract String getRequestBody(String searchParam);
 
-	public String readStream(InputStream stream) throws IOException {
+	public String readStream(InputStream stream) {
 		Scanner scanner = new Scanner(stream).useDelimiter("\\A");
 		return scanner.hasNext() ? scanner.next() : "";
 	}

@@ -23,10 +23,10 @@ public class Stop implements Parcelable {
 
 	private List<Departure> departures;
 
-	public Stop(String code, String name, String coordinates) {
+	public Stop(String code, String name) {
 		this.code = code;
 		this.name = name;
-		this.coordinates = coordinates;
+		this.coordinates = "";
 	}
 
 	@SuppressWarnings("unchecked")

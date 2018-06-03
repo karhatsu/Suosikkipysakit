@@ -17,7 +17,6 @@ import com.karhatsu.suosikkipysakit.db.StopCollectionDao;
 import com.karhatsu.suosikkipysakit.db.StopDao;
 import com.karhatsu.suosikkipysakit.domain.Stop;
 import com.karhatsu.suosikkipysakit.domain.StopCollection;
-import com.karhatsu.suosikkipysakit.util.AccountInformation;
 
 public class MainActivity extends Activity implements OnStopEditCancel {
 
@@ -33,7 +32,6 @@ public class MainActivity extends Activity implements OnStopEditCancel {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		AccountInformation.initialize(this);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		setupStopListView();

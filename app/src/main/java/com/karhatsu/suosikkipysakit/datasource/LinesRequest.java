@@ -3,9 +3,6 @@ package com.karhatsu.suosikkipysakit.datasource;
 import com.karhatsu.suosikkipysakit.datasource.parsers.JSONParser;
 import com.karhatsu.suosikkipysakit.datasource.parsers.LinesJSONParser;
 import com.karhatsu.suosikkipysakit.domain.Line;
-import com.karhatsu.suosikkipysakit.util.AccountInformation;
-
-import java.net.URLEncoder;
 
 public class LinesRequest extends AbstractHslRequest<Line> {
 
@@ -19,19 +16,26 @@ public class LinesRequest extends AbstractHslRequest<Line> {
 	}
 
 	@Override
-	protected String getRequestUrl(String line) {
-		String url = BASE_URL + "?request=lines&user="
-				+ AccountInformation.getUserName() + "&pass="
-				+ AccountInformation.getPassword() + "&format=json";
-		line = line.trim();
-		if (line.equalsIgnoreCase("metro")) {
-			url += "&query=ruoholahti&transport_type=6";
-		} else if (line.equalsIgnoreCase("lautta")) {
-			url += "&query=suomenlinna&transport_type=7";
-		} else {
-			url += "&query=" + URLEncoder.encode(line);
+	protected String getRequestBody(String searchParam) {
+		String routeQuery = "name: \"" + searchParam + "\"";
+		if (searchParam.equalsIgnoreCase("metro")) {
+			routeQuery = "modes: \"SUBWAY\"";
+		} else if (searchParam.equalsIgnoreCase("lautta")) {
+			routeQuery = "modes: \"FERRY\"";
 		}
-		return url;
+		return new StringBuilder()
+				.append("{")
+				.append("  routes(" + routeQuery + ") {")
+				.append("    gtfsId")
+				.append("    shortName")
+				.append("    longName")
+				.append("    stops {")
+				.append("      name")
+				.append("      code")
+				.append("    }")
+				.append("  }")
+				.append("}")
+				.toString();
 	}
 
 }

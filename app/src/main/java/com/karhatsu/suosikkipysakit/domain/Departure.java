@@ -1,6 +1,7 @@
 package com.karhatsu.suosikkipysakit.domain;
 
 import java.util.Calendar;
+import java.util.TimeZone;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -35,10 +36,9 @@ public class Departure implements Parcelable {
 	}
 
 	public int getMinutesToGo() {
-		Calendar now = Calendar.getInstance();
+		Calendar now = Calendar.getInstance(TimeZone.getTimeZone("Europe/Helsinki"));
 		Calendar departure = (Calendar) now.clone();
-		departure.set(Calendar.HOUR_OF_DAY,
-				Integer.parseInt(time.substring(0, 2)));
+		departure.set(Calendar.HOUR_OF_DAY, Integer.parseInt(time.substring(0, 2)));
 		departure.set(Calendar.MINUTE, Integer.parseInt(time.substring(3, 5)));
 		if (now.get(Calendar.HOUR_OF_DAY) > departure.get(Calendar.HOUR_OF_DAY)) {
 			departure.add(Calendar.DAY_OF_MONTH, 1);

@@ -122,8 +122,7 @@ public class StopDao extends AbstractDao {
 	}
 
 	private Stop createStop(Cursor cursor) {
-		Stop stop = new Stop(cursor.getString(0), cursor.getString(1),
-				cursor.getString(2));
+		Stop stop = new Stop(cursor.getString(0), cursor.getString(1));
 		stop.setNameByUser(cursor.getString(3));
 		stop.setHidden(cursor.getInt(4) == HIDDEN_VALUE);
 		stop.setId(cursor.getLong(5));
