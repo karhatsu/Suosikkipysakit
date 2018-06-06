@@ -3,6 +3,7 @@ package com.karhatsu.suosikkipysakit.ui;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.*;
@@ -197,6 +198,7 @@ public class MainActivity extends AppCompatActivity implements OnStopEditCancel 
 			new StopDao(this).delete(info.id);
 			refreshStopList();
 			setupNoStopsText();
+			showSnackbar(R.string.activity_main_stop_deleted);
 			return true;
 		case R.id.menu_collection_item_rename:
 			collectionToBeRenamedId = new RenameCollectionId(info.id);
@@ -207,10 +209,15 @@ public class MainActivity extends AppCompatActivity implements OnStopEditCancel 
 			new StopCollectionDao(this).delete(info.id);
 			refreshStopList();
 			setupNoStopsText();
+			showSnackbar(R.string.activity_main_collection_deleted);
 			return true;
 		default:
 			return super.onContextItemSelected(item);
 		}
+	}
+
+	private void showSnackbar(int text) {
+		Snackbar.make(getStopListView(), text, Snackbar.LENGTH_SHORT).show();
 	}
 
 	private void showStopRenameDialog() {
