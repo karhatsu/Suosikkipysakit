@@ -1,24 +1,23 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-    
-    <Button
+    android:layout_height="match_parent"
+    tools:context=".ui.MainActivity">
+
+    <include layout="@layout/toolbar" />
+
+    <include layout="@layout/content_main" />
+
+    <android.support.design.widget.FloatingActionButton
         android:id="@+id/add_stop_button"
-        android:layout_width="match_parent"
+        android:onClick="addStop"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/activity_main_add_stop_button"
-        android:padding="10dp"
-        android:textSize="20sp"
-        android:onClick="addStop" />
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:tint="@color/colorWhite"
+        app:srcCompat="@android:drawable/ic_input_add" />
 
-    <ListView
-        android:id="@+id/stop_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="false"
-        android:layout_below="@id/add_stop_button"
-        tools:context=".MainActivity" />
-
-</RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>

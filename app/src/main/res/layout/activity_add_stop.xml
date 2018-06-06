@@ -1,73 +1,13 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-    
-    <TextView 
-        android:id="@+id/add_stop_code_instructions"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/activity_add_stop_code_instructions"
-        android:padding="5dp" />
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".ui.AddStopActivity">
 
-    <Spinner
-        android:id="@+id/city_spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/add_stop_code_instructions"
-        android:layout_centerHorizontal="true"/>
+    <include layout="@layout/toolbar" />
 
-    <TextView
-        android:id="@+id/add_stop_city_prefix"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/city_spinner"
-        android:textSize="40dp"
-        android:text="V" />
+    <include layout="@layout/content_add_stop" />
 
-    <EditText
-        android:id="@+id/add_stop_code"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/city_spinner"
-        android:layout_toRightOf="@id/add_stop_city_prefix"
-        android:inputType="numberSigned"
-        android:hint="@string/activity_add_stop_code_hint"
-        android:maxLength="6"
-        tools:context=".AddStopActivity" />
-    
-    <Button
-        android:id="@+id/add_stop_code_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/add_stop_code"
-        android:text="@string/activity_add_stop_search_by_code"
-        android:onClick="searchStop" />
-
-    <TextView 
-        android:id="@+id/add_stop_line_instructions"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/add_stop_code_button"
-        android:text="@string/activity_add_stop_line_instructions"
-        android:padding="5dp"
-        android:layout_marginTop="10dp" />
-
-    <EditText
-        android:id="@+id/add_stop_line"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/add_stop_line_instructions"
-        android:inputType="textCapWords"
-        android:hint="@string/activity_add_stop_line_hint"
-        tools:context=".AddStopActivity" />
-    
-    <Button 
-        android:id="@+id/add_stop_line_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/add_stop_line"
-        android:text="@string/activity_add_stop_search_by_line"
-        android:onClick="searchLine" />
-
-</RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>

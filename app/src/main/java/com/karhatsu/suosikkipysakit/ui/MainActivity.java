@@ -1,9 +1,10 @@
 package com.karhatsu.suosikkipysakit.ui;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.*;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.AdapterView;
@@ -11,6 +12,7 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.karhatsu.suosikkipysakit.R;
 import com.karhatsu.suosikkipysakit.db.StopCollectionDao;
@@ -18,7 +20,7 @@ import com.karhatsu.suosikkipysakit.db.StopDao;
 import com.karhatsu.suosikkipysakit.domain.Stop;
 import com.karhatsu.suosikkipysakit.domain.StopCollection;
 
-public class MainActivity extends Activity implements OnStopEditCancel {
+public class MainActivity extends AppCompatActivity implements OnStopEditCancel {
 
 	private StopDao stopDao;
 
@@ -34,7 +36,10 @@ public class MainActivity extends Activity implements OnStopEditCancel {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		Toolbar toolbar = findViewById(R.id.toolbar);
+		setSupportActionBar(toolbar);
 		setupStopListView();
+		setupNoStopsText();
 		resumeToPreviousState();
 	}
 
@@ -105,13 +110,21 @@ public class MainActivity extends Activity implements OnStopEditCancel {
 		startActivity(intent);
 	}
 
+	private void setupNoStopsText() {
+		final ListView stopListView = getStopListView();
+		TextView noStopsText = findViewById(R.id.no_stops_text);
+		int stopsCount = stopListView.getAdapter().getCount();
+		noStopsText.setVisibility(stopsCount > 0 ? View.INVISIBLE : View.VISIBLE);
+	}
+
 	@Override
 	protected void onResume() {
 		super.onResume();
 		refreshStopList();
+		setupNoStopsText();
 	}
 
-	@Override
+	/*@Override
 	public Object onRetainNonConfigurationInstance() {
 		if (stopToBeRenamedId != null) {
 			return stopToBeRenamedId;
@@ -119,7 +132,7 @@ public class MainActivity extends Activity implements OnStopEditCancel {
 			return stopToBeAddedToCollection;
 		}
 		return null;
-	}
+	}*/
 
 	private ListAdapter createStopListAdapter() {
 		stopDao = new StopDao(this);
@@ -183,6 +196,7 @@ public class MainActivity extends Activity implements OnStopEditCancel {
 		case R.id.menu_stop_item_delete:
 			new StopDao(this).delete(info.id);
 			refreshStopList();
+			setupNoStopsText();
 			return true;
 		case R.id.menu_collection_item_rename:
 			collectionToBeRenamedId = new RenameCollectionId(info.id);
@@ -192,6 +206,7 @@ public class MainActivity extends Activity implements OnStopEditCancel {
 		case R.id.menu_collection_item_delete:
 			new StopCollectionDao(this).delete(info.id);
 			refreshStopList();
+			setupNoStopsText();
 			return true;
 		default:
 			return super.onContextItemSelected(item);

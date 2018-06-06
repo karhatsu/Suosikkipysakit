@@ -2,11 +2,13 @@ package com.karhatsu.suosikkipysakit.ui;
 
 import java.util.ArrayList;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -22,7 +24,7 @@ import com.karhatsu.suosikkipysakit.domain.City;
 import com.karhatsu.suosikkipysakit.domain.Line;
 import com.karhatsu.suosikkipysakit.domain.Stop;
 
-public class AddStopActivity extends Activity implements OnStopEditCancel, AdapterView.OnItemSelectedListener {
+public class AddStopActivity extends AppCompatActivity implements OnStopEditCancel, AdapterView.OnItemSelectedListener {
 
 	private ProgressDialog progressDialog;
 
@@ -39,6 +41,12 @@ public class AddStopActivity extends Activity implements OnStopEditCancel, Adapt
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_stop);
+		Toolbar toolbar = findViewById(R.id.toolbar);
+		setSupportActionBar(toolbar);
+		ActionBar actionBar = getSupportActionBar();
+		if (actionBar != null) {
+			actionBar.setDisplayHomeAsUpEnabled(true);
+		}
 		createCitySpinner();
 		addEnterListeners();
 		initializeRequests();
@@ -147,7 +155,7 @@ public class AddStopActivity extends Activity implements OnStopEditCancel, Adapt
 		linesRequest = new LinesRequest(linesRequestNotifier);
 	}
 
-	@Override
+	/*@Override
 	public Object onRetainNonConfigurationInstance() {
 		if (stopToBeSaved != null) {
 			return stopToBeSaved;
@@ -159,7 +167,7 @@ public class AddStopActivity extends Activity implements OnStopEditCancel, Adapt
 			return linesRequest;
 		}
 		return null;
-	}
+	}*/
 
 	@Override
 	protected void onPause() {
@@ -236,19 +244,7 @@ public class AddStopActivity extends Activity implements OnStopEditCancel, Adapt
 	@Override
 	public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
 		CharSequence selectedCity = (CharSequence) adapterView.getItemAtPosition(position);
-		setCityPrefix(selectedCity);
 		storePreviousCitySelection(selectedCity);
-	}
-
-	private void setCityPrefix(CharSequence selectedCity) {
-		TextView cityPrefixView = (TextView) findViewById(R.id.add_stop_city_prefix);
-		String cityPrefix = getCityPrefix(selectedCity);
-		cityPrefixView.setText(cityPrefix);
-		if (cityPrefix.equals("")) {
-			cityPrefixView.setPadding(0, 0, 0, 0);
-		} else {
-			cityPrefixView.setPadding(5, 0, 5, 0);
-		}
 	}
 
 	private void storePreviousCitySelection(CharSequence selectedCity) {

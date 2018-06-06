@@ -2,7 +2,7 @@
 
     <string name="app_name">Suosikkipysäkit</string>
     <string name="activity_main_title">Suosikkipysäkit</string>
-    <string name="activity_main_add_stop_button">Uusi pysäkki</string>
+    <string name="activity_main_no_stops_added">Et ole lisännyt vielä yhtään suosikkipysäkkiä. Etsi ensimmäinen suosikkipysäkkisi klikkaamalla alanurkan lisäysikonia.</string>
     <string name="activity_main_no_stops_in_collection">Kokoelmassa ei ole yhtään pysäkkiä</string>
     <string name="activity_departures_dialog_title">Haetaan lähtöjä</string>
     <string name="activity_departures_nothing_found">Tältä pysäkiltä ei ole lähiaikoina yhtään lähtöä</string>
