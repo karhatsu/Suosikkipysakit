@@ -49,7 +49,9 @@
         </activity>
         <activity
             android:name=".ui.LineStopsActivity"
-            android:label="@string/activity_line_stops_title">
+            android:label="@string/activity_line_stops_title"
+            android:parentActivityName=".ui.LinesActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.karhatsu.suosikkipysakit.ui.LinesActivity" />
