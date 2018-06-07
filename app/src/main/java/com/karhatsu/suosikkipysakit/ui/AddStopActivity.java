@@ -6,6 +6,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -24,7 +25,7 @@ import com.karhatsu.suosikkipysakit.domain.City;
 import com.karhatsu.suosikkipysakit.domain.Line;
 import com.karhatsu.suosikkipysakit.domain.Stop;
 
-public class AddStopActivity extends AppCompatActivity implements OnStopEditCancel, AdapterView.OnItemSelectedListener {
+public class AddStopActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
 	private ProgressDialog progressDialog;
 
@@ -34,7 +35,6 @@ public class AddStopActivity extends AppCompatActivity implements OnStopEditCanc
 	private LinesRequest linesRequest;
 	private LinesRequestNotifier linesRequestNotifier = new LinesRequestNotifier();
 
-	private SaveStopDialog saveStopDialog;
 	private Stop stopToBeSaved;
 
 	@Override
@@ -157,9 +157,7 @@ public class AddStopActivity extends AppCompatActivity implements OnStopEditCanc
 
 	/*@Override
 	public Object onRetainNonConfigurationInstance() {
-		if (stopToBeSaved != null) {
-			return stopToBeSaved;
-		} else if (stopRequest != null && stopRequest.isRunning()) {
+		if (stopRequest != null && stopRequest.isRunning()) {
 			stopRequest.setOnHslRequestReady(null);
 			return stopRequest;
 		} else if (linesRequest != null && linesRequest.isRunning()) {
@@ -172,9 +170,6 @@ public class AddStopActivity extends AppCompatActivity implements OnStopEditCanc
 	@Override
 	protected void onPause() {
 		super.onPause();
-		if (saveStopDialog != null) {
-			saveStopDialog.dismiss();
-		}
 		hideProgressDialog();
 	}
 
@@ -292,8 +287,11 @@ public class AddStopActivity extends AppCompatActivity implements OnStopEditCanc
 	}
 
 	private void showSaveStopDialog() {
-		saveStopDialog = new NewStopDialog(this, this, stopToBeSaved);
-		saveStopDialog.show();
+		DialogFragment dialogFragment = new NewStopDialog();
+		Bundle args = new Bundle();
+		args.putParcelable(NewStopDialog.STOP, stopToBeSaved);
+		dialogFragment.setArguments(args);
+		dialogFragment.show(getSupportFragmentManager(), "newStop");
 	}
 
 	private class LinesRequestNotifier implements OnHslRequestReady<Line> {
@@ -322,10 +320,5 @@ public class AddStopActivity extends AppCompatActivity implements OnStopEditCanc
 		public Context getContext() {
 			return AddStopActivity.this;
 		}
-	}
-
-	@Override
-	public void stopEditCancelled() {
-		stopToBeSaved = null;
 	}
 }

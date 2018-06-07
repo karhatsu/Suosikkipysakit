@@ -2,6 +2,8 @@ package com.karhatsu.suosikkipysakit.ui;
 
 import java.util.List;
 
+import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -13,11 +15,10 @@ import android.widget.ListView;
 import com.karhatsu.suosikkipysakit.R;
 import com.karhatsu.suosikkipysakit.domain.Stop;
 
-public class LineStopsActivity extends AppCompatActivity implements OnStopEditCancel {
+public class LineStopsActivity extends AppCompatActivity {
 
 	protected static final String LINE_STOPS = "com.karhatsu.suosikkipysakit.ui.LINE_STOPS";
 
-	private SaveStopDialog saveStopDialog;
 	private Stop stopToBeSaved;
 
 	@Override
@@ -38,19 +39,6 @@ public class LineStopsActivity extends AppCompatActivity implements OnStopEditCa
 		setupLineStopsView();
 	}
 
-	@Override
-	protected void onPause() {
-		super.onPause();
-		if (saveStopDialog != null) {
-			saveStopDialog.dismiss();
-		}
-	}
-
-	/*@Override
-	public Object onRetainNonConfigurationInstance() {
-		return stopToBeSaved;
-	}*/
-
 	private void setupLineStopsView() {
 		List<Stop> lineStops = getIntent().getParcelableArrayListExtra(
 				LINE_STOPS);
@@ -69,13 +57,10 @@ public class LineStopsActivity extends AppCompatActivity implements OnStopEditCa
 	}
 
 	private void showSaveStopDialog() {
-		saveStopDialog = new NewStopDialog(this, this, stopToBeSaved);
-		saveStopDialog.show();
+		DialogFragment dialogFragment = new NewStopDialog();
+		Bundle args = new Bundle();
+		args.putParcelable(NewStopDialog.STOP, stopToBeSaved);
+		dialogFragment.setArguments(args);
+		dialogFragment.show(getSupportFragmentManager(), "newStop");
 	}
-
-	@Override
-	public void stopEditCancelled() {
-		stopToBeSaved = null;
-	}
-
 }
