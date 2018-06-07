@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.*;
@@ -26,12 +27,10 @@ public class MainActivity extends AppCompatActivity implements OnStopEditCancel 
 	private StopDao stopDao;
 
 	private SaveStopDialog renameStopDialog;
-	private RenameCollectionDialog renameCollectionDialog;
 	private AddToCollectionDialog addToCollectionDialog;
 
 	private RenameStopId stopToBeRenamedId;
 	private AddToCollectionId stopToBeAddedToCollection;
-	private RenameCollectionId collectionToBeRenamedId;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -52,9 +51,6 @@ public class MainActivity extends AppCompatActivity implements OnStopEditCancel 
 		} else if (retained instanceof AddToCollectionId) {
 			stopToBeAddedToCollection = (AddToCollectionId) retained;
 			showAddToCollectionDialog();
-		} else if (retained instanceof RenameCollectionId) {
-			collectionToBeRenamedId = (RenameCollectionId) retained;
-			showCollectionRenameDialog();
 		} else {
 			redirectToDeparturesIfRequested();
 		}
@@ -201,8 +197,7 @@ public class MainActivity extends AppCompatActivity implements OnStopEditCancel 
 			showSnackbar(R.string.activity_main_stop_deleted);
 			return true;
 		case R.id.menu_collection_item_rename:
-			collectionToBeRenamedId = new RenameCollectionId(info.id);
-			showCollectionRenameDialog();
+			showCollectionRenameDialog(info.id);
 			refreshStopList();
 			return true;
 		case R.id.menu_collection_item_delete:
@@ -225,9 +220,12 @@ public class MainActivity extends AppCompatActivity implements OnStopEditCancel 
 		renameStopDialog.show();
 	}
 
-	private void showCollectionRenameDialog() {
-		renameCollectionDialog = new RenameCollectionDialog(this, this, collectionToBeRenamedId.id);
-		renameCollectionDialog.show();
+	private void showCollectionRenameDialog(long collectionId) {
+		DialogFragment dialogFragment = new RenameCollectionDialog();
+		Bundle args = new Bundle();
+		args.putLong(RenameCollectionDialog.COLLECTION_ID, collectionId);
+		dialogFragment.setArguments(args);
+		dialogFragment.show(getSupportFragmentManager(), "collectionRename");
 	}
 
 	private void showAddToCollectionDialog() {
@@ -243,9 +241,6 @@ public class MainActivity extends AppCompatActivity implements OnStopEditCancel 
 		}
 		if (addToCollectionDialog != null) {
 			addToCollectionDialog.dismiss();
-		}
-		if (renameCollectionDialog != null) {
-			renameCollectionDialog.dismiss();
 		}
 	}
 
@@ -285,7 +280,6 @@ public class MainActivity extends AppCompatActivity implements OnStopEditCancel 
 	public void stopEditCancelled() {
 		stopToBeRenamedId = null;
 		stopToBeAddedToCollection = null;
-		collectionToBeRenamedId = null;
 	}
 
 	private class RenameStopId extends ActionId {
@@ -296,12 +290,6 @@ public class MainActivity extends AppCompatActivity implements OnStopEditCancel 
 
 	private class AddToCollectionId extends ActionId {
 		private AddToCollectionId(long id) {
-			super(id);
-		}
-	}
-
-	private class RenameCollectionId extends ActionId {
-		private RenameCollectionId(long id) {
 			super(id);
 		}
 	}
