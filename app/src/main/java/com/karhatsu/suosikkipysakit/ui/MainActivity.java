@@ -22,13 +22,9 @@ import com.karhatsu.suosikkipysakit.db.StopDao;
 import com.karhatsu.suosikkipysakit.domain.Stop;
 import com.karhatsu.suosikkipysakit.domain.StopCollection;
 
-public class MainActivity extends AppCompatActivity implements OnStopEditCancel {
+public class MainActivity extends AppCompatActivity {
 
 	private StopDao stopDao;
-
-	private AddToCollectionDialog addToCollectionDialog;
-
-	private AddToCollectionId stopToBeAddedToCollection;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -42,13 +38,7 @@ public class MainActivity extends AppCompatActivity implements OnStopEditCancel 
 	}
 
 	protected void resumeToPreviousState() {
-		Object retained = getLastNonConfigurationInstance();
-		if (retained instanceof AddToCollectionId) {
-			stopToBeAddedToCollection = (AddToCollectionId) retained;
-			showAddToCollectionDialog();
-		} else {
-			redirectToDeparturesIfRequested();
-		}
+		redirectToDeparturesIfRequested();
 	}
 
 	private void redirectToDeparturesIfRequested() {
@@ -116,14 +106,6 @@ public class MainActivity extends AppCompatActivity implements OnStopEditCancel 
 		setupNoStopsText();
 	}
 
-	/*@Override
-	public Object onRetainNonConfigurationInstance() {
-		if (stopToBeAddedToCollection != null) {
-			return stopToBeAddedToCollection;
-		}
-		return null;
-	}*/
-
 	private ListAdapter createStopListAdapter() {
 		stopDao = new StopDao(this);
 		Cursor cursor = stopDao.findAllStopsAndCollections();
@@ -174,8 +156,7 @@ public class MainActivity extends AppCompatActivity implements OnStopEditCancel 
 			refreshStopList();
 			return true;
 		case R.id.menu_stop_item_add_to_collection:
-			stopToBeAddedToCollection = new AddToCollectionId(info.id);
-			showAddToCollectionDialog();
+			showAddToCollectionDialog(info.id);
 			refreshStopList();
 			return true;
 		case R.id.menu_stop_item_hide:
@@ -223,17 +204,12 @@ public class MainActivity extends AppCompatActivity implements OnStopEditCancel 
 		dialogFragment.show(getSupportFragmentManager(), "collectionRename");
 	}
 
-	private void showAddToCollectionDialog() {
-		addToCollectionDialog = new AddToCollectionDialog(this, this, stopToBeAddedToCollection.id);
-		addToCollectionDialog.show();
-	}
-
-	@Override
-	protected void onPause() {
-		super.onPause();
-		if (addToCollectionDialog != null) {
-			addToCollectionDialog.dismiss();
-		}
+	private void showAddToCollectionDialog(long stopId) {
+		DialogFragment dialogFragment = new AddToCollectionDialog();
+		Bundle args = new Bundle();
+		args.putLong(AddToCollectionDialog.STOP_ID, stopId);
+		dialogFragment.setArguments(args);
+		dialogFragment.show(getSupportFragmentManager(), "addToCollection");
 	}
 
 	@Override
@@ -266,24 +242,6 @@ public class MainActivity extends AppCompatActivity implements OnStopEditCancel 
 	private StopListAdapter getStopListAdapter() {
 		ListView stopListView = getStopListView();
 		return (StopListAdapter) stopListView.getAdapter();
-	}
-
-	@Override
-	public void stopEditCancelled() {
-		stopToBeAddedToCollection = null;
-	}
-
-	private class AddToCollectionId extends ActionId {
-		private AddToCollectionId(long id) {
-			super(id);
-		}
-	}
-
-	private abstract class ActionId {
-		protected final long id;
-		private ActionId(long id) {
-			this.id = id;
-		}
 	}
 
 	@Override
