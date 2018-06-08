@@ -25,7 +25,9 @@ import com.karhatsu.suosikkipysakit.domain.Stop;
 import com.karhatsu.suosikkipysakit.domain.StopCollection;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
+import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Timer;
@@ -40,8 +42,11 @@ public class DeparturesFragment extends ListFragment implements OnHslRequestRead
     private TimerTask timerTask;
     private Handler handler = new Handler(Looper.getMainLooper());
     private StopCollection stopCollection;
+    private Calendar calendar;
 
-    public DeparturesFragment() {}
+    public DeparturesFragment() {
+        calendar = new GregorianCalendar();
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -143,7 +148,11 @@ public class DeparturesFragment extends ListFragment implements OnHslRequestRead
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        ((DepartureListAdapter) getListView().getAdapter()).notifyDataSetChanged();
+                        Calendar now = new GregorianCalendar();
+                        if (now.get(Calendar.MINUTE) != calendar.get(Calendar.MINUTE)) {
+                            ((DepartureListAdapter) getListView().getAdapter()).notifyDataSetChanged();
+                        }
+                        calendar = now;
                     }
                 });
             }
