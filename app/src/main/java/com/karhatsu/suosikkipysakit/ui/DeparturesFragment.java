@@ -8,8 +8,7 @@ import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ListFragment;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +17,7 @@ import android.widget.ListView;
 import com.karhatsu.suosikkipysakit.R;
 import com.karhatsu.suosikkipysakit.datasource.OnHslRequestReady;
 import com.karhatsu.suosikkipysakit.datasource.StopRequest;
+import com.karhatsu.suosikkipysakit.db.StopCollectionDao;
 import com.karhatsu.suosikkipysakit.db.StopDao;
 import com.karhatsu.suosikkipysakit.domain.Departure;
 import com.karhatsu.suosikkipysakit.domain.DeparturesComparator;
@@ -39,6 +39,7 @@ public class DeparturesFragment extends ListFragment implements OnHslRequestRead
     private Timer timer = new Timer();
     private TimerTask timerTask;
     private Handler handler = new Handler(Looper.getMainLooper());
+    private StopCollection stopCollection;
 
     public DeparturesFragment() {}
 
@@ -51,12 +52,18 @@ public class DeparturesFragment extends ListFragment implements OnHslRequestRead
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.departures_list, container, false);
-
-        /*if (mItem != null) {
-            ListView recyclerView = rootView.findViewById(R.id.departures_list);
-            recyclerView.setAdapter(new AnotherListAdapter(rootView.getContext(), DummyContent.ITEMS));
-        }*/
-
+        Bundle arguments = getArguments();
+        if (arguments != null) {
+            Stop stop = arguments.getParcelable(Stop.STOP_KEY);
+            String stopCode = arguments.getString(Stop.CODE_KEY);
+            long collectionId = arguments.getLong(StopCollection.COLLECTION_ID_KEY, 0);
+            if (stop != null) {
+                setToolbarTitle(stop.getNameByUser());
+            } else if (stopCode == null) {
+                stopCollection = new StopCollectionDao(getContext()).findById(collectionId);
+                setToolbarTitle(stopCollection.getName());
+            }
+        }
         return rootView;
     }
 
@@ -76,11 +83,8 @@ public class DeparturesFragment extends ListFragment implements OnHslRequestRead
         String stopCode = arguments.getString(Stop.CODE_KEY);
         long collectionId = arguments.getLong(StopCollection.COLLECTION_ID_KEY, 0);
         if (stop != null) {
-            Log.d("DEPA", "stop available: " + stop.getName());
             showDepartures(stop.getDepartures());
-            setToolbarTitle(stop.getName());
         } else if (stopCode != null) {
-            Log.d("DEPA", "stopCode: " + stopCode);
             showProgressDialog();
             stopRequest.execute(stopCode);
         } else {
@@ -94,10 +98,7 @@ public class DeparturesFragment extends ListFragment implements OnHslRequestRead
     private void setToolbarTitle(String title) {
         Activity activity = getActivity();
         if (activity != null) {
-            Toolbar appBarLayout = activity.findViewById(R.id.toolbar);
-            if (appBarLayout != null) {
-                appBarLayout.setTitle(title);
-            }
+            ((AppCompatActivity)activity).getSupportActionBar().setTitle(title);
         }
     }
 
@@ -155,8 +156,7 @@ public class DeparturesFragment extends ListFragment implements OnHslRequestRead
         hideProgressDialog();
         List<Departure> departures = getDeparturesFrom(stops);
         showDepartures(departures);
-        Log.d("DEPA", "got result, stops: " + stops.size());
-        if (stops.size() == 1) {
+        if (stopCollection == null && stops.size() == 1) {
             setToolbarTitle(stops.get(0).getName());
         }
     }
