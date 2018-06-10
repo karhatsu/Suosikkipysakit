@@ -5,6 +5,8 @@
     <EditText
         android:id="@+id/dialog_rename_stop_name"
         android:inputType="textCapSentences"
+        android:hint="@string/dialog_rename_stop_title"
+        android:layout_margin="@dimen/dialog_margin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 </LinearLayout>

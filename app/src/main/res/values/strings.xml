@@ -2,8 +2,10 @@
 
     <string name="app_name">Suosikkipysäkit</string>
     <string name="activity_main_title">Suosikkipysäkit</string>
-    <string name="activity_main_add_stop_button">Uusi pysäkki</string>
+    <string name="activity_main_no_stops_added">Et ole lisännyt vielä yhtään suosikkipysäkkiä. Etsi ensimmäinen suosikkipysäkkisi klikkaamalla alanurkan lisäysikonia.</string>
     <string name="activity_main_no_stops_in_collection">Kokoelmassa ei ole yhtään pysäkkiä</string>
+    <string name="activity_main_stop_deleted">Pysäkki poistettu</string>
+    <string name="activity_main_collection_deleted">Kokoelma poistettu</string>
     <string name="activity_departures_dialog_title">Haetaan lähtöjä</string>
     <string name="activity_departures_nothing_found">Tältä pysäkiltä ei ole lähiaikoina yhtään lähtöä</string>
     <string name="activity_departures_title">Seuraavat lähdöt</string>
@@ -16,7 +18,7 @@
     <string name="activity_add_stop_search_by_line">Hae linjaa</string>
     <string name="activity_add_stop_stop_not_found">Pysäkkiä ei löytynyt</string>
     <string name="activity_add_stop_line_not_found" >Yhtään linjaa ei löytynyt</string>
-    <string name="activity_add_stop_invalid_code">Virheellinen pysäkkitunnus. Esimerkkejä kelvollisesta tunnuksesta: 1234, E1234, V1234, Tu1234, Ke1234, Jä1234.</string>
+    <string name="activity_add_stop_invalid_code">Virheellinen pysäkkitunnus. Tunnuksen pitää olla 4-numeroinen.</string>
     <string name="activity_add_stop_empty_line">Syötä linjan tunnus</string>
     <string name="activity_add_stop_code_wait_dialog_title">Haetaan pysäkkiä</string>
     <string name="activity_add_stop_line_wait_dialog_title">Haetaan linjoja</string>

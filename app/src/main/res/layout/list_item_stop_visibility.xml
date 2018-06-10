@@ -9,6 +9,8 @@
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:layout_alignParentLeft="true"
+              android:layout_margin="@dimen/text_margin"
+              android:textAppearance="?attr/textAppearanceListItem"
             />
 
     <TextView android:id="@+id/list_item_stop_visibility_stop"
@@ -16,6 +18,9 @@
               android:layout_height="wrap_content"
               android:layout_alignBaseline="@id/list_item_stop_visibility_checkbox"
               android:layout_alignBottom="@id/list_item_stop_visibility_checkbox"
-              android:layout_toRightOf="@id/list_item_stop_visibility_checkbox"/>
+              android:layout_toRightOf="@id/list_item_stop_visibility_checkbox"
+              android:layout_margin="@dimen/text_margin"
+              android:textAppearance="?attr/textAppearanceListItem"
+        />
 
 </RelativeLayout>

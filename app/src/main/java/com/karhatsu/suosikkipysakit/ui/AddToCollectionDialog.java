@@ -1,127 +1,118 @@
 package com.karhatsu.suosikkipysakit.ui;
 
 import android.app.Activity;
-import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
-import android.text.Editable;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.DialogFragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+
 import com.karhatsu.suosikkipysakit.R;
 import com.karhatsu.suosikkipysakit.db.StopCollectionDao;
 import com.karhatsu.suosikkipysakit.domain.StopCollection;
 
 import java.util.List;
 
-public class AddToCollectionDialog extends AlertDialog implements AdapterView.OnItemSelectedListener {
-	public static final int NO_COLLECTION_ID = 0;
-	private final Activity activity;
+public class AddToCollectionDialog extends DialogFragment implements AdapterView.OnItemSelectedListener {
+    public static final String STOP_ID = "stopId";
+    public static final int NO_COLLECTION_ID = 0;
 
-	private OnStopEditCancel onCancel;
-	private StopCollection stopCollection;
+    private long selectedCollectionId = NO_COLLECTION_ID;
 
-	public AddToCollectionDialog(Activity activity, OnStopEditCancel onCancel, long stopId) {
-		super(activity);
-		this.activity = activity;
-		this.onCancel = onCancel;
-		setTitle(R.string.dialog_add_to_collection_title);
-		LayoutInflater inflater = activity.getLayoutInflater();
-		View view = inflater.inflate(R.layout.dialog_add_to_collection, null);
-		setView(view);
-		createCollectionsSpinner(view);
-		EditText collectionNameField = (EditText) view.findViewById(R.id.dialog_new_collection_name);
-		setButtons(collectionNameField, stopId);
-	}
+    @NonNull
+    @Override
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        LayoutInflater inflater = getActivity().getLayoutInflater();
+        final View view = inflater.inflate(R.layout.dialog_add_to_collection, null);
+        createCollectionsSpinner(view);
+        builder.setView(view);
+        builder.setTitle(R.string.dialog_add_to_collection_title);
+        addPositiveButton(builder, view);
+        addNegativeButton(builder);
+        return builder.create();
+    }
 
-	private void createCollectionsSpinner(View view) {
-		Spinner collectionsSpinner = (Spinner) view.findViewById(R.id.dialog_existing_collection_id);
-		collectionsSpinner.setOnItemSelectedListener(this);
-		List<StopCollection> names = new StopCollectionDao(getContext()).findAll();
-		if (names.isEmpty()) {
-			collectionsSpinner.setVisibility(View.INVISIBLE);
-		} else {
-			StopCollection noStopCollection = new StopCollection(NO_COLLECTION_ID,
-					getContext().getString(R.string.dialog_add_to_collection_spinner_default));
-			names.add(0, noStopCollection);
-		}
-		collectionsSpinner.setAdapter(createStopCollectionArrayAdapter(names));
-	}
+    private void addPositiveButton(AlertDialog.Builder builder, final View view) {
+        builder.setPositiveButton(R.string.save, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                save(view);
+            }
+        });
+    }
 
-	private ArrayAdapter<StopCollection> createStopCollectionArrayAdapter(List<StopCollection> names) {
-		ArrayAdapter<StopCollection> adapter = new ArrayAdapter<StopCollection>(getContext(),
-				android.R.layout.simple_spinner_item, names);
-		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		return adapter;
-	}
+    private void addNegativeButton(AlertDialog.Builder builder) {
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+    }
 
-	private void setButtons(EditText collectionNameField, long stopId) {
-		setButton(BUTTON_POSITIVE, getContext().getString(R.string.save), new SaveButtonListener(collectionNameField, stopId));
-		setButton(BUTTON_NEGATIVE, getContext().getString(R.string.cancel), new CancelButtonListener());
-	}
+    private void createCollectionsSpinner(View view) {
+        Spinner collectionsSpinner = view.findViewById(R.id.dialog_existing_collection_id);
+        collectionsSpinner.setOnItemSelectedListener(this);
+        List<StopCollection> names = new StopCollectionDao(view.getContext()).findAll();
+        if (names.isEmpty()) {
+            collectionsSpinner.setVisibility(View.INVISIBLE);
+        } else {
+            String noStopName = view.getContext().getString(R.string.dialog_add_to_collection_spinner_default);
+            StopCollection noStopCollection = new StopCollection(NO_COLLECTION_ID, noStopName);
+            names.add(0, noStopCollection);
+        }
+        collectionsSpinner.setAdapter(createStopCollectionArrayAdapter(view, names));
+    }
 
-	private boolean isExistingStopSelected() {
-		return stopCollection != null && stopCollection.getId() != NO_COLLECTION_ID;
-	}
+    private ArrayAdapter<StopCollection> createStopCollectionArrayAdapter(View view, List<StopCollection> names) {
+        ArrayAdapter<StopCollection> adapter = new ArrayAdapter<StopCollection>(view.getContext(),
+                android.R.layout.simple_spinner_item, names);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        return adapter;
+    }
 
-	@Override
-	public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-		stopCollection = (StopCollection) adapterView.getItemAtPosition(position);
-		EditText newCollectionNameEditText = (EditText) findViewById(R.id.dialog_new_collection_name);
-		if (isExistingStopSelected()) {
-			newCollectionNameEditText.setVisibility(View.INVISIBLE);
-		} else {
-			newCollectionNameEditText.setVisibility(View.VISIBLE);
-		}
-	}
+    private boolean isExistingStopSelected() {
+        return selectedCollectionId != NO_COLLECTION_ID;
+    }
 
-	@Override
-	public void onNothingSelected(AdapterView<?> adapterView) {
-	}
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+        selectedCollectionId = ((StopCollection) adapterView.getItemAtPosition(position)).getId();
+        EditText newCollectionNameEditText = getDialog().findViewById(R.id.dialog_new_collection_name);
+        if (isExistingStopSelected()) {
+            newCollectionNameEditText.setVisibility(View.INVISIBLE);
+        } else {
+            newCollectionNameEditText.setVisibility(View.VISIBLE);
+        }
+    }
 
-	private class SaveButtonListener implements DialogInterface.OnClickListener {
-		private EditText collectionName;
-		private long stopId;
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+    }
 
-		private SaveButtonListener(EditText collectionName, long stopId) {
-			this.collectionName = collectionName;
-			this.stopId = stopId;
-		}
+    private void save(View view) {
+        long stopId = getArguments().getLong(STOP_ID);
+        if (isExistingStopSelected()) {
+            new StopCollectionDao(view.getContext()).insertStopToCollection(selectedCollectionId, stopId);
+        } else {
+            EditText collectionNameField = view.findViewById(R.id.dialog_new_collection_name);
+            String collectionName = collectionNameField.getText().toString();
+            new StopCollectionDao(view.getContext()).saveCollectionAndAddStop(collectionName, stopId);
+        }
+        refreshMainActivity();
+    }
 
-		@Override
-		public void onClick(DialogInterface dialog, int which) {
-			dialog.dismiss();
-			if (isExistingStopSelected()) {
-				addToSelectedCollection(stopId);
-			} else {
-				createCollection(collectionName.getText(), stopId);
-			}
-			refreshMainActivity();
-		}
-
-		private void createCollection(Editable text, long stopId) {
-			new StopCollectionDao(getContext()).saveCollectionAndAddStop(text.toString(), stopId);
-		}
-
-		private void addToSelectedCollection(long stopId) {
-			new StopCollectionDao(getContext()).insertStopToCollection(stopCollection.getId(), stopId);
-		}
-
-		private void refreshMainActivity() {
-			if (activity instanceof MainActivity) {
-				((MainActivity) activity).refreshStopList();
-			}
-		}
-	}
-
-	private class CancelButtonListener implements
-			DialogInterface.OnClickListener {
-		@Override
-		public void onClick(DialogInterface dialog, int which) {
-			onCancel.stopEditCancelled();
-			dialog.dismiss();
-		}
-	}
+    private void refreshMainActivity() {
+        Activity activity = getActivity();
+        if (activity instanceof MainActivity) {
+            ((MainActivity) activity).refreshStopList();
+        }
+    }
 }

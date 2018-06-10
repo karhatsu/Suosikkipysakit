@@ -1,9 +1,12 @@
 package com.karhatsu.suosikkipysakit.ui;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
+import android.support.v4.app.DialogFragment;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.*;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.AdapterView;
@@ -11,6 +14,7 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.karhatsu.suosikkipysakit.R;
 import com.karhatsu.suosikkipysakit.db.StopCollectionDao;
@@ -18,40 +22,23 @@ import com.karhatsu.suosikkipysakit.db.StopDao;
 import com.karhatsu.suosikkipysakit.domain.Stop;
 import com.karhatsu.suosikkipysakit.domain.StopCollection;
 
-public class MainActivity extends Activity implements OnStopEditCancel {
+public class MainActivity extends AppCompatActivity {
 
 	private StopDao stopDao;
-
-	private SaveStopDialog renameStopDialog;
-	private RenameCollectionDialog renameCollectionDialog;
-	private AddToCollectionDialog addToCollectionDialog;
-
-	private RenameStopId stopToBeRenamedId;
-	private AddToCollectionId stopToBeAddedToCollection;
-	private RenameCollectionId collectionToBeRenamedId;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		Toolbar toolbar = findViewById(R.id.toolbar);
+		setSupportActionBar(toolbar);
 		setupStopListView();
+		setupNoStopsText();
 		resumeToPreviousState();
 	}
 
 	protected void resumeToPreviousState() {
-		Object retained = getLastNonConfigurationInstance();
-		if (retained instanceof RenameStopId) {
-			stopToBeRenamedId = (RenameStopId) retained;
-			showStopRenameDialog();
-		} else if (retained instanceof AddToCollectionId) {
-			stopToBeAddedToCollection = (AddToCollectionId) retained;
-			showAddToCollectionDialog();
-		} else if (retained instanceof RenameCollectionId) {
-			collectionToBeRenamedId = (RenameCollectionId) retained;
-			showCollectionRenameDialog();
-		} else {
-			redirectToDeparturesIfRequested();
-		}
+		redirectToDeparturesIfRequested();
 	}
 
 	private void redirectToDeparturesIfRequested() {
@@ -105,20 +92,18 @@ public class MainActivity extends Activity implements OnStopEditCancel {
 		startActivity(intent);
 	}
 
+	private void setupNoStopsText() {
+		final ListView stopListView = getStopListView();
+		TextView noStopsText = findViewById(R.id.no_stops_text);
+		int stopsCount = stopListView.getAdapter().getCount();
+		noStopsText.setVisibility(stopsCount > 0 ? View.INVISIBLE : View.VISIBLE);
+	}
+
 	@Override
 	protected void onResume() {
 		super.onResume();
 		refreshStopList();
-	}
-
-	@Override
-	public Object onRetainNonConfigurationInstance() {
-		if (stopToBeRenamedId != null) {
-			return stopToBeRenamedId;
-		} else if (stopToBeAddedToCollection != null) {
-			return stopToBeAddedToCollection;
-		}
-		return null;
+		setupNoStopsText();
 	}
 
 	private ListAdapter createStopListAdapter() {
@@ -167,13 +152,11 @@ public class MainActivity extends Activity implements OnStopEditCancel {
 				.getMenuInfo();
 		switch (item.getItemId()) {
 		case R.id.menu_stop_item_rename:
-			stopToBeRenamedId = new RenameStopId(info.id);
-			showStopRenameDialog();
+			showStopRenameDialog(info.id);
 			refreshStopList();
 			return true;
 		case R.id.menu_stop_item_add_to_collection:
-			stopToBeAddedToCollection = new AddToCollectionId(info.id);
-			showAddToCollectionDialog();
+			showAddToCollectionDialog(info.id);
 			refreshStopList();
 			return true;
 		case R.id.menu_stop_item_hide:
@@ -183,48 +166,50 @@ public class MainActivity extends Activity implements OnStopEditCancel {
 		case R.id.menu_stop_item_delete:
 			new StopDao(this).delete(info.id);
 			refreshStopList();
+			setupNoStopsText();
+			showSnackbar(R.string.activity_main_stop_deleted);
 			return true;
 		case R.id.menu_collection_item_rename:
-			collectionToBeRenamedId = new RenameCollectionId(info.id);
-			showCollectionRenameDialog();
+			showCollectionRenameDialog(info.id);
 			refreshStopList();
 			return true;
 		case R.id.menu_collection_item_delete:
 			new StopCollectionDao(this).delete(info.id);
 			refreshStopList();
+			setupNoStopsText();
+			showSnackbar(R.string.activity_main_collection_deleted);
 			return true;
 		default:
 			return super.onContextItemSelected(item);
 		}
 	}
 
-	private void showStopRenameDialog() {
-		renameStopDialog = new RenameStopDialog(this, this, stopToBeRenamedId.id);
-		renameStopDialog.show();
+	private void showSnackbar(int text) {
+		Snackbar.make(getStopListView(), text, Snackbar.LENGTH_SHORT).show();
 	}
 
-	private void showCollectionRenameDialog() {
-		renameCollectionDialog = new RenameCollectionDialog(this, this, collectionToBeRenamedId.id);
-		renameCollectionDialog.show();
+	private void showStopRenameDialog(long stopId) {
+		DialogFragment dialogFragment = new RenameStopDialog();
+		Bundle args = new Bundle();
+		args.putLong(RenameStopDialog.STOP_ID, stopId);
+		dialogFragment.setArguments(args);
+		dialogFragment.show(getSupportFragmentManager(), "stopRename");
 	}
 
-	private void showAddToCollectionDialog() {
-		addToCollectionDialog = new AddToCollectionDialog(this, this, stopToBeAddedToCollection.id);
-		addToCollectionDialog.show();
+	private void showCollectionRenameDialog(long collectionId) {
+		DialogFragment dialogFragment = new RenameCollectionDialog();
+		Bundle args = new Bundle();
+		args.putLong(RenameCollectionDialog.COLLECTION_ID, collectionId);
+		dialogFragment.setArguments(args);
+		dialogFragment.show(getSupportFragmentManager(), "collectionRename");
 	}
 
-	@Override
-	protected void onPause() {
-		super.onPause();
-		if (renameStopDialog != null) {
-			renameStopDialog.dismiss();
-		}
-		if (addToCollectionDialog != null) {
-			addToCollectionDialog.dismiss();
-		}
-		if (renameCollectionDialog != null) {
-			renameCollectionDialog.dismiss();
-		}
+	private void showAddToCollectionDialog(long stopId) {
+		DialogFragment dialogFragment = new AddToCollectionDialog();
+		Bundle args = new Bundle();
+		args.putLong(AddToCollectionDialog.STOP_ID, stopId);
+		dialogFragment.setArguments(args);
+		dialogFragment.show(getSupportFragmentManager(), "addToCollection");
 	}
 
 	@Override
@@ -257,38 +242,6 @@ public class MainActivity extends Activity implements OnStopEditCancel {
 	private StopListAdapter getStopListAdapter() {
 		ListView stopListView = getStopListView();
 		return (StopListAdapter) stopListView.getAdapter();
-	}
-
-	@Override
-	public void stopEditCancelled() {
-		stopToBeRenamedId = null;
-		stopToBeAddedToCollection = null;
-		collectionToBeRenamedId = null;
-	}
-
-	private class RenameStopId extends ActionId {
-		private RenameStopId(long id) {
-			super(id);
-		}
-	}
-
-	private class AddToCollectionId extends ActionId {
-		private AddToCollectionId(long id) {
-			super(id);
-		}
-	}
-
-	private class RenameCollectionId extends ActionId {
-		private RenameCollectionId(long id) {
-			super(id);
-		}
-	}
-
-	private abstract class ActionId {
-		protected final long id;
-		private ActionId(long id) {
-			this.id = id;
-		}
 	}
 
 	@Override
