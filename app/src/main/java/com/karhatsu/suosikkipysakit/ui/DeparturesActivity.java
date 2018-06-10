@@ -30,16 +30,6 @@ public class DeparturesActivity extends AppCompatActivity {
 					.add(R.id.departure_list_container, fragment)
 					.commit();
 		}
-
-		/*Object retained = getLastNonConfigurationInstance();
-		if (retained instanceof StopRequest) {
-			showProgressDialog();
-			stopRequest = (StopRequest) retained;
-			stopRequest.setOnHslRequestReady(this);
-		} else {
-			stopRequest = new StopRequest(this);
-			queryDepartures();
-		}*/
 	}
 
 	@Override
@@ -51,10 +41,4 @@ public class DeparturesActivity extends AppCompatActivity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-
-	/*@Override
-	public Object onRetainNonConfigurationInstance() {
-		stopRequest.setOnHslRequestReady(null);
-		return stopRequest;
-	}*/
 }

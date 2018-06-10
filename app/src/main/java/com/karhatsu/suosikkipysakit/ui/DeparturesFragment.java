@@ -28,21 +28,23 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.GregorianCalendar;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class DeparturesFragment extends ListFragment implements OnHslRequestReady<Stop> {
+    private static final String DEPARTURES = "departures";
+    private static final String TITLE = "title";
+
     private StopRequest stopRequest;
 
     private ProgressDialog progressDialog;
 
     private Timer timer = new Timer();
-    private TimerTask timerTask;
     private Handler handler = new Handler(Looper.getMainLooper());
-    private StopCollection stopCollection;
     private Calendar calendar;
+    private ArrayList<Departure> departures;
+    private String title;
 
     public DeparturesFragment() {
         calendar = new GregorianCalendar();
@@ -57,16 +59,20 @@ public class DeparturesFragment extends ListFragment implements OnHslRequestRead
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.departures_list, container, false);
-        Bundle arguments = getArguments();
-        if (arguments != null) {
-            Stop stop = arguments.getParcelable(Stop.STOP_KEY);
-            String stopCode = arguments.getString(Stop.CODE_KEY);
-            long collectionId = arguments.getLong(StopCollection.COLLECTION_ID_KEY, 0);
-            if (stop != null) {
-                setToolbarTitle(stop.getNameByUser());
-            } else if (stopCode == null) {
-                stopCollection = new StopCollectionDao(getContext()).findById(collectionId);
-                setToolbarTitle(stopCollection.getName());
+        if (savedInstanceState == null) {
+            Bundle arguments = getArguments();
+            if (arguments != null) {
+                Stop stop = arguments.getParcelable(Stop.STOP_KEY);
+                String stopCode = arguments.getString(Stop.CODE_KEY);
+                long collectionId = arguments.getLong(StopCollection.COLLECTION_ID_KEY, 0);
+                if (stop != null) {
+                    title = stop.getNameByUser();
+                    setToolbarTitle();
+                } else if (stopCode == null) {
+                    StopCollection stopCollection = new StopCollectionDao(getContext()).findById(collectionId);
+                    title = stopCollection.getName();
+                    setToolbarTitle();
+                }
             }
         }
         return rootView;
@@ -78,6 +84,26 @@ public class DeparturesFragment extends ListFragment implements OnHslRequestRead
         if (savedInstanceState == null) {
             stopRequest = new StopRequest(this);
             queryDepartures();
+        } else {
+            title = savedInstanceState.getString(TITLE);
+            departures = savedInstanceState.getParcelableArrayList(DEPARTURES);
+            setToolbarTitle();
+            showDepartures();
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString(TITLE, title);
+        outState.putParcelableArrayList(DEPARTURES, departures);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (timer != null) {
+            timer.cancel();
         }
     }
 
@@ -88,7 +114,8 @@ public class DeparturesFragment extends ListFragment implements OnHslRequestRead
         String stopCode = arguments.getString(Stop.CODE_KEY);
         long collectionId = arguments.getLong(StopCollection.COLLECTION_ID_KEY, 0);
         if (stop != null) {
-            showDepartures(stop.getDepartures());
+            departures = new ArrayList<>(stop.getDepartures());
+            showDepartures();
         } else if (stopCode != null) {
             showProgressDialog();
             stopRequest.execute(stopCode);
@@ -100,14 +127,14 @@ public class DeparturesFragment extends ListFragment implements OnHslRequestRead
         }
     }
 
-    private void setToolbarTitle(String title) {
+    private void setToolbarTitle() {
         Activity activity = getActivity();
         if (activity != null) {
             ((AppCompatActivity)activity).getSupportActionBar().setTitle(title);
         }
     }
 
-    private void showDepartures(List<Departure> departures) {
+    private void showDepartures() {
         if (departures.isEmpty()) {
             ToastHelper.showToast(getContext(), R.string.activity_departures_nothing_found);
             return;
@@ -142,7 +169,7 @@ public class DeparturesFragment extends ListFragment implements OnHslRequestRead
     }
 
     private TimerTask createTimerTask() {
-        timerTask = new TimerTask() {
+        return new TimerTask() {
             @Override
             public void run() {
                 handler.post(new Runnable() {
@@ -157,21 +184,21 @@ public class DeparturesFragment extends ListFragment implements OnHslRequestRead
                 });
             }
         };
-        return timerTask;
     }
 
     @Override
     public void notifyAboutResult(ArrayList<Stop> stops) {
         hideProgressDialog();
-        List<Departure> departures = getDeparturesFrom(stops);
-        showDepartures(departures);
-        if (stopCollection == null && stops.size() == 1) {
-            setToolbarTitle(stops.get(0).getName());
+        departures = getDeparturesFrom(stops);
+        showDepartures();
+        if (title == null && stops.size() == 1) {
+            title = stops.get(0).getName();
+            setToolbarTitle();
         }
     }
 
-    private List<Departure> getDeparturesFrom(ArrayList<Stop> stops) {
-        List<Departure> departures = new LinkedList<Departure>();
+    private ArrayList<Departure> getDeparturesFrom(ArrayList<Stop> stops) {
+        departures = new ArrayList<>();
         for (Stop stop : stops) {
             departures.addAll(stop.getDepartures());
         }
@@ -183,27 +210,5 @@ public class DeparturesFragment extends ListFragment implements OnHslRequestRead
     public void notifyConnectionProblem() {
         hideProgressDialog();
         ToastHelper.showToast(getContext(), R.string.connection_problem);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        if (timer == null) {
-            timer = new Timer();
-            timer.schedule(createTimerTask(), 100, 5000);
-        }
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        hideProgressDialog();
-        if (timerTask != null) {
-            timerTask.cancel();
-        }
-        if (timer != null) {
-            timer.cancel();
-            timer = null;
-        }
     }
 }
