@@ -23,22 +23,27 @@ public class LinesJSONParserTest extends AbstractJSONParserTest {
 
 	public void testLineCode() throws JSONException, DataNotFoundException {
 		assertEquals("94B", getFirstLine().getCode());
+		assertEquals("94B", getSecondLine().getCode());
 	}
 
 	public void testLineName() throws JSONException, DataNotFoundException {
 		assertEquals("Kivikonlaita-Kontula(M)", getFirstLine().getName());
+		assertEquals("Kivikonlaita-Kontula(M)", getSecondLine().getName());
 	}
 
 	public void testLineStart() throws JSONException, DataNotFoundException {
 		assertEquals("Kontula (M)", getFirstLine().getLineStart());
+		assertEquals("Kivikonlaita 43", getSecondLine().getLineStart());
 	}
 
 	public void testLineEnd() throws JSONException, DataNotFoundException {
-		assertEquals("Keinulaudantie", getFirstLine().getLineEnd());
+		assertEquals("Kivikonlaita 43", getFirstLine().getLineEnd());
+		assertEquals("Kontula (M)", getSecondLine().getLineEnd());
 	}
 
 	public void testStopCount() throws JSONException, DataNotFoundException {
-		assertEquals(24, getFirstLine().getStops().size());
+		assertEquals(13, getFirstLine().getStops().size());
+		assertEquals(13, getSecondLine().getStops().size());
 	}
 
 	public void testStopCode() throws JSONException, DataNotFoundException {
@@ -52,6 +57,10 @@ public class LinesJSONParserTest extends AbstractJSONParserTest {
 
 	private Line getFirstLine() throws JSONException, DataNotFoundException {
 		return parser.parse(jsonString).get(0);
+	}
+
+	private Line getSecondLine() throws JSONException, DataNotFoundException {
+		return parser.parse(jsonString).get(1);
 	}
 
 	private Stop getFirstLineFirstStop() throws JSONException,

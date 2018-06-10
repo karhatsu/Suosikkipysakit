@@ -2,654 +2,809 @@
   "data": {
     "routes": [
       {
-        "id": "Um91dGU6SFNMOjEwOTRC",
         "gtfsId": "HSL:1094B",
         "shortName": "94B",
         "longName": "Kivikonlaita-Kontula(M)",
-        "stops": [
+        "patterns": [
           {
-            "name": "Kontula (M)",
-            "code": "4421"
+            "stops": [
+              {
+                "name": "Kontula (M)",
+                "code": "4421"
+              },
+              {
+                "name": "Kontula (M)",
+                "code": "4423"
+              },
+              {
+                "name": "Kaarikuja",
+                "code": "4425"
+              },
+              {
+                "name": "Kivikonkaari",
+                "code": "4457"
+              },
+              {
+                "name": "Linnoituksentie",
+                "code": "4453"
+              },
+              {
+                "name": "Varustuksentie",
+                "code": "4451"
+              },
+              {
+                "name": "Järkälekuja",
+                "code": "4449"
+              },
+              {
+                "name": "Kurkimäentie",
+                "code": "4447"
+              },
+              {
+                "name": "Kivikontie",
+                "code": "4535"
+              },
+              {
+                "name": "Savikiekontie",
+                "code": "4479"
+              },
+              {
+                "name": "Kivikonkuja",
+                "code": "4487"
+              },
+              {
+                "name": "Tattarisilta",
+                "code": "4477"
+              },
+              {
+                "name": "Kivikonlaita 43",
+                "code": "4485"
+              }
+            ]
           },
           {
-            "name": "Kontula (M)",
-            "code": "4423"
-          },
-          {
-            "name": "Kaarikuja",
-            "code": "4425"
-          },
-          {
-            "name": "Kivikonkaari",
-            "code": "4457"
-          },
-          {
-            "name": "Linnoituksentie",
-            "code": "4453"
-          },
-          {
-            "name": "Varustuksentie",
-            "code": "4451"
-          },
-          {
-            "name": "Järkälekuja",
-            "code": "4449"
-          },
-          {
-            "name": "Kurkimäentie",
-            "code": "4447"
-          },
-          {
-            "name": "Kivikontie",
-            "code": "4535"
-          },
-          {
-            "name": "Savikiekontie",
-            "code": "4479"
-          },
-          {
-            "name": "Kivikonkuja",
-            "code": "4487"
-          },
-          {
-            "name": "Tattarisilta",
-            "code": "4477"
-          },
-          {
-            "name": "Kivikonlaita 43",
-            "code": "4485"
-          },
-          {
-            "name": "Tattarisilta",
-            "code": "4476"
-          },
-          {
-            "name": "Kivikonkuja",
-            "code": "4445"
-          },
-          {
-            "name": "Savikiekontie",
-            "code": "4478"
-          },
-          {
-            "name": "Kivikontie",
-            "code": "4446"
-          },
-          {
-            "name": "Kivijatatie",
-            "code": "4444"
-          },
-          {
-            "name": "Panosaukio",
-            "code": "4442"
-          },
-          {
-            "name": "Kuovipolku",
-            "code": "4440"
-          },
-          {
-            "name": "Harmaahaikarankuja",
-            "code": "4438"
-          },
-          {
-            "name": "Kurkiaispolku",
-            "code": "4415"
-          },
-          {
-            "name": "Kurkiauranpolku",
-            "code": "4417"
-          },
-          {
-            "name": "Keinulaudantie",
-            "code": "4419"
+            "stops": [
+              {
+                "name": "Kivikonlaita 43",
+                "code": "4485"
+              },
+              {
+                "name": "Tattarisilta",
+                "code": "4476"
+              },
+              {
+                "name": "Kivikonkuja",
+                "code": "4445"
+              },
+              {
+                "name": "Savikiekontie",
+                "code": "4478"
+              },
+              {
+                "name": "Kivikontie",
+                "code": "4446"
+              },
+              {
+                "name": "Kivijatatie",
+                "code": "4444"
+              },
+              {
+                "name": "Panosaukio",
+                "code": "4442"
+              },
+              {
+                "name": "Kuovipolku",
+                "code": "4440"
+              },
+              {
+                "name": "Harmaahaikarankuja",
+                "code": "4438"
+              },
+              {
+                "name": "Kurkiaispolku",
+                "code": "4415"
+              },
+              {
+                "name": "Kurkiauranpolku",
+                "code": "4417"
+              },
+              {
+                "name": "Keinulaudantie",
+                "code": "4419"
+              },
+              {
+                "name": "Kontula (M)",
+                "code": "4421"
+              }
+            ]
           }
         ]
       },
       {
-        "id": "Um91dGU6SFNMOjEwOTRB",
         "gtfsId": "HSL:1094A",
         "shortName": "94A",
         "longName": "Kotikonnuntie-Kontula(M)-Kivikko-Kontula(M)",
-        "stops": [
+        "patterns": [
           {
-            "name": "Paneliantie",
-            "code": "4462"
+            "stops": [
+              {
+                "name": "Paneliantie",
+                "code": "4462"
+              },
+              {
+                "name": "Leikkikuja",
+                "code": "4460"
+              },
+              {
+                "name": "Ostostie",
+                "code": "4458"
+              },
+              {
+                "name": "Kontula (M)",
+                "code": "4404"
+              },
+              {
+                "name": "Kontula (M)",
+                "code": "4422"
+              },
+              {
+                "name": "Keinulaudantie",
+                "code": "4420"
+              },
+              {
+                "name": "Kurkiauranpolku",
+                "code": "4418"
+              },
+              {
+                "name": "Kurkiaispolku",
+                "code": "4416"
+              },
+              {
+                "name": "Harmaahaikarankuja",
+                "code": "4437"
+              },
+              {
+                "name": "Kuovipolku",
+                "code": "4439"
+              },
+              {
+                "name": "Kurkimäentie",
+                "code": "4448"
+              },
+              {
+                "name": "Järkälekuja",
+                "code": "4450"
+              },
+              {
+                "name": "Varustuksentie",
+                "code": "4452"
+              },
+              {
+                "name": "Linnoituksentie",
+                "code": "4454"
+              },
+              {
+                "name": "Kivikonkaari",
+                "code": "4428"
+              },
+              {
+                "name": "Kaarikuja",
+                "code": "4426"
+              },
+              {
+                "name": "Kontula (M)",
+                "code": "4309"
+              }
+            ]
           },
           {
-            "name": "Leikkikuja",
-            "code": "4460"
+            "stops": [
+              {
+                "name": "Paneliantie",
+                "code": "4462"
+              },
+              {
+                "name": "Leikkikuja",
+                "code": "4460"
+              },
+              {
+                "name": "Ostostie",
+                "code": "4458"
+              },
+              {
+                "name": "Kontula (M)",
+                "code": "4404"
+              },
+              {
+                "name": "Kontula (M)",
+                "code": "4422"
+              },
+              {
+                "name": "Keinulaudantie",
+                "code": "4420"
+              },
+              {
+                "name": "Kurkiauranpolku",
+                "code": "4418"
+              },
+              {
+                "name": "Kurkiaispolku",
+                "code": "4416"
+              },
+              {
+                "name": "Harmaahaikarankuja",
+                "code": "4437"
+              },
+              {
+                "name": "Kuovipolku",
+                "code": "4439"
+              },
+              {
+                "name": "Kurkimäentie",
+                "code": "4448"
+              },
+              {
+                "name": "Järkälekuja",
+                "code": "4450"
+              },
+              {
+                "name": "Varustuksentie",
+                "code": "4452"
+              },
+              {
+                "name": "Linnoituksentie",
+                "code": "4454"
+              },
+              {
+                "name": "Kivikonkaari",
+                "code": "4428"
+              },
+              {
+                "name": "Kaarikuja",
+                "code": "4426"
+              },
+              {
+                "name": "Kontula (M)",
+                "code": "4412"
+              }
+            ]
           },
           {
-            "name": "Ostostie",
-            "code": "4458"
+            "stops": [
+              {
+                "name": "Kontula (M)",
+                "code": "4309"
+              },
+              {
+                "name": "Kontula (M)",
+                "code": "4405"
+              },
+              {
+                "name": "Ostostie",
+                "code": "4459"
+              },
+              {
+                "name": "Leikkikuja",
+                "code": "4461"
+              },
+              {
+                "name": "Paneliantie",
+                "code": "4533"
+              }
+            ]
           },
           {
-            "name": "Kontula (M)",
-            "code": "4404"
-          },
-          {
-            "name": "Kontula (M)",
-            "code": "4422"
-          },
-          {
-            "name": "Keinulaudantie",
-            "code": "4420"
-          },
-          {
-            "name": "Kurkiauranpolku",
-            "code": "4418"
-          },
-          {
-            "name": "Kurkiaispolku",
-            "code": "4416"
-          },
-          {
-            "name": "Harmaahaikarankuja",
-            "code": "4437"
-          },
-          {
-            "name": "Kuovipolku",
-            "code": "4439"
-          },
-          {
-            "name": "Kurkimäentie",
-            "code": "4448"
-          },
-          {
-            "name": "Järkälekuja",
-            "code": "4450"
-          },
-          {
-            "name": "Varustuksentie",
-            "code": "4452"
-          },
-          {
-            "name": "Linnoituksentie",
-            "code": "4454"
-          },
-          {
-            "name": "Kivikonkaari",
-            "code": "4428"
-          },
-          {
-            "name": "Kaarikuja",
-            "code": "4426"
-          },
-          {
-            "name": "Kontula (M)",
-            "code": "4309"
-          },
-          {
-            "name": "Kontula (M)",
-            "code": "4412"
-          },
-          {
-            "name": "Kontula (M)",
-            "code": "4405"
-          },
-          {
-            "name": "Ostostie",
-            "code": "4459"
-          },
-          {
-            "name": "Leikkikuja",
-            "code": "4461"
-          },
-          {
-            "name": "Paneliantie",
-            "code": "4533"
+            "stops": [
+              {
+                "name": "Kontula (M)",
+                "code": "4412"
+              },
+              {
+                "name": "Kontula (M)",
+                "code": "4405"
+              },
+              {
+                "name": "Ostostie",
+                "code": "4459"
+              },
+              {
+                "name": "Leikkikuja",
+                "code": "4461"
+              },
+              {
+                "name": "Paneliantie",
+                "code": "4533"
+              }
+            ]
           }
         ]
       },
       {
-        "id": "Um91dGU6SFNMOjEwOTRS",
         "gtfsId": "HSL:1094R",
         "shortName": "94R",
         "longName": "Kivikontie-Kivikon liikuntapuisto",
-        "stops": [
+        "patterns": [
           {
-            "name": "Kivikontie",
-            "code": "4446"
+            "stops": [
+              {
+                "name": "Kivikontie",
+                "code": "4446"
+              },
+              {
+                "name": "Kivikon liikuntap.",
+                "code": "4830"
+              }
+            ]
           },
           {
-            "name": "Kivikon liikuntap.",
-            "code": "4830"
+            "stops": [
+              {
+                "name": "Kivikon liikuntap.",
+                "code": "4830"
+              },
+              {
+                "name": "Kivikontie",
+                "code": "4446"
+              }
+            ]
           }
         ]
       },
       {
-        "id": "Um91dGU6SFNMOjEwOTRO",
         "gtfsId": "HSL:1094N",
         "shortName": "94N",
         "longName": "Rautatientori-Roihuvuori-Kontulankaari",
-        "stops": [
-          {
-            "name": "Rautatientori",
-            "code": "2048"
-          },
-          {
-            "name": "Kaisaniemenpuisto",
-            "code": "2061"
-          },
-          {
-            "name": "Hakaniemi",
-            "code": "2507"
-          },
-          {
-            "name": "Hanasaari",
-            "code": "2514"
-          },
-          {
-            "name": "Suvilahti",
-            "code": "2518"
-          },
-          {
-            "name": "Kalasatama (M)",
-            "code": "2552"
-          },
-          {
-            "name": "Kulosaari",
-            "code": "4001"
-          },
-          {
-            "name": "Tupasaari",
-            "code": "4003"
-          },
-          {
-            "name": "Kipparlahti",
-            "code": "4005"
-          },
-          {
-            "name": "Laivalahdenportti",
-            "code": "4035"
-          },
-          {
-            "name": "Linnanrakentajantie",
-            "code": "4037"
-          },
-          {
-            "name": "Porolahti",
-            "code": "4183"
-          },
-          {
-            "name": "Porolahden koulu",
-            "code": "4201"
-          },
-          {
-            "name": "Keijukaistenpolku",
-            "code": "4203"
-          },
-          {
-            "name": "Vuorenpeikontie",
-            "code": "4205"
-          },
-          {
-            "name": "Roihuvuoren kirkko",
-            "code": "4207"
-          },
-          {
-            "name": "Kreijarinkuja",
-            "code": "4209"
-          },
-          {
-            "name": "Tulisuonkuja",
-            "code": "4211"
-          },
-          {
-            "name": "Marjaniementie",
-            "code": "4337"
-          },
-          {
-            "name": "Itäpolku",
-            "code": "4491"
-          },
-          {
-            "name": "Itäkeskus (M)",
-            "code": "4310"
-          },
-          {
-            "name": "Puotinharju",
-            "code": "4274"
-          },
-          {
-            "name": "Vanhanlinnantie",
-            "code": "4281"
-          },
-          {
-            "name": "Arhotie",
-            "code": "4283"
-          },
-          {
-            "name": "Kukkaniityntie",
-            "code": "4285"
-          },
-          {
-            "name": "Liikuntamylly",
-            "code": "4287"
-          },
-          {
-            "name": "Sirrikuja",
-            "code": "4401"
-          },
-          {
-            "name": "Porttitie",
-            "code": "4403"
-          },
-          {
-            "name": "Kontula (M)",
-            "code": "4413"
-          },
-          {
-            "name": "Kaarikuja",
-            "code": "4425"
-          },
-          {
-            "name": "Kivikonkaari",
-            "code": "4427"
-          },
-          {
-            "name": "Sakara",
-            "code": "4429"
-          },
-          {
-            "name": "Kontulankaari 11",
-            "code": "4431"
-          },
-          {
-            "name": "Rapolantie",
-            "code": "4433"
-          },
-          {
-            "name": "Rapolantie",
-            "code": "4434"
-          },
-          {
-            "name": "Kontulankaari 11",
-            "code": "4432"
-          },
-          {
-            "name": "Sakara",
-            "code": "4430"
-          },
-          {
-            "name": "Kivikonkaari",
-            "code": "4428"
-          },
-          {
-            "name": "Kaarikuja",
-            "code": "4426"
-          },
-          {
-            "name": "Kontula (M)",
-            "code": "4414"
-          },
-          {
-            "name": "Porttitie",
-            "code": "4402"
-          },
-          {
-            "name": "Sirrikuja",
-            "code": "4400"
-          },
-          {
-            "name": "Liikuntamylly",
-            "code": "4286"
-          },
-          {
-            "name": "Kukkaniityntie",
-            "code": "4284"
-          },
-          {
-            "name": "Arhotie",
-            "code": "4282"
-          },
-          {
-            "name": "Korsholmantie",
-            "code": "4275"
-          },
-          {
-            "name": "Puotinharju",
-            "code": "4273"
-          },
-          {
-            "name": "Itäkeskus (M)",
-            "code": "4271"
-          },
-          {
-            "name": "Itäpolku",
-            "code": "4490"
-          },
-          {
-            "name": "Marjaniementie",
-            "code": "4212"
-          },
-          {
-            "name": "Tulisuonkuja",
-            "code": "4210"
-          },
-          {
-            "name": "Kreijarinkuja",
-            "code": "4208"
-          },
-          {
-            "name": "Roihuvuoren kirkko",
-            "code": "4206"
-          },
-          {
-            "name": "Vuorenpeikontie",
-            "code": "4204"
-          },
-          {
-            "name": "Keijukaistenpolku",
-            "code": "4202"
-          },
-          {
-            "name": "Porolahden koulu",
-            "code": "4200"
-          },
-          {
-            "name": "Porolahti",
-            "code": "4182"
-          },
-          {
-            "name": "Linnanrakentajantie",
-            "code": "4038"
-          },
-          {
-            "name": "Laivalahdenportti",
-            "code": "4036"
-          },
-          {
-            "name": "Herttoniemi (M)",
-            "code": "4006"
-          },
-          {
-            "name": "Kipparlahti",
-            "code": "4004"
-          },
-          {
-            "name": "Kulosaari",
-            "code": "4000"
-          },
-          {
-            "name": "Kalasatama (M)",
-            "code": "2553"
-          },
-          {
-            "name": "Suvilahti",
-            "code": "2519"
-          },
-          {
-            "name": "Käenkuja",
-            "code": "2517"
-          },
-          {
-            "name": "Hanasaari",
-            "code": "2515"
-          },
-          {
-            "name": "Merihaka",
-            "code": "2513"
-          },
-          {
-            "name": "Hakaniemi",
-            "code": "2506"
-          },
-          {
-            "name": "Kaisaniemenpuisto",
-            "code": "2060"
-          },
-          {
-            "name": "Rautatientori",
-            "code": "2139"
+        "patterns": [
+          {
+            "stops": [
+              {
+                "name": "Rautatientori",
+                "code": "2048"
+              },
+              {
+                "name": "Kaisaniemenpuisto",
+                "code": "2061"
+              },
+              {
+                "name": "Hakaniemi",
+                "code": "2507"
+              },
+              {
+                "name": "Hanasaari",
+                "code": "2514"
+              },
+              {
+                "name": "Suvilahti",
+                "code": "2518"
+              },
+              {
+                "name": "Kalasatama (M)",
+                "code": "2552"
+              },
+              {
+                "name": "Kulosaari",
+                "code": "4001"
+              },
+              {
+                "name": "Tupasaari",
+                "code": "4003"
+              },
+              {
+                "name": "Kipparlahti",
+                "code": "4005"
+              },
+              {
+                "name": "Laivalahdenportti",
+                "code": "4035"
+              },
+              {
+                "name": "Linnanrakentajantie",
+                "code": "4037"
+              },
+              {
+                "name": "Porolahti",
+                "code": "4183"
+              },
+              {
+                "name": "Porolahden koulu",
+                "code": "4201"
+              },
+              {
+                "name": "Keijukaistenpolku",
+                "code": "4203"
+              },
+              {
+                "name": "Vuorenpeikontie",
+                "code": "4205"
+              },
+              {
+                "name": "Roihuvuoren kirkko",
+                "code": "4207"
+              },
+              {
+                "name": "Kreijarinkuja",
+                "code": "4209"
+              },
+              {
+                "name": "Tulisuonkuja",
+                "code": "4211"
+              },
+              {
+                "name": "Marjaniementie",
+                "code": "4337"
+              },
+              {
+                "name": "Itäpolku",
+                "code": "4491"
+              },
+              {
+                "name": "Itäkeskus (M)",
+                "code": "4310"
+              },
+              {
+                "name": "Puotinharju",
+                "code": "4274"
+              },
+              {
+                "name": "Vanhanlinnantie",
+                "code": "4281"
+              },
+              {
+                "name": "Arhotie",
+                "code": "4283"
+              },
+              {
+                "name": "Kukkaniityntie",
+                "code": "4285"
+              },
+              {
+                "name": "Liikuntamylly",
+                "code": "4287"
+              },
+              {
+                "name": "Sirrikuja",
+                "code": "4401"
+              },
+              {
+                "name": "Porttitie",
+                "code": "4403"
+              },
+              {
+                "name": "Kontula (M)",
+                "code": "4413"
+              },
+              {
+                "name": "Kaarikuja",
+                "code": "4425"
+              },
+              {
+                "name": "Kivikonkaari",
+                "code": "4427"
+              },
+              {
+                "name": "Sakara",
+                "code": "4429"
+              },
+              {
+                "name": "Kontulankaari 11",
+                "code": "4431"
+              },
+              {
+                "name": "Rapolantie",
+                "code": "4433"
+              },
+              {
+                "name": "Rapolantie",
+                "code": "4434"
+              }
+            ]
+          },
+          {
+            "stops": [
+              {
+                "name": "Rapolantie",
+                "code": "4434"
+              },
+              {
+                "name": "Kontulankaari 11",
+                "code": "4432"
+              },
+              {
+                "name": "Sakara",
+                "code": "4430"
+              },
+              {
+                "name": "Kivikonkaari",
+                "code": "4428"
+              },
+              {
+                "name": "Kaarikuja",
+                "code": "4426"
+              },
+              {
+                "name": "Kontula (M)",
+                "code": "4414"
+              },
+              {
+                "name": "Porttitie",
+                "code": "4402"
+              },
+              {
+                "name": "Sirrikuja",
+                "code": "4400"
+              },
+              {
+                "name": "Liikuntamylly",
+                "code": "4286"
+              },
+              {
+                "name": "Kukkaniityntie",
+                "code": "4284"
+              },
+              {
+                "name": "Arhotie",
+                "code": "4282"
+              },
+              {
+                "name": "Korsholmantie",
+                "code": "4275"
+              },
+              {
+                "name": "Puotinharju",
+                "code": "4273"
+              },
+              {
+                "name": "Itäkeskus (M)",
+                "code": "4271"
+              },
+              {
+                "name": "Itäpolku",
+                "code": "4490"
+              },
+              {
+                "name": "Marjaniementie",
+                "code": "4212"
+              },
+              {
+                "name": "Tulisuonkuja",
+                "code": "4210"
+              },
+              {
+                "name": "Kreijarinkuja",
+                "code": "4208"
+              },
+              {
+                "name": "Roihuvuoren kirkko",
+                "code": "4206"
+              },
+              {
+                "name": "Vuorenpeikontie",
+                "code": "4204"
+              },
+              {
+                "name": "Keijukaistenpolku",
+                "code": "4202"
+              },
+              {
+                "name": "Porolahden koulu",
+                "code": "4200"
+              },
+              {
+                "name": "Porolahti",
+                "code": "4182"
+              },
+              {
+                "name": "Linnanrakentajantie",
+                "code": "4038"
+              },
+              {
+                "name": "Laivalahdenportti",
+                "code": "4036"
+              },
+              {
+                "name": "Herttoniemi (M)",
+                "code": "4006"
+              },
+              {
+                "name": "Kipparlahti",
+                "code": "4004"
+              },
+              {
+                "name": "Kulosaari",
+                "code": "4000"
+              },
+              {
+                "name": "Kalasatama (M)",
+                "code": "2553"
+              },
+              {
+                "name": "Suvilahti",
+                "code": "2519"
+              },
+              {
+                "name": "Käenkuja",
+                "code": "2517"
+              },
+              {
+                "name": "Hanasaari",
+                "code": "2515"
+              },
+              {
+                "name": "Merihaka",
+                "code": "2513"
+              },
+              {
+                "name": "Hakaniemi",
+                "code": "2506"
+              },
+              {
+                "name": "Kaisaniemenpuisto",
+                "code": "2060"
+              },
+              {
+                "name": "Rautatientori",
+                "code": "2139"
+              }
+            ]
           }
         ]
       },
       {
-        "id": "Um91dGU6SFNMOjEwOTQ=",
         "gtfsId": "HSL:1094",
         "shortName": "94",
         "longName": "Itäkeskus(M)-Porttitie-Kontula(M)-Kontulankaari",
-        "stops": [
+        "patterns": [
           {
-            "name": "Itäkeskus (M)",
-            "code": "4310"
+            "stops": [
+              {
+                "name": "Itäkeskus (M)",
+                "code": "4310"
+              },
+              {
+                "name": "Puotinharju",
+                "code": "4274"
+              },
+              {
+                "name": "Vanhanlinnantie",
+                "code": "4281"
+              },
+              {
+                "name": "Arhotie",
+                "code": "4283"
+              },
+              {
+                "name": "Kukkaniityntie",
+                "code": "4285"
+              },
+              {
+                "name": "Lallukankuja",
+                "code": "4468"
+              },
+              {
+                "name": "Karjatanhuanpolku",
+                "code": "4387"
+              },
+              {
+                "name": "Häyhäntie",
+                "code": "4389"
+              },
+              {
+                "name": "Humikkalankuja",
+                "code": "4391"
+              },
+              {
+                "name": "Naapurintie",
+                "code": "4393"
+              },
+              {
+                "name": "Porttikuja",
+                "code": "4395"
+              },
+              {
+                "name": "Porttitie",
+                "code": "4403"
+              },
+              {
+                "name": "Kontula (M)",
+                "code": "4413"
+              },
+              {
+                "name": "Kaarikuja",
+                "code": "4425"
+              },
+              {
+                "name": "Kivikonkaari",
+                "code": "4427"
+              },
+              {
+                "name": "Sakara",
+                "code": "4429"
+              },
+              {
+                "name": "Kontulankaari 11",
+                "code": "4431"
+              },
+              {
+                "name": "Rapolantie",
+                "code": "4433"
+              },
+              {
+                "name": "Rapolantie",
+                "code": "4434"
+              }
+            ]
           },
           {
-            "name": "Puotinharju",
-            "code": "4274"
-          },
-          {
-            "name": "Vanhanlinnantie",
-            "code": "4281"
-          },
-          {
-            "name": "Arhotie",
-            "code": "4283"
-          },
-          {
-            "name": "Kukkaniityntie",
-            "code": "4285"
-          },
-          {
-            "name": "Lallukankuja",
-            "code": "4468"
-          },
-          {
-            "name": "Karjatanhuanpolku",
-            "code": "4387"
-          },
-          {
-            "name": "Häyhäntie",
-            "code": "4389"
-          },
-          {
-            "name": "Humikkalankuja",
-            "code": "4391"
-          },
-          {
-            "name": "Naapurintie",
-            "code": "4393"
-          },
-          {
-            "name": "Porttikuja",
-            "code": "4395"
-          },
-          {
-            "name": "Porttitie",
-            "code": "4403"
-          },
-          {
-            "name": "Kontula (M)",
-            "code": "4413"
-          },
-          {
-            "name": "Kaarikuja",
-            "code": "4425"
-          },
-          {
-            "name": "Kivikonkaari",
-            "code": "4427"
-          },
-          {
-            "name": "Sakara",
-            "code": "4429"
-          },
-          {
-            "name": "Kontulankaari 11",
-            "code": "4431"
-          },
-          {
-            "name": "Rapolantie",
-            "code": "4433"
-          },
-          {
-            "name": "Rapolantie",
-            "code": "4434"
-          },
-          {
-            "name": "Kontulankaari 11",
-            "code": "4432"
-          },
-          {
-            "name": "Sakara",
-            "code": "4430"
-          },
-          {
-            "name": "Kivikonkaari",
-            "code": "4428"
-          },
-          {
-            "name": "Kaarikuja",
-            "code": "4426"
-          },
-          {
-            "name": "Kontula (M)",
-            "code": "4414"
-          },
-          {
-            "name": "Porttikuja",
-            "code": "4396"
-          },
-          {
-            "name": "Naapurintie",
-            "code": "4394"
-          },
-          {
-            "name": "Humikkalankuja",
-            "code": "4392"
-          },
-          {
-            "name": "Häyhäntie",
-            "code": "4390"
-          },
-          {
-            "name": "Lallukantie",
-            "code": "4388"
-          },
-          {
-            "name": "Lallukankuja",
-            "code": "4489"
-          },
-          {
-            "name": "Kukkaniityntie",
-            "code": "4284"
-          },
-          {
-            "name": "Arhotie",
-            "code": "4282"
-          },
-          {
-            "name": "Korsholmantie",
-            "code": "4275"
-          },
-          {
-            "name": "Puotinharju",
-            "code": "4273"
-          },
-          {
-            "name": "Itäkeskus (M)",
-            "code": "4314"
+            "stops": [
+              {
+                "name": "Rapolantie",
+                "code": "4434"
+              },
+              {
+                "name": "Kontulankaari 11",
+                "code": "4432"
+              },
+              {
+                "name": "Sakara",
+                "code": "4430"
+              },
+              {
+                "name": "Kivikonkaari",
+                "code": "4428"
+              },
+              {
+                "name": "Kaarikuja",
+                "code": "4426"
+              },
+              {
+                "name": "Kontula (M)",
+                "code": "4414"
+              },
+              {
+                "name": "Porttikuja",
+                "code": "4396"
+              },
+              {
+                "name": "Naapurintie",
+                "code": "4394"
+              },
+              {
+                "name": "Humikkalankuja",
+                "code": "4392"
+              },
+              {
+                "name": "Häyhäntie",
+                "code": "4390"
+              },
+              {
+                "name": "Lallukantie",
+                "code": "4388"
+              },
+              {
+                "name": "Lallukankuja",
+                "code": "4489"
+              },
+              {
+                "name": "Kukkaniityntie",
+                "code": "4284"
+              },
+              {
+                "name": "Arhotie",
+                "code": "4282"
+              },
+              {
+                "name": "Korsholmantie",
+                "code": "4275"
+              },
+              {
+                "name": "Puotinharju",
+                "code": "4273"
+              },
+              {
+                "name": "Itäkeskus (M)",
+                "code": "4314"
+              }
+            ]
           }
         ]
       }
