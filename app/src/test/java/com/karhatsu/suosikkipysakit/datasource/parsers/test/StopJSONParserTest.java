@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.json.JSONException;
 
-import com.karhatsu.suosikkipysakit.datasource.DataNotFoundException;
 import com.karhatsu.suosikkipysakit.datasource.parsers.StopJSONParser;
 import com.karhatsu.suosikkipysakit.domain.Departure;
 import com.karhatsu.suosikkipysakit.domain.Stop;
@@ -24,44 +23,32 @@ public class StopJSONParserTest extends AbstractJSONParserTest {
 		}
 	}
 
-	public void testStopCode() throws JSONException, DataNotFoundException {
+	public void testStopCode() throws JSONException {
 		assertEquals("4004", getParsedStop().getCode());
 	}
 
 	public void testStopName()
-			throws JSONException, DataNotFoundException {
+			throws JSONException {
 		assertEquals("Kipparlahti", getParsedStop().getName());
 	}
 
-	public void testDeparturesCount() throws JSONException,
-			DataNotFoundException {
+	public void testDeparturesCount() throws JSONException {
 		assertEquals(5, getParsedDepartures().size());
 	}
 
-	public void testDepartureLine() throws JSONException, DataNotFoundException {
+	public void testDepartureLine() throws JSONException {
 		assertEquals("58", getParsedDepartures().get(0).getLine());
 	}
 
-	public void testDepartureTime() throws JSONException, DataNotFoundException {
+	public void testDepartureTime() throws JSONException {
 		assertEquals("14:03", getParsedDepartures().get(0).getTime());
 	}
 
-	public void testDepartureEndStop() throws JSONException,
-			DataNotFoundException {
+	public void testDepartureEndStop() throws JSONException {
 		assertEquals("Munkkivuori", getParsedDepartures().get(0).getEndStop());
 	}
 
-	public void testEmptyJSON() {
-		try {
-			parser.parse("");
-			fail("Did not throw StopRequestException");
-		} catch (DataNotFoundException e) {
-		} catch (JSONException e) {
-			fail("Threw JSONException");
-		}
-	}
-
-	public void testNoDepartures() throws IOException, DataNotFoundException,
+	public void testNoDepartures() throws IOException,
 			JSONException {
 		String json = readTestJson(TEST_JSON_FILE_NO_DEPARTURES);
 		List<Stop> stops = parser.parse(json);
@@ -69,12 +56,11 @@ public class StopJSONParserTest extends AbstractJSONParserTest {
 		assertEquals(0, stop.getDepartures().size());
 	}
 
-	private Stop getParsedStop() throws JSONException, DataNotFoundException {
+	private Stop getParsedStop() throws JSONException {
 		return parser.parse(jsonString).get(0);
 	}
 
-	private List<Departure> getParsedDepartures() throws JSONException,
-			DataNotFoundException {
+	private List<Departure> getParsedDepartures() throws JSONException {
 		return getParsedStop().getDepartures();
 	}
 

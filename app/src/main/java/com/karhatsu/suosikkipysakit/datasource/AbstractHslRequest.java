@@ -51,7 +51,6 @@ public abstract class AbstractHslRequest<R> extends AsyncTask<String, Void, Arra
 			try {
 				String json = queryDataAsJson(searchParam.trim());
 				list.addAll(getJSONParser().parse(json));
-			} catch (DataNotFoundException e) {
 			} catch (Exception e) {
 				connectionFailed = true;
 				return null;

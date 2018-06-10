@@ -7,18 +7,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.karhatsu.suosikkipysakit.datasource.DataNotFoundException;
 import com.karhatsu.suosikkipysakit.domain.Departure;
 import com.karhatsu.suosikkipysakit.domain.Stop;
 
 public class StopJSONParser implements JSONParser<Stop> {
 	private TimeParser timeParser = new TimeParser();
 
-	public ArrayList<Stop> parse(String json) throws DataNotFoundException,
-			JSONException {
-		if (json.equals("")) {
-			throw new DataNotFoundException();
-		}
+	public ArrayList<Stop> parse(String json) throws JSONException {
 		ArrayList<Stop> stops = new ArrayList<Stop>();
 		JSONArray jsonStops = new JSONObject(json).getJSONObject("data").getJSONArray("stops");
 		for (int i = 0; i < jsonStops.length(); i++) {
