@@ -1,6 +1,8 @@
 .idea
 *.iml
+app/release/output.json
 bin/
+build/
 gen/
 res/raw/account
 out
