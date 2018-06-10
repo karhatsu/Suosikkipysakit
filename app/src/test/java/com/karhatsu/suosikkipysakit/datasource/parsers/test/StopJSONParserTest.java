@@ -13,6 +13,7 @@ public class StopJSONParserTest extends AbstractJSONParserTest {
 
 	private static final String TEST_JSON_FILE = "test-stop-response.json";
 	private static final String TEST_JSON_FILE_NO_DEPARTURES = "test-stop-response-no-departures.json";
+	private static final String TEST_JSON_FILE_SINGLE_STOP = "test-stop-response-single-stop.json";
 	private static String jsonString;
 	private StopJSONParser parser = new StopJSONParser();
 
@@ -54,6 +55,13 @@ public class StopJSONParserTest extends AbstractJSONParserTest {
 		List<Stop> stops = parser.parse(json);
 		Stop stop = stops.get(0);
 		assertEquals(0, stop.getDepartures().size());
+	}
+
+	public void testSingleStop() throws IOException, JSONException {
+		String json = readTestJson(TEST_JSON_FILE_SINGLE_STOP);
+		List<Stop> stops = parser.parse(json);
+		Stop stop = stops.get(0);
+		assertEquals("Latokartanonsilmukka", stop.getName());
 	}
 
 	private Stop getParsedStop() throws JSONException {

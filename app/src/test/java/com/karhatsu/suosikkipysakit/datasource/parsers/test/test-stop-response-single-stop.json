@@ -1,0 +1,205 @@
+{
+  "data": {
+    "stop": {
+      "name": "Latokartanonsilmukka",
+      "code": "4538",
+      "stoptimesWithoutPatterns": [
+        {
+          "scheduledDeparture": 84600,
+          "realtimeDeparture": 84688,
+          "realtime": true,
+          "trip": {
+            "pattern": {
+              "route": {
+                "shortName": "57"
+              },
+              "headsign": "Kontula(M)"
+            }
+          }
+        },
+        {
+          "scheduledDeparture": 19380,
+          "realtimeDeparture": 19380,
+          "realtime": false,
+          "trip": {
+            "pattern": {
+              "route": {
+                "shortName": "57"
+              },
+              "headsign": "Kontula(M)"
+            }
+          }
+        },
+        {
+          "scheduledDeparture": 20460,
+          "realtimeDeparture": 20460,
+          "realtime": false,
+          "trip": {
+            "pattern": {
+              "route": {
+                "shortName": "506"
+              },
+              "headsign": "Myllypuro (M)"
+            }
+          }
+        },
+        {
+          "scheduledDeparture": 21060,
+          "realtimeDeparture": 21060,
+          "realtime": false,
+          "trip": {
+            "pattern": {
+              "route": {
+                "shortName": "57"
+              },
+              "headsign": "Kontula(M)"
+            }
+          }
+        },
+        {
+          "scheduledDeparture": 21720,
+          "realtimeDeparture": 21720,
+          "realtime": false,
+          "trip": {
+            "pattern": {
+              "route": {
+                "shortName": "506"
+              },
+              "headsign": "Myllypuro (M)"
+            }
+          }
+        },
+        {
+          "scheduledDeparture": 22500,
+          "realtimeDeparture": 22500,
+          "realtime": false,
+          "trip": {
+            "pattern": {
+              "route": {
+                "shortName": "57"
+              },
+              "headsign": "Kontula(M)"
+            }
+          }
+        },
+        {
+          "scheduledDeparture": 23040,
+          "realtimeDeparture": 23040,
+          "realtime": false,
+          "trip": {
+            "pattern": {
+              "route": {
+                "shortName": "506"
+              },
+              "headsign": "Myllypuro (M)"
+            }
+          }
+        },
+        {
+          "scheduledDeparture": 23940,
+          "realtimeDeparture": 23940,
+          "realtime": false,
+          "trip": {
+            "pattern": {
+              "route": {
+                "shortName": "57"
+              },
+              "headsign": "Kontula(M)"
+            }
+          }
+        },
+        {
+          "scheduledDeparture": 24300,
+          "realtimeDeparture": 24300,
+          "realtime": false,
+          "trip": {
+            "pattern": {
+              "route": {
+                "shortName": "506"
+              },
+              "headsign": "Myllypuro (M)"
+            }
+          }
+        },
+        {
+          "scheduledDeparture": 25200,
+          "realtimeDeparture": 25200,
+          "realtime": false,
+          "trip": {
+            "pattern": {
+              "route": {
+                "shortName": "57"
+              },
+              "headsign": "Kontula(M)"
+            }
+          }
+        },
+        {
+          "scheduledDeparture": 25440,
+          "realtimeDeparture": 25440,
+          "realtime": false,
+          "trip": {
+            "pattern": {
+              "route": {
+                "shortName": "506"
+              },
+              "headsign": "Myllypuro (M)"
+            }
+          }
+        },
+        {
+          "scheduledDeparture": 26160,
+          "realtimeDeparture": 26160,
+          "realtime": false,
+          "trip": {
+            "pattern": {
+              "route": {
+                "shortName": "57"
+              },
+              "headsign": "Kontula(M)"
+            }
+          }
+        },
+        {
+          "scheduledDeparture": 26400,
+          "realtimeDeparture": 26400,
+          "realtime": false,
+          "trip": {
+            "pattern": {
+              "route": {
+                "shortName": "506"
+              },
+              "headsign": "Myllypuro (M)"
+            }
+          }
+        },
+        {
+          "scheduledDeparture": 26820,
+          "realtimeDeparture": 26820,
+          "realtime": false,
+          "trip": {
+            "pattern": {
+              "route": {
+                "shortName": "57"
+              },
+              "headsign": "Kontula(M)"
+            }
+          }
+        },
+        {
+          "scheduledDeparture": 27180,
+          "realtimeDeparture": 27180,
+          "realtime": false,
+          "trip": {
+            "pattern": {
+              "route": {
+                "shortName": "506"
+              },
+              "headsign": "Myllypuro (M)"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

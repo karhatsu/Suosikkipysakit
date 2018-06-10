@@ -15,12 +15,16 @@ public class StopJSONParser implements JSONParser<Stop> {
 
 	public ArrayList<Stop> parse(String json) throws JSONException {
 		ArrayList<Stop> stops = new ArrayList<Stop>();
-		JSONArray jsonStops = new JSONObject(json).getJSONObject("data").getJSONArray("stops");
-		for (int i = 0; i < jsonStops.length(); i++) {
-			JSONObject jsonStop = jsonStops.getJSONObject(i);
-			Stop stop = parseStop(jsonStop);
-			stop.setDepartures(parseDepartures(jsonStop));
-			stops.add(stop);
+		JSONObject data = new JSONObject(json).getJSONObject("data");
+		if (data.isNull("stops")) {
+			JSONObject jsonStop = data.getJSONObject("stop");
+			stops.add(parseStop(jsonStop));
+		} else {
+			JSONArray jsonStops = data.getJSONArray("stops");
+			for (int i = 0; i < jsonStops.length(); i++) {
+				JSONObject jsonStop = jsonStops.getJSONObject(i);
+				stops.add(parseStop(jsonStop));
+			}
 		}
 		return stops;
 	}
@@ -28,7 +32,9 @@ public class StopJSONParser implements JSONParser<Stop> {
 	private Stop parseStop(JSONObject jsonStop) throws JSONException {
 		String code = jsonStop.getString("code");
 		String name = jsonStop.getString("name");
-		return new Stop(code, name);
+		Stop stop = new Stop(code, name);
+		stop.setDepartures(parseDepartures(jsonStop));
+		return stop;
 	}
 
 	private List<Departure> parseDepartures(JSONObject jsonStop)
