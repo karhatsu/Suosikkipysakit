@@ -42,6 +42,7 @@
             android:name=".ui.LinesActivity"
             android:label="@string/activity_lines_title"
             android:parentActivityName=".ui.AddStopActivity"
+            android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
