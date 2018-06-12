@@ -40,7 +40,7 @@ public class StopRequest extends AbstractHslRequest<Stop> {
 	}
 
 	private String getStopsSearch(String searchParam) {
-		if (searchParam.length() == 4) {
+		if (searchParam.length() <= 6) {
 			return "stops(name: \"" + searchParam + "\")";
 		}
 		return "stop(id: \"HSL:" + searchParam + "\")";
