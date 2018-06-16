@@ -45,6 +45,9 @@ public class DeparturesFragment extends ListFragment implements OnHslRequestRead
     private Calendar calendar;
     private ArrayList<Departure> departures;
     private String title;
+    private Stop stop;
+    private String stopCode;
+    private long collectionId;
 
     public DeparturesFragment() {
         calendar = new GregorianCalendar();
@@ -62,9 +65,9 @@ public class DeparturesFragment extends ListFragment implements OnHslRequestRead
         if (savedInstanceState == null) {
             Bundle arguments = getArguments();
             if (arguments != null) {
-                Stop stop = arguments.getParcelable(Stop.STOP_KEY);
-                String stopCode = arguments.getString(Stop.CODE_KEY);
-                long collectionId = arguments.getLong(StopCollection.COLLECTION_ID_KEY, 0);
+                stop = arguments.getParcelable(Stop.STOP_KEY);
+                stopCode = arguments.getString(Stop.CODE_KEY);
+                collectionId = arguments.getLong(StopCollection.COLLECTION_ID_KEY, 0);
                 if (stop != null) {
                     title = stop.getVisibleName();
                     setToolbarTitle();
@@ -82,13 +85,19 @@ public class DeparturesFragment extends ListFragment implements OnHslRequestRead
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         if (savedInstanceState == null) {
-            stopRequest = new StopRequest(this);
             queryDepartures();
         } else {
             title = savedInstanceState.getString(TITLE);
             departures = savedInstanceState.getParcelableArrayList(DEPARTURES);
+            stop = savedInstanceState.getParcelable(Stop.STOP_KEY);
+            stopCode = savedInstanceState.getString(Stop.CODE_KEY);
+            collectionId = savedInstanceState.getLong(StopCollection.COLLECTION_ID_KEY, 0);
+            if (departures != null) {
+                showDepartures();
+            } else {
+                queryDepartures();
+            }
             setToolbarTitle();
-            showDepartures();
         }
     }
 
@@ -97,6 +106,9 @@ public class DeparturesFragment extends ListFragment implements OnHslRequestRead
         super.onSaveInstanceState(outState);
         outState.putString(TITLE, title);
         outState.putParcelableArrayList(DEPARTURES, departures);
+        outState.putParcelable(Stop.STOP_KEY, stop);
+        outState.putString(Stop.CODE_KEY, stopCode);
+        outState.putLong(StopCollection.COLLECTION_ID_KEY, collectionId);
     }
 
     @Override
@@ -105,14 +117,11 @@ public class DeparturesFragment extends ListFragment implements OnHslRequestRead
         if (timer != null) {
             timer.cancel();
         }
+        hideProgressDialog();
     }
 
     private void queryDepartures() {
-        Bundle arguments = getArguments();
-        if (arguments == null) return;
-        Stop stop = arguments.getParcelable(Stop.STOP_KEY);
-        String stopCode = arguments.getString(Stop.CODE_KEY);
-        long collectionId = arguments.getLong(StopCollection.COLLECTION_ID_KEY, 0);
+        stopRequest = new StopRequest(this);
         if (stop != null) {
             departures = new ArrayList<>(stop.getDepartures());
             showDepartures();
@@ -153,7 +162,7 @@ public class DeparturesFragment extends ListFragment implements OnHslRequestRead
     }
 
     private void hideProgressDialog() {
-        if (progressDialog != null) {
+        if (progressDialog != null && progressDialog.isShowing()) {
             progressDialog.dismiss();
         }
     }
