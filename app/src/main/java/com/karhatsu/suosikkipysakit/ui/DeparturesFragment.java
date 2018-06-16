@@ -25,9 +25,7 @@ import com.karhatsu.suosikkipysakit.domain.Stop;
 import com.karhatsu.suosikkipysakit.domain.StopCollection;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collections;
-import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -36,13 +34,11 @@ public class DeparturesFragment extends ListFragment implements OnHslRequestRead
     private static final String DEPARTURES = "departures";
     private static final String TITLE = "title";
 
-    private StopRequest stopRequest;
-
     private ProgressDialog progressDialog;
 
     private Timer timer = new Timer();
+    private boolean timerRunning = false;
     private Handler handler = new Handler(Looper.getMainLooper());
-    private Calendar calendar;
     private ArrayList<Departure> departures;
     private String title;
     private Stop stop;
@@ -50,7 +46,6 @@ public class DeparturesFragment extends ListFragment implements OnHslRequestRead
     private long collectionId;
 
     public DeparturesFragment() {
-        calendar = new GregorianCalendar();
     }
 
     @Override
@@ -85,7 +80,7 @@ public class DeparturesFragment extends ListFragment implements OnHslRequestRead
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         if (savedInstanceState == null) {
-            queryDepartures();
+            queryDepartures(true);
         } else {
             title = savedInstanceState.getString(TITLE);
             departures = savedInstanceState.getParcelableArrayList(DEPARTURES);
@@ -95,7 +90,7 @@ public class DeparturesFragment extends ListFragment implements OnHslRequestRead
             if (departures != null) {
                 showDepartures();
             } else {
-                queryDepartures();
+                queryDepartures(true);
             }
             setToolbarTitle();
         }
@@ -120,16 +115,22 @@ public class DeparturesFragment extends ListFragment implements OnHslRequestRead
         hideProgressDialog();
     }
 
-    private void queryDepartures() {
-        stopRequest = new StopRequest(this);
+    private void queryDepartures(boolean initialQuery) {
+        StopRequest stopRequest = new StopRequest(this);
         if (stop != null) {
             departures = new ArrayList<>(stop.getDepartures());
             showDepartures();
+            stopCode = stop.getCode(); // in order to use stopCode in timer
+            stop = null;
         } else if (stopCode != null) {
-            showProgressDialog();
+            if (initialQuery) {
+                showProgressDialog();
+            }
             stopRequest.execute(stopCode);
         } else {
-            showProgressDialog();
+            if (initialQuery) {
+                showProgressDialog();
+            }
             List<Stop> stops = new StopDao(getContext()).findByCollectionId(collectionId);
             String[] stopCodes = getStopCodesFrom(stops);
             stopRequest.execute(stopCodes);
@@ -151,7 +152,9 @@ public class DeparturesFragment extends ListFragment implements OnHslRequestRead
         ListView departuresListView = getListView();
         DepartureListAdapter adapter = new DepartureListAdapter(getContext(), departures);
         departuresListView.setAdapter(adapter);
-        timer.schedule(createTimerTask(), 5000, 5000);
+        if (!timerRunning) {
+            timer.schedule(createTimerTask(), 15000, 15000);
+        }
     }
 
     private void showProgressDialog() {
@@ -178,17 +181,14 @@ public class DeparturesFragment extends ListFragment implements OnHslRequestRead
     }
 
     private TimerTask createTimerTask() {
+        timerRunning = true;
         return new TimerTask() {
             @Override
             public void run() {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        Calendar now = new GregorianCalendar();
-                        if (now.get(Calendar.MINUTE) != calendar.get(Calendar.MINUTE)) {
-                            ((DepartureListAdapter) getListView().getAdapter()).notifyDataSetChanged();
-                        }
-                        calendar = now;
+                        queryDepartures(false);
                     }
                 });
             }
@@ -219,6 +219,8 @@ public class DeparturesFragment extends ListFragment implements OnHslRequestRead
     @Override
     public void notifyConnectionProblem() {
         hideProgressDialog();
-        ToastHelper.showToast(getContext(), R.string.connection_problem);
+        if (departures == null) {
+            ToastHelper.showToast(getContext(), R.string.connection_problem);
+        }
     }
 }
