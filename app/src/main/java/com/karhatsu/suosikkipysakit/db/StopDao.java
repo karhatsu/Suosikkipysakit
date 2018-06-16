@@ -102,6 +102,19 @@ public class StopDao extends AbstractDao {
 		return stop;
 	}
 
+	public Stop findByCode(String code) {
+		SQLiteDatabase db = getReadableDatabase();
+		String selection = COLUMN_CODE + "=?";
+		String[] selectionArgs = new String[] { String.valueOf(code) };
+		Cursor cursor = db.query(TABLE_NAME, STOP_PROJECTION, selection,
+				selectionArgs, null, null, null);
+		cursor.moveToFirst();
+		Stop stop = createStop(cursor);
+		cursor.close();
+		db.close();
+		return stop;
+	}
+
 	public List<Stop> findByCollectionId(long collectionId) {
 		SQLiteDatabase db = getReadableDatabase();
 		String sql = buildCollectionIdSql();

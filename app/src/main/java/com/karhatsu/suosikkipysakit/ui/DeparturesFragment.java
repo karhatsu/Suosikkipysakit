@@ -192,7 +192,8 @@ public class DeparturesFragment extends ListFragment implements OnHslRequestRead
         departures = getDeparturesFrom(stops);
         showDepartures();
         if (title == null && stops.size() == 1) {
-            title = stops.get(0).getVisibleName();
+            Stop stop = new StopDao(getContext()).findByCode(stops.get(0).getCode());
+            title = stop.getVisibleName();
             setToolbarTitle();
         }
     }
