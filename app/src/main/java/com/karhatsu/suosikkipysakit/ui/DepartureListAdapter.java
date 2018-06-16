@@ -35,11 +35,19 @@ public class DepartureListAdapter extends ArrayAdapter<Departure> {
 			view = layoutInflater.inflate(R.layout.list_item_departure, null);
 		}
 		Departure departure = departures.get(position);
-		setText(view, R.id.departure_list_item_time, departure.getTime());
+		setText(view, R.id.departure_list_item_time, getTime(departure));
 		setText(view, R.id.departure_list_item_min, getMinutesToGo(departure));
 		setText(view, R.id.departure_list_item_line, departure.getLine());
 		setText(view, R.id.departure_list_item_end_stop, departure.getEndStop());
 		return view;
+	}
+
+	private String getTime(Departure departure) {
+		String time = departure.getTime();
+		if (!departure.isRealtime()) {
+			time += "~";
+		}
+		return time;
 	}
 
 	private String getMinutesToGo(Departure departure) {

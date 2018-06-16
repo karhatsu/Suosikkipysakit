@@ -10,17 +10,20 @@ public class Departure implements Parcelable {
 	private final String line;
 	private final String time;
 	private final String endStop;
+	private final boolean realtime;
 
-	public Departure(String line, String time, String endStop) {
+	public Departure(String line, String time, String endStop, boolean realtime) {
 		this.line = line;
 		this.time = time;
 		this.endStop = endStop;
+		this.realtime = realtime;
 	}
 
 	private Departure(Parcel in) {
 		this.line = in.readString();
 		this.time = in.readString();
 		this.endStop = in.readString();
+		this.realtime = in.readInt() == 1;
 	}
 
 	public String getLine() {
@@ -35,6 +38,9 @@ public class Departure implements Parcelable {
 		return endStop;
 	}
 
+	public boolean isRealtime() {
+		return realtime;
+	}
 	public int getMinutesToGo() {
 		Calendar now = Calendar.getInstance(TimeZone.getTimeZone("Europe/Helsinki"));
 		Calendar departure = (Calendar) now.clone();
@@ -56,6 +62,7 @@ public class Departure implements Parcelable {
 		out.writeString(line);
 		out.writeString(time);
 		out.writeString(endStop);
+		out.writeInt(realtime ? 1 : 0);
 	}
 
 	public static final Parcelable.Creator<Departure> CREATOR = new Creator<Departure>() {

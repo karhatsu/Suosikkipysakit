@@ -53,7 +53,8 @@ public class StopJSONParser implements JSONParser<Stop> {
 		String line = pattern.getJSONObject("route").getString("shortName");
 		String time = timeParser.format(jsonDeparture.getInt("realtimeDeparture"));
 		String endStop = pattern.getString("headsign");
-		return new Departure(line, time, endStop);
+		boolean realtime = jsonDeparture.getBoolean("realtime");
+		return new Departure(line, time, endStop, realtime);
 	}
 
 }
