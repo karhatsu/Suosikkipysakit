@@ -76,6 +76,10 @@ public class Stop implements Parcelable {
 		this.nameByUser = nameByUser;
 	}
 
+	public String getVisibleName() {
+		return nameByUser != null ? nameByUser : name;
+	}
+
 	public boolean isHidden() {
 		return hidden;
 	}

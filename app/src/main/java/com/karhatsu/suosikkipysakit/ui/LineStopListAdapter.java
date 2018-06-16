@@ -29,8 +29,8 @@ public class LineStopListAdapter extends ArrayAdapter<Stop> {
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			view = layoutInflater.inflate(R.layout.list_item_stop, null);
 		}
-		Stop line = stops.get(position);
-		setText(view, R.id.stop_list_item_name, line.getName());
+		Stop stop = stops.get(position);
+		setText(view, R.id.stop_list_item_name, stop.getName());
 		return view;
 	}
 

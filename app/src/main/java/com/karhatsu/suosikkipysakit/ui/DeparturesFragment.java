@@ -66,7 +66,7 @@ public class DeparturesFragment extends ListFragment implements OnHslRequestRead
                 String stopCode = arguments.getString(Stop.CODE_KEY);
                 long collectionId = arguments.getLong(StopCollection.COLLECTION_ID_KEY, 0);
                 if (stop != null) {
-                    title = stop.getNameByUser();
+                    title = stop.getVisibleName();
                     setToolbarTitle();
                 } else if (stopCode == null) {
                     StopCollection stopCollection = new StopCollectionDao(getContext()).findById(collectionId);
@@ -192,7 +192,7 @@ public class DeparturesFragment extends ListFragment implements OnHslRequestRead
         departures = getDeparturesFrom(stops);
         showDepartures();
         if (title == null && stops.size() == 1) {
-            title = stops.get(0).getName();
+            title = stops.get(0).getVisibleName();
             setToolbarTitle();
         }
     }

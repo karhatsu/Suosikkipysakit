@@ -35,7 +35,7 @@ public class RenameStopDialog extends DialogFragment {
 
     private void initTextField(View view) {
         EditText stopNameField = view.findViewById(R.id.dialog_rename_stop_name);
-        stopNameField.setText(findStop().getNameByUser());
+        stopNameField.setText(findStop().getVisibleName());
     }
 
     private void addPositiveButton(AlertDialog.Builder builder, final View view) {

@@ -38,8 +38,8 @@ public class StopsVisibilityListAdapter extends ArrayAdapter<Stop> {
 	}
 
 	protected void setStopName(View view, Stop stop) {
-		TextView textView = (TextView) view.findViewById(R.id.list_item_stop_visibility_stop);
-		textView.setText(stop.getNameByUser());
+		TextView textView = view.findViewById(R.id.list_item_stop_visibility_stop);
+		textView.setText(stop.getVisibleName());
 	}
 
 	protected void setStopVisibility(View view, Stop stop) {
