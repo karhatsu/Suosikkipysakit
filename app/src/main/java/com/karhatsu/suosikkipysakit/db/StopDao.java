@@ -108,11 +108,16 @@ public class StopDao extends AbstractDao {
 		String[] selectionArgs = new String[] { String.valueOf(code) };
 		Cursor cursor = db.query(TABLE_NAME, STOP_PROJECTION, selection,
 				selectionArgs, null, null, null);
-		cursor.moveToFirst();
-		Stop stop = createStop(cursor);
-		cursor.close();
-		db.close();
-		return stop;
+		if (cursor.moveToFirst()) {
+			Stop stop = createStop(cursor);
+			cursor.close();
+			db.close();
+			return stop;
+		} else {
+			cursor.close();
+			db.close();
+			return null;
+		}
 	}
 
 	public List<Stop> findByCollectionId(long collectionId) {
