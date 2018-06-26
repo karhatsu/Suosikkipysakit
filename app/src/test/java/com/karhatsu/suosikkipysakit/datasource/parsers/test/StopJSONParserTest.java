@@ -42,7 +42,7 @@ public class StopJSONParserTest extends AbstractJSONParserTest {
 	}
 
 	public void testDepartureTime() throws JSONException {
-		assertEquals("14:03", getParsedDepartures().get(0).getTime());
+		assertEquals("14:03", getParsedDepartures().get(0).getTimeInSeconds());
 	}
 
 	public void testDepartureEndStop() throws JSONException {

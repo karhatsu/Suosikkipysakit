@@ -11,7 +11,6 @@ import com.karhatsu.suosikkipysakit.domain.Departure;
 import com.karhatsu.suosikkipysakit.domain.Stop;
 
 public class StopJSONParser implements JSONParser<Stop> {
-	private TimeParser timeParser = new TimeParser();
 
 	public ArrayList<Stop> parse(String json) throws JSONException {
 		ArrayList<Stop> stops = new ArrayList<Stop>();
@@ -51,7 +50,7 @@ public class StopJSONParser implements JSONParser<Stop> {
 	private Departure parseDeparture(JSONObject jsonDeparture) throws JSONException {
 		JSONObject pattern = jsonDeparture.getJSONObject("trip").getJSONObject("pattern");
 		String line = pattern.getJSONObject("route").getString("shortName");
-		String time = timeParser.format(jsonDeparture.getInt("realtimeDeparture"));
+		int time = jsonDeparture.getInt("realtimeDeparture");
 		String endStop = pattern.getString("headsign");
 		boolean realtime = jsonDeparture.getBoolean("realtime");
 		return new Departure(line, time, endStop, realtime);

@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.karhatsu.suosikkipysakit.R;
+import com.karhatsu.suosikkipysakit.datasource.parsers.TimeParser;
 import com.karhatsu.suosikkipysakit.domain.Departure;
 
 import java.util.List;
@@ -43,7 +44,7 @@ public class DepartureListAdapter extends ArrayAdapter<Departure> {
 	}
 
 	private String getTime(Departure departure) {
-		String time = departure.getTime();
+		String time = new TimeParser().format(departure.getTimeInSeconds());
 		if (!departure.isRealtime()) {
 			time += "~";
 		}
@@ -51,7 +52,7 @@ public class DepartureListAdapter extends ArrayAdapter<Departure> {
 	}
 
 	private String getMinutesToGo(Departure departure) {
-		int min = departure.getMinutesToGo();
+		int min = new TimeParser().parseMinutes(departure.getTimeInSeconds());
 		if (min < -9 || min > 99) {
 			return "**";
 		}
