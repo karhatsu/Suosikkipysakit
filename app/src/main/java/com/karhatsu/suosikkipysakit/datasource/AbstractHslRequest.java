@@ -3,7 +3,6 @@ package com.karhatsu.suosikkipysakit.datasource;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.BufferedWriter;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
@@ -23,7 +22,7 @@ import javax.net.ssl.HttpsURLConnection;
 
 public abstract class AbstractHslRequest<R> extends AsyncTask<String, Void, ArrayList<R>> {
 
-	protected static final String API_URL = "https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql";
+	private static final String API_URL = "https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql";
 
 	private OnHslRequestReady<R> notifier;
 	private boolean connectionFailed;
@@ -38,7 +37,10 @@ public abstract class AbstractHslRequest<R> extends AsyncTask<String, Void, Arra
 	@Override
 	protected ArrayList<R> doInBackground(String... searchParams) {
 		running = true;
-		if (!connectionAvailable()) {
+		Context context = notifier.getContext();
+		if (context == null) {
+			return null;
+		} else if (!connectionAvailable(context)) {
 			connectionFailed = true;
 			return null;
 		}
@@ -59,9 +61,8 @@ public abstract class AbstractHslRequest<R> extends AsyncTask<String, Void, Arra
 		return list;
 	}
 
-	private boolean connectionAvailable() {
-		ConnectivityManager connectivityManager = (ConnectivityManager) notifier
-				.getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+	private boolean connectionAvailable(Context context) {
+		ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 		NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
 		return networkInfo != null && networkInfo.isConnected();
 	}
@@ -87,7 +88,7 @@ public abstract class AbstractHslRequest<R> extends AsyncTask<String, Void, Arra
 		if (notifier != null) {
 			if (connectionFailed) {
 				notifier.notifyConnectionProblem();
-			} else {
+			} else if (result != null) {
 				notifier.notifyAboutResult(result);
 			}
 		}
@@ -115,7 +116,7 @@ public abstract class AbstractHslRequest<R> extends AsyncTask<String, Void, Arra
 
 	protected abstract String getRequestBody(String searchParam);
 
-	public String readStream(InputStream stream) {
+	private String readStream(InputStream stream) {
 		Scanner scanner = new Scanner(stream).useDelimiter("\\A");
 		return scanner.hasNext() ? scanner.next() : "";
 	}
