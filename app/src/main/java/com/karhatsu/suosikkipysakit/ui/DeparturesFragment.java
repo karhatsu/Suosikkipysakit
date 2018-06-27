@@ -202,12 +202,14 @@ public class DeparturesFragment extends ListFragment implements OnHslRequestRead
     public void notifyAboutResult(ArrayList<Stop> stops) {
         hideProgressDialog();
         departures = getDeparturesFrom(stops);
-        showDepartures();
-        if (title == null && stops.size() == 1) {
-            Stop apiStop = stops.get(0);
-            Stop dbStop = new StopDao(getContext()).findByCode(apiStop.getCode());
-            title = dbStop != null ? dbStop.getVisibleName() : apiStop.getVisibleName();
-            setToolbarTitle();
+        if (isSafeFragment()) {
+            showDepartures();
+            if (title == null && stops.size() == 1) {
+                Stop apiStop = stops.get(0);
+                Stop dbStop = new StopDao(getContext()).findByCode(apiStop.getCode());
+                title = dbStop != null ? dbStop.getVisibleName() : apiStop.getVisibleName();
+                setToolbarTitle();
+            }
         }
     }
 
@@ -218,6 +220,10 @@ public class DeparturesFragment extends ListFragment implements OnHslRequestRead
         }
         Collections.sort(departures, new DeparturesComparator());
         return departures;
+    }
+
+    private boolean isSafeFragment() {
+        return !(isRemoving() || getActivity() == null || isDetached() || !isAdded() || getView() == null);
     }
 
     @Override
