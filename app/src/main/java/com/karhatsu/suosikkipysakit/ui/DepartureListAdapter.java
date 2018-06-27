@@ -44,17 +44,15 @@ public class DepartureListAdapter extends ArrayAdapter<Departure> {
 	}
 
 	private String getTime(Departure departure) {
-		String time = new TimeParser().format(departure.getTimeInSeconds());
-		if (!departure.isRealtime()) {
-			time += "~";
-		}
-		return time;
+		return new TimeParser().format(departure.getTimeInSeconds());
 	}
 
 	private String getMinutesToGo(Departure departure) {
 		int min = new TimeParser().parseMinutes(departure.getTimeInSeconds());
 		if (min < -9 || min > 99) {
 			return "**";
+		} else if (!departure.isRealtime()) {
+			return "~" + min;
 		}
 		return String.valueOf(min);
 	}

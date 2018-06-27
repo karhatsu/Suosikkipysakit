@@ -15,7 +15,7 @@
 	
 	<TextView xmlns:android="http://schemas.android.com/apk/res/android"
 	    android:id="@+id/departure_list_item_min"
-	    android:layout_width="30dp"
+	    android:layout_width="40dp"
 	    android:layout_height="wrap_content"
 		android:layout_margin="@dimen/text_margin_departure"
 		android:gravity="center"
