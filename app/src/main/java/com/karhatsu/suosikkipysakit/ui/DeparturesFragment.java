@@ -72,6 +72,15 @@ public class DeparturesFragment extends ListFragment implements OnHslRequestRead
                     setToolbarTitle();
                 }
             }
+        } else {
+            title = savedInstanceState.getString(TITLE);
+            departures = savedInstanceState.getParcelableArrayList(DEPARTURES);
+            stop = savedInstanceState.getParcelable(Stop.STOP_KEY);
+            stopCode = savedInstanceState.getString(Stop.CODE_KEY);
+            collectionId = savedInstanceState.getLong(StopCollection.COLLECTION_ID_KEY, 0);
+            if (title != null) {
+                setToolbarTitle();
+            }
         }
         return rootView;
     }
@@ -82,17 +91,11 @@ public class DeparturesFragment extends ListFragment implements OnHslRequestRead
         if (savedInstanceState == null) {
             queryDepartures(true);
         } else {
-            title = savedInstanceState.getString(TITLE);
-            departures = savedInstanceState.getParcelableArrayList(DEPARTURES);
-            stop = savedInstanceState.getParcelable(Stop.STOP_KEY);
-            stopCode = savedInstanceState.getString(Stop.CODE_KEY);
-            collectionId = savedInstanceState.getLong(StopCollection.COLLECTION_ID_KEY, 0);
             if (departures != null) {
                 showDepartures();
             } else {
                 queryDepartures(true);
             }
-            setToolbarTitle();
         }
     }
 
