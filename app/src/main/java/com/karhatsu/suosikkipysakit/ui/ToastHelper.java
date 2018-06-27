@@ -11,9 +11,11 @@ public class ToastHelper {
 	}
 
 	public static void showToast(Context context, int resourceId, int duration) {
-		Toast toast = Toast.makeText(context, resourceId, duration);
-		toast.setGravity(Gravity.TOP, 0, 200);
-		toast.show();
+		if (context != null) {
+			Toast toast = Toast.makeText(context, resourceId, duration);
+			toast.setGravity(Gravity.TOP, 0, 200);
+			toast.show();
+		}
 	}
 
 }
