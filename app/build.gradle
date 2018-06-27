@@ -6,8 +6,8 @@ android {
         applicationId "com.karhatsu.suosikkipysakit"
         minSdkVersion 19
         targetSdkVersion 27
-        versionCode 13
-        versionName "3.2"
+        versionCode 14
+        versionName "3.3"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
