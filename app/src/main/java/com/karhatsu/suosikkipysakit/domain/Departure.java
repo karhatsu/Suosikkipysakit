@@ -8,12 +8,14 @@ public class Departure implements Parcelable {
 	private final int timeInSeconds;
 	private final String endStop;
 	private final boolean realtime;
+	private final int serviceDay;
 
-	public Departure(String line, int timeInSeconds, String endStop, boolean realtime) {
+	public Departure(String line, int timeInSeconds, String endStop, boolean realtime, int serviceDay) {
 		this.line = line;
 		this.timeInSeconds = timeInSeconds;
 		this.endStop = endStop;
 		this.realtime = realtime;
+		this.serviceDay = serviceDay;
 	}
 
 	private Departure(Parcel in) {
@@ -21,6 +23,7 @@ public class Departure implements Parcelable {
 		this.timeInSeconds = in.readInt();
 		this.endStop = in.readString();
 		this.realtime = in.readInt() == 1;
+		this.serviceDay = in.readInt();
 	}
 
 	public String getLine() {
@@ -39,6 +42,10 @@ public class Departure implements Parcelable {
 		return realtime;
 	}
 
+	public int getServiceDay() {
+		return serviceDay;
+	}
+
 	@Override
 	public int describeContents() {
 		return 0;
@@ -50,6 +57,7 @@ public class Departure implements Parcelable {
 		out.writeInt(timeInSeconds);
 		out.writeString(endStop);
 		out.writeInt(realtime ? 1 : 0);
+		out.writeInt(serviceDay);
 	}
 
 	public static final Parcelable.Creator<Departure> CREATOR = new Creator<Departure>() {

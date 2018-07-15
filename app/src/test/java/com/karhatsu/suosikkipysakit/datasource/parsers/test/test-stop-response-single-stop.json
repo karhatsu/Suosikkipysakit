@@ -8,6 +8,7 @@
           "scheduledDeparture": 84600,
           "realtimeDeparture": 84688,
           "realtime": true,
+          "serviceDay": 1531688400,
           "trip": {
             "pattern": {
               "route": {
@@ -21,6 +22,7 @@
           "scheduledDeparture": 19380,
           "realtimeDeparture": 19380,
           "realtime": false,
+          "serviceDay": 1531688400,
           "trip": {
             "pattern": {
               "route": {
@@ -34,6 +36,7 @@
           "scheduledDeparture": 20460,
           "realtimeDeparture": 20460,
           "realtime": false,
+          "serviceDay": 1531688400,
           "trip": {
             "pattern": {
               "route": {
@@ -47,6 +50,7 @@
           "scheduledDeparture": 21060,
           "realtimeDeparture": 21060,
           "realtime": false,
+          "serviceDay": 1531688400,
           "trip": {
             "pattern": {
               "route": {
@@ -60,6 +64,7 @@
           "scheduledDeparture": 21720,
           "realtimeDeparture": 21720,
           "realtime": false,
+          "serviceDay": 1531688400,
           "trip": {
             "pattern": {
               "route": {
@@ -73,6 +78,7 @@
           "scheduledDeparture": 22500,
           "realtimeDeparture": 22500,
           "realtime": false,
+          "serviceDay": 1531688400,
           "trip": {
             "pattern": {
               "route": {
@@ -86,6 +92,7 @@
           "scheduledDeparture": 23040,
           "realtimeDeparture": 23040,
           "realtime": false,
+          "serviceDay": 1531688400,
           "trip": {
             "pattern": {
               "route": {
@@ -99,6 +106,7 @@
           "scheduledDeparture": 23940,
           "realtimeDeparture": 23940,
           "realtime": false,
+          "serviceDay": 1531688400,
           "trip": {
             "pattern": {
               "route": {
@@ -112,6 +120,7 @@
           "scheduledDeparture": 24300,
           "realtimeDeparture": 24300,
           "realtime": false,
+          "serviceDay": 1531688400,
           "trip": {
             "pattern": {
               "route": {
@@ -125,6 +134,7 @@
           "scheduledDeparture": 25200,
           "realtimeDeparture": 25200,
           "realtime": false,
+          "serviceDay": 1531688400,
           "trip": {
             "pattern": {
               "route": {
@@ -138,6 +148,7 @@
           "scheduledDeparture": 25440,
           "realtimeDeparture": 25440,
           "realtime": false,
+          "serviceDay": 1531688400,
           "trip": {
             "pattern": {
               "route": {
@@ -151,6 +162,7 @@
           "scheduledDeparture": 26160,
           "realtimeDeparture": 26160,
           "realtime": false,
+          "serviceDay": 1531688400,
           "trip": {
             "pattern": {
               "route": {
@@ -164,6 +176,7 @@
           "scheduledDeparture": 26400,
           "realtimeDeparture": 26400,
           "realtime": false,
+          "serviceDay": 1531688400,
           "trip": {
             "pattern": {
               "route": {
@@ -177,6 +190,7 @@
           "scheduledDeparture": 26820,
           "realtimeDeparture": 26820,
           "realtime": false,
+          "serviceDay": 1531688400,
           "trip": {
             "pattern": {
               "route": {
@@ -190,6 +204,7 @@
           "scheduledDeparture": 27180,
           "realtimeDeparture": 27180,
           "realtime": false,
+          "serviceDay": 1531688400,
           "trip": {
             "pattern": {
               "route": {

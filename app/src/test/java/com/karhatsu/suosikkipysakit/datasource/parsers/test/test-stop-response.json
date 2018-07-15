@@ -10,6 +10,7 @@
             "realtimeDeparture": 50627,
             "departureDelay": -13,
             "realtime": true,
+            "serviceDay": 1531688400,
             "trip": {
               "pattern": {
                 "route": {
@@ -24,6 +25,7 @@
             "realtimeDeparture": 51240,
             "departureDelay": 0,
             "realtime": true,
+            "serviceDay": 1531688400,
             "trip": {
               "pattern": {
                 "route": {
@@ -38,6 +40,7 @@
             "realtimeDeparture": 51840,
             "departureDelay": 0,
             "realtime": false,
+            "serviceDay": 1531688400,
             "trip": {
               "pattern": {
                 "route": {
@@ -52,6 +55,7 @@
             "realtimeDeparture": 52440,
             "departureDelay": 0,
             "realtime": false,
+            "serviceDay": 1531688400,
             "trip": {
               "pattern": {
                 "route": {
@@ -66,6 +70,7 @@
             "realtimeDeparture": 53040,
             "departureDelay": 0,
             "realtime": false,
+            "serviceDay": 1531688400,
             "trip": {
               "pattern": {
                 "route": {

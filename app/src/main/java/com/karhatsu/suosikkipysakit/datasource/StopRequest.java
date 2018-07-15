@@ -25,6 +25,7 @@ public class StopRequest extends AbstractHslRequest<Stop> {
 				.append("      scheduledDeparture")
 				.append("      realtimeDeparture")
 				.append("      realtime")
+				.append("      serviceDay")
 				.append("      trip {")
 				.append("        pattern {")
 				.append("          route {")
