@@ -7,6 +7,7 @@ public enum City {
 	KIRKKONUMMI("Kirkkonummi", "Ki"),
 	KERAVA("Kerava", "Ke"),
 	JARVENPAA("Järvenpää", "Jä"),
+	SIPOO("Sipoo", "Si"),
 	TUUSULA("Tuusula", "Tu");
 
 	private final String name;

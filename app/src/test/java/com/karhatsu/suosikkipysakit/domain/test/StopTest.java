@@ -54,6 +54,10 @@ public class StopTest extends TestCase {
 		assertTrue(Stop.isValidCode("Jä0201"));
 	}
 
+	public void testSipoo() {
+		assertTrue(Stop.isValidCode("Si2239"));
+	}
+
 	public void testTuusula() {
 		assertTrue(Stop.isValidCode("Tu0104"));
 	}
