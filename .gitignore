@@ -1,6 +1,8 @@
 .idea
 *.iml
+app-release.aab
 app/release/output.json
+app/suosikkipysakit.keystore
 bin/
 build/
 gen/
