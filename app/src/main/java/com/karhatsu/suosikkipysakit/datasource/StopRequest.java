@@ -29,6 +29,7 @@ public class StopRequest extends AbstractHslRequest<Stop> {
 				.append("      trip {")
 				.append("        pattern {")
 				.append("          route {")
+				.append("            mode")
 				.append("            shortName")
 				.append("          }")
 				.append("          headsign")
@@ -43,6 +44,8 @@ public class StopRequest extends AbstractHslRequest<Stop> {
 	private String getStopsSearch(String searchParam) {
 		if (searchParam.length() <= 6) {
 			return "stops(name: \"" + searchParam + "\")";
+		} else if (searchParam.startsWith("HSL")) {
+			return "stop(id: \"" + searchParam + "\")";
 		}
 		return "stop(id: \"HSL:" + searchParam + "\")";
 	}

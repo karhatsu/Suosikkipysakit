@@ -46,7 +46,7 @@ public class LinesJSONParserTest extends AbstractJSONParserTest {
 	}
 
 	public void testStopCode() throws JSONException {
-		assertEquals("4421", getFirstLineFirstStop().getCode());
+		assertEquals("HSL:1471137", getFirstLineFirstStop().getCode());
 	}
 
 	public void testStopName() throws JSONException {

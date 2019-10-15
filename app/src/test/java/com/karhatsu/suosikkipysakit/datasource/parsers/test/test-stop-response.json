@@ -2,6 +2,7 @@
   "data": {
     "stops": [
       {
+        "gtfsId": "HSL:1431102",
         "name": "Kipparlahti",
         "code": "4004",
         "stoptimesWithoutPatterns": [
@@ -14,7 +15,8 @@
             "trip": {
               "pattern": {
                 "route": {
-                  "shortName": "58"
+                  "shortName": "58",
+                  "mode": "BUS"
                 },
                 "headsign": "Munkkivuori"
               }
@@ -29,7 +31,8 @@
             "trip": {
               "pattern": {
                 "route": {
-                  "shortName": "58"
+                  "shortName": "58",
+                  "mode": "BUS"
                 },
                 "headsign": "Munkkivuori"
               }
@@ -44,7 +47,8 @@
             "trip": {
               "pattern": {
                 "route": {
-                  "shortName": "58"
+                  "shortName": "58",
+                  "mode": "BUS"
                 },
                 "headsign": "Munkkivuori"
               }
@@ -59,7 +63,8 @@
             "trip": {
               "pattern": {
                 "route": {
-                  "shortName": "58"
+                  "shortName": "58",
+                  "mode": "BUS"
                 },
                 "headsign": "Munkkivuori"
               }
@@ -74,7 +79,8 @@
             "trip": {
               "pattern": {
                 "route": {
-                  "shortName": "58"
+                  "shortName": "58",
+                  "mode": "BUS"
                 },
                 "headsign": "Munkkivuori"
               }

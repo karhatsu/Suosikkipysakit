@@ -2,6 +2,7 @@
   "data": {
     "stops": [
       {
+        "gtfsId": "HSL:1431102",
         "name": "Kipparlahti",
         "code": "4004",
         "stoptimesWithoutPatterns": []

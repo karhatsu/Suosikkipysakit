@@ -3,6 +3,7 @@
     "routes": [
       {
         "gtfsId": "HSL:1094B",
+        "mode": "BUS",
         "shortName": "94B",
         "longName": "Kivikonlaita-Kontula(M)",
         "patterns": [
@@ -10,55 +11,68 @@
             "stops": [
               {
                 "name": "Kontula (M)",
-                "code": "4421"
+                "code": "4421",
+                "gtfsId": "HSL:1471137"
               },
               {
                 "name": "Kontula (M)",
-                "code": "4423"
+                "code": "4423",
+                "gtfsId": "HSL:1471181"
               },
               {
                 "name": "Kaarikuja",
-                "code": "4425"
+                "code": "4425",
+                "gtfsId": "HSL:1471139"
               },
               {
                 "name": "Kivikonkaari",
-                "code": "4457"
+                "code": "4457",
+                "gtfsId": "HSL:1471136"
               },
               {
                 "name": "Linnoituksentie",
-                "code": "4453"
+                "code": "4453",
+                "gtfsId": "HSL:1474108"
               },
               {
                 "name": "Varustuksentie",
-                "code": "4451"
+                "code": "4451",
+                "gtfsId": "HSL:1474106"
               },
               {
                 "name": "Järkälekuja",
-                "code": "4449"
+                "code": "4449",
+                "gtfsId": "HSL:1474104"
               },
               {
                 "name": "Kurkimäentie",
-                "code": "4447"
+                "code": "4447",
+                "gtfsId": "HSL:1474102"
               },
               {
                 "name": "Kivikontie",
-                "code": "4535"
+                "code": "4535",
+                "gtfsId": "HSL:1474127"
               },
               {
                 "name": "Savikiekontie",
-                "code": "4479"
+                "code": "4479",
+                "gtfsId": "HSL:1474117"
               },
               {
                 "name": "Kivikonkuja",
-                "code": "4487"
+                "code": "4487",
+                "gtfsId": "HSL:1474126"
               },
               {
                 "name": "Tattarisilta",
-                "code": "4477"
+                "code": "4477",
+                "gtfsId": "HSL:1474100"
               },
               {
                 "name": "Kivikonlaita 43",
-                "code": "4485"
+                "code": "4485",
+                "gtfsId": "HSL:1474110"
               }
             ]
           },
@@ -66,55 +80,68 @@
             "stops": [
               {
                 "name": "Kivikonlaita 43",
-                "code": "4485"
+                "code": "4485",
+                "gtfsId": "HSL:1474110"
               },
               {
                 "name": "Tattarisilta",
-                "code": "4476"
+                "code": "4476",
+                "gtfsId": "HSL:1474119"
               },
               {
                 "name": "Kivikonkuja",
-                "code": "4445"
+                "code": "4445",
+                "gtfsId": "HSL:1474125"
               },
               {
                 "name": "Savikiekontie",
-                "code": "4478"
+                "code": "4478",
+                "gtfsId": "HSL:1474118"
               },
               {
                 "name": "Kivikontie",
-                "code": "4446"
+                "code": "4446",
+                "gtfsId": "HSL:1474116"
               },
               {
                 "name": "Kivijatatie",
-                "code": "4444"
+                "code": "4444",
+                "gtfsId": "HSL:1474114"
               },
               {
                 "name": "Panosaukio",
-                "code": "4442"
+                "code": "4442",
+                "gtfsId": "HSL:1474112"
               },
               {
                 "name": "Kuovipolku",
-                "code": "4440"
+                "code": "4440",
+                "gtfsId": "HSL:1471183"
               },
               {
                 "name": "Harmaahaikarankuja",
-                "code": "4438"
+                "code": "4438",
+                "gtfsId": "HSL:1471177"
               },
               {
                 "name": "Kurkiaispolku",
-                "code": "4415"
+                "code": "4415",
+                "gtfsId": "HSL:1471175"
               },
               {
                 "name": "Kurkiauranpolku",
-                "code": "4417"
+                "code": "4417",
+                "gtfsId": "HSL:1471171"
               },
               {
                 "name": "Keinulaudantie",
-                "code": "4419"
+                "code": "4419",
+                "gtfsId": "HSL:1471173"
               },
               {
                 "name": "Kontula (M)",
-                "code": "4421"
+                "code": "4421",
+                "gtfsId": "HSL:1471137"
               }
             ]
           }
@@ -122,6 +149,7 @@
       },
       {
         "gtfsId": "HSL:1094A",
+        "mode": "BUS",
         "shortName": "94A",
         "longName": "Kotikonnuntie-Kontula(M)-Kivikko-Kontula(M)",
         "patterns": [
@@ -129,222 +157,122 @@
             "stops": [
               {
                 "name": "Paneliantie",
-                "code": "4462"
+                "code": "4462",
+                "gtfsId": "HSL:1471122"
               },
               {
                 "name": "Leikkikuja",
-                "code": "4460"
+                "code": "4460",
+                "gtfsId": "HSL:1471152"
               },
               {
                 "name": "Ostostie",
-                "code": "4458"
+                "code": "4458",
+                "gtfsId": "HSL:1471150"
               },
               {
                 "name": "Kontula (M)",
-                "code": "4404"
+                "code": "4404",
+                "gtfsId": "HSL:1471117"
               },
               {
                 "name": "Kontula (M)",
-                "code": "4422"
+                "code": "4422",
+                "gtfsId": "HSL:1471138"
               },
               {
                 "name": "Keinulaudantie",
-                "code": "4420"
+                "code": "4420",
+                "gtfsId": "HSL:1471174"
               },
               {
                 "name": "Kurkiauranpolku",
-                "code": "4418"
+                "code": "4418",
+                "gtfsId": "HSL:1471172"
               },
               {
                 "name": "Kurkiaispolku",
-                "code": "4416"
+                "code": "4416",
+                "gtfsId": "HSL:1471176"
               },
               {
                 "name": "Harmaahaikarankuja",
-                "code": "4437"
+                "code": "4437",
+                "gtfsId": "HSL:1471178"
               },
               {
                 "name": "Kuovipolku",
-                "code": "4439"
+                "code": "4439",
+                "gtfsId": "HSL:1471180"
               },
               {
                 "name": "Kurkimäentie",
-                "code": "4448"
+                "code": "4448",
+                "gtfsId": "HSL:1474101"
               },
               {
                 "name": "Järkälekuja",
-                "code": "4450"
+                "code": "4450",
+                "gtfsId": "HSL:1474103"
               },
               {
                 "name": "Varustuksentie",
-                "code": "4452"
+                "code": "4452",
+                "gtfsId": "HSL:1474105"
               },
               {
                 "name": "Linnoituksentie",
-                "code": "4454"
+                "code": "4454",
+                "gtfsId": "HSL:1474107"
               },
               {
                 "name": "Kivikonkaari",
-                "code": "4428"
+                "code": "4428",
+                "gtfsId": "HSL:1471142"
               },
               {
                 "name": "Kaarikuja",
-                "code": "4426"
+                "code": "4426",
+                "gtfsId": "HSL:1471140"
               },
               {
                 "name": "Kontula (M)",
-                "code": "4309"
+                "code": "4309",
+                "gtfsId": "HSL:1471189"
               }
             ]
           },
           {
             "stops": [
               {
-                "name": "Paneliantie",
-                "code": "4462"
+                "name": "Kontula (M)",
+                "code": "4309",
+                "gtfsId": "HSL:1471189"
               },
               {
-                "name": "Leikkikuja",
-                "code": "4460"
+                "name": "Kontula (M)",
+                "code": "4414",
+                "gtfsId": "HSL:1471179"
+              },
+              {
+                "name": "Kontula (M)",
+                "code": "4405",
+                "gtfsId": "HSL:1471118"
               },
               {
                 "name": "Ostostie",
-                "code": "4458"
-              },
-              {
-                "name": "Kontula (M)",
-                "code": "4404"
-              },
-              {
-                "name": "Kontula (M)",
-                "code": "4422"
-              },
-              {
-                "name": "Keinulaudantie",
-                "code": "4420"
-              },
-              {
-                "name": "Kurkiauranpolku",
-                "code": "4418"
-              },
-              {
-                "name": "Kurkiaispolku",
-                "code": "4416"
-              },
-              {
-                "name": "Harmaahaikarankuja",
-                "code": "4437"
-              },
-              {
-                "name": "Kuovipolku",
-                "code": "4439"
-              },
-              {
-                "name": "Kurkimäentie",
-                "code": "4448"
-              },
-              {
-                "name": "Järkälekuja",
-                "code": "4450"
-              },
-              {
-                "name": "Varustuksentie",
-                "code": "4452"
-              },
-              {
-                "name": "Linnoituksentie",
-                "code": "4454"
-              },
-              {
-                "name": "Kivikonkaari",
-                "code": "4428"
-              },
-              {
-                "name": "Kaarikuja",
-                "code": "4426"
-              },
-              {
-                "name": "Kontula (M)",
-                "code": "4412"
-              }
-            ]
-          },
-          {
-            "stops": [
-              {
-                "name": "Kontula (M)",
-                "code": "4309"
-              },
-              {
-                "name": "Kontula (M)",
-                "code": "4405"
-              },
-              {
-                "name": "Ostostie",
-                "code": "4459"
+                "code": "4459",
+                "gtfsId": "HSL:1471149"
               },
               {
                 "name": "Leikkikuja",
-                "code": "4461"
+                "code": "4461",
+                "gtfsId": "HSL:1471151"
               },
               {
                 "name": "Paneliantie",
-                "code": "4533"
-              }
-            ]
-          },
-          {
-            "stops": [
-              {
-                "name": "Kontula (M)",
-                "code": "4412"
-              },
-              {
-                "name": "Kontula (M)",
-                "code": "4405"
-              },
-              {
-                "name": "Ostostie",
-                "code": "4459"
-              },
-              {
-                "name": "Leikkikuja",
-                "code": "4461"
-              },
-              {
-                "name": "Paneliantie",
-                "code": "4533"
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "gtfsId": "HSL:1094R",
-        "shortName": "94R",
-        "longName": "Kivikontie-Kivikon liikuntapuisto",
-        "patterns": [
-          {
-            "stops": [
-              {
-                "name": "Kivikontie",
-                "code": "4446"
-              },
-              {
-                "name": "Kivikon liikuntap.",
-                "code": "4830"
-              }
-            ]
-          },
-          {
-            "stops": [
-              {
-                "name": "Kivikon liikuntap.",
-                "code": "4830"
-              },
-              {
-                "name": "Kivikontie",
-                "code": "4446"
+                "code": "4533",
+                "gtfsId": "HSL:1471113"
               }
             ]
           }
@@ -352,6 +280,7 @@
       },
       {
         "gtfsId": "HSL:1094N",
+        "mode": "BUS",
         "shortName": "94N",
         "longName": "Rautatientori-Roihuvuori-Kontulankaari",
         "patterns": [
@@ -359,143 +288,173 @@
             "stops": [
               {
                 "name": "Rautatientori",
-                "code": "2048"
+                "code": "2048",
+                "gtfsId": "HSL:1020120"
               },
               {
                 "name": "Kaisaniemenpuisto",
-                "code": "2061"
+                "code": "2061",
+                "gtfsId": "HSL:1020105"
               },
               {
                 "name": "Hakaniemi",
-                "code": "2507"
+                "code": "2507",
+                "gtfsId": "HSL:1111143"
               },
               {
                 "name": "Hanasaari",
-                "code": "2514"
+                "code": "2514",
+                "gtfsId": "HSL:1100102"
               },
               {
                 "name": "Suvilahti",
-                "code": "2518"
+                "code": "2518",
+                "gtfsId": "HSL:1100105"
               },
               {
                 "name": "Kalasatama (M)",
-                "code": "2552"
+                "code": "2552",
+                "gtfsId": "HSL:1100109"
               },
               {
                 "name": "Kulosaari",
-                "code": "4001"
+                "code": "4001",
+                "gtfsId": "HSL:1420115"
               },
               {
                 "name": "Tupasaari",
-                "code": "4003"
+                "code": "4003",
+                "gtfsId": "HSL:1420117"
               },
               {
                 "name": "Kipparlahti",
-                "code": "4005"
+                "code": "4005",
+                "gtfsId": "HSL:1434101"
               },
               {
                 "name": "Laivalahdenportti",
-                "code": "4035"
+                "code": "4035",
+                "gtfsId": "HSL:1434112"
               },
               {
                 "name": "Linnanrakentajantie",
-                "code": "4037"
+                "code": "4037",
+                "gtfsId": "HSL:1434153"
               },
               {
                 "name": "Porolahti",
-                "code": "4183"
+                "code": "4183",
+                "gtfsId": "HSL:1433173"
               },
               {
                 "name": "Porolahden koulu",
-                "code": "4201"
+                "code": "4201",
+                "gtfsId": "HSL:1432157"
               },
               {
                 "name": "Keijukaistenpolku",
-                "code": "4203"
+                "code": "4203",
+                "gtfsId": "HSL:1432159"
               },
               {
                 "name": "Vuorenpeikontie",
-                "code": "4205"
+                "code": "4205",
+                "gtfsId": "HSL:1432161"
               },
               {
                 "name": "Roihuvuoren kirkko",
-                "code": "4207"
+                "code": "4207",
+                "gtfsId": "HSL:1432178"
               },
               {
                 "name": "Kreijarinkuja",
-                "code": "4209"
+                "code": "4209",
+                "gtfsId": "HSL:1432180"
               },
               {
                 "name": "Tulisuonkuja",
-                "code": "4211"
+                "code": "4211",
+                "gtfsId": "HSL:1455158"
               },
               {
                 "name": "Marjaniementie",
-                "code": "4337"
+                "code": "4337",
+                "gtfsId": "HSL:1455173"
               },
               {
                 "name": "Itäpolku",
-                "code": "4491"
+                "code": "4491",
+                "gtfsId": "HSL:1455102"
               },
               {
                 "name": "Itäkeskus (M)",
-                "code": "4310"
+                "code": "4310",
+                "gtfsId": "HSL:1453182"
               },
               {
                 "name": "Puotinharju",
-                "code": "4274"
+                "code": "4274",
+                "gtfsId": "HSL:1453181"
               },
               {
                 "name": "Vanhanlinnantie",
-                "code": "4281"
+                "code": "4281",
+                "gtfsId": "HSL:1453121"
               },
               {
                 "name": "Arhotie",
-                "code": "4283"
+                "code": "4283",
+                "gtfsId": "HSL:1453109"
               },
               {
                 "name": "Kukkaniityntie",
-                "code": "4285"
+                "code": "4285",
+                "gtfsId": "HSL:1454116"
               },
               {
                 "name": "Liikuntamylly",
-                "code": "4287"
+                "code": "4287",
+                "gtfsId": "HSL:1454111"
               },
               {
                 "name": "Sirrikuja",
-                "code": "4401"
-              },
-              {
-                "name": "Porttitie",
-                "code": "4403"
+                "code": "4401",
+                "gtfsId": "HSL:1471190"
               },
               {
                 "name": "Kontula (M)",
-                "code": "4413"
+                "code": "4413",
+                "gtfsId": "HSL:1471159"
               },
               {
                 "name": "Kaarikuja",
-                "code": "4425"
+                "code": "4425",
+                "gtfsId": "HSL:1471139"
               },
               {
                 "name": "Kivikonkaari",
-                "code": "4427"
+                "code": "4427",
+                "gtfsId": "HSL:1471141"
               },
               {
                 "name": "Sakara",
-                "code": "4429"
+                "code": "4429",
+                "gtfsId": "HSL:1471143"
               },
               {
                 "name": "Kontulankaari 11",
-                "code": "4431"
+                "code": "4431",
+                "gtfsId": "HSL:1471145"
               },
               {
                 "name": "Rapolantie",
-                "code": "4433"
+                "code": "4433",
+                "gtfsId": "HSL:1471135"
               },
               {
                 "name": "Rapolantie",
-                "code": "4434"
+                "code": "4434",
+                "gtfsId": "HSL:1471147"
               }
             ]
           },
@@ -503,147 +462,188 @@
             "stops": [
               {
                 "name": "Rapolantie",
-                "code": "4434"
+                "code": "4434",
+                "gtfsId": "HSL:1471147"
               },
               {
                 "name": "Kontulankaari 11",
-                "code": "4432"
+                "code": "4432",
+                "gtfsId": "HSL:1471146"
               },
               {
                 "name": "Sakara",
-                "code": "4430"
+                "code": "4430",
+                "gtfsId": "HSL:1471144"
               },
               {
                 "name": "Kivikonkaari",
-                "code": "4428"
+                "code": "4428",
+                "gtfsId": "HSL:1471142"
               },
               {
                 "name": "Kaarikuja",
-                "code": "4426"
+                "code": "4426",
+                "gtfsId": "HSL:1471140"
               },
               {
                 "name": "Kontula (M)",
-                "code": "4414"
+                "code": "4414",
+                "gtfsId": "HSL:1471179"
               },
               {
                 "name": "Porttitie",
-                "code": "4402"
+                "code": "4402",
+                "gtfsId": "HSL:1471119"
               },
               {
                 "name": "Sirrikuja",
-                "code": "4400"
+                "code": "4400",
+                "gtfsId": "HSL:1471191"
               },
               {
                 "name": "Liikuntamylly",
-                "code": "4286"
+                "code": "4286",
+                "gtfsId": "HSL:1454112"
               },
               {
                 "name": "Kukkaniityntie",
-                "code": "4284"
+                "code": "4284",
+                "gtfsId": "HSL:1454117"
               },
               {
                 "name": "Arhotie",
-                "code": "4282"
+                "code": "4282",
+                "gtfsId": "HSL:1453110"
               },
               {
                 "name": "Korsholmantie",
-                "code": "4275"
+                "code": "4275",
+                "gtfsId": "HSL:1453122"
               },
               {
                 "name": "Puotinharju",
-                "code": "4273"
+                "code": "4273",
+                "gtfsId": "HSL:1453118"
               },
               {
                 "name": "Itäkeskus (M)",
-                "code": "4271"
+                "code": "4271",
+                "gtfsId": "HSL:1453116"
               },
               {
                 "name": "Itäpolku",
-                "code": "4490"
+                "code": "4490",
+                "gtfsId": "HSL:1455101"
               },
               {
                 "name": "Marjaniementie",
-                "code": "4212"
+                "code": "4212",
+                "gtfsId": "HSL:1455172"
               },
               {
                 "name": "Tulisuonkuja",
-                "code": "4210"
+                "code": "4210",
+                "gtfsId": "HSL:1455159"
               },
               {
                 "name": "Kreijarinkuja",
-                "code": "4208"
+                "code": "4208",
+                "gtfsId": "HSL:1432181"
               },
               {
                 "name": "Roihuvuoren kirkko",
-                "code": "4206"
+                "code": "4206",
+                "gtfsId": "HSL:1432179"
               },
               {
                 "name": "Vuorenpeikontie",
-                "code": "4204"
+                "code": "4204",
+                "gtfsId": "HSL:1432162"
               },
               {
                 "name": "Keijukaistenpolku",
-                "code": "4202"
+                "code": "4202",
+                "gtfsId": "HSL:1432160"
               },
               {
                 "name": "Porolahden koulu",
-                "code": "4200"
+                "code": "4200",
+                "gtfsId": "HSL:1432158"
               },
               {
                 "name": "Porolahti",
-                "code": "4182"
+                "code": "4182",
+                "gtfsId": "HSL:1433156"
               },
               {
                 "name": "Linnanrakentajantie",
-                "code": "4038"
+                "code": "4038",
+                "gtfsId": "HSL:1434154"
               },
               {
                 "name": "Laivalahdenportti",
-                "code": "4036"
+                "code": "4036",
+                "gtfsId": "HSL:1433113"
               },
               {
                 "name": "Herttoniemi (M)",
-                "code": "4006"
+                "code": "4006",
+                "gtfsId": "HSL:1431187"
               },
               {
                 "name": "Kipparlahti",
-                "code": "4004"
+                "code": "4004",
+                "gtfsId": "HSL:1431102"
+              },
+              {
+                "name": "Tupasaari",
+                "code": "4002",
+                "gtfsId": "HSL:1420118"
               },
               {
                 "name": "Kulosaari",
-                "code": "4000"
+                "code": "4000",
+                "gtfsId": "HSL:1420116"
               },
               {
                 "name": "Kalasatama (M)",
-                "code": "2553"
+                "code": "2553",
+                "gtfsId": "HSL:1100110"
               },
               {
                 "name": "Suvilahti",
-                "code": "2519"
+                "code": "2519",
+                "gtfsId": "HSL:1100107"
               },
               {
                 "name": "Käenkuja",
-                "code": "2517"
+                "code": "2517",
+                "gtfsId": "HSL:1100122"
               },
               {
                 "name": "Hanasaari",
-                "code": "2515"
+                "code": "2515",
+                "gtfsId": "HSL:1100103"
               },
               {
                 "name": "Merihaka",
-                "code": "2513"
+                "code": "2513",
+                "gtfsId": "HSL:1111146"
               },
               {
                 "name": "Hakaniemi",
-                "code": "2506"
+                "code": "2506",
+                "gtfsId": "HSL:1111180"
               },
               {
                 "name": "Kaisaniemenpuisto",
-                "code": "2060"
+                "code": "2060",
+                "gtfsId": "HSL:1020106"
               },
               {
                 "name": "Rautatientori",
-                "code": "2139"
+                "code": "2139",
+                "gtfsId": "HSL:1020201"
               }
             ]
           }
@@ -651,6 +651,7 @@
       },
       {
         "gtfsId": "HSL:1094",
+        "mode": "BUS",
         "shortName": "94",
         "longName": "Itäkeskus(M)-Porttitie-Kontula(M)-Kontulankaari",
         "patterns": [
@@ -658,79 +659,93 @@
             "stops": [
               {
                 "name": "Itäkeskus (M)",
-                "code": "4310"
+                "code": "4310",
+                "gtfsId": "HSL:1453182"
               },
               {
                 "name": "Puotinharju",
-                "code": "4274"
+                "code": "4274",
+                "gtfsId": "HSL:1453181"
               },
               {
                 "name": "Vanhanlinnantie",
-                "code": "4281"
+                "code": "4281",
+                "gtfsId": "HSL:1453121"
               },
               {
                 "name": "Arhotie",
-                "code": "4283"
+                "code": "4283",
+                "gtfsId": "HSL:1453109"
               },
               {
                 "name": "Kukkaniityntie",
-                "code": "4285"
+                "code": "4285",
+                "gtfsId": "HSL:1454116"
               },
               {
                 "name": "Lallukankuja",
-                "code": "4468"
+                "code": "4468",
+                "gtfsId": "HSL:1454115"
               },
               {
                 "name": "Karjatanhuanpolku",
-                "code": "4387"
+                "code": "4387",
+                "gtfsId": "HSL:1471164"
               },
               {
                 "name": "Häyhäntie",
-                "code": "4389"
+                "code": "4389",
+                "gtfsId": "HSL:1471123"
               },
               {
                 "name": "Humikkalankuja",
-                "code": "4391"
+                "code": "4391",
+                "gtfsId": "HSL:1471125"
               },
               {
                 "name": "Naapurintie",
-                "code": "4393"
+                "code": "4393",
+                "gtfsId": "HSL:1471158"
               },
               {
                 "name": "Porttikuja",
-                "code": "4395"
-              },
-              {
-                "name": "Porttitie",
-                "code": "4403"
+                "code": "4395",
+                "gtfsId": "HSL:1471185"
               },
               {
                 "name": "Kontula (M)",
-                "code": "4413"
+                "code": "4413",
+                "gtfsId": "HSL:1471159"
               },
               {
                 "name": "Kaarikuja",
-                "code": "4425"
+                "code": "4425",
+                "gtfsId": "HSL:1471139"
               },
               {
                 "name": "Kivikonkaari",
-                "code": "4427"
+                "code": "4427",
+                "gtfsId": "HSL:1471141"
               },
               {
                 "name": "Sakara",
-                "code": "4429"
+                "code": "4429",
+                "gtfsId": "HSL:1471143"
               },
               {
                 "name": "Kontulankaari 11",
-                "code": "4431"
+                "code": "4431",
+                "gtfsId": "HSL:1471145"
               },
               {
                 "name": "Rapolantie",
-                "code": "4433"
+                "code": "4433",
+                "gtfsId": "HSL:1471135"
               },
               {
                 "name": "Rapolantie",
-                "code": "4434"
+                "code": "4434",
+                "gtfsId": "HSL:1471147"
               }
             ]
           },
@@ -738,71 +753,88 @@
             "stops": [
               {
                 "name": "Rapolantie",
-                "code": "4434"
+                "code": "4434",
+                "gtfsId": "HSL:1471147"
               },
               {
                 "name": "Kontulankaari 11",
-                "code": "4432"
+                "code": "4432",
+                "gtfsId": "HSL:1471146"
               },
               {
                 "name": "Sakara",
-                "code": "4430"
+                "code": "4430",
+                "gtfsId": "HSL:1471144"
               },
               {
                 "name": "Kivikonkaari",
-                "code": "4428"
+                "code": "4428",
+                "gtfsId": "HSL:1471142"
               },
               {
                 "name": "Kaarikuja",
-                "code": "4426"
+                "code": "4426",
+                "gtfsId": "HSL:1471140"
               },
               {
                 "name": "Kontula (M)",
-                "code": "4414"
+                "code": "4414",
+                "gtfsId": "HSL:1471179"
               },
               {
                 "name": "Porttikuja",
-                "code": "4396"
+                "code": "4396",
+                "gtfsId": "HSL:1471156"
               },
               {
                 "name": "Naapurintie",
-                "code": "4394"
+                "code": "4394",
+                "gtfsId": "HSL:1471157"
               },
               {
                 "name": "Humikkalankuja",
-                "code": "4392"
+                "code": "4392",
+                "gtfsId": "HSL:1471126"
               },
               {
                 "name": "Häyhäntie",
-                "code": "4390"
+                "code": "4390",
+                "gtfsId": "HSL:1471124"
               },
               {
                 "name": "Lallukantie",
-                "code": "4388"
+                "code": "4388",
+                "gtfsId": "HSL:1471114"
               },
               {
                 "name": "Lallukankuja",
-                "code": "4489"
+                "code": "4489",
+                "gtfsId": "HSL:1454127"
               },
               {
                 "name": "Kukkaniityntie",
-                "code": "4284"
+                "code": "4284",
+                "gtfsId": "HSL:1454117"
               },
               {
                 "name": "Arhotie",
-                "code": "4282"
+                "code": "4282",
+                "gtfsId": "HSL:1453110"
               },
               {
                 "name": "Korsholmantie",
-                "code": "4275"
+                "code": "4275",
+                "gtfsId": "HSL:1453122"
               },
               {
                 "name": "Puotinharju",
-                "code": "4273"
+                "code": "4273",
+                "gtfsId": "HSL:1453118"
               },
               {
                 "name": "Itäkeskus (M)",
-                "code": "4314"
+                "code": "4314",
+                "gtfsId": "HSL:1453114"
               }
             ]
           }
