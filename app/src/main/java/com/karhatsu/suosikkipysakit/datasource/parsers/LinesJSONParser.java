@@ -25,7 +25,8 @@ public class LinesJSONParser implements JSONParser<Line> {
 	private void parseLines(ArrayList<Line> lines, JSONObject jsonLine) throws JSONException {
 		String longCode = jsonLine.getString("gtfsId");
 		String mode = jsonLine.getString("mode");
-		String lineCode = mode.equals("FERRY") ? "⛴" : jsonLine.getString("shortName");
+		String shortName = jsonLine.getString("shortName");
+		String lineCode = StopNameParser.parse(mode, shortName);
 		String name = jsonLine.getString("longName");
 		JSONArray patterns = jsonLine.getJSONArray("patterns");
 		for (int i = 0; i < patterns.length(); i++) {
