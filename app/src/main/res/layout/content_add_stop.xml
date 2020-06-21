@@ -47,6 +47,7 @@
 
                 <EditText
                     android:id="@+id/add_stop_code"
+                    android:imeOptions="actionSearch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/activity_add_stop_code_hint"
@@ -83,9 +84,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/activity_add_stop_line_hint"
-                    android:imeActionId="6"
-                    android:imeActionLabel="@string/activity_add_stop_search_by_line"
-                    android:imeOptions="actionUnspecified"
+                    android:imeOptions="actionSearch"
                     android:inputType="textCapWords"
                     android:maxLines="1"
                     android:singleLine="true" />

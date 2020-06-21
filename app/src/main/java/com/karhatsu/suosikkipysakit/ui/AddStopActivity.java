@@ -48,7 +48,7 @@ public class AddStopActivity extends AppCompatActivity implements AdapterView.On
 			actionBar.setDisplayHomeAsUpEnabled(true);
 		}
 		createCitySpinner();
-		addEnterListeners();
+		addSearchButtonListeners();
 		initializeRequests();
 		restoreState();
 	}
@@ -105,11 +105,9 @@ public class AddStopActivity extends AppCompatActivity implements AdapterView.On
 		return (Spinner) findViewById(R.id.city_spinner);
 	}
 
-	private void addEnterListeners() {
-		getStopCodeField().setOnEditorActionListener(
-				createStopCodeEnterListener());
-		getLineCodeField().setOnEditorActionListener(
-				createLineCodeEnterListener());
+	private void addSearchButtonListeners() {
+		getStopCodeField().setOnEditorActionListener(createStopCodeSearchListener());
+		getLineCodeField().setOnEditorActionListener(createLineCodeSearchListener());
 	}
 
 	private TextView getStopCodeField() {
@@ -120,32 +118,28 @@ public class AddStopActivity extends AppCompatActivity implements AdapterView.On
 		return (TextView) findViewById(R.id.add_stop_line);
 	}
 
-	private OnEditorActionListener createStopCodeEnterListener() {
-		return new OnEditorActionListener() {
+	private OnEditorActionListener createStopCodeSearchListener() {
+		return new TextView.OnEditorActionListener() {
 			@Override
-			public boolean onEditorAction(TextView textView, int actionId,
-					KeyEvent event) {
-				if (actionId == EditorInfo.IME_NULL
-						&& event.getAction() == KeyEvent.ACTION_DOWN) {
-					View searchButton = findViewById(R.id.add_stop_code_button);
-					searchStop(searchButton);
+			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+				if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+					searchStop(null);
+					return true;
 				}
-				return true;
+				return false;
 			}
 		};
 	}
 
-	private OnEditorActionListener createLineCodeEnterListener() {
-		return new OnEditorActionListener() {
+	private OnEditorActionListener createLineCodeSearchListener() {
+		return new TextView.OnEditorActionListener() {
 			@Override
-			public boolean onEditorAction(TextView textView, int actionId,
-					KeyEvent event) {
-				if (actionId == EditorInfo.IME_NULL
-						&& event.getAction() == KeyEvent.ACTION_DOWN) {
-					View searchButton = findViewById(R.id.add_stop_line_button);
-					searchLine(searchButton);
+			public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+				if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+					searchLine(null);
+					return true;
 				}
-				return true;
+				return false;
 			}
 		};
 	}
