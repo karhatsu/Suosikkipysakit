@@ -3,7 +3,7 @@ package com.karhatsu.suosikkipysakit.db;
 import android.provider.BaseColumns;
 
 public class OwnStopsContract {
-	static final int DATABASE_VERSION = 6;
+	static final int DATABASE_VERSION = 7;
 	static String[] MIGRATIONS = new String[DATABASE_VERSION];
 	static {
 		MIGRATIONS[0] = StopEntry.CREATE_TABLE;
@@ -12,6 +12,7 @@ public class OwnStopsContract {
 		MIGRATIONS[3] = CollectionEntry.CREATE_TABLE;
 		MIGRATIONS[4] = CollectionStopEntry.CREATE_TABLE;
 		MIGRATIONS[5] = StopEntry.ADD_HIDDEN;
+		MIGRATIONS[6] = StopEntry.ADD_HELSINKI_PREFIX;
 	}
 
 	public static abstract class StopEntry implements BaseColumns {
@@ -31,6 +32,8 @@ public class OwnStopsContract {
 				+ ")";
 		private static final String ADD_HIDDEN = //
 		"alter table " + TABLE_NAME + " add column " + COLUMN_HIDDEN + " integer(1) not null default 0";
+		private static final String ADD_HELSINKI_PREFIX = //
+		"update " + TABLE_NAME + " set code = 'H' || code where code like '____'";
 	}
 
 	public static abstract class PreviousCityEntry implements BaseColumns {
