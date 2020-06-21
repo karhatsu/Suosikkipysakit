@@ -14,6 +14,7 @@ public class Line implements Parcelable {
 	private final String lineEnd;
 
 	private ArrayList<Stop> stops;
+	private boolean tripsForDate;
 
 	public Line(String longCode, String code, String name, String lineStart, String lineEnd) {
 		this.longCode = longCode;
@@ -88,4 +89,11 @@ public class Line implements Parcelable {
 		}
 	};
 
+	public void setTripsForDate(boolean tripsForDate) {
+		this.tripsForDate = tripsForDate;
+	}
+
+	public boolean isTripsForDate() {
+		return tripsForDate;
+	}
 }

@@ -8,6 +8,7 @@
         "longName": "Kivikonlaita-Kontula(M)",
         "patterns": [
           {
+            "tripsForDate": [],
             "stops": [
               {
                 "name": "Kontula (M)",
@@ -77,6 +78,7 @@
             ]
           },
           {
+            "tripsForDate": [],
             "stops": [
               {
                 "name": "Kivikonlaita 43",
@@ -154,6 +156,7 @@
         "longName": "Kotikonnuntie-Kontula(M)-Kivikko-Kontula(M)",
         "patterns": [
           {
+            "tripsForDate": [],
             "stops": [
               {
                 "name": "Paneliantie",
@@ -243,6 +246,7 @@
             ]
           },
           {
+            "tripsForDate": [],
             "stops": [
               {
                 "name": "Kontula (M)",
@@ -285,6 +289,7 @@
         "longName": "Rautatientori-Roihuvuori-Kontulankaari",
         "patterns": [
           {
+            "tripsForDate": [],
             "stops": [
               {
                 "name": "Rautatientori",
@@ -459,6 +464,7 @@
             ]
           },
           {
+            "tripsForDate": [],
             "stops": [
               {
                 "name": "Rapolantie",
@@ -656,6 +662,7 @@
         "longName": "Itäkeskus(M)-Porttitie-Kontula(M)-Kontulankaari",
         "patterns": [
           {
+            "tripsForDate": [],
             "stops": [
               {
                 "name": "Itäkeskus (M)",
@@ -750,6 +757,7 @@
             ]
           },
           {
+            "tripsForDate": [],
             "stops": [
               {
                 "name": "Rapolantie",

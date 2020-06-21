@@ -18,6 +18,7 @@ public class LinesJSONParser implements JSONParser<Line> {
 		for (int i = 0; i < jsonLines.length(); i++) {
 			JSONObject jsonLine = jsonLines.getJSONObject(i);
 			parseLines(lines, jsonLine);
+			lines = removeDuplicateLines(lines);
 		}
 		return lines;
 	}
@@ -31,10 +32,12 @@ public class LinesJSONParser implements JSONParser<Line> {
 		JSONArray patterns = jsonLine.getJSONArray("patterns");
 		for (int i = 0; i < patterns.length(); i++) {
 			JSONObject pattern = patterns.getJSONObject(i);
+			JSONArray tripsForDate = pattern.getJSONArray("tripsForDate");
 			JSONArray stops = pattern.getJSONArray("stops");
 			String lineStart = ((JSONObject) stops.get(0)).getString("name");
 			String lineEnd = ((JSONObject) stops.get(stops.length() - 1)).getString("name");
 			Line line = new Line(longCode, lineCode, name, lineStart, lineEnd);
+			line.setTripsForDate(tripsForDate.length() > 0);
 			line.setStops(parseStops(pattern));
 			lines.add(line);
 		}
@@ -52,4 +55,26 @@ public class LinesJSONParser implements JSONParser<Line> {
 		return stops;
 	}
 
+	private ArrayList<Line> removeDuplicateLines(ArrayList<Line> lines) {
+		ArrayList<Line> filteredLines = new ArrayList<>();
+		for (int i = 0; i < lines.size(); i++) {
+			Line line = lines.get(i);
+			if (i == 0) {
+				filteredLines.add(line);
+			} else {
+				Line previousLine = lines.get(i - 1);
+				if (isDifferentLine(previousLine, line)) {
+					filteredLines.add(line);
+				} else if (line.isTripsForDate()) {
+					filteredLines.remove(filteredLines.size() - 1);
+					filteredLines.add(line);
+				}
+			}
+		}
+		return filteredLines;
+	}
+
+	private boolean isDifferentLine(Line line1, Line line2) {
+		return !line1.getLineStart().equals(line2.getLineStart()) || !line1.getLineEnd().equals(line2.getLineEnd());
+	}
 }

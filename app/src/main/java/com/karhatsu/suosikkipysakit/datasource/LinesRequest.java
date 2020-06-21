@@ -1,9 +1,13 @@
 package com.karhatsu.suosikkipysakit.datasource;
 
+import android.annotation.SuppressLint;
+
 import com.karhatsu.suosikkipysakit.datasource.parsers.JSONParser;
 import com.karhatsu.suosikkipysakit.datasource.parsers.LinesJSONParser;
 import com.karhatsu.suosikkipysakit.domain.Line;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.regex.Pattern;
 
 public class LinesRequest extends AbstractHslRequest<Line> {
@@ -29,6 +33,9 @@ public class LinesRequest extends AbstractHslRequest<Line> {
 				.append("    shortName")
 				.append("    longName")
 				.append("    patterns {")
+				.append("      tripsForDate(serviceDate: \"" + getToday() + "\") {")
+				.append("        id")
+				.append("      }")
 				.append("      stops {")
 				.append("        name")
 				.append("        code")
@@ -51,4 +58,8 @@ public class LinesRequest extends AbstractHslRequest<Line> {
 		return "name: \"" + searchParam + "\"";
 	}
 
+	@SuppressLint("SimpleDateFormat")
+	private String getToday() {
+		return new SimpleDateFormat("yyyyMMdd").format(new Date());
+	}
 }
