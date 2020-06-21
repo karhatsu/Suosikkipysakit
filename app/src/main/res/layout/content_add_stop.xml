@@ -58,13 +58,13 @@
 
             <Button
                 android:id="@+id/add_stop_code_button"
-                style="?android:textAppearanceSmall"
+                style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
+                android:onClick="searchStop"
                 android:text="@string/activity_add_stop_search_by_code"
-                android:textStyle="bold"
-                android:onClick="searchStop" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/add_stop_line_instructions"
@@ -94,13 +94,13 @@
 
             <Button
                 android:id="@+id/add_stop_line_button"
-                style="?android:textAppearanceSmall"
+                style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
+                android:onClick="searchLine"
                 android:text="@string/activity_add_stop_search_by_line"
-                android:textStyle="bold"
-                android:onClick="searchLine" />
+                android:textStyle="bold" />
 
         </LinearLayout>
     </ScrollView>
