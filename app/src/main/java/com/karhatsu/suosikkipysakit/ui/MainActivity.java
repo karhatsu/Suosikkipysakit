@@ -219,6 +219,13 @@ public class MainActivity extends AppCompatActivity {
 	}
 
 	public void refreshStopList() {
+		refreshStopList(-1);
+	}
+
+	public void refreshStopList(int message) {
+		if (message != -1) {
+			showSnackbar(message);
+		}
 		closeDbConnections();
 		stopDao = new StopDao(this);
 		Cursor cursor = stopDao.findAllStopsAndCollections();

@@ -37,6 +37,7 @@
     <string name="dialog_add_to_collection_title">Lisää pysäkkikokoelmaan</string>
     <string name="dialog_add_to_collection_spinner_default">- Uusi kokoelma -</string>
     <string name="dialog_add_to_collection_name_hint">Pysäkkikokoelman nimi</string>
+    <string name="dialog_add_to_collection_stop_added">Pysäkki lisätty kokoelmaan</string>
     <string name="dialog_rename_collection_title">Syötä kokoelman nimi</string>
     <string name="save">Tallenna</string>
     <string name="cancel">Peruuta</string>

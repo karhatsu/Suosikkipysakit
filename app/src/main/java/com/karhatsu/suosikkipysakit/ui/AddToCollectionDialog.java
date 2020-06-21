@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
@@ -112,7 +113,7 @@ public class AddToCollectionDialog extends DialogFragment implements AdapterView
     private void refreshMainActivity() {
         Activity activity = getActivity();
         if (activity instanceof MainActivity) {
-            ((MainActivity) activity).refreshStopList();
+            ((MainActivity) activity).refreshStopList(R.string.dialog_add_to_collection_stop_added);
         }
     }
 }
