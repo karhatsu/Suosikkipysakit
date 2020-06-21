@@ -6,20 +6,20 @@ import com.karhatsu.suosikkipysakit.domain.Stop;
 
 public class StopTest extends TestCase {
 
-	public void testFourDigits() {
-		assertTrue(Stop.isValidCode("1234"));
+	public void testWithoutPrefix() {
+		assertFalse(Stop.isValidCode("1234"));
 	}
 
-	public void testNonNumber() {
-		assertFalse(Stop.isValidCode("123a"));
+	public void testHWithNonNumber() {
+		assertFalse(Stop.isValidCode("H123a"));
 	}
 
-	public void testThreeDigits() {
-		assertFalse(Stop.isValidCode("123"));
+	public void testHWithThreeDigits() {
+		assertFalse(Stop.isValidCode("H123"));
 	}
 
-	public void testFiveDigits() {
-		assertFalse(Stop.isValidCode("12345"));
+	public void testHWithFiveDigits() {
+		assertFalse(Stop.isValidCode("H12345"));
 	}
 
 	public void testHAndFourDigits() {
