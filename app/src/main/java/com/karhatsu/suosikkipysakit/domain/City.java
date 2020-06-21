@@ -1,7 +1,7 @@
 package com.karhatsu.suosikkipysakit.domain;
 
 public enum City {
-	HELSINKI("Helsinki", ""),
+	HELSINKI("Helsinki", "H"),
 	ESPOO("Espoo", "E"),
 	VANTAA("Vantaa", "V"),
 	KIRKKONUMMI("Kirkkonummi", "Ki"),
@@ -13,7 +13,7 @@ public enum City {
 	private final String name;
 	private final String prefix;
 
-	private City(String name, String prefix) {
+	City(String name, String prefix) {
 		this.name = name;
 		this.prefix = prefix;
 	}
@@ -32,6 +32,7 @@ public enum City {
 	}
 
 	public static City getByPrefix(String prefix) {
+		if (prefix.equals("")) return HELSINKI;
 		for (City city : values()) {
 			if (prefix.equals(city.getPrefix())) {
 				return city;

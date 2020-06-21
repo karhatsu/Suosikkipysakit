@@ -22,6 +22,10 @@ public class StopTest extends TestCase {
 		assertFalse(Stop.isValidCode("12345"));
 	}
 
+	public void testHAndFourDigits() {
+		assertTrue(Stop.isValidCode("H1234"));
+	}
+
 	public void testVAndFourDigits() {
 		assertTrue(Stop.isValidCode("V1234"));
 	}
@@ -64,7 +68,6 @@ public class StopTest extends TestCase {
 
 	public void testSomeOtherLetterPrefix() {
 		assertFalse(Stop.isValidCode("F1234"));
-		assertFalse(Stop.isValidCode("H1234"));
 		assertFalse(Stop.isValidCode("A1234"));
 		assertFalse(Stop.isValidCode("Ti1234"));
 		assertFalse(Stop.isValidCode("Ko1234"));
