@@ -12,6 +12,7 @@
         <activity
             android:name=".ui.MainActivity"
             android:label="@string/activity_main_title"
+            android:exported="true"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,6 +24,7 @@
             android:name=".ui.AddStopActivity"
             android:label="@string/activity_add_stop_title"
             android:parentActivityName=".ui.MainActivity"
+            android:exported="false"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -32,6 +34,7 @@
             android:name=".ui.DeparturesActivity"
             android:label="@string/activity_departures_title"
             android:parentActivityName=".ui.MainActivity"
+            android:exported="false"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -41,6 +44,7 @@
             android:name=".ui.LinesActivity"
             android:label="@string/activity_lines_title"
             android:parentActivityName=".ui.AddStopActivity"
+            android:exported="false"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
@@ -51,6 +55,7 @@
             android:name=".ui.LineStopsActivity"
             android:label="@string/activity_line_stops_title"
             android:parentActivityName=".ui.LinesActivity"
+            android:exported="false"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -60,6 +65,7 @@
             android:name=".ui.StopsVisibilityActivity"
             android:label="@string/activity_stops_visibility_title"
             android:parentActivityName=".ui.MainActivity"
+            android:exported="false"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

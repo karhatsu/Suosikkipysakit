@@ -3,10 +3,10 @@ package com.karhatsu.suosikkipysakit.ui;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.DialogFragment;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.DialogFragment;
 import android.view.*;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.AdapterView;
@@ -16,6 +16,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.karhatsu.suosikkipysakit.R;
 import com.karhatsu.suosikkipysakit.db.StopCollectionDao;
 import com.karhatsu.suosikkipysakit.db.StopDao;
