@@ -4,6 +4,7 @@
       "gtfsId": "HSL:1454133",
       "name": "Latokartanonsilmukka",
       "code": "4538",
+      "zoneId": "B",
       "stoptimesWithoutPatterns": [
         {
           "scheduledDeparture": 56940,

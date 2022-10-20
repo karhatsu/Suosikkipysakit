@@ -13,67 +13,80 @@
               {
                 "name": "Kontula (M)",
                 "code": "4421",
-                "gtfsId": "HSL:1471137"
+                "gtfsId": "HSL:1471137",
+                "zoneId": "B"
               },
               {
                 "name": "Kontula (M)",
                 "code": "4423",
-                "gtfsId": "HSL:1471181"
+                "gtfsId": "HSL:1471181",
+                "zoneId": "B"
               },
               {
                 "name": "Kaarikuja",
                 "code": "4425",
-                "gtfsId": "HSL:1471139"
+                "gtfsId": "HSL:1471139",
+                "zoneId": "B"
               },
               {
                 "name": "Kivikonkaari",
                 "code": "4457",
-                "gtfsId": "HSL:1471136"
+                "gtfsId": "HSL:1471136",
+                "zoneId": "B"
               },
               {
                 "name": "Linnoituksentie",
                 "code": "4453",
-                "gtfsId": "HSL:1474108"
+                "gtfsId": "HSL:1474108",
+                "zoneId": "B"
               },
               {
                 "name": "Varustuksentie",
                 "code": "4451",
-                "gtfsId": "HSL:1474106"
+                "gtfsId": "HSL:1474106",
+                "zoneId": "B"
               },
               {
                 "name": "Järkälekuja",
                 "code": "4449",
-                "gtfsId": "HSL:1474104"
+                "gtfsId": "HSL:1474104",
+                "zoneId": "B"
               },
               {
                 "name": "Kurkimäentie",
                 "code": "4447",
-                "gtfsId": "HSL:1474102"
+                "gtfsId": "HSL:1474102",
+                "zoneId": "B"
               },
               {
                 "name": "Kivikontie",
                 "code": "4535",
-                "gtfsId": "HSL:1474127"
+                "gtfsId": "HSL:1474127",
+                "zoneId": "B"
               },
               {
                 "name": "Savikiekontie",
                 "code": "4479",
-                "gtfsId": "HSL:1474117"
+                "gtfsId": "HSL:1474117",
+                "zoneId": "B"
               },
               {
                 "name": "Kivikonkuja",
                 "code": "4487",
-                "gtfsId": "HSL:1474126"
+                "gtfsId": "HSL:1474126",
+                "zoneId": "B"
               },
               {
                 "name": "Tattarisilta",
                 "code": "4477",
-                "gtfsId": "HSL:1474100"
+                "gtfsId": "HSL:1474100",
+                "zoneId": "B"
               },
               {
                 "name": "Kivikonlaita 43",
                 "code": "4485",
-                "gtfsId": "HSL:1474110"
+                "gtfsId": "HSL:1474110",
+                "zoneId": "B"
               }
             ]
           },
@@ -83,67 +96,80 @@
               {
                 "name": "Kivikonlaita 43",
                 "code": "4485",
-                "gtfsId": "HSL:1474110"
+                "gtfsId": "HSL:1474110",
+                "zoneId": "B"
               },
               {
                 "name": "Tattarisilta",
                 "code": "4476",
-                "gtfsId": "HSL:1474119"
+                "gtfsId": "HSL:1474119",
+                "zoneId": "B"
               },
               {
                 "name": "Kivikonkuja",
                 "code": "4445",
-                "gtfsId": "HSL:1474125"
+                "gtfsId": "HSL:1474125",
+                "zoneId": "B"
               },
               {
                 "name": "Savikiekontie",
                 "code": "4478",
-                "gtfsId": "HSL:1474118"
+                "gtfsId": "HSL:1474118",
+                "zoneId": "B"
               },
               {
                 "name": "Kivikontie",
                 "code": "4446",
-                "gtfsId": "HSL:1474116"
+                "gtfsId": "HSL:1474116",
+                "zoneId": "B"
               },
               {
                 "name": "Kivijatatie",
                 "code": "4444",
-                "gtfsId": "HSL:1474114"
+                "gtfsId": "HSL:1474114",
+                "zoneId": "B"
               },
               {
                 "name": "Panosaukio",
                 "code": "4442",
-                "gtfsId": "HSL:1474112"
+                "gtfsId": "HSL:1474112",
+                "zoneId": "B"
               },
               {
                 "name": "Kuovipolku",
                 "code": "4440",
-                "gtfsId": "HSL:1471183"
+                "gtfsId": "HSL:1471183",
+                "zoneId": "B"
               },
               {
                 "name": "Harmaahaikarankuja",
                 "code": "4438",
-                "gtfsId": "HSL:1471177"
+                "gtfsId": "HSL:1471177",
+                "zoneId": "B"
               },
               {
                 "name": "Kurkiaispolku",
                 "code": "4415",
-                "gtfsId": "HSL:1471175"
+                "gtfsId": "HSL:1471175",
+                "zoneId": "B"
               },
               {
                 "name": "Kurkiauranpolku",
                 "code": "4417",
-                "gtfsId": "HSL:1471171"
+                "gtfsId": "HSL:1471171",
+                "zoneId": "B"
               },
               {
                 "name": "Keinulaudantie",
                 "code": "4419",
-                "gtfsId": "HSL:1471173"
+                "gtfsId": "HSL:1471173",
+                "zoneId": "B"
               },
               {
                 "name": "Kontula (M)",
                 "code": "4421",
-                "gtfsId": "HSL:1471137"
+                "gtfsId": "HSL:1471137",
+                "zoneId": "B"
               }
             ]
           }
@@ -161,87 +187,104 @@
               {
                 "name": "Paneliantie",
                 "code": "4462",
-                "gtfsId": "HSL:1471122"
+                "gtfsId": "HSL:1471122",
+                "zoneId": "B"
               },
               {
                 "name": "Leikkikuja",
                 "code": "4460",
-                "gtfsId": "HSL:1471152"
+                "gtfsId": "HSL:1471152",
+                "zoneId": "B"
               },
               {
                 "name": "Ostostie",
                 "code": "4458",
-                "gtfsId": "HSL:1471150"
+                "gtfsId": "HSL:1471150",
+                "zoneId": "B"
               },
               {
                 "name": "Kontula (M)",
                 "code": "4404",
-                "gtfsId": "HSL:1471117"
+                "gtfsId": "HSL:1471117",
+                "zoneId": "B"
               },
               {
                 "name": "Kontula (M)",
                 "code": "4422",
-                "gtfsId": "HSL:1471138"
+                "gtfsId": "HSL:1471138",
+                "zoneId": "B"
               },
               {
                 "name": "Keinulaudantie",
                 "code": "4420",
-                "gtfsId": "HSL:1471174"
+                "gtfsId": "HSL:1471174",
+                "zoneId": "B"
               },
               {
                 "name": "Kurkiauranpolku",
                 "code": "4418",
-                "gtfsId": "HSL:1471172"
+                "gtfsId": "HSL:1471172",
+                "zoneId": "B"
               },
               {
                 "name": "Kurkiaispolku",
                 "code": "4416",
-                "gtfsId": "HSL:1471176"
+                "gtfsId": "HSL:1471176",
+                "zoneId": "B"
               },
               {
                 "name": "Harmaahaikarankuja",
                 "code": "4437",
-                "gtfsId": "HSL:1471178"
+                "gtfsId": "HSL:1471178",
+                "zoneId": "B"
               },
               {
                 "name": "Kuovipolku",
                 "code": "4439",
-                "gtfsId": "HSL:1471180"
+                "gtfsId": "HSL:1471180",
+                "zoneId": "B"
               },
               {
                 "name": "Kurkimäentie",
                 "code": "4448",
-                "gtfsId": "HSL:1474101"
+                "gtfsId": "HSL:1474101",
+                "zoneId": "B"
               },
               {
                 "name": "Järkälekuja",
                 "code": "4450",
-                "gtfsId": "HSL:1474103"
+                "gtfsId": "HSL:1474103",
+                "zoneId": "B"
               },
               {
                 "name": "Varustuksentie",
                 "code": "4452",
-                "gtfsId": "HSL:1474105"
+                "gtfsId": "HSL:1474105",
+                "zoneId": "B"
               },
               {
                 "name": "Linnoituksentie",
                 "code": "4454",
-                "gtfsId": "HSL:1474107"
+                "gtfsId": "HSL:1474107",
+                "zoneId": "B"
               },
               {
                 "name": "Kivikonkaari",
                 "code": "4428",
-                "gtfsId": "HSL:1471142"
+                "gtfsId": "HSL:1471142",
+                "zoneId": "B"
               },
               {
                 "name": "Kaarikuja",
                 "code": "4426",
-                "gtfsId": "HSL:1471140"
+                "gtfsId": "HSL:1471140",
+                "zoneId": "B"
               },
               {
                 "name": "Kontula (M)",
                 "code": "4309",
-                "gtfsId": "HSL:1471189"
+                "gtfsId": "HSL:1471189",
+                "zoneId": "B"
               }
             ]
           },
@@ -251,32 +294,38 @@
               {
                 "name": "Kontula (M)",
                 "code": "4309",
-                "gtfsId": "HSL:1471189"
+                "gtfsId": "HSL:1471189",
+                "zoneId": "B"
               },
               {
                 "name": "Kontula (M)",
                 "code": "4414",
-                "gtfsId": "HSL:1471179"
+                "gtfsId": "HSL:1471179",
+                "zoneId": "B"
               },
               {
                 "name": "Kontula (M)",
                 "code": "4405",
-                "gtfsId": "HSL:1471118"
+                "gtfsId": "HSL:1471118",
+                "zoneId": "B"
               },
               {
                 "name": "Ostostie",
                 "code": "4459",
-                "gtfsId": "HSL:1471149"
+                "gtfsId": "HSL:1471149",
+                "zoneId": "B"
               },
               {
                 "name": "Leikkikuja",
                 "code": "4461",
-                "gtfsId": "HSL:1471151"
+                "gtfsId": "HSL:1471151",
+                "zoneId": "B"
               },
               {
                 "name": "Paneliantie",
                 "code": "4533",
-                "gtfsId": "HSL:1471113"
+                "gtfsId": "HSL:1471113",
+                "zoneId": "B"
               }
             ]
           }
@@ -294,172 +343,206 @@
               {
                 "name": "Rautatientori",
                 "code": "2048",
-                "gtfsId": "HSL:1020120"
+                "gtfsId": "HSL:1020120",
+                "zoneId": "B"
               },
               {
                 "name": "Kaisaniemenpuisto",
                 "code": "2061",
-                "gtfsId": "HSL:1020105"
+                "gtfsId": "HSL:1020105",
+                "zoneId": "B"
               },
               {
                 "name": "Hakaniemi",
                 "code": "2507",
-                "gtfsId": "HSL:1111143"
+                "gtfsId": "HSL:1111143",
+                "zoneId": "B"
               },
               {
                 "name": "Hanasaari",
                 "code": "2514",
-                "gtfsId": "HSL:1100102"
+                "gtfsId": "HSL:1100102",
+                "zoneId": "B"
               },
               {
                 "name": "Suvilahti",
                 "code": "2518",
-                "gtfsId": "HSL:1100105"
+                "gtfsId": "HSL:1100105",
+                "zoneId": "B"
               },
               {
                 "name": "Kalasatama (M)",
                 "code": "2552",
-                "gtfsId": "HSL:1100109"
+                "gtfsId": "HSL:1100109",
+                "zoneId": "B"
               },
               {
                 "name": "Kulosaari",
                 "code": "4001",
-                "gtfsId": "HSL:1420115"
+                "gtfsId": "HSL:1420115",
+                "zoneId": "B"
               },
               {
                 "name": "Tupasaari",
                 "code": "4003",
-                "gtfsId": "HSL:1420117"
+                "gtfsId": "HSL:1420117",
+                "zoneId": "B"
               },
               {
                 "name": "Kipparlahti",
                 "code": "4005",
-                "gtfsId": "HSL:1434101"
+                "gtfsId": "HSL:1434101",
+                "zoneId": "B"
               },
               {
                 "name": "Laivalahdenportti",
                 "code": "4035",
-                "gtfsId": "HSL:1434112"
+                "gtfsId": "HSL:1434112",
+                "zoneId": "B"
               },
               {
                 "name": "Linnanrakentajantie",
                 "code": "4037",
-                "gtfsId": "HSL:1434153"
+                "gtfsId": "HSL:1434153",
+                "zoneId": "B"
               },
               {
                 "name": "Porolahti",
                 "code": "4183",
-                "gtfsId": "HSL:1433173"
+                "gtfsId": "HSL:1433173",
+                "zoneId": "B"
               },
               {
                 "name": "Porolahden koulu",
                 "code": "4201",
-                "gtfsId": "HSL:1432157"
+                "gtfsId": "HSL:1432157",
+                "zoneId": "B"
               },
               {
                 "name": "Keijukaistenpolku",
                 "code": "4203",
-                "gtfsId": "HSL:1432159"
+                "gtfsId": "HSL:1432159",
+                "zoneId": "B"
               },
               {
                 "name": "Vuorenpeikontie",
                 "code": "4205",
-                "gtfsId": "HSL:1432161"
+                "gtfsId": "HSL:1432161",
+                "zoneId": "B"
               },
               {
                 "name": "Roihuvuoren kirkko",
                 "code": "4207",
-                "gtfsId": "HSL:1432178"
+                "gtfsId": "HSL:1432178",
+                "zoneId": "B"
               },
               {
                 "name": "Kreijarinkuja",
                 "code": "4209",
-                "gtfsId": "HSL:1432180"
+                "gtfsId": "HSL:1432180",
+                "zoneId": "B"
               },
               {
                 "name": "Tulisuonkuja",
                 "code": "4211",
-                "gtfsId": "HSL:1455158"
+                "gtfsId": "HSL:1455158",
+                "zoneId": "B"
               },
               {
                 "name": "Marjaniementie",
                 "code": "4337",
-                "gtfsId": "HSL:1455173"
+                "gtfsId": "HSL:1455173",
+                "zoneId": "B"
               },
               {
                 "name": "Itäpolku",
                 "code": "4491",
-                "gtfsId": "HSL:1455102"
+                "gtfsId": "HSL:1455102",
+                "zoneId": "B"
               },
               {
                 "name": "Itäkeskus (M)",
                 "code": "4310",
-                "gtfsId": "HSL:1453182"
+                "gtfsId": "HSL:1453182",
+                "zoneId": "B"
               },
               {
                 "name": "Puotinharju",
                 "code": "4274",
-                "gtfsId": "HSL:1453181"
+                "gtfsId": "HSL:1453181",
+                "zoneId": "B"
               },
               {
                 "name": "Vanhanlinnantie",
                 "code": "4281",
-                "gtfsId": "HSL:1453121"
+                "gtfsId": "HSL:1453121",
+                "zoneId": "B"
               },
               {
                 "name": "Arhotie",
                 "code": "4283",
-                "gtfsId": "HSL:1453109"
+                "gtfsId": "HSL:1453109",
+                "zoneId": "B"
               },
               {
                 "name": "Kukkaniityntie",
                 "code": "4285",
-                "gtfsId": "HSL:1454116"
+                "gtfsId": "HSL:1454116",
+                "zoneId": "B"
               },
               {
                 "name": "Liikuntamylly",
                 "code": "4287",
-                "gtfsId": "HSL:1454111"
+                "gtfsId": "HSL:1454111",
+                "zoneId": "B"
               },
               {
                 "name": "Sirrikuja",
                 "code": "4401",
-                "gtfsId": "HSL:1471190"
+                "gtfsId": "HSL:1471190",
+                "zoneId": "B"
               },
               {
                 "name": "Kontula (M)",
                 "code": "4413",
-                "gtfsId": "HSL:1471159"
+                "gtfsId": "HSL:1471159",
+                "zoneId": "B"
               },
               {
                 "name": "Kaarikuja",
                 "code": "4425",
-                "gtfsId": "HSL:1471139"
+                "gtfsId": "HSL:1471139",
+                "zoneId": "B"
               },
               {
                 "name": "Kivikonkaari",
                 "code": "4427",
-                "gtfsId": "HSL:1471141"
+                "gtfsId": "HSL:1471141",
+                "zoneId": "B"
               },
               {
                 "name": "Sakara",
                 "code": "4429",
-                "gtfsId": "HSL:1471143"
+                "gtfsId": "HSL:1471143",
+                "zoneId": "B"
               },
               {
                 "name": "Kontulankaari 11",
                 "code": "4431",
-                "gtfsId": "HSL:1471145"
+                "gtfsId": "HSL:1471145",
+                "zoneId": "B"
               },
               {
                 "name": "Rapolantie",
                 "code": "4433",
-                "gtfsId": "HSL:1471135"
+                "gtfsId": "HSL:1471135",
+                "zoneId": "B"
               },
               {
                 "name": "Rapolantie",
                 "code": "4434",
-                "gtfsId": "HSL:1471147"
+                "gtfsId": "HSL:1471147",
+                "zoneId": "B"
               }
             ]
           },
@@ -469,187 +552,224 @@
               {
                 "name": "Rapolantie",
                 "code": "4434",
-                "gtfsId": "HSL:1471147"
+                "gtfsId": "HSL:1471147",
+                "zoneId": "B"
               },
               {
                 "name": "Kontulankaari 11",
                 "code": "4432",
-                "gtfsId": "HSL:1471146"
+                "gtfsId": "HSL:1471146",
+                "zoneId": "B"
               },
               {
                 "name": "Sakara",
                 "code": "4430",
-                "gtfsId": "HSL:1471144"
+                "gtfsId": "HSL:1471144",
+                "zoneId": "B"
               },
               {
                 "name": "Kivikonkaari",
                 "code": "4428",
-                "gtfsId": "HSL:1471142"
+                "gtfsId": "HSL:1471142",
+                "zoneId": "B"
               },
               {
                 "name": "Kaarikuja",
                 "code": "4426",
-                "gtfsId": "HSL:1471140"
+                "gtfsId": "HSL:1471140",
+                "zoneId": "B"
               },
               {
                 "name": "Kontula (M)",
                 "code": "4414",
-                "gtfsId": "HSL:1471179"
+                "gtfsId": "HSL:1471179",
+                "zoneId": "B"
               },
               {
                 "name": "Porttitie",
                 "code": "4402",
-                "gtfsId": "HSL:1471119"
+                "gtfsId": "HSL:1471119",
+                "zoneId": "B"
               },
               {
                 "name": "Sirrikuja",
                 "code": "4400",
-                "gtfsId": "HSL:1471191"
+                "gtfsId": "HSL:1471191",
+                "zoneId": "B"
               },
               {
                 "name": "Liikuntamylly",
                 "code": "4286",
-                "gtfsId": "HSL:1454112"
+                "gtfsId": "HSL:1454112",
+                "zoneId": "B"
               },
               {
                 "name": "Kukkaniityntie",
                 "code": "4284",
-                "gtfsId": "HSL:1454117"
+                "gtfsId": "HSL:1454117",
+                "zoneId": "B"
               },
               {
                 "name": "Arhotie",
                 "code": "4282",
-                "gtfsId": "HSL:1453110"
+                "gtfsId": "HSL:1453110",
+                "zoneId": "B"
               },
               {
                 "name": "Korsholmantie",
                 "code": "4275",
-                "gtfsId": "HSL:1453122"
+                "gtfsId": "HSL:1453122",
+                "zoneId": "B"
               },
               {
                 "name": "Puotinharju",
                 "code": "4273",
-                "gtfsId": "HSL:1453118"
+                "gtfsId": "HSL:1453118",
+                "zoneId": "B"
               },
               {
                 "name": "Itäkeskus (M)",
                 "code": "4271",
-                "gtfsId": "HSL:1453116"
+                "gtfsId": "HSL:1453116",
+                "zoneId": "B"
               },
               {
                 "name": "Itäpolku",
                 "code": "4490",
-                "gtfsId": "HSL:1455101"
+                "gtfsId": "HSL:1455101",
+                "zoneId": "B"
               },
               {
                 "name": "Marjaniementie",
                 "code": "4212",
-                "gtfsId": "HSL:1455172"
+                "gtfsId": "HSL:1455172",
+                "zoneId": "B"
               },
               {
                 "name": "Tulisuonkuja",
                 "code": "4210",
-                "gtfsId": "HSL:1455159"
+                "gtfsId": "HSL:1455159",
+                "zoneId": "B"
               },
               {
                 "name": "Kreijarinkuja",
                 "code": "4208",
-                "gtfsId": "HSL:1432181"
+                "gtfsId": "HSL:1432181",
+                "zoneId": "B"
               },
               {
                 "name": "Roihuvuoren kirkko",
                 "code": "4206",
-                "gtfsId": "HSL:1432179"
+                "gtfsId": "HSL:1432179",
+                "zoneId": "B"
               },
               {
                 "name": "Vuorenpeikontie",
                 "code": "4204",
-                "gtfsId": "HSL:1432162"
+                "gtfsId": "HSL:1432162",
+                "zoneId": "B"
               },
               {
                 "name": "Keijukaistenpolku",
                 "code": "4202",
-                "gtfsId": "HSL:1432160"
+                "gtfsId": "HSL:1432160",
+                "zoneId": "B"
               },
               {
                 "name": "Porolahden koulu",
                 "code": "4200",
-                "gtfsId": "HSL:1432158"
+                "gtfsId": "HSL:1432158",
+                "zoneId": "B"
               },
               {
                 "name": "Porolahti",
                 "code": "4182",
-                "gtfsId": "HSL:1433156"
+                "gtfsId": "HSL:1433156",
+                "zoneId": "B"
               },
               {
                 "name": "Linnanrakentajantie",
                 "code": "4038",
-                "gtfsId": "HSL:1434154"
+                "gtfsId": "HSL:1434154",
+                "zoneId": "B"
               },
               {
                 "name": "Laivalahdenportti",
                 "code": "4036",
-                "gtfsId": "HSL:1433113"
+                "gtfsId": "HSL:1433113",
+                "zoneId": "B"
               },
               {
                 "name": "Herttoniemi (M)",
                 "code": "4006",
-                "gtfsId": "HSL:1431187"
+                "gtfsId": "HSL:1431187",
+                "zoneId": "B"
               },
               {
                 "name": "Kipparlahti",
                 "code": "4004",
-                "gtfsId": "HSL:1431102"
+                "gtfsId": "HSL:1431102",
+                "zoneId": "B"
               },
               {
                 "name": "Tupasaari",
                 "code": "4002",
-                "gtfsId": "HSL:1420118"
+                "gtfsId": "HSL:1420118",
+                "zoneId": "B"
               },
               {
                 "name": "Kulosaari",
                 "code": "4000",
-                "gtfsId": "HSL:1420116"
+                "gtfsId": "HSL:1420116",
+                "zoneId": "B"
               },
               {
                 "name": "Kalasatama (M)",
                 "code": "2553",
-                "gtfsId": "HSL:1100110"
+                "gtfsId": "HSL:1100110",
+                "zoneId": "B"
               },
               {
                 "name": "Suvilahti",
                 "code": "2519",
-                "gtfsId": "HSL:1100107"
+                "gtfsId": "HSL:1100107",
+                "zoneId": "B"
               },
               {
                 "name": "Käenkuja",
                 "code": "2517",
-                "gtfsId": "HSL:1100122"
+                "gtfsId": "HSL:1100122",
+                "zoneId": "B"
               },
               {
                 "name": "Hanasaari",
                 "code": "2515",
-                "gtfsId": "HSL:1100103"
+                "gtfsId": "HSL:1100103",
+                "zoneId": "B"
               },
               {
                 "name": "Merihaka",
                 "code": "2513",
-                "gtfsId": "HSL:1111146"
+                "gtfsId": "HSL:1111146",
+                "zoneId": "B"
               },
               {
                 "name": "Hakaniemi",
                 "code": "2506",
-                "gtfsId": "HSL:1111180"
+                "gtfsId": "HSL:1111180",
+                "zoneId": "B"
               },
               {
                 "name": "Kaisaniemenpuisto",
                 "code": "2060",
-                "gtfsId": "HSL:1020106"
+                "gtfsId": "HSL:1020106",
+                "zoneId": "B"
               },
               {
                 "name": "Rautatientori",
                 "code": "2139",
-                "gtfsId": "HSL:1020201"
+                "gtfsId": "HSL:1020201",
+                "zoneId": "B"
               }
             ]
           }
@@ -667,92 +787,110 @@
               {
                 "name": "Itäkeskus (M)",
                 "code": "4310",
-                "gtfsId": "HSL:1453182"
+                "gtfsId": "HSL:1453182",
+                "zoneId": "B"
               },
               {
                 "name": "Puotinharju",
                 "code": "4274",
-                "gtfsId": "HSL:1453181"
+                "gtfsId": "HSL:1453181",
+                "zoneId": "B"
               },
               {
                 "name": "Vanhanlinnantie",
                 "code": "4281",
-                "gtfsId": "HSL:1453121"
+                "gtfsId": "HSL:1453121",
+                "zoneId": "B"
               },
               {
                 "name": "Arhotie",
                 "code": "4283",
-                "gtfsId": "HSL:1453109"
+                "gtfsId": "HSL:1453109",
+                "zoneId": "B"
               },
               {
                 "name": "Kukkaniityntie",
                 "code": "4285",
-                "gtfsId": "HSL:1454116"
+                "gtfsId": "HSL:1454116",
+                "zoneId": "B"
               },
               {
                 "name": "Lallukankuja",
                 "code": "4468",
-                "gtfsId": "HSL:1454115"
+                "gtfsId": "HSL:1454115",
+                "zoneId": "B"
               },
               {
                 "name": "Karjatanhuanpolku",
                 "code": "4387",
-                "gtfsId": "HSL:1471164"
+                "gtfsId": "HSL:1471164",
+                "zoneId": "B"
               },
               {
                 "name": "Häyhäntie",
                 "code": "4389",
-                "gtfsId": "HSL:1471123"
+                "gtfsId": "HSL:1471123",
+                "zoneId": "B"
               },
               {
                 "name": "Humikkalankuja",
                 "code": "4391",
-                "gtfsId": "HSL:1471125"
+                "gtfsId": "HSL:1471125",
+                "zoneId": "B"
               },
               {
                 "name": "Naapurintie",
                 "code": "4393",
-                "gtfsId": "HSL:1471158"
+                "gtfsId": "HSL:1471158",
+                "zoneId": "B"
               },
               {
                 "name": "Porttikuja",
                 "code": "4395",
-                "gtfsId": "HSL:1471185"
+                "gtfsId": "HSL:1471185",
+                "zoneId": "B"
               },
               {
                 "name": "Kontula (M)",
                 "code": "4413",
-                "gtfsId": "HSL:1471159"
+                "gtfsId": "HSL:1471159",
+                "zoneId": "B"
               },
               {
                 "name": "Kaarikuja",
                 "code": "4425",
-                "gtfsId": "HSL:1471139"
+                "gtfsId": "HSL:1471139",
+                "zoneId": "B"
               },
               {
                 "name": "Kivikonkaari",
                 "code": "4427",
-                "gtfsId": "HSL:1471141"
+                "gtfsId": "HSL:1471141",
+                "zoneId": "B"
               },
               {
                 "name": "Sakara",
                 "code": "4429",
-                "gtfsId": "HSL:1471143"
+                "gtfsId": "HSL:1471143",
+                "zoneId": "B"
               },
               {
                 "name": "Kontulankaari 11",
                 "code": "4431",
-                "gtfsId": "HSL:1471145"
+                "gtfsId": "HSL:1471145",
+                "zoneId": "B"
               },
               {
                 "name": "Rapolantie",
                 "code": "4433",
-                "gtfsId": "HSL:1471135"
+                "gtfsId": "HSL:1471135",
+                "zoneId": "B"
               },
               {
                 "name": "Rapolantie",
                 "code": "4434",
-                "gtfsId": "HSL:1471147"
+                "gtfsId": "HSL:1471147",
+                "zoneId": "B"
               }
             ]
           },
@@ -762,87 +900,104 @@
               {
                 "name": "Rapolantie",
                 "code": "4434",
-                "gtfsId": "HSL:1471147"
+                "gtfsId": "HSL:1471147",
+                "zoneId": "B"
               },
               {
                 "name": "Kontulankaari 11",
                 "code": "4432",
-                "gtfsId": "HSL:1471146"
+                "gtfsId": "HSL:1471146",
+                "zoneId": "B"
               },
               {
                 "name": "Sakara",
                 "code": "4430",
-                "gtfsId": "HSL:1471144"
+                "gtfsId": "HSL:1471144",
+                "zoneId": "B"
               },
               {
                 "name": "Kivikonkaari",
                 "code": "4428",
-                "gtfsId": "HSL:1471142"
+                "gtfsId": "HSL:1471142",
+                "zoneId": "B"
               },
               {
                 "name": "Kaarikuja",
                 "code": "4426",
-                "gtfsId": "HSL:1471140"
+                "gtfsId": "HSL:1471140",
+                "zoneId": "B"
               },
               {
                 "name": "Kontula (M)",
                 "code": "4414",
-                "gtfsId": "HSL:1471179"
+                "gtfsId": "HSL:1471179",
+                "zoneId": "B"
               },
               {
                 "name": "Porttikuja",
                 "code": "4396",
-                "gtfsId": "HSL:1471156"
+                "gtfsId": "HSL:1471156",
+                "zoneId": "B"
               },
               {
                 "name": "Naapurintie",
                 "code": "4394",
-                "gtfsId": "HSL:1471157"
+                "gtfsId": "HSL:1471157",
+                "zoneId": "B"
               },
               {
                 "name": "Humikkalankuja",
                 "code": "4392",
-                "gtfsId": "HSL:1471126"
+                "gtfsId": "HSL:1471126",
+                "zoneId": "B"
               },
               {
                 "name": "Häyhäntie",
                 "code": "4390",
-                "gtfsId": "HSL:1471124"
+                "gtfsId": "HSL:1471124",
+                "zoneId": "B"
               },
               {
                 "name": "Lallukantie",
                 "code": "4388",
-                "gtfsId": "HSL:1471114"
+                "gtfsId": "HSL:1471114",
+                "zoneId": "B"
               },
               {
                 "name": "Lallukankuja",
                 "code": "4489",
-                "gtfsId": "HSL:1454127"
+                "gtfsId": "HSL:1454127",
+                "zoneId": "B"
               },
               {
                 "name": "Kukkaniityntie",
                 "code": "4284",
-                "gtfsId": "HSL:1454117"
+                "gtfsId": "HSL:1454117",
+                "zoneId": "B"
               },
               {
                 "name": "Arhotie",
                 "code": "4282",
-                "gtfsId": "HSL:1453110"
+                "gtfsId": "HSL:1453110",
+                "zoneId": "B"
               },
               {
                 "name": "Korsholmantie",
                 "code": "4275",
-                "gtfsId": "HSL:1453122"
+                "gtfsId": "HSL:1453122",
+                "zoneId": "B"
               },
               {
                 "name": "Puotinharju",
                 "code": "4273",
-                "gtfsId": "HSL:1453118"
+                "gtfsId": "HSL:1453118",
+                "zoneId": "B"
               },
               {
                 "name": "Itäkeskus (M)",
                 "code": "4314",
-                "gtfsId": "HSL:1453114"
+                "gtfsId": "HSL:1453114",
+                "zoneId": "B"
               }
             ]
           }

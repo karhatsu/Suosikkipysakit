@@ -40,6 +40,7 @@ public class LinesRequest extends AbstractHslRequest<Line> {
 				.append("        name")
 				.append("        code")
 				.append("        gtfsId")
+				.append("        zoneId")
 				.append("      }")
 				.append("    }")
 				.append("  }")

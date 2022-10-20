@@ -20,6 +20,7 @@ public class Stop implements Parcelable {
 	private String nameByUser = null;
 	private boolean hidden;
 	private long id;
+	private String zoneId;
 
 	private List<Departure> departures;
 
@@ -38,6 +39,7 @@ public class Stop implements Parcelable {
 		this.nameByUser = in.readString();
 		this.hidden = (in.readInt() == 1);
 		this.departures = in.readArrayList(Departure.class.getClassLoader());
+		this.zoneId = in.readString();
 	}
 
 	public long getId() {
@@ -96,6 +98,14 @@ public class Stop implements Parcelable {
 		this.hidden = !this.hidden;
 	}
 
+	public String getZoneId() {
+		return zoneId;
+	}
+
+	public void setZoneId(String zoneId) {
+		this.zoneId = zoneId;
+	}
+
 	public static boolean isValidCode(String code) {
 		return PATTERN.matcher(code).matches();
 	}
@@ -114,6 +124,7 @@ public class Stop implements Parcelable {
 		out.writeString(nameByUser);
 		out.writeInt(hidden ? 1 : 0);
 		out.writeList(departures);
+		out.writeString(zoneId);
 	}
 
 	public static final Parcelable.Creator<Stop> CREATOR = new Creator<Stop>() {

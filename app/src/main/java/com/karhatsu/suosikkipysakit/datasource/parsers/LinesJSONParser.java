@@ -50,7 +50,11 @@ public class LinesJSONParser implements JSONParser<Line> {
 			JSONObject jsonStop = jsonStops.getJSONObject(i);
 			String code = jsonStop.getString("gtfsId");
 			String name = jsonStop.getString("name");
-			stops.add(new Stop(code, name));
+			Stop stop = new Stop(code, name);
+			if (!jsonStop.isNull("zoneId")) {
+				stop.setZoneId(jsonStop.getString("zoneId"));
+			}
+			stops.add(stop);
 		}
 		return stops;
 	}

@@ -30,7 +30,11 @@ public class LineStopListAdapter extends ArrayAdapter<Stop> {
 			view = layoutInflater.inflate(R.layout.list_item_stop, null);
 		}
 		Stop stop = stops.get(position);
-		setText(view, R.id.stop_list_item_name, stop.getName());
+		String name = stop.getName();
+		if (stop.getZoneId() != null) {
+			name +=  " (" + stop.getZoneId() + ")";
+		}
+		setText(view, R.id.stop_list_item_name, name);
 		return view;
 	}
 

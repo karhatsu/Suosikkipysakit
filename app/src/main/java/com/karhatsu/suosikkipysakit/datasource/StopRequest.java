@@ -21,6 +21,7 @@ public class StopRequest extends AbstractHslRequest<Stop> {
 				.append("  " + getStopsSearch(searchParam) + " {")
 				.append("    name")
 				.append("    code")
+				.append("    zoneId")
 				.append("    stoptimesWithoutPatterns(numberOfDepartures: 30, omitNonPickups: true) {")
 				.append("      scheduledDeparture")
 				.append("      realtimeDeparture")

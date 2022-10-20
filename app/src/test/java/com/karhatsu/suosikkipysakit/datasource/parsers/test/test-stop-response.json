@@ -5,6 +5,7 @@
         "gtfsId": "HSL:1431102",
         "name": "Kipparlahti",
         "code": "4004",
+        "zoneId": "B",
         "stoptimesWithoutPatterns": [
           {
             "scheduledDeparture": 50640,

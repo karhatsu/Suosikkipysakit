@@ -15,7 +15,7 @@ public class StopJSONParserTest extends AbstractJSONParserTest {
 	private static final String TEST_JSON_FILE_NO_DEPARTURES = "test-stop-response-no-departures.json";
 	private static final String TEST_JSON_FILE_SINGLE_STOP = "test-stop-response-single-stop.json";
 	private static String jsonString;
-	private StopJSONParser parser = new StopJSONParser();
+	private final StopJSONParser parser = new StopJSONParser();
 
 	@Override
 	protected void setUp() throws Exception {
@@ -31,6 +31,10 @@ public class StopJSONParserTest extends AbstractJSONParserTest {
 	public void testStopName()
 			throws JSONException {
 		assertEquals("Kipparlahti", getParsedStop().getName());
+	}
+
+	public void testZoneId() throws JSONException {
+		assertEquals("B", getParsedStop().getZoneId());
 	}
 
 	public void testDeparturesCount() throws JSONException {
