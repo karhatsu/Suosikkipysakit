@@ -9,6 +9,7 @@ android {
         versionCode 19
         versionName "3.7"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+        buildConfigField "String", "API_KEY", "\"${System.env.DIGITRANSIT_API_KEY}\""
     }
     buildTypes {
         release {

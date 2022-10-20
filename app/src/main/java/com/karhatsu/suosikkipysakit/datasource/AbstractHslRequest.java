@@ -16,6 +16,7 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.karhatsu.suosikkipysakit.BuildConfig;
 import com.karhatsu.suosikkipysakit.datasource.parsers.JSONParser;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -101,6 +102,7 @@ public abstract class AbstractHslRequest<R> extends AsyncTask<String, Void, Arra
 			urlConnection.setDoOutput(true);
 			urlConnection.setChunkedStreamingMode(0);
 			urlConnection.setRequestProperty("Content-Type", "application/graphql");
+			urlConnection.setRequestProperty("digitransit-subscription-key", BuildConfig.API_KEY);
 			OutputStream out = new BufferedOutputStream(urlConnection.getOutputStream());
 			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(out, "UTF-8"));
 			writer.write(getRequestBody(searchParam));
