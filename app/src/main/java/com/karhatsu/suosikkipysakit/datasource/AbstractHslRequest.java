@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -49,7 +50,7 @@ public abstract class AbstractHslRequest<R> extends AsyncTask<String, Void, Arra
 	}
 
 	private ArrayList<R> getData(String... searchParams) {
-		ArrayList<R> list = new ArrayList<R>();
+		ArrayList<R> list = new ArrayList<>();
 		for (String searchParam : searchParams) {
 			try {
 				String json = queryDataAsJson(searchParam.trim());
@@ -104,7 +105,7 @@ public abstract class AbstractHslRequest<R> extends AsyncTask<String, Void, Arra
 			urlConnection.setRequestProperty("Content-Type", "application/graphql");
 			urlConnection.setRequestProperty("digitransit-subscription-key", BuildConfig.API_KEY);
 			OutputStream out = new BufferedOutputStream(urlConnection.getOutputStream());
-			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(out, "UTF-8"));
+			BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(out, StandardCharsets.UTF_8));
 			writer.write(getRequestBody(searchParam));
 			writer.flush();
 			writer.close();
