@@ -1,7 +1,7 @@
 .idea
 *.iml
 app-release.aab
-app/release/output.json
+app/release
 app/suosikkipysakit.keystore
 bin/
 build/
