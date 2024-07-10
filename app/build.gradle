@@ -18,6 +18,9 @@ android {
         }
     }
     namespace 'com.karhatsu.suosikkipysakit'
+    buildFeatures {
+        buildConfig true
+    }
 }
 
 dependencies {
