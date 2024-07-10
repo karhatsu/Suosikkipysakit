@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdk 34
+    compileSdk 35
     defaultConfig {
         applicationId "com.karhatsu.suosikkipysakit"
         minSdkVersion 19
-        targetSdkVersion 34
+        targetSdkVersion 35
         versionCode 21
         versionName "3.9"
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
