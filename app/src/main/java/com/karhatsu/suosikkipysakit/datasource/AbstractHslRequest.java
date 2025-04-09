@@ -24,7 +24,7 @@ import javax.net.ssl.HttpsURLConnection;
 
 public abstract class AbstractHslRequest<R> extends AsyncTask<String, Void, ArrayList<R>> {
 
-	private static final String API_URL = "https://api.digitransit.fi/routing/v1/routers/hsl/index/graphql";
+	private static final String API_URL = "https://api.digitransit.fi/routing/v2/hsl/gtfs/v1";
 
 	private OnHslRequestReady<R> notifier;
 	private boolean connectionFailed;
