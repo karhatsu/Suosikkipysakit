@@ -50,11 +50,11 @@ public class LinesRequest extends AbstractHslRequest<Line> {
 
 	private String getRoutesCondition(String searchParam) {
 		if (searchParam.equalsIgnoreCase("metro")) {
-			return "modes: \"SUBWAY\"";
+			return "transportModes: SUBWAY";
 		} else if (searchParam.equalsIgnoreCase("lautta")) {
-			return "modes: \"FERRY\"";
+			return "transportModes: FERRY";
 		} else if (TRAM_PATTERN.matcher(searchParam).matches() || searchParam.equals("10")) {
-			return "name: \"" + searchParam + "\" modes: \"TRAM\"";
+			return "name: \"" + searchParam + "\" transportModes: TRAM";
 		}
 		return "name: \"" + searchParam + "\"";
 	}
