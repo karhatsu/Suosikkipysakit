@@ -21,6 +21,7 @@ public class StopRequest extends AbstractHslRequest<Stop> {
 				.append("  " + getStopsSearch(searchParam) + " {")
 				.append("    name")
 				.append("    code")
+				.append("    gtfsId")
 				.append("    zoneId")
 				.append("    stoptimesWithoutPatterns(numberOfDepartures: 30, omitNonPickups: true) {")
 				.append("      scheduledDeparture")
@@ -43,11 +44,9 @@ public class StopRequest extends AbstractHslRequest<Stop> {
 	}
 
 	private String getStopsSearch(String searchParam) {
-		if (searchParam.length() <= 6) {
-			return "stops(name: \"" + searchParam + "\")";
-		} else if (searchParam.startsWith("HSL")) {
+		if (searchParam.startsWith("HSL:")) {
 			return "stop(id: \"" + searchParam + "\")";
 		}
-		return "stop(id: \"HSL:" + searchParam + "\")";
+		return "stops(name: \"" + searchParam + "\")";
 	}
 }

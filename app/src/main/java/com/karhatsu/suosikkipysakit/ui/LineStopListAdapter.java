@@ -31,7 +31,9 @@ public class LineStopListAdapter extends ArrayAdapter<Stop> {
 		}
 		Stop stop = stops.get(position);
 		String name = stop.getName();
-		if (stop.getZoneId() != null) {
+		if (stop.getLegacyCode() != null) {
+			name +=  " (" + stop.getLegacyCode() + ")";
+		} else if (stop.getZoneId() != null) {
 			name +=  " (" + stop.getZoneId() + ")";
 		}
 		setText(view, R.id.stop_list_item_name, name);

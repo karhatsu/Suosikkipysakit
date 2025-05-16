@@ -25,7 +25,8 @@ public class StopJSONParserTest extends AbstractJSONParserTest {
 	}
 
 	public void testStopCode() throws JSONException {
-		assertEquals("4004", getParsedStop().getCode());
+		assertEquals("HSL:1431102", getParsedStop().getCode());
+		assertEquals("4004", getParsedStop().getLegacyCode());
 	}
 
 	public void testStopName()

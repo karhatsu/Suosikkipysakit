@@ -32,14 +32,8 @@
                 android:id="@+id/add_stop_code_instructions"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/activity_add_stop_code_instructions"
+                android:text="@string/activity_add_stop_name_instructions"
                 android:padding="5dp" />
-
-            <Spinner
-                android:id="@+id/city_spinner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -50,8 +44,8 @@
                     android:imeOptions="actionSearch"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/activity_add_stop_code_hint"
-                    android:inputType="numberSigned"
+                    android:hint="@string/activity_add_stop_name_hint"
+                    android:inputType="textCapSentences"
                     android:maxLines="1"
                     android:singleLine="true" />
 

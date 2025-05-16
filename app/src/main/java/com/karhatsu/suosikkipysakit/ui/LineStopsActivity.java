@@ -42,10 +42,8 @@ public class LineStopsActivity extends AppCompatActivity {
 	}
 
 	private void setupLineStopsView() {
-		List<Stop> lineStops = getIntent().getParcelableArrayListExtra(
-				LINE_STOPS);
-		final LineStopListAdapter lineStopListAdapter = new LineStopListAdapter(
-				this, lineStops);
+		List<Stop> lineStops = getIntent().getParcelableArrayListExtra(LINE_STOPS);
+		final LineStopListAdapter lineStopListAdapter = new LineStopListAdapter(this, lineStops);
 		ListView linesListView = findViewById(R.id.line_stops_list);
 		linesListView.setAdapter(lineStopListAdapter);
 		linesListView.setOnItemClickListener(new OnItemClickListener() {

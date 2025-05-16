@@ -21,20 +21,18 @@ import com.karhatsu.suosikkipysakit.R;
 import com.karhatsu.suosikkipysakit.datasource.LinesRequest;
 import com.karhatsu.suosikkipysakit.datasource.OnHslRequestReady;
 import com.karhatsu.suosikkipysakit.datasource.StopRequest;
-import com.karhatsu.suosikkipysakit.db.PreviousCityDao;
-import com.karhatsu.suosikkipysakit.domain.City;
 import com.karhatsu.suosikkipysakit.domain.Line;
 import com.karhatsu.suosikkipysakit.domain.Stop;
 
-public class AddStopActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class AddStopActivity extends AppCompatActivity {
 
 	private ProgressDialog progressDialog;
 
 	private StopRequest stopRequest;
-	private StopRequestNotifier stopRequestNotifier = new StopRequestNotifier();
+	private final StopRequestNotifier stopRequestNotifier = new StopRequestNotifier();
 
 	private LinesRequest linesRequest;
-	private LinesRequestNotifier linesRequestNotifier = new LinesRequestNotifier();
+	private final LinesRequestNotifier linesRequestNotifier = new LinesRequestNotifier();
 
 	private Stop stopToBeSaved;
 
@@ -49,7 +47,6 @@ public class AddStopActivity extends AppCompatActivity implements AdapterView.On
 		if (actionBar != null) {
 			actionBar.setDisplayHomeAsUpEnabled(true);
 		}
-		createCitySpinner();
 		addSearchButtonListeners();
 		initializeRequests();
 		restoreState();
@@ -58,7 +55,6 @@ public class AddStopActivity extends AppCompatActivity implements AdapterView.On
 	@Override
 	protected void onResume() {
 		super.onResume();
-		setSelectedCity();
 	}
 
 	private void restoreState() {
@@ -77,47 +73,17 @@ public class AddStopActivity extends AppCompatActivity implements AdapterView.On
 		}
 	}
 
-	private void createCitySpinner() {
-		Spinner citySpinner = getCitySpinner();
-		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.cities,
-			android.R.layout.simple_spinner_item);
-		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		citySpinner.setAdapter(adapter);
-		citySpinner.setOnItemSelectedListener(this);
-	}
-
-	private void setSelectedCity() {
-		String selectedCity = new PreviousCityDao(this).findCity().getName();
-		Spinner citySpinner = getCitySpinner();
-		ArrayAdapter<CharSequence> adapter = getCitySpinnerAdapter(citySpinner);
-		int position = adapter.getPosition(selectedCity);
-		citySpinner.setSelection(position);
-	}
-
-	private ArrayAdapter<CharSequence> getCitySpinnerAdapter() {
-		return getCitySpinnerAdapter(getCitySpinner());
-	}
-
-	@SuppressWarnings("unchecked")
-	private ArrayAdapter<CharSequence> getCitySpinnerAdapter(Spinner citySpinner) {
-		return (ArrayAdapter<CharSequence>) citySpinner.getAdapter();
-	}
-
-	private Spinner getCitySpinner() {
-		return (Spinner) findViewById(R.id.city_spinner);
-	}
-
 	private void addSearchButtonListeners() {
 		getStopCodeField().setOnEditorActionListener(createStopCodeSearchListener());
 		getLineCodeField().setOnEditorActionListener(createLineCodeSearchListener());
 	}
 
 	private TextView getStopCodeField() {
-		return (TextView) findViewById(R.id.add_stop_code);
+		return findViewById(R.id.add_stop_code);
 	}
 
 	private TextView getLineCodeField() {
-		return (TextView) findViewById(R.id.add_stop_line);
+		return findViewById(R.id.add_stop_line);
 	}
 
 	private OnEditorActionListener createStopCodeSearchListener() {
@@ -174,13 +140,6 @@ public class AddStopActivity extends AppCompatActivity implements AdapterView.On
 			return; // prevent double-clicks
 		}
 		String code = getTextFromField(R.id.add_stop_code);
-		CharSequence selectedCity = getCitySpinnerAdapter().getItem(getCitySpinner().getSelectedItemPosition());
-		code = getCityPrefix(selectedCity) + code;
-		if (!Stop.isValidCode(code)) {
-			ToastHelper
-					.showToast(this, R.string.activity_add_stop_invalid_code);
-			return;
-		}
 		showPleaseWaitForStop();
 		stopRequest.execute(code);
 	}
@@ -190,7 +149,7 @@ public class AddStopActivity extends AppCompatActivity implements AdapterView.On
 			return;
 		}
 		String line = getTextFromField(R.id.add_stop_line);
-		if (line.trim().equals("")) {
+		if (line.trim().isEmpty()) {
 			ToastHelper.showToast(this, R.string.activity_add_stop_empty_line);
 			return;
 		}
@@ -232,41 +191,19 @@ public class AddStopActivity extends AppCompatActivity implements AdapterView.On
 		initializeRequests();
 	}
 
-	@Override
-	public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-		CharSequence selectedCity = (CharSequence) adapterView.getItemAtPosition(position);
-		storePreviousCitySelection(selectedCity);
-	}
-
-	private void storePreviousCitySelection(CharSequence selectedCity) {
-		new PreviousCityDao(this).save(City.getByName(selectedCity.toString()));
-	}
-
-	private String getCityPrefix(CharSequence selectedCity) {
-		return City.getPrefixByName(selectedCity.toString());
-	}
-
-	@Override
-	public void onNothingSelected(AdapterView<?> adapterView) {
-	}
-
 	private class StopRequestNotifier implements OnHslRequestReady<Stop> {
 		@Override
 		public void notifyAboutResult(ArrayList<Stop> stops) {
 			hideProgressDialog();
 			initializeRequests();
-			if (stops == null || stops.size() == 0) {
-				ToastHelper.showToast(AddStopActivity.this,
-						R.string.activity_add_stop_stop_not_found);
+			if (stops == null || stops.isEmpty()) {
+				ToastHelper.showToast(AddStopActivity.this, R.string.activity_add_stop_stop_not_found);
 			} else if (stops.size() == 1) {
 				stopToBeSaved = stops.get(0);
 				showSaveStopDialog();
 			} else {
-				ArrayList<Stop> stopsAL = (ArrayList<Stop>) stops;
-				Intent intent = new Intent(AddStopActivity.this,
-						LineStopsActivity.class);
-				intent.putParcelableArrayListExtra(
-						LineStopsActivity.LINE_STOPS, stopsAL);
+				Intent intent = new Intent(AddStopActivity.this, LineStopsActivity.class);
+				intent.putParcelableArrayListExtra(LineStopsActivity.LINE_STOPS, stops);
 				startActivity(intent);
 			}
 		}

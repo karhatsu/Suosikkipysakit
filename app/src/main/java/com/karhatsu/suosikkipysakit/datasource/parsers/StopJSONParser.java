@@ -29,12 +29,13 @@ public class StopJSONParser implements JSONParser<Stop> {
 	}
 
 	private Stop parseStop(JSONObject jsonStop) throws JSONException {
-		String code = jsonStop.getString("code");
+		String code = jsonStop.getString("gtfsId");
 		String name = jsonStop.getString("name");
 		String zoneId = jsonStop.getString("zoneId");
 		Stop stop = new Stop(code, name);
 		stop.setZoneId(zoneId);
 		stop.setDepartures(parseDepartures(jsonStop));
+		stop.setLegacyCode(jsonStop.getString("code"));
 		return stop;
 	}
 

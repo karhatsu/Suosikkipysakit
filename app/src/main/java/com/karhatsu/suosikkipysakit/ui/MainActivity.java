@@ -15,6 +15,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.karhatsu.suosikkipysakit.R;
@@ -61,8 +62,7 @@ public class MainActivity extends AppCompatActivity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				String selectedStopCode = getSelectedStopCode(stopListAdapter,
-						position);
+				String selectedStopCode = getSelectedStopCode(stopListAdapter, position);
 				if (selectedStopCode != null) {
 					showDepartures(null, selectedStopCode);
 				} else {
@@ -82,10 +82,13 @@ public class MainActivity extends AppCompatActivity {
 		Intent intent = new Intent(MainActivity.this, DeparturesActivity.class);
 		if (stop != null) {
 			intent.putExtra(Stop.STOP_KEY, stop);
+			startActivity(intent);
+		} else if (Stop.isLegacyCode(stopCode)) {
+			ToastHelper.showToast(this, R.string.activity_main_legacy_stop_code, Toast.LENGTH_LONG);
 		} else {
 			intent.putExtra(Stop.CODE_KEY, stopCode);
+			startActivity(intent);
 		}
-		startActivity(intent);
 	}
 
 	private void showCollectionDepartures(long id) {
@@ -245,7 +248,7 @@ public class MainActivity extends AppCompatActivity {
 	}
 
 	private ListView getStopListView() {
-		return (ListView) findViewById(R.id.stop_list);
+		return findViewById(R.id.stop_list);
 	}
 
 	private StopListAdapter getStopListAdapter() {

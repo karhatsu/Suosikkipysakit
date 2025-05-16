@@ -21,6 +21,7 @@ public class Stop implements Parcelable {
 	private boolean hidden;
 	private long id;
 	private String zoneId;
+	private String legacyCode;
 
 	private List<Departure> departures;
 
@@ -40,6 +41,7 @@ public class Stop implements Parcelable {
 		this.hidden = (in.readInt() == 1);
 		this.departures = in.readArrayList(Departure.class.getClassLoader());
 		this.zoneId = in.readString();
+		this.legacyCode = in.readString();
 	}
 
 	public long getId() {
@@ -52,6 +54,14 @@ public class Stop implements Parcelable {
 
 	public String getCode() {
 		return code;
+	}
+
+	public String getLegacyCode() {
+		return legacyCode;
+	}
+
+	public void setLegacyCode(String legacyCode) {
+		this.legacyCode = legacyCode;
 	}
 
 	public String getName() {
@@ -106,8 +116,8 @@ public class Stop implements Parcelable {
 		this.zoneId = zoneId;
 	}
 
-	public static boolean isValidCode(String code) {
-		return PATTERN.matcher(code).matches();
+	public static boolean isLegacyCode(String code) {
+		return !code.startsWith("HSL:");
 	}
 
 	@Override
@@ -125,6 +135,7 @@ public class Stop implements Parcelable {
 		out.writeInt(hidden ? 1 : 0);
 		out.writeList(departures);
 		out.writeString(zoneId);
+		out.writeString(legacyCode);
 	}
 
 	public static final Parcelable.Creator<Stop> CREATOR = new Creator<Stop>() {
