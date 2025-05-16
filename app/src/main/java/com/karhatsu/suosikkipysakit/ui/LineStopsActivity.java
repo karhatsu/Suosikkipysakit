@@ -32,6 +32,7 @@ public class LineStopsActivity extends AppCompatActivity {
 		if (actionBar != null) {
 			actionBar.setDisplayHomeAsUpEnabled(true);
 		}
+		ToolbarUtil.setToolbarPadding(toolbar);
 		Object retained = getLastNonConfigurationInstance();
 		if (retained instanceof Stop) {
 			stopToBeSaved = (Stop) retained;

@@ -29,6 +29,7 @@ public class LinesActivity extends AppCompatActivity {
 		if (actionBar != null) {
 			actionBar.setDisplayHomeAsUpEnabled(true);
 		}
+		ToolbarUtil.setToolbarPadding(toolbar);
 		setupLinesView();
 	}
 

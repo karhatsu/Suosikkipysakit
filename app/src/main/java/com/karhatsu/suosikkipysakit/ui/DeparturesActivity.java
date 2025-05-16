@@ -22,6 +22,7 @@ public class DeparturesActivity extends AppCompatActivity {
 		if (actionBar != null) {
 			actionBar.setDisplayHomeAsUpEnabled(true);
 		}
+		ToolbarUtil.setToolbarPadding(toolbar);
 
 		if (savedInstanceState == null) {
 			Bundle arguments = getIntent().getExtras();

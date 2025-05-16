@@ -44,6 +44,7 @@ public class AddStopActivity extends AppCompatActivity implements AdapterView.On
 		setContentView(R.layout.activity_add_stop);
 		Toolbar toolbar = findViewById(R.id.toolbar);
 		setSupportActionBar(toolbar);
+		ToolbarUtil.setToolbarPadding(toolbar);
 		ActionBar actionBar = getSupportActionBar();
 		if (actionBar != null) {
 			actionBar.setDisplayHomeAsUpEnabled(true);

@@ -26,6 +26,7 @@ public class StopsVisibilityActivity extends AppCompatActivity {
 		if (actionBar != null) {
 			actionBar.setDisplayHomeAsUpEnabled(true);
 		}
+		ToolbarUtil.setToolbarPadding(toolbar);
 		setupStopListView();
 	}
 
