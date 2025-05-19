@@ -54,7 +54,7 @@ public class LinesRequest extends AbstractHslRequest<Line> {
 			return "transportModes: SUBWAY";
 		} else if (searchParam.equalsIgnoreCase("lautta")) {
 			return "transportModes: FERRY";
-		} else if (TRAM_PATTERN.matcher(searchParam).matches() || searchParam.equals("10")) {
+		} else if (TRAM_PATTERN.matcher(searchParam).matches() || searchParam.equals("10") || searchParam.equals("15")) {
 			return "name: \"" + searchParam + "\" transportModes: TRAM";
 		} else if (TRAIN_PATTERN.matcher(searchParam).matches())  {
 			return "name: \"" + searchParam + "\" transportModes: RAIL";
