@@ -6,6 +6,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -47,6 +49,7 @@ public class AddStopActivity extends AppCompatActivity {
 		if (actionBar != null) {
 			actionBar.setDisplayHomeAsUpEnabled(true);
 		}
+		addButtonDisabling();
 		addSearchButtonListeners();
 		initializeRequests();
 		restoreState();
@@ -71,6 +74,32 @@ public class AddStopActivity extends AppCompatActivity {
 			linesRequest = (LinesRequest) retained;
 			linesRequest.setOnHslRequestReady(linesRequestNotifier);
 		}
+	}
+
+	private void addButtonDisabling() {
+		EditText lineTextField = findViewById(R.id.add_stop_line);
+		Button lineButton = findViewById(R.id.add_stop_line_button);
+		addButtonDisablingFor(lineTextField, lineButton);
+
+		EditText codeTextField = findViewById(R.id.add_stop_code);
+		Button codeButton = findViewById(R.id.add_stop_code_button);
+		addButtonDisablingFor(codeTextField, codeButton);
+	}
+
+	private void addButtonDisablingFor(EditText textField, Button button) {
+		button.setEnabled(false);
+		textField.addTextChangedListener(new TextWatcher() {
+			@Override
+			public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
+
+			@Override
+			public void onTextChanged(CharSequence s, int i, int i1, int i2) {
+				button.setEnabled(!s.toString().trim().isEmpty());
+			}
+
+			@Override
+			public void afterTextChanged(Editable editable) {}
+		});
 	}
 
 	private void addSearchButtonListeners() {
