@@ -15,5 +15,6 @@ public class ToolbarUtil {
             v.setLayoutParams(lp);
             return insets;
         });
+        ViewCompat.requestApplyInsets(toolbar);
     }
 }
