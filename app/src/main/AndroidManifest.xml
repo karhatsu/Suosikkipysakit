@@ -25,7 +25,9 @@
             android:label="@string/activity_add_stop_title"
             android:parentActivityName=".ui.MainActivity"
             android:exported="false"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize"
+        >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.karhatsu.suosikkipysakit.ui.MainActivity" />
