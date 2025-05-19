@@ -13,6 +13,7 @@ import java.util.regex.Pattern;
 public class LinesRequest extends AbstractHslRequest<Line> {
 
 	private static final Pattern TRAM_PATTERN = Pattern.compile("^[1-9]$");
+	private static final Pattern TRAIN_PATTERN = Pattern.compile("^[a-zA-Z]$");
 
 	public LinesRequest(OnHslRequestReady<Line> notifier) {
 		super(notifier);
@@ -55,6 +56,8 @@ public class LinesRequest extends AbstractHslRequest<Line> {
 			return "transportModes: FERRY";
 		} else if (TRAM_PATTERN.matcher(searchParam).matches() || searchParam.equals("10")) {
 			return "name: \"" + searchParam + "\" transportModes: TRAM";
+		} else if (TRAIN_PATTERN.matcher(searchParam).matches())  {
+			return "name: \"" + searchParam + "\" transportModes: RAIL";
 		}
 		return "name: \"" + searchParam + "\"";
 	}
